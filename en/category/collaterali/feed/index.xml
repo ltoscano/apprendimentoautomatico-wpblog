@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Collaterals &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>Collaterals &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Intuitions on the fly on Blockchain</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/#respond</comments>
+		<pubDate>Mon, 01 May 2017 23:15:47 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Engineering]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[BaaS]]></category>
+		<category><![CDATA[bitcoin]]></category>
+		<category><![CDATA[block]]></category>
+		<category><![CDATA[blockchain]]></category>
+		<category><![CDATA[bricks]]></category>
+		<category><![CDATA[chain]]></category>
+		<category><![CDATA[cloud]]></category>
+		<category><![CDATA[cryptocurrency]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[distributed]]></category>
+		<category><![CDATA[ecosystem]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[game theory]]></category>
+		<category><![CDATA[ledger]]></category>
+		<category><![CDATA[microsoft]]></category>
+		<category><![CDATA[miner]]></category>
+		<category><![CDATA[mining]]></category>
+		<category><![CDATA[p2p]]></category>
+		<category><![CDATA[payment]]></category>
+		<category><![CDATA[peer]]></category>
+		<category><![CDATA[service]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6142</guid>
+		<description><![CDATA[<p>An increasing number of articles suggest fascinating combinations of Blockchain and Machine Learning. It could be useful to introduce some [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6142</post-id>	</item>
+		<item>
+		<title>Hype cycle e Apprendimento Automatico: in che fase siamo?</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/#respond</comments>
+		<pubDate>Wed, 05 Apr 2017 22:53:44 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[apprendimento automatico]]></category>
+		<category><![CDATA[apprendimento profondo]]></category>
+		<category><![CDATA[ciclo]]></category>
+		<category><![CDATA[esagerazione]]></category>
+		<category><![CDATA[gartner]]></category>
+		<category><![CDATA[hype cycle]]></category>
+		<category><![CDATA[illusione]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6133</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6133</post-id>	</item>
+		<item>
+		<title>Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/#respond</comments>
+		<pubDate>Sun, 01 Jan 2017 22:25:03 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[AUC]]></category>
+		<category><![CDATA[boosted]]></category>
+		<category><![CDATA[boosting]]></category>
+		<category><![CDATA[breadth]]></category>
+		<category><![CDATA[categorical]]></category>
+		<category><![CDATA[classification]]></category>
+		<category><![CDATA[continous]]></category>
+		<category><![CDATA[cross validation]]></category>
+		<category><![CDATA[decision tree]]></category>
+		<category><![CDATA[depth]]></category>
+		<category><![CDATA[ensemble]]></category>
+		<category><![CDATA[forest]]></category>
+		<category><![CDATA[gbm]]></category>
+		<category><![CDATA[gradient]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[grid search]]></category>
+		<category><![CDATA[heuristic]]></category>
+		<category><![CDATA[hyperparameter]]></category>
+		<category><![CDATA[hypothesis]]></category>
+		<category><![CDATA[information gain]]></category>
+		<category><![CDATA[learning rate]]></category>
+		<category><![CDATA[model]]></category>
+		<category><![CDATA[multivariate]]></category>
+		<category><![CDATA[prediction]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[regression]]></category>
+		<category><![CDATA[root]]></category>
+		<category><![CDATA[rules]]></category>
+		<category><![CDATA[scikit-learn]]></category>
+		<category><![CDATA[supervised]]></category>
+		<category><![CDATA[training set]]></category>
+		<category><![CDATA[univariate]]></category>
+		<category><![CDATA[weights]]></category>
+		<category><![CDATA[xgboost]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6032</guid>
+		<description><![CDATA[<p>XGBoost model is a supervised machine learning algorithm that takes in the training data and constructs a model that predicts [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6032</post-id>	</item>
+		<item>
+		<title>A gentle introduction to TensorFlow with python (and RNN)</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/#respond</comments>
+		<pubDate>Fri, 18 Nov 2016 08:44:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[handwritten digit classification]]></category>
+		<category><![CDATA[introduction tensorflow python]]></category>
+		<category><![CDATA[LSTM]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[mnist]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[recurrent neural network]]></category>
+		<category><![CDATA[rnn]]></category>
+		<category><![CDATA[tensor]]></category>
+		<category><![CDATA[tensorflow]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5763</guid>
+		<description><![CDATA[<p>What is TensorFlow? It's an open source library made by google for being used in Machine Learning (ML) problems, specially [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/">A gentle introduction to TensorFlow with python (and RNN)</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5763</post-id>	</item>
+		<item>
+		<title>Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comments</comments>
+		<pubDate>Wed, 02 Nov 2016 19:38:49 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[API generation]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[asr]]></category>
+		<category><![CDATA[audio]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[concepts]]></category>
+		<category><![CDATA[emotions analysis]]></category>
+		<category><![CDATA[entities]]></category>
+		<category><![CDATA[language detection]]></category>
+		<category><![CDATA[nlp]]></category>
+		<category><![CDATA[riconoscimento voce]]></category>
+		<category><![CDATA[sdk]]></category>
+		<category><![CDATA[sentiment analysis]]></category>
+		<category><![CDATA[speech]]></category>
+		<category><![CDATA[speech recognition]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[voice]]></category>
+		<category><![CDATA[watson]]></category>
+		<category><![CDATA[watson developer cloud]]></category>
+		<category><![CDATA[watson speech text]]></category>
+		<category><![CDATA[youtube]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5639</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5639</post-id>	</item>
+		<item>
+		<title>Image recognition tutorial in Python/MXNet using deep convolutional</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comments</comments>
+		<pubDate>Tue, 04 Oct 2016 18:38:56 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cnn]]></category>
+		<category><![CDATA[convolutional]]></category>
+		<category><![CDATA[FC]]></category>
+		<category><![CDATA[feature extraction]]></category>
+		<category><![CDATA[fully connected]]></category>
+		<category><![CDATA[image]]></category>
+		<category><![CDATA[image tagging]]></category>
+		<category><![CDATA[imagenet]]></category>
+		<category><![CDATA[layer]]></category>
+		<category><![CDATA[mxnet]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[polling]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[recognition]]></category>
+		<category><![CDATA[subsampling]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587</guid>
+		<description><![CDATA[<p>I would like to introduce in this post some specific CNN implementations which are able to offer a cognitive image [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/">Image recognition tutorial in Python/MXNet using deep convolutional</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5587</post-id>	</item>
+		<item>
+		<title>Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/#respond</comments>
+		<pubDate>Thu, 22 Sep 2016 07:48:27 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cnn]]></category>
+		<category><![CDATA[convolution]]></category>
+		<category><![CDATA[convolutional]]></category>
+		<category><![CDATA[DMLC]]></category>
+		<category><![CDATA[dnn]]></category>
+		<category><![CDATA[feature extraction]]></category>
+		<category><![CDATA[GPU]]></category>
+		<category><![CDATA[hubel]]></category>
+		<category><![CDATA[identificazione oggetti immagini]]></category>
+		<category><![CDATA[ILSVRC]]></category>
+		<category><![CDATA[imagenet]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[mechanical turk]]></category>
+		<category><![CDATA[mobile]]></category>
+		<category><![CDATA[mxnet]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[polling]]></category>
+		<category><![CDATA[pre-addestrati]]></category>
+		<category><![CDATA[preprocessing]]></category>
+		<category><![CDATA[programmazione dichiarativa]]></category>
+		<category><![CDATA[reti convoluzionali]]></category>
+		<category><![CDATA[sift]]></category>
+		<category><![CDATA[softmax]]></category>
+		<category><![CDATA[subsampling]]></category>
+		<category><![CDATA[surf]]></category>
+		<category><![CDATA[svm]]></category>
+		<category><![CDATA[turi]]></category>
+		<category><![CDATA[wiesel]]></category>
+		<category><![CDATA[wordnet]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5436</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/">Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5436</post-id>	</item>
+		<item>
+		<title>Protected: Magellano an open source Cognitive Computing demonstrator</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/#respond</comments>
+		<pubDate>Mon, 29 Aug 2016 22:40:53 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data visualization]]></category>
+		<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[cognitive]]></category>
+		<category><![CDATA[cognitive computing]]></category>
+		<category><![CDATA[concepts]]></category>
+		<category><![CDATA[conceptual]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[deep networks]]></category>
+		<category><![CDATA[demonstrator]]></category>
+		<category><![CDATA[LDA]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[map]]></category>
+		<category><![CDATA[neural network]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[sankey]]></category>
+		<category><![CDATA[shallow network]]></category>
+		<category><![CDATA[topics]]></category>
+		<category><![CDATA[watson]]></category>
+		<category><![CDATA[word2vec]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5413</guid>
+		<description><![CDATA[<p>There is no excerpt because this is a protected post.</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/">Protected: Magellano an open source Cognitive Computing demonstrator</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5413</post-id>	</item>
+		<item>
+		<title>Filtraggio delle stop word con nodo custom in Knime</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/#respond</comments>
+		<pubDate>Mon, 29 Aug 2016 15:42:44 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[filtering]]></category>
+		<category><![CDATA[knime]]></category>
+		<category><![CDATA[knime stopword]]></category>
+		<category><![CDATA[node]]></category>
+		<category><![CDATA[pandas]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[stop list]]></category>
+		<category><![CDATA[stop word]]></category>
+		<category><![CDATA[token]]></category>
+		<category><![CDATA[tokenizer]]></category>
+		<category><![CDATA[wrapper]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5377</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/">Filtraggio delle stop word con nodo custom in Knime</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5377</post-id>	</item>
+		<item>
+		<title>Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/#respond</comments>
+		<pubDate>Sun, 28 Aug 2016 17:10:22 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[API]]></category>
+		<category><![CDATA[bot]]></category>
+		<category><![CDATA[corpora]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[generare dataset]]></category>
+		<category><![CDATA[generare testset]]></category>
+		<category><![CDATA[ipython]]></category>
+		<category><![CDATA[italiano]]></category>
+		<category><![CDATA[jupyter]]></category>
+		<category><![CDATA[raw corpus]]></category>
+		<category><![CDATA[scraping]]></category>
+		<category><![CDATA[seeds]]></category>
+		<category><![CDATA[wikimedia]]></category>
+		<category><![CDATA[wikipedia]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5342</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/">Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5342</post-id>	</item>
+	</channel>
+</rss>

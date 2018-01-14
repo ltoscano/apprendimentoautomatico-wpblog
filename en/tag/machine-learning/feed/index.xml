@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>machine learning &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/machine-learning/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>machine learning &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Introduction to decision trees with BigML: a step by step guide</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/#respond</comments>
+		<pubDate>Sat, 10 Dec 2016 19:57:28 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[algorithms]]></category>
+		<category><![CDATA[bigml]]></category>
+		<category><![CDATA[context]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[decision tree]]></category>
+		<category><![CDATA[decision trees bigml]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[one-click]]></category>
+		<category><![CDATA[pipeline]]></category>
+		<category><![CDATA[topic modeling]]></category>
+		<category><![CDATA[tutorial]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5997</guid>
+		<description><![CDATA[<p>The discussion on machine learning is the buzz word in the current tech tectonic waves. It's all amber-hot as the [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5997</post-id>	</item>
+		<item>
+		<title>Machine Learning: the best cheat sheets in one page</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/#respond</comments>
+		<pubDate>Sun, 04 Dec 2016 12:13:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[accuracy]]></category>
+		<category><![CDATA[algorithms]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[cheatsheet]]></category>
+		<category><![CDATA[class]]></category>
+		<category><![CDATA[classification]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[feature]]></category>
+		<category><![CDATA[forest]]></category>
+		<category><![CDATA[jungle]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[label]]></category>
+		<category><![CDATA[large]]></category>
+		<category><![CDATA[learn]]></category>
+		<category><![CDATA[linear]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[machine learning cheat sheet]]></category>
+		<category><![CDATA[scikit-learn]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5891</guid>
+		<description><![CDATA[<p>Squeezed into a set of short tips and schemes, a cheat sheet is not only a source for visual inspiration [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/">Machine Learning: the best cheat sheets in one page</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5891</post-id>	</item>
+		<item>
+		<title>Understanding Apache Ecosystem: stream processing</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/#respond</comments>
+		<pubDate>Fri, 18 Nov 2016 17:00:43 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Engineering]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[Beam]]></category>
+		<category><![CDATA[big data]]></category>
+		<category><![CDATA[cloud]]></category>
+		<category><![CDATA[cloudera]]></category>
+		<category><![CDATA[Flink]]></category>
+		<category><![CDATA[Flume]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[Hadoop]]></category>
+		<category><![CDATA[Kafka]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[Oozie]]></category>
+		<category><![CDATA[Samza]]></category>
+		<category><![CDATA[semi-structured]]></category>
+		<category><![CDATA[Spark]]></category>
+		<category><![CDATA[Sqoop]]></category>
+		<category><![CDATA[Storm]]></category>
+		<category><![CDATA[stream processing]]></category>
+		<category><![CDATA[streaming]]></category>
+		<category><![CDATA[structured]]></category>
+		<category><![CDATA[Thrift]]></category>
+		<category><![CDATA[unstructured]]></category>
+		<category><![CDATA[Кафка]]></category>
+		<category><![CDATA[потоковой обработки слабоструктурированных данных]]></category>
+		<category><![CDATA[структурированных данных]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5775</guid>
+		<description><![CDATA[<p>In this article I will show how a normal big data/machine learning project progresses, taking in account the stream processing [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/">Understanding Apache Ecosystem: stream processing</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5775</post-id>	</item>
+		<item>
+		<title>A gentle introduction to TensorFlow with python (and RNN)</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/#respond</comments>
+		<pubDate>Fri, 18 Nov 2016 08:44:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[handwritten digit classification]]></category>
+		<category><![CDATA[introduction tensorflow python]]></category>
+		<category><![CDATA[LSTM]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[mnist]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[recurrent neural network]]></category>
+		<category><![CDATA[rnn]]></category>
+		<category><![CDATA[tensor]]></category>
+		<category><![CDATA[tensorflow]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5763</guid>
+		<description><![CDATA[<p>What is TensorFlow? It's an open source library made by google for being used in Machine Learning (ML) problems, specially [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/">A gentle introduction to TensorFlow with python (and RNN)</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5763</post-id>	</item>
+		<item>
+		<title>Protected: Magellano an open source Cognitive Computing demonstrator</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/#respond</comments>
+		<pubDate>Mon, 29 Aug 2016 22:40:53 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data visualization]]></category>
+		<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[cognitive]]></category>
+		<category><![CDATA[cognitive computing]]></category>
+		<category><![CDATA[concepts]]></category>
+		<category><![CDATA[conceptual]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[deep networks]]></category>
+		<category><![CDATA[demonstrator]]></category>
+		<category><![CDATA[LDA]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[map]]></category>
+		<category><![CDATA[neural network]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[sankey]]></category>
+		<category><![CDATA[shallow network]]></category>
+		<category><![CDATA[topics]]></category>
+		<category><![CDATA[watson]]></category>
+		<category><![CDATA[word2vec]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5413</guid>
+		<description><![CDATA[<p>There is no excerpt because this is a protected post.</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/">Protected: Magellano an open source Cognitive Computing demonstrator</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5413</post-id>	</item>
+		<item>
+		<title>Protected: Machine Learning di Andrew Ng su Coursera</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-di-andrew-ng/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-di-andrew-ng/#respond</comments>
+		<pubDate>Sun, 03 Jul 2016 23:47:05 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Training]]></category>
+		<category><![CDATA[andrew ng]]></category>
+		<category><![CDATA[andrew ng machine learning course]]></category>
+		<category><![CDATA[coursera]]></category>
+		<category><![CDATA[CS229]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[standford]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=40</guid>
+		<description><![CDATA[<p>There is no excerpt because this is a protected post.</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-di-andrew-ng/">Protected: Machine Learning di Andrew Ng su Coursera</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-di-andrew-ng/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">40</post-id>	</item>
+	</channel>
+</rss>

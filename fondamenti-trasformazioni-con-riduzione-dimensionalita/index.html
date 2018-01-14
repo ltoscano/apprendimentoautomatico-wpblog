@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php">
+
+	<title>Fondamenti: trasformazioni con riduzione di dimensionalità - Machine Learning &amp; Cognitive</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v4.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Nei post precedenti della serie Fondamenti si è mostrato come un generico testo possa essere rappresentato dall&#8217;insieme delle sue parole, trascurando [&hellip;]" />
+<meta name="twitter:title" content="Fondamenti: trasformazioni con riduzione di dimensionalità - Machine Learning &amp; Cognitive" />
+<meta name="twitter:site" content="@BEmatic" />
+<meta name="twitter:image" content="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/introtolda.png?fit=914%2C481&#038;ssl=1" />
+<meta name="twitter:creator" content="@BEmatic" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Fondamenti: trasformazioni con riduzione di dimensionalità Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='paperback-style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
+<style id='paperback-style-inline-css' type='text/css'>
+
+		/* Top Nav Background Color */
+		.top-navigation,
+		.secondary-navigation ul.sub-menu {
+			background-color: #343e47;
+		}
+
+		/* Top Nav Text Color */
+		.top-navigation,
+		.top-navigation nav a,
+		.top-navigation li ul li a,
+		.drawer-toggle {
+			color: #ffffff;
+		}
+
+		.main-navigation:not(.secondary-navigation) ul.menu > li.current-menu-item > a {
+			border-color: #f35245;
+		}
+
+		/* Header Background Color */
+		.site-identity {
+			background-color: #ecf1f7;
+		}
+
+		/* Header Text Color */
+		.main-navigation a,
+		.site-title a,
+		.site-description {
+			color: #383f49;
+		}
+
+		/* Accent Color */
+		.hero-cats a,
+		.post-navigation .nav-label,
+		.entry-cats a {
+			background-color: #f35245;
+		}
+
+		.page-numbers.current,
+		.page-numbers:hover,
+		#page #infinite-handle button:hover {
+			background-color: #f35245;
+		}
+
+		/* Footer Background Color */
+		.site-footer {
+			background-color: #343e47;
+		}
+
+		/* Footer Text Color */
+		.site-footer .widget-title,
+		.site-footer a:hover {
+			color: #ffffff;
+		}
+
+		.site-footer,
+		.site-footer a {
+			color: rgba( 255, 255, 255, 0.8);
+		}
+
+		/* Footer Border Color */
+		.footer-widgets ul li,
+		.footer-widgets + .footer-bottom {
+			border-color: rgba( 255, 255, 255, 0.3);
+		}
+	
+</style>
+<link rel='stylesheet' id='paperback-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7COpen%2BSans%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='overlay_settings_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-webfonts-css'  href='//fonts.googleapis.com/css?family=Source+Code+Pro%3Aregular%2C700&#038;ver=3.3' type='text/css' media='all' />
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel-ie8fix.css?ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/spin.js?ver=1.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/jquery.spin.js?ver=1.3'></script>
+<link rel='https://api.w.org/' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.6.1" />
+<link rel='shortlink' href='https://wp.me/p7Mr5S-rp' />
+<link rel="alternate" type="application/json+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Ffondamenti-trasformazioni-con-riduzione-dimensionalita%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Ffondamenti-trasformazioni-con-riduzione-dimensionalita%2F&#038;format=xml" />
+<style type="text/css">
+.main-navigation {
+    max-width: 45% !important;
+}
+.site-title-wrap {
+    max-width: 55% !important;
+}
+.site-title {
+     font-size: 25px;
+}
+.easy-footnote sup {
+    font-size: 60% !important;
+    font-style: normal !important;;
+    vertical-align: super !important;;
+    position: relative !important;
+    color: red;
+}
+
+span.easy-footnote>a { border-bottom: 0 !important; }
+
+a.easy-footnote-to-top { border-bottom: 0 !important; }
+
+.site-title a::before {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
+    background-size: 25px 25px;
+    content: " ";
+    height: 25px;
+    left: -26px;
+    position: absolute;
+    top: 6px;
+    width: 25px;
+    /*background-size: 25px 25px;
+    background-repeat: no-repeat;*/
+    /*color: #f35245;
+    content: "";
+    font-family: "FontAwesome";
+    font-size: 25px;
+    margin-right: 10px;*/
+}
+
+.site-title {
+    margin-left: 25px !important;
+}
+
+span.post-lang-en {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
+    background-repeat: no-repeat;
+    background-size: 45px 45px;
+    border: 1px dotted lightblue;
+    border-radius: 3px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+}
+</style>
+<style type="text/css">
+.qtranxs_flag_it {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+.qtranxs_flag_en {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+</style>
+<link hreflang="it" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/fondamenti-trasformazioni-con-riduzione-dimensionalita/" rel="alternate" />
+<link hreflang="en" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/" rel="alternate" />
+<link hreflang="x-default" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/" rel="alternate" />
+<meta name="generator" content="qTranslate-X 3.4.6.8" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//i0.wp.com'>
+<link rel='dns-prefetch' href='//i1.wp.com'>
+<link rel='dns-prefetch' href='//i2.wp.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+<style type='text/css'>img#wpstats{display:none}</style>	<style type="text/css">
+					.site-identity {
+				padding: 2% 0;
+			}
+		
+					.single .hero-posts .with-featured-image {
+				padding-top: 7%;
+			}
+		
+		
+			</style>
+
+		<style>
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon {
+			width: 20px !important;
+			height: 28px !important;
+			padding: 6px 0 !important;
+			margin-right: 0 !important;
+		}
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon:before {
+			content: "\f466";
+		}
+		</style><!--Start Cookie Script--> <script type="text/javascript" charset="UTF-8" src="//cookie-script.com/s/f67066386a32612237b658624241e0af.js"></script> <!--End Cookie Script-->
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+</head>
+
+<body class="single single-post postid-1699 single-format-standard has-sidebar two-column">
+
+
+<header id="masthead" class="site-header" role="banner">
+
+		<div class="top-navigation">
+			<div class="container">
+
+				<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>				</nav><!-- .secondary-navigation -->
+
+				<div class="top-navigation-right">
+											<nav class="social-navigation" role="navigation">
+							<div class="menu-social-media-container"><ul id="menu-social-media" class="menu"><li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li id="menu-item-5830" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>						</nav><!-- .social-navigation -->
+					
+					<div class="overlay-toggle drawer-toggle drawer-open-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-search"></i>
+							Esplora						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+
+					<div class="overlay-toggle drawer-toggle drawer-menu-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-bars"></i>
+							Menu						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+				</div><!-- .top-navigation-right -->
+			</div><!-- .container -->
+		</div><!-- .top-navigation -->
+
+		<div class="drawer-wrap">
+			<div class="drawer drawer-explore">
+	<div class="container">
+		<div class="drawer-search">
+			
+<div class="big-search">
+	<form method="get" id="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" role="search">
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" name="s" id="big-search" placeholder="Cerca..." value="" onfocus="if(this.value==this.getAttribute('placeholder'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('placeholder');"/><br />
+
+		<div class="search-controls">
+		
+			<div class="search-select-wrap">
+				<select class="search-select" name="category_name">
+
+					<option value="">Tutto il sito</option>
+
+					<option value="api-generation">API generation</option><option value="collaterali">Collaterals</option><option value="data-engineering">Data Engineering</option><option value="data-mining">Data Mining</option><option value="visualizzazione-dei-dati">Data visualization</option><option value="deep-learning">Deep Learning</option><option value="machine-learning">Machine Learning</option><option value="programmazione">Programming</option><option value="strumenti">Tools</option><option value="formazione">Training</option>				</select>
+			</div>
+
+		
+			<input type="submit" class="submit button" name="submit" id="big-search-submit" value="Ricerca" />
+		</div><!-- .search-controls -->
+	</form><!-- #big-searchform -->
+
+</div><!-- .big-search -->		</div>
+
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Categorie</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
+		
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Tags</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/python/" title="View all posts in Python" >Python</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/bow/" title="View all posts in bow" >bow</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/azure/" title="View all posts in azure" >azure</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/classification/" title="View all posts in classification" >classification</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
+			</div>
+		
+		<div class="widget tax-widget">
+			<h2 class="widget-title">Archivi</h2>
+
+				<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>
+		</div>
+	</div><!-- .container -->
+</div><!-- .drawer -->
+<div class="drawer drawer-menu-explore">
+	<div class="container">
+					<nav id="drawer-navigation" class="main-navigation drawer-navigation" role="navigation">
+				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li id="menu-item-5843" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>			</nav><!-- #site-navigation -->
+		
+					<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>			</nav><!-- .secondary-navigation -->
+		
+					<nav class="social-navigation" role="navigation">
+				<div class="menu-social-media-container"><ul id="menu-social-media-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>			</nav><!-- .footer-navigation -->
+			</div><!-- .container -->
+</div><!-- .drawer -->		</div><!-- .drawer-wrap -->
+
+		<div class="site-identity clear">
+			<div class="container">
+				<!-- Site title and logo -->
+					<div class="site-title-wrap">
+		<!-- Use the Site Logo feature, if supported -->
+		
+		<div class="titles-wrap">
+							<p class="site-title"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" rel="home">Machine Learning &amp; Cognitive</a></p>
+ 			
+							<p class="site-description">ApprendimentoAutomatico.it</p>
+					</div>
+	</div><!-- .site-title-wrap -->
+
+				<!-- Main navigation -->
+				<nav id="site-navigation" class="main-navigation enabled" role="navigation">
+					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+
+			</div><!-- .container -->
+		</div><!-- .site-identity-->
+
+					<div class="featured-posts-wrap clear">
+				<div class="featured-posts clear">
+					<div class="featured-header">
+						<span class="featured-header-category"></span>
+						<span class="featured-header-close"><i class="fa fa-times"></i> Chiudi</span>
+					</div>
+
+					<div class="post-container clear"></div>
+				</div>
+			</div>
+		</header><!-- .site-header -->
+
+
+<div class="mini-bar">
+			<div class="mini-title">
+			<!-- Next and previous post links -->
+			<div class="fixed-nav"><a class="fixed-image" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/"> <img width="65" height="36" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?fit=65%2C36&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="wordle-bs70420probability" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?w=840&amp;ssl=1 840w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?resize=300%2C166&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?resize=768%2C424&amp;ssl=1 768w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="4317" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/wordle-bs70420probability/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?fit=840%2C464&amp;ssl=1" data-orig-size="840,464" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="wordle-bs70420probability" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?fit=300%2C166&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?fit=840%2C464&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Successivo</span><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/" rel="prev">Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</a></div></div>
+		</div>
+	
+	<ul class="mini-menu">
+					<li>
+				<a class="drawer-open-toggle" href="#">
+					<span><i class="fa fa-search"></i> Esplora</span>
+				</a>
+			</li>
+				<li class="back-to-top">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+		<li class="back-to-menu">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+	</ul>
+</div><!-- .mini-bar-->
+
+	<div class="hero-wrapper">
+
+		<div class="hero-posts">
+			
+	<div id="post-1699" class="with-featured-image hero-post post-1699 post type-post status-publish format-standard has-post-thumbnail hentry category-machine-learning category-programmazione category-formazione tag-allocation tag-allocazione tag-analisi tag-analysis tag-attributo tag-bow tag-corpus tag-decomposizione tag-dimensionalita tag-dirichlet tag-distributional-semantics tag-distribuzionale tag-dtm tag-hdp tag-hierarchical tag-information-retrieval tag-ipotesi tag-latent tag-latente tag-lda tag-lsa tag-lsi tag-matrice tag-natural-language-processing tag-nmf tag-peso tag-probabilistico tag-probabilita tag-process tag-query tag-r tag-ri tag-riduzione-dimensionalita tag-riduzione-dimensione-topic-modeling tag-rp tag-semantic tag-semantica tag-similarita tag-simplesso tag-sparsa tag-sparsita tag-spazio tag-statistica tag-tdm tag-termini tag-tf-idf tag-topic tag-trasformazioni tag-troncamento tag-valori-singolari tag-vettore tag-vocabolario tag-word-embedding tag-word2vec">
+
+		<!-- Get the hero background image -->
+		
+			<div class="site-header-bg-wrap">
+				<div class="header-opacity">
+					<div class="header-gradient"></div>
+					<div class="site-header-bg background-effect" style="background-image: url(https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/introtolda.png?fit=914%2C481&#038;ssl=1); opacity: 0.3;"></div>
+				</div>
+			</div><!-- .site-header-bg-wrap -->
+
+		
+		<div class="container hero-container">
+			<div class="hero-cats"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/">Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/">Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/">Training</a></div>
+			<!-- Hero title -->
+			<div class="hero-text">
+									<h1 class="entry-title">Fondamenti: trasformazioni con riduzione di dimensionalità</h1>
+				
+				<div class="hero-date">
+										<!-- Create an avatar link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di ">
+						<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=44&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=88&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-44 photo' height='44' width='44' />					</a>
+					<!-- Create an author post link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/">
+						lorenzo					</a>
+					<span class="hero-on-span">&nbsp;</span>
+					<span class="hero-date-span">Jul 2016</span>
+				</div>
+			</div><!-- .photo-overlay -->
+		</div><!-- .container -->
+	</div>
+		</div><!-- .hero-posts -->
+
+	</div><!-- .hero-wrapper -->
+
+<div id="page" class="hfeed site container">
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-1699" class="post full-post post-1699 type-post status-publish format-standard has-post-thumbnail hentry category-machine-learning category-programmazione category-formazione tag-allocation tag-allocazione tag-analisi tag-analysis tag-attributo tag-bow tag-corpus tag-decomposizione tag-dimensionalita tag-dirichlet tag-distributional-semantics tag-distribuzionale tag-dtm tag-hdp tag-hierarchical tag-information-retrieval tag-ipotesi tag-latent tag-latente tag-lda tag-lsa tag-lsi tag-matrice tag-natural-language-processing tag-nmf tag-peso tag-probabilistico tag-probabilita tag-process tag-query tag-r tag-ri tag-riduzione-dimensionalita tag-riduzione-dimensione-topic-modeling tag-rp tag-semantic tag-semantica tag-similarita tag-simplesso tag-sparsa tag-sparsita tag-spazio tag-statistica tag-tdm tag-termini tag-tf-idf tag-topic tag-trasformazioni tag-troncamento tag-valori-singolari tag-vettore tag-vocabolario tag-word-embedding tag-word2vec">
+
+		
+	<div class="entry-content">
+		<p><span class="dropcap">N</span>ei post precedenti della serie Fondamenti si è mostrato come un generico testo possa essere rappresentato dall&#8217;insieme delle sue parole, trascurando la grammatica e anche l&#8217;ordine delle parole stesse, ma mantenendo la loro molteplicità. Segue una breve sintesi.</p>
+<p>Partendo da una collezione di documenti che chiamiamo <strong>corpus</strong> e indichiamo con la lettera <strong>C</strong>, estraiamo e filtriamo accuratamente un sottoinsieme di <strong>attributi</strong><span id='easy-footnote-1' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-1' title='Le parole testuali (&lt;em&gt;word token&lt;/em&gt;) sono un sottoinsieme di questi attributi.'><sup>1</sup></a></span> che utilizziamo per generare un <strong>vocabolario</strong> <strong>V</strong> sul corpus<strong> C.</strong> In V, ogni attributo è associato ad un indice numerico, in altri termini V è una lista indicizzata di tutti gli attributi estratti e filtrati:</p>
+<p>V = {t<sub>0</sub>, <sub>.. </sub>, t<sub>i</sub>, .., t<sub>M-1</sub>}, dim(V)=M</p>
+<p>dove i=0,..,M-1 è l&#8217;indice numerico associato alla i&#8217;esimo attributo di V e M è il numero di attributi in V.</p>
+<p>L&#8217;elenco degli attributi contenuti in V può essere utilizzato per rappresentare qualsiasi documento del corpus C. A tal proposito, una possibile <strong>rappresentazione</strong> di un documento è quella <strong>vettoriale</strong>. Il generico vettore che rappresenta un documento è chiamato <strong>vettore documento</strong> ed è così definito:</p>
+<p><strong>d</strong> = (w<sub>0 </sub> w<sub>1 </sub> ..  w<sub>M-1</sub>)</p>
+<p>Ogni elemento di <strong>d</strong> è univocamente associato ad un attributo di V attraverso l&#8217;indice numerico (p.e. il primo elemento del vettore corrisponde al primo attributo di V, il secondo elemento al secondo attributo di V e così via). Il valore del generico w<sub>i</sub> è chiamato <strong>peso</strong> e corrisponde alla molteplicità, nel testo di <strong>d</strong>, dell&#8217;attributo t<sub>i</sub> ad esso associato. Per esempio, se nel testo del documento rappresentato da <strong>d</strong>, la parola t<sub>i</sub> compare 3 volte, allora w<sub>i</sub>=3. Questa rappresentazione vettoriale pesata è chiamata <em>bag of words </em>o più sinteticamente <strong>BOW</strong>.</p>
+<p>Con la rappresentazione BOW, il numero di elementi di un qualsiasi vettore <strong>d</strong> è pari al numero di parole che compongono V.</p>
+<p>Se N è il numero di documenti in C, avremo N vettori documento ciascuno di dimensione M. Assemblando questi vettori in una forma matriciale NxM otteniamo la <strong>matrice documento-termine DTM</strong><span id='easy-footnote-2' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-2' title='Nella locuzione &amp;#8220;matrice documento-termine&amp;#8221; la parola &amp;#8220;termine&amp;#8221; deve essere intesa in modo equivalente ad &amp;#8220;attributo&amp;#8221;.'><sup>2</sup></a></span>. La trasposta di DTM, con dimensioni MxN, è chiamata <strong>matrice termine-documento TDM</strong>.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">La TDM (o DTM) è la rappresentazione matriciale del corpus C. Una matrice TDM/DTM è <strong>sparsa</strong> ossia contiene molti elementi nulli (poiché non tutti gli attributi di V sono presenti in ogni documento). Come si è già anticipato in altri post della serie Fondamenti, la <strong>sparsità</strong> è un proprietà importante che condiziona profondamente lo sviluppo degli algoritmi.</div></div>
+<p>Il BOW non è l’unico modello di rappresentazione vettoriale possibile e, a partire da esso, si possono ottenere (mediante opportune <strong>trasformazioni</strong>) altre rappresentazioni vettoriali dei documenti. Per esempio, <strong>TF-IDF</strong> (<em>Term Frequency-Inverse Document Frequency</em>) è un modello di rappresentazione in cui il generico peso w<sub>i </sub>è un valore reale proporzionale al numero di volte che l&#8217;attributo i-esimo compare nel documento stesso e inversamente proporzionale alla frequenza dell&#8217;attributo i-esimo stesso nell&#8217;intero corpus. Ciò tiene conto del fatto che, da un lato l&#8217;attributo che si ripete in un documento tende a caratterizzarlo, ma che, d’altra parte, gli attributi più comuni in tutti i documenti del corpus sono quelli meno significativi per stabilire le differenze tra i diversi documenti.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Le dimensioni dei vettori documenti rappresentati secondo il modello TF-IDF sono identiche a quelle del modello BOW, cioè sono pari al numero M di attributi in V. La trasformazione di BOW in TF-IDF è detta <strong>paridimensionale</strong>.</div></div>
+<p>Data una TDM di dimensioni MxN (com M numero delle parole e N numero dei documenti), le N colonne corrispondono ai vettori documenti. Questi vettori sono definiti nello spazio <img src="//s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5E%7BM%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="&#92;mathbb{R}^{M}" title="&#92;mathbb{R}^{M}" class="latex" />. Una <strong>trasformazione con riduzione di dimensionalità</strong> è un&#8217;operazione matematica che individua un sottospazio <img src="//s0.wp.com/latex.php?latex=%5Cmathbb%7BR%7D%5E%7BP%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="&#92;mathbb{R}^{P}" title="&#92;mathbb{R}^{P}" class="latex" /> con P&lt;M, chiamato <strong>spazio di uscita </strong>o anche <strong>spazio ridotto</strong>, ove i vettori documenti sono proiettati. Attraverso una trasformazione con riduzione, i vettori documenti assumono una dimensione inferiore rispetto alla rappresentazione BOW. I vettori che definiscono lo spazio ridotto sono detti <strong>vettori base</strong><span id='easy-footnote-3' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-3' title='La base è un insieme di vettori grazie ai quali possiamo: ricostruire tutti i vettori dello spazio vettoriale mediante combinazioni lineari; costruire tutti i vettori in modo unico.'><sup>3</sup></a></span>.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Come vedremo, la riduzione di dimensionalità genera inevitabilmente una perdita di informazioni. Generalmente si associa tale perdita con il &#8220;rumore&#8221; racchiuso nei dati e il cui contenuto informativo è trascurabile.</div></div>
+<hr />
+<p>L&#8217;intuizione che è dietro agli schemi di rappresentazione vettoriale dei documenti è riconducibile alla cosiddetta <strong>ipotesi distribuzionale</strong> cioè i<span style="text-decoration: underline;">l significato delle parole è determinato dal loro utilizzo e parole utilizzate in contesti simili tendono ad avere significati simili (correlazione semantica).</span> Partendo da questo, l&#8217;area di ricerca della <strong><em>Distributional Semantics</em></strong> (<strong>DS</strong>) studia metodi e modelli per quantificare le similarità semantiche tra elementi linguistici analizzandone le <strong>proprietà distribuzionali</strong> (come sono distribuite) all&#8217;interno di una raccolta di documenti. La semantica distribuzionale utilizza l&#8217;algebra lineare come strumento di rappresentazione in cui ogni elemento linguistico in una raccolta di dati è proiettato in uno spazio vettoriale. La similarità semantica tra due elementi linguistici viene calcolata attraverso <strong>misure di similarità</strong> (come quella del coseno) tra le rispettive rappresentazioni vettoriali nello spazio. I metodi di costruzione degli spazi vettoriali e la loro riduzione di dimensionalità sono fattori che possono fortemente influenzare l&#8217;efficacia di questi modelli. In letteratura sono stati proposti diversi metodi per costruire spazi distribuzionali, BOW e TF-IDF sono due esempi basilari. A seguire, considereremo metodi più complessi che, partendo dai suddetti basilari, introducono diverse comode ottimizzazioni come la riduzione di dimensionalità.</p>
+<p>Nello specifico, a seguire, tratteremo i modelli: <em>Latent Semantic Analysis</em> (LSA), <em>Non-negative Matrix Factorization</em> (NMF), <em>Random Indexing</em> (RI), <em>Latent Dirichlet Allocation</em> (LDA) e <em>Hierarchical Dirichlet Process</em> (HDP).<span id="more-1699"></span></p>
+<hr />
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Caro lettore, in questo post, con una buona dose di spregiudicatezza (data la complessità della materia), ti propongo un &#8220;volo ad alta quota&#8221; sui territori particolarmente estesi e variegati del <em>topic modeling</em>. Lo scopo del post è introdurre le intuizioni che sono dietro ai vari modelli con brevi digressioni finalizzate esclusivamente all&#8217;introduzione di nozioni basilari. Ogni approfondimento è demandato alla tua sensibilità e per questo fornisco un&#8217;estesa quantità di link a risorse che possono aiutarti a focalizzare la tua attenzione. La matematica dietro ai modelli è appena accennata e volutamente semplificata, per fornire un&#8217;idea dei concetti fondanti e darti una maggiore consapevolezza dei parametri impostabili quando utilizzerai le implementazioni dei modelli. L&#8217;obiettivo della serie Fondamenti è quello di supportarti nella costruzione di un quadro operativo, mediante l&#8217;impiego trasversale di una estesa varietà di risorse di programmazione e analisi dei dati,  anche il presente post non si sottrae a questo obiettivo. Buona lettura.</div></div>
+<p>Prima di procedere con un&#8217;overview dei modelli di rappresentazione definiamo il contesto tecnico-operativo su cui sperimentiamo le librerie gensim e sklearn.</p>
+<p>Usiamo un corpus di 57 documenti in Italiano estratti da Wikipedia e incentrati su tematiche di intelligenza artificiale e collaterali varie. Rinvio ad altro post la descrizione dello script per la costruzione del corpus.</p>
+<p>Il corpus è memorizzato in un lista serializzata in un file su disco. La lista si compone di tre elementi. Il primo elemento è l&#8217;elenco dei <em>seed</em> ossia degli argomenti principali utilizzati per interrogare Wikipedia. Il secondo elemento è l&#8217;elenco delle <em>query</em> generate sottoponendo i seed a Wikipedia. Il terzo elemento è la lista dei 57 documenti recuperati. Sui documenti, contestualmente alla fase di estrazione, è già stato eseguito un <em>cleaning</em>, per rimuovere i formati di gestione del testo di Wikipedia.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">import pickle
+# carico corpus di 57 articoli in italiano
+C=pickle.load( open( "./datasets/itwiki/corpus-ML-57-082416.p", "rb" ) )
+
+# minima introspezione del corpus
+# visualizzo l'elenco dei seed utilizzati per recuperare i contenuti
+for seed in C[0]: print seed
+
+# memorizzo in variabile dedicata il corpus (è una lista di documenti)
+C=C[2]
+
+# visualizzo il numero di documenti nel corpus (dovrebbero essere 57!)
+print len(C)
+
+# calcolo in modo grezzo il numero di parole che compongono tutti i documenti del corpus
+print sum([len(document.split()) for document in C])</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">apprendimento automatico
+intelligenza artificiale
+data mining
+deep learning
+reti neurali
+rappresentazione della conoscenza
+57
+35446</pre>
+<p>Nel blocco precedente abbiamo deserializzato la lista contenente il corpus (<code data-enlighter-language="python" class="EnlighterJSRAW">pickle</code> è una libreria per la serializzazione e deserializzazione di oggetti<span id='easy-footnote-4' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-4' title='&lt;a href=&quot;https://docs.python.org/2/library/pickle.html&quot; target=&quot;_blank&quot;&gt;pickle — Python object serialization&lt;/a&gt;'><sup>4</sup></a></span>). Abbiamo eseguito un minima introspezione sull&#8217;oggetto deserializzato, visualizzando il primo elemento della lista che consiste nell&#8217;elenco dei seed e visualizzando il numero di documenti nel corpus (il corpus è memorizzato nella terza posizione della lista deserializzata). Abbiamo anche effettuato una stima &#8220;grezza&#8221; nel numero totale di parole nel corpus. Il prossimo passo consiste nella tokenizzazione di ogni documento, nel filtraggio e nella costruzione delle rappresentazioni vettoriali BOW e TF-IDF (questi passaggi sono già stati introdotti in altri post della serie Fondamenti, dunque mi limiterò solo a riassumere le istruzioni per eseguirli).</p>
+<p>Impostazioni comuni per le implementazioni con gensim e sklearn:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">from stop_words import get_stop_words
+# caricamento stop list Italiano
+stoplist=get_stop_words('italian')
+
+# aggiungo alcune stop word (dipendono dalla codifica Wiki)
+stoplist.extend(['==','===','\displaystyle'])</pre>
+<p>Per gensim:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># librerie che useremo
+import string
+from gensim import corpora
+from gensim import models
+from nltk.tokenize import word_tokenize
+from six import iteritems
+from itertools import izip
+import pyLDAvis
+
+# tokenizzazione e filtraggio del corpus
+filtered_corpus = [[word for word in word_tokenize(document.lower()) if word not in stoplist and word not in string.punctuation and len(word)&gt;3 and not word.isdigit()] for document in C]
+
+# generazione del vocabolario
+V = corpora.Dictionary(filtered_corpus)
+print V
+
+# filtro le parole sulla occorrenza
+once_ids = [tokenid for tokenid, docfreq in iteritems(V.dfs) if docfreq &lt; 10]
+V.filter_tokens(once_ids)
+print V
+
+# generazione della rappresentazione BOW e della matrice TDM 57x137
+corpus_bow = [V.doc2bow(document) for document in filtered_corpus]
+
+# generazione del modello tf-idf
+schema_tfidf=models.TfidfModel(corpus_bow)
+
+# gensim: trasformazione (paridimensionale) della rappresentazione BOW in TF-IDF
+corpus_tfidf=schema_tfidf[corpus_bow]</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">Dictionary(7065 unique tokens: [u'motivazioni', u'h.265', u'h.264', u'macedone', u'sfruttando']...)
+
+Dictionary(137 unique tokens: [u'rappresentazione', u'utilizzati', u'processo', u'cosxec', u'utilizzato']...)</pre>
+<p>Per sklearn:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># librerie che useremo
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction import text
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.preprocessing import Normalizer
+from sklearn.metrics import euclidean_distances
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import pyLDAvis
+
+# estendo la stop list nativa di sklearn con le stop word in italiano
+my_stop_words = text.ENGLISH_STOP_WORDS.union(get_stop_words('italian'))
+# genero rappresentazione bow dei documenti e matrice TDM del corpus
+vectorizer = CountVectorizer( strip_accents = 'unicode', stop_words=set(my_stop_words), token_pattern = r'\b(?![0-9]+)([0-9a-zA-Z]{3,})\b', min_df = 10)
+corpus_bow=vectorizer.fit_transform(C)
+
+# visualizzo dimensioni di TDM
+corpus_bow.shape
+
+
+# genero rappresentazione tf-idf
+tfidf_vect = TfidfTransformer()
+corpus_tfidf = tfidf_vect.fit_transform(corpus_bow)</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">(57, 154)</pre>
+<p>Nei due blocchi precedenti, a titolo di esercizio, si sono volutamente impiegate implementazioni diverse per il parsing. Il parsing include la tokenizzazione che nel caso di gensim impiega un <strong>tokenizer</strong> di NLTK (come mostrato in un post precedente della serie Fondamenti). E&#8217; applicata una stop list per il filtraggio delle parole. Sono ignorati tutti gli attributi di lunghezza inferiore a 3 caratteri, gli attributi composti da sole cifre numeriche, gli attributi che compaiono in meno di 10 documenti, gli attributi composti da caratteri di punteggiatura. Il cut-off su 10 documenti riduce drasticamente il numero di attributi destinati a V di oltre il 98%, ossia da oltre 35446 token a 137 attributi con gensim e 154 attributi con sklearn (questo cut-off è particolarmente restrittivo, ma tuttavia idoneo per gli scopi del presente post).</p>
+<hr />
+<p><strong>[LSA]</strong>: Il modello <em>Latent Semantic Analysis</em> (LSA) si ottiene, per via matematica, a partire dalle rappresentazioni vettoriali TF-IDF o BOW, utilizzando la tecnica nota come <strong>decomposizione ai valori singolari </strong>(SVD da <em>Singular Value Decomposition</em>).</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">La riduzione delle dimensioni dello spazio vettoriale si basa sull&#8217;intuizione che un&#8217;appropriata trasformazione matematica potrebbe aiutare a raggruppare gli attributi di V definendo delle <strong>categorie (o classi) semantiche sul corpus</strong>. Queste categorie forniscono uno nuovo spunto di rappresentazione dei documenti ai fini della loro classificazione, ricerca, <em>summarization</em>, ecc. Le categorie semantiche, infatti, potrebbero identificare dei concetti chiave, detti <strong><em>topic</em></strong>, di cui trattano i documenti del corpus e potrebbero essere utilizzate per rappresentare più efficacemente i documenti stessi. Essendo generati sull&#8217;intero corpus raggruppando gli attributi usati nei documenti (secondo una varietà di approcci matematici, come vedremo), i topic rappresentano dei concetti <strong>latenti</strong>, ossia non direttamente esplicitati nei documenti ma da essi determinabili mediante un&#8217;analisi automatica. Per quanto appena scritto, dovrebbe ora essere chiaro il motivo per cui ci si riferisce ai topic chiamandoli anche <strong>attributi latenti</strong>.</div></div>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">In seguito useremo in modo interscambiabile le parole topic e attributo latente. I topic sono i vettori base dello spazio ridotto. Quando parleremo di topic intenderemo riferirci sempre alla loro rappresentazione vettoriale nello spazio ridotto.</div></div>
+<p>Il modello LSA attende in input: la matrice TDM MxN basata su TF-IDF o BOW (la prima può essere preferibile); il numero P di topic da identificare. P è chiamato <strong>livello di troncamento</strong> e deve essere, per sua definizione, inferiore a M (numero degli attributi in V).</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Come già anticipato, la riduzione di dimensionalità comporta inevitabilmente una perdita di informazione, ma la matematica fornisce gli strumenti che consentono di scegliere tra le tante possibili proiezioni sullo spazio ridotto quella che massimizza l&#8217;informazione trattenuta minimizzando quindi quella perduta. SVD cerca di proiettare dei dati multidimensionali in uno spazio di dimensione minore conservando al massimo la variazione dei dati originali.</div></div>
+<p><em>Segue ora una presentazione del processo di riduzione di dimensionalità basato su SVD mediante l&#8217;impiego dell&#8217;ambiente per l&#8217;analisi statistica <a href="https://www.r-project.org/" target="_blank">R</a>. </em></p>
+<p><em>Sia A una TDM così composta:</em></p>
+<p>A = <img data-attachment-id="4890" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/schermata-2016-07-24-alle-14-54-31/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-24-alle-14-54-31.png?fit=594%2C176&amp;ssl=1" data-orig-size="594,176" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Schermata 2016-07-24 alle 14.54.31" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-24-alle-14-54-31.png?fit=300%2C89&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-24-alle-14-54-31.png?fit=594%2C176&amp;ssl=1" class="alignnone wp-image-4890" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-24-alle-14-54-31.png?resize=270%2C80&#038;ssl=1" alt="Schermata 2016-07-24 alle 14.54.31.png" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-24-alle-14-54-31.png?w=594&amp;ssl=1 594w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-24-alle-14-54-31.png?resize=300%2C89&amp;ssl=1 300w" sizes="(max-width: 270px) 100vw, 270px" data-recalc-dims="1" /></p>
+<p><em>In R bastano poche istruzioni per creare questa matrice TDM:</em></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="matlab">A = matrix(data=c(2,0,8,6,0,3,1,
+1,6,0,1,7,0,1,
+5,0,7,4,0,5,6,
+7,0,8,5,0,8,5,
+0,10,0,0,7,0,0), ncol=7, byrow=TRUE)
+rownames(A) &lt;- c('doctor','car','nurse','hospital','wheel')</pre>
+<p><em>Fattorizzando A mediante SVD, il risultato che si ottiene è:</em></p>
+<p><em> A<sub>MxN</sub> = U<sub>MxM</sub> * S<sub>MxM</sub> * (V<sub>NxM</sub></em>)<em><sup>T</sup></em></p>
+<p><em>L’obiettivo dell&#8217;SVD consiste nell&#8217;individuare opportune trasformazioni lineari delle variabili osservate che siano facilmente interpretabili e capaci di evidenziare e sintetizzare l’informazione insita nella matrice iniziale A. Tale strumento risulta utile soprattutto quando si ha a che fare con un numero di attributi considerevole da cui si vogliono estrarre le maggiori informazioni possibili pur lavorando con un set più ristretto di attributi.</em></p>
+<p><em>In R:</em></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="matlab">s=svd(A)
+U=s$u
+S=diag(s$d)
+V=s$v</pre>
+<p><em>U<sub>5&#215;5</sub>=<img data-attachment-id="4895" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/schermata-2016-07-25-alle-00-09-15/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-09-15.png?fit=858%2C172&amp;ssl=1" data-orig-size="858,172" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Schermata 2016-07-25 alle 00.09.15" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-09-15.png?fit=300%2C60&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-09-15.png?fit=858%2C172&amp;ssl=1" class="alignnone wp-image-4895" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-09-15.png?resize=300%2C60&#038;ssl=1" alt="Schermata 2016-07-25 alle 00.09.15.png" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-09-15.png?w=858&amp;ssl=1 858w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-09-15.png?resize=300%2C60&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-09-15.png?resize=768%2C154&amp;ssl=1 768w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></em></p>
+<p><em>S<sub>5&#215;5</sub>= <img data-attachment-id="4896" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/schermata-2016-07-25-alle-00-10-36/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-10-36.png?fit=666%2C172&amp;ssl=1" data-orig-size="666,172" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Schermata 2016-07-25 alle 00.10.36" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-10-36.png?fit=300%2C77&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-10-36.png?fit=666%2C172&amp;ssl=1" class="alignnone wp-image-4896" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-10-36.png?resize=244%2C63&#038;ssl=1" alt="Schermata 2016-07-25 alle 00.10.36" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-10-36.png?w=666&amp;ssl=1 666w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-10-36.png?resize=300%2C77&amp;ssl=1 300w" sizes="(max-width: 244px) 100vw, 244px" data-recalc-dims="1" /></em></p>
+<p><em>[(V<sub>5&#215;7</sub>)<sup>T</sup>]<sub>7&#215;5</sub>=<img data-attachment-id="4897" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/schermata-2016-07-25-alle-00-12-58/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?fit=1212%2C168&amp;ssl=1" data-orig-size="1212,168" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Schermata 2016-07-25 alle 00.12.58" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?fit=300%2C42&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?fit=900%2C125&amp;ssl=1" class="alignnone wp-image-4897" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?resize=456%2C63&#038;ssl=1" alt="Schermata 2016-07-25 alle 00.12.58.png" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?w=1212&amp;ssl=1 1212w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?resize=300%2C42&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?resize=768%2C106&amp;ssl=1 768w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?resize=1024%2C142&amp;ssl=1 1024w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-00-12-58.png?resize=1200%2C166&amp;ssl=1 1200w" sizes="(max-width: 456px) 100vw, 456px" data-recalc-dims="1" /></em></p>
+<p><em>U e V sono definite rispettivamente <strong>matrice dei vettori termini</strong> (ogni attributo è associato ad una riga) e <strong>matrice dei vettori documenti</strong> (ogni documento è associato ad una colonna, le righe corrispondono ai topic). </em></p>
+<p><em>I topic sono associati alle colonne di U: </em><em>ogni vettore colonna definisce un raggruppamento in cui ogni attributo è pesato secondo il suo grado di co-occorrenza con gli altri attributi. Per esempio nel secondo vettore colonna, le parole &#8220;car&#8221; e &#8220;wheel&#8221; hanno coefficienti negativi mentre &#8220;doctor&#8221;, &#8220;nurse&#8221; e &#8220;hospital&#8221; hanno coefficienti positivi ad indicare che questo è un raggruppamento in cui &#8220;wheel&#8221; occorre solo con &#8220;car&#8221;.</em></p>
+<p><em>Il primo vettore colonna (topic) è la combinazione lineare degli M attributi di partenza avente la massima varianza. Il secondo topic è la combinazione lineare degli M attributi di partenza avente la varianza immediatamente inferiore a quella del precedente topic e così via. <strong>Se gli M attributi di partenza sono molto correlati, allora un numero P&lt;M può bastare per tener conto di una quota elevata di varianza totale per cui i primi P topic fornirebbero una buona descrizione della struttura dei dati.</strong> In altri termini, i topic sono statisticamente incorrelati (cioè non dipendono l&#8217;uno dall&#8217;altro) e sono ordinati in accordo al loro contenuto informativo. Quindi se i topic sono in numero pari a P, possiamo immaginare che sul primo topic siano &#8220;spalmate&#8221; le parole originali in modo che ciascuna contribusica a conferire un contenuto informativo globale che sia maggiore del contributo del secondo topic e così via. </em></p>
+<p><em>Da un punto di vista geometrico, i vettori colonna in U sono gli autovettori che definiscono lo spazio ridotto e sui cui sono proiettati i vettori documenti di partenza (i vettori base dello spazio ridotto).</em></p>
+<p><em>Detta P=3 la dimensione dello spazio ridotto, se riduciamo le matrici U, S, V come mostrato nella figura seguente:</em></p>
+<p><img data-attachment-id="4899" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/schermata-2016-07-25-alle-01/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?fit=1482%2C740&amp;ssl=1" data-orig-size="1482,740" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Schermata 2016-07-25 alle 01" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?fit=300%2C150&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?fit=900%2C449&amp;ssl=1" class="alignnone wp-image-4899" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?resize=390%2C195&#038;ssl=1" alt="Schermata 2016-07-25 alle 01.png" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?w=1482&amp;ssl=1 1482w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?resize=300%2C150&amp;ssl=1 300w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?resize=768%2C383&amp;ssl=1 768w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?resize=1024%2C511&amp;ssl=1 1024w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?resize=1200%2C599&amp;ssl=1 1200w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01.png?resize=1300%2C649&amp;ssl=1 1300w" sizes="(max-width: 390px) 100vw, 390px" data-recalc-dims="1" /></p>
+<p><em>otteniamo le matrici ridotte U<sub>r</sub>, S<sub>r</sub>, V<sub>r</sub>. Questo processo è chiamato <strong>troncamento di SVD</strong>.<br />
+</em></p>
+<p><em>In R:</em></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="matlab">Sr&lt;-S[-4:-5,-4:-5]
+Ur&lt;-U[,-4:-5]
+Vr&lt;-V[,-4:-5]
+require (MASS) # libreria necessaria per la successiva funzione ginv
+Ar&lt;-ginv(Sr) %*% t(Ur) %*% A</pre>
+<p><em>La TDM sullo spazio ridotto è allora ottenuta colcolando:</em></p>
+<p>A<sub>r PxN</sub> = S<sub>r</sub><sup>-1</sup> * U<sub>r</sub><sup>T</sup> * A</p>
+<p>A<sub>r PxN</sub> = <img data-attachment-id="4901" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/schermata-2016-07-25-alle-01-23-22/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?fit=1204%2C118&amp;ssl=1" data-orig-size="1204,118" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Schermata 2016-07-25 alle 01.23.22" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?fit=300%2C29&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?fit=900%2C88&amp;ssl=1" class="alignnone wp-image-4901" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?resize=467%2C46&#038;ssl=1" alt="Schermata 2016-07-25 alle 01.23.22" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?w=1204&amp;ssl=1 1204w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?resize=300%2C29&amp;ssl=1 300w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?resize=768%2C75&amp;ssl=1 768w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?resize=1024%2C100&amp;ssl=1 1024w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/schermata-2016-07-25-alle-01-23-22.png?resize=1200%2C118&amp;ssl=1 1200w" sizes="(max-width: 467px) 100vw, 467px" data-recalc-dims="1" /></p>
+<p><em>Da notare che la matrice A<sub>r</sub> non è più sparsa a differenza della TDM di partenza.</em></p>
+<p><em>Utilizzando la formula precedente è possibile che due documenti qualsiasi, originariamente differenti nello spazio M dimensionale, possano essere mappati sullo stesso vettore dello spazio ridotto (topic); l’insieme dei <strong>vettori base</strong> dello spazio P dimensionale, rappresenta in un certo senso l&#8217;insieme dei concetti o dei diversi significati che i vari documenti possono assumere, quindi un generico documento nello spazio P-dimensionale è rappresentabile come combinazione lineare dei concetti o equivalentemente dei vettori base dello spazio stesso.</em></p>
+<p><em>Nell&#8217;ambito dell&#8217;Information Retrieval (recupero di documenti a partire da query), il modello LSA è chiamato <strong>Latent Semantic Indexing </strong>(LSI). La ricerca basata su LSI assume che la query fatta dall&#8217;utente è </em><em>rappresentabile come un insieme finito di attributi, quindi considerata </em><em>alla stregua di un normale documento, e perciò rappresentabile, nello </em><em>spazio P-dimensionale, come un vettore. Quindi una volta che la query è stata analizzata e rappresentata come uno pseudo-documento, può essere semplicemente comparata con tutti gli altri documenti. Il vettore colonna della query (q), di dimensione Mx1, è rappresentabile matematicamente come uno pseudo documento q<sub>r</sub>, dello spazio P-dimensionale, grazie a questa formula:</em></p>
+<p><em>q<sub>r Px1</sub> = S<sub>r</sub><sup>-1</sup> * U<sub>r</sub><sup>T</sup> * q</em></p>
+<p><em>In questo modo i documenti concettualmente più vicini alla query possono essere calcolati una volta che si è scelto il modo per misurare la loro &#8220;vicinanza&#8221;. Una semplice e ovvia misura di vicinanza è per esempio il valore del coseno dell&#8217;angolo compreso tra due vettori (ossia tra due rappresentazioni vettoriali ridotte di documenti).</em></p>
+<p>La trasformazione di riduzione della dimensionalità (SVD) sottostante a LSA introduce alcune limitazioni. Innanzitutto non è conosciuto un metodo per calcolare il livello di troncamento ottimale; solitamente il valore di P è scelto con funzioni euristiche oppure attraverso tecniche di validazione che prevedono di stimare e confrontare tanti modelli con diversi livelli di troncamento per scegliere quello con prestazioni migliori. Un&#8217;altra limitazione discende dal fatto che i vettori corrispondenti ai topic (vettori colonna di U) sono ortogonali esprimendo così il fatto che essi rappresentano aspetti mutuamente esclusivi. In altri termini, i topic rappresentano dei concetti astratti o argomenti che tendono a monopolizzare gli attributi nel senso che un attributo che ha un&#8217;elevata co-occorrenza in un argomento sarà penalizzato su altri argomenti. LSA tende a ridimensionare occorrenze multiple di un attributo in differenti topic e dunque non può essere utilizzato in modo efficace per risolvere aspetti relativi alla <strong>polisemia</strong> (p.e. parole che hanno più di un significato a seconda dell&#8217;argomento) sebbene questa caratteristica sia altresì molto conveniente per riconoscere e trattare la <strong>sinonimia</strong> (parole con lo stesso significato). In altri termini, LSA gestisce bene la sinonimia ma è debole con la polisemia.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><strong>LSA trova applicazioni su quei dataset in cui i documenti sono scritti con lo stesso stile di scrittura e sono focalizzati su un argomento centrale ben specifico.</strong> Nel caso di più argomenti, i documenti dovrebbero essere stati redatti in modo tale che le parole utilizzate frequentemente nell&#8217;ambito di un argomento siano utilizzate meno frequentemente su altri argomenti. Per esempio, se abbiamo documenti che parlano di Java come linguaggio di programmazione e Java come categoria di caffè, potrebbero esserci problemi con LSA.[/themify_box]</div></div>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+<p>Solitamente il valore di P è scelto nell&#8217;intervallo 100-300.</p>
+<p>Un approccio (derivato dalla <a href="https://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank">PCA</a>) suggerisce di scegliere P come il più piccolo intero tale che:</p>
+<p><em><strong><img src="//s0.wp.com/latex.php?latex=%5Cleft%28%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5EP+s_%7Bii%7D%7D%7B%5Csum_%7Bi%3D1%7D%5EM+s_%7Bii%7D%7D%5Cright%29%5Cgeq0.99&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="&#92;left(&#92;frac{&#92;sum_{i=1}^P s_{ii}}{&#92;sum_{i=1}^M s_{ii}}&#92;right)&#92;geq0.99" title="&#92;left(&#92;frac{&#92;sum_{i=1}^P s_{ii}}{&#92;sum_{i=1}^M s_{ii}}&#92;right)&#92;geq0.99" class="latex" /></strong></em></p>
+<p><em>dove s<sub>ii</sub> sono gli elementi della diagonale della matrice S (autovalori).</em></p>
+</div></div>
+<p>Implementazioni di LSA sono presenti sia in gensim sia in sklearn.</p>
+<p>Per gensim:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># imposto il livello di troncamento
+P=10
+
+# generazione del modello LSA
+schema_lsi = models.LsiModel(corpus_tfidf, id2word=V, num_topics=P)
+
+# proiezione della tf-idf sullo spazio ridotto LSA (da 137 dimensioni a 10!)
+corpus_lsi = schema_lsi[corpus_tfidf]
+
+# per visualizzare la rappresentazione vettoriale dei documenti nello spazio ridotto
+for l,t in izip(corpus_lsi,C): print l,"#",t.encode("utf8")[0:35]+".."+"\n"
+
+# visualizzo i topic
+schema_lsi.show_topics()
+</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[(0,
+u'-0.250*"rete" + -0.229*"dati" + -0.211*"apprendimento" + -0.176*"artificiale" + -0.154*"reti" + -0.151*"algoritmi" + -0.142*"automatico" + -0.141*"mining" + -0.136*"data" + -0.130*"essere"'),
+(1,
+u'-0.464*"rete" + 0.419*"dati" + 0.248*"mining" + 0.245*"algoritmi" + 0.220*"data" + -0.187*"reti" + -0.186*"artificiale" + 0.185*"apprendimento" + -0.167*"stato" + 0.157*"conoscenza"'),
+(2,
+u'-0.409*"rete" + -0.345*"apprendimento" + 0.287*"conoscenza" + -0.220*"automatico" + -0.201*"algoritmi" + 0.201*"artificiale" + -0.200*"reti" + 0.197*"intelligenza" + -0.179*"neurali" + 0.157*"base"'),
+(3,
+u'0.409*"automatico" + 0.371*"apprendimento" + 0.370*"conoscenza" + -0.265*"mining" + -0.243*"dati" + -0.223*"data" + -0.180*"database" + -0.177*"rete" + -0.141*"standard" + 0.137*"artificiale"'),
+(4,
+u'0.665*"conoscenza" + 0.344*"rete" + 0.300*"base" + -0.163*"stato" + -0.157*"intelligenza" + -0.147*"algoritmi" + -0.145*"apprendimento" + -0.130*"artificiale" + -0.125*"primo" + 0.122*"rappresentazione"'),
+(5,
+u'-0.551*"learning" + 0.337*"funzione" + -0.274*"programmazione" + -0.256*"machine" + -0.228*"linguaggio" + 0.171*"modello" + -0.166*"stato" + -0.162*"collegamenti" + -0.157*"esterni" + -0.125*"note"'),
+(6,
+u'0.377*"database" + -0.275*"funzione" + 0.264*"dati" + -0.237*"funzioni" + 0.209*"artificiale" + 0.200*"mondo" + -0.181*"livello" + 0.172*"rete" + 0.160*"computer" + 0.155*"intelligenza"'),
+(7,
+u'0.300*"stato" + 0.287*"meno" + 0.243*"viene" + 0.236*"dopo" + -0.201*"relazioni" + -0.197*"database" + 0.197*"teoria" + -0.195*"intelligenza" + -0.192*"artificiale" + 0.161*"inglese"'),
+(8,
+u'-0.356*"database" + 0.312*"dati" + 0.251*"stato" + -0.203*"tipo" + -0.190*"file" + 0.181*"scienze" + -0.175*"esempio" + -0.173*"automatico" + 0.156*"informazioni" + 0.150*"conoscenza"'),
+(9,
+u'0.365*"database" + -0.299*"dati" + -0.276*"standard" + 0.227*"teoria" + 0.198*"mondo" + 0.180*"neurali" + -0.179*"computer" + 0.175*"mining" + 0.171*"reti" + 0.168*"stato"')]</pre>
+<p>Nel blocco precedente, mediante il comando <code data-enlighter-language="python" class="EnlighterJSRAW">show_topics</code>, sono visualizzati tutti i topic. Ogni topic è una combinazione lineare pesata degli attributi di V (di default sono visualizzati solo 10 attributi dello spazio di origine, comunque, il limite è parametrizzabile impostando il parametro <code data-enlighter-language="python" class="EnlighterJSRAW">num_words</code> di <code data-enlighter-language="python" class="EnlighterJSRAW">show_topics</code>). Geometricamente i topic (o, ricordiamo, attributi latenti) sono i vettori base dello spazio ridotto su cui sono proiettati i vettori documento dello spazio di orifine.</p>
+<p>Per sklearn:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># imposto il livello di troncamento
+P=10
+
+# proiezione da tf-idf allo spazio ridotto LSA
+svd = TruncatedSVD(n_components = P, algorithm='arpack')
+corpus_lsa = svd.fit_transform(corpus_tfidf)
+
+# visualizzazione della rappresentazione dei documenti nello spazio ridotto
+pd.DataFrame(corpus_lsa,index=[elem[:35] for elem in C], columns=["topic "+ str(idx) for idx in range(0,P)])
+
+# visualizzazione dei topic
+pd.DataFrame(svd.components_,index=[["topic "+ str(idx) for idx in range(0,P)], columns=vectorizer.get_feature_names()).transpose()</pre>
+<p>Con riferimento al blocco precedente, le figure sottostanti mostrano un estratto della visualizzazione della rappresentazione dei documenti nello spazio ridotto e un estratto della visualizzazione dei topic. Dalla rappresentazione dei documenti si evince che il &#8220;topic 0&#8221; ha un maggior peso e quindi i documenti sono maggiormente catalizzati da questo topic specifico.</p>
+<p><img data-attachment-id="5209" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/immagine2/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine2.png?fit=761%2C290&amp;ssl=1" data-orig-size="761,290" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Immagine2" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine2.png?fit=300%2C114&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine2.png?fit=761%2C290&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine2.png?resize=761%2C290&#038;ssl=1" alt="Immagine2" class="aligncenter size-full wp-image-5209" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine2.png?w=761&amp;ssl=1 761w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine2.png?resize=300%2C114&amp;ssl=1 300w" sizes="(max-width: 761px) 100vw, 761px" data-recalc-dims="1" /></p>
+<p><img data-attachment-id="5208" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/immagine1/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine1.png?fit=940%2C265&amp;ssl=1" data-orig-size="940,265" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Immagine1" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine1.png?fit=300%2C85&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine1.png?fit=900%2C254&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine1.png?resize=900%2C254&#038;ssl=1" alt="Immagine1" class="aligncenter size-full wp-image-5208" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine1.png?w=940&amp;ssl=1 940w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine1.png?resize=300%2C85&amp;ssl=1 300w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/Immagine1.png?resize=768%2C217&amp;ssl=1 768w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p>Ovviamente i topic generati da sklearn rappresentano delle categorie semantiche diverse da quelle generate con la libreria gensim.</p>
+<p>La generazione di uno schema di rappresentazione LSA in sklearn è eseguita istanziando l&#8217;oggetto <code data-enlighter-language="python" class="EnlighterJSRAW">TruncatedSVD</code> che include due possibili implementazioni della SVD troncata<span id='easy-footnote-5' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-5' title='Il nome S&lt;strong&gt;VD troncata&lt;/strong&gt; (&lt;em&gt;truncated SVD&lt;/em&gt;) descrive esattamente l&amp;#8217;approccio, precedentemente analizzato, secondo cui non si considerano tutti i valori singolari scaturiti dalla SVD, ma solo i primi P (ossia i valori più grandi). I restanti valori singolari vengono invece posti a zero.'><sup>5</sup></a></span> selezionabili a discrezione del programmatore: un risolutore SVD randomico e un algoritmo &#8220;naive&#8221; basato sulla libreria <a href="https://en.wikipedia.org/wiki/ARPACK" target="_blank">ARPACK</a>, nella figura seguente è possibile avere un&#8217;idea delle differenze prestazionali delle decomposizioni ottenute dalle due implementazioni troncate (linee verde e viola) anche in comparazione con la SVD non troncata:</p>
+<p><img data-attachment-id="5177" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/index-3/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?fit=623%2C619&amp;ssl=1" data-orig-size="623,619" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="index" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?fit=300%2C298&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?fit=623%2C619&amp;ssl=1" class="size-medium wp-image-5177 alignnone" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?resize=300%2C298&#038;ssl=1" alt="index" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?resize=300%2C298&amp;ssl=1 300w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?resize=150%2C150&amp;ssl=1 150w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?resize=65%2C65&amp;ssl=1 65w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?resize=50%2C50&amp;ssl=1 50w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/index-1.png?w=623&amp;ssl=1 623w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /><a href="https://gist.github.com/iskandr/f42a2598f7f2f2fa3a52" target="_blank"><sub>[Source]</sub></a></p>
+<p>Un modo per valutare graficamente gli effetti della riduzione di dimensionalità, consiste nel determinare le matrici delle distanze euclidee di entrambi gli spazi origine e ridotto, quindi, calcolare la matrice differenza (avendo cura di considerare i valori assoluti degli elementi) e visualizzarla mediante una mappa di calore (<em>heatmap</em>).</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># calcolo distanze nello spazio di origine
+org_dist=euclidean_distances(corpus_tfidf)
+# calcolo distanze nello spazio ridotto
+red_dist=euclidean_distances(corpus_lsa)
+# calcolo differenze e genero matrice delle differenze
+diff_dist=abs(org_dist-red_dist)
+
+# visualizzo la heatmap
+plt.figure()
+plt.pcolor(diff_dist)
+plt.colorbar()
+plt.show()</pre>
+<p><img data-attachment-id="5218" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/heatmap1/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/heatmap1.png?fit=353%2C256&amp;ssl=1" data-orig-size="353,256" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="heatmap1" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/heatmap1.png?fit=300%2C218&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/heatmap1.png?fit=353%2C256&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/heatmap1.png?resize=353%2C256&#038;ssl=1" alt="heatmap1" class="aligncenter size-full wp-image-5218" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/heatmap1.png?w=353&amp;ssl=1 353w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/heatmap1.png?resize=300%2C218&amp;ssl=1 300w" sizes="(max-width: 353px) 100vw, 353px" data-recalc-dims="1" /></p>
+<p>La scala di colore della mappa fornisce un&#8217;indicazione dell&#8217;intervallo di variazione dei valori delle differenze. Questi valori, nel caso in esame, spaziano in un range tra 0 e 1.05 e con una maggiore concentrazione nel più piccolo segmento 0 e 0.70. Una colorazione bluastra rappresenta un minore effetto distorsivo sulle distanze e quindi una maggiore capacità di mantenere le caratteristiche del corpus. Le variazioni delle differenze entro piccoli intervalli sono da considerare come un segnale di conservatività della trasformazione (con il topic modeling, tale conservatività, a seconda dell&#8217;obiettivo, potrebbe comunque non essere necessaria).</p>
+<p>Per ulteriori approfondimenti:</p>
+<ul>
+<li><a href="http://www.dis.uniroma1.it/~laura/didattica/tesi/supptesi/portelli.pdf" target="_blank">Integrazione delle tecniche di web information retrieval e LSI per insiemi di dati eterogenei di elevata dimensione</a></li>
+<li><a href="https://www.ling.ohio-state.edu/~kbaker/pubs/Singular_Value_Decomposition_Tutorial.pdf" target="_blank">Singular Value Decomposition Tutorial</a></li>
+<li><a href="http://www.ats.ucla.edu/stat/r/pages/svd_demos.htm" target="_blank">R Code Fragments. Examples of SVD</a></li>
+<li><a href="http://www.datascienceassn.org/sites/default/files/users/user1/lsa_presentation_final.pdf" target="_blank">LSA</a></li>
+</ul>
+<hr />
+<p><strong>[NMF]: </strong>Anche il modello <em>Non-negative Matrix Factorization</em> (NMF) è basato sulla fattorizzazione della matrice TDM (o DTM) e si ottiene per via matematica a partire dalle rappresentazioni vettoriali TF-IDF o BOW. Essendo la matrice TDM non negativa (cioè tutti i suoi elementi sono ≥0), NMF ne esegue un tipo particolare di fattorizzazione che produce ancora due matrici non negative più piccole W<sub>MxP</sub> e H<sub>PxN</sub>. Quando moltiplichiamo assieme queste matrici otteniamo un&#8217;approssimazione della matrice originale. L&#8217;algoritmo su cui si basa NMF si sviluppa iterativamente con l&#8217;obiettivo di determinare la coppia W e H affinchè l&#8217;errore tra la matrice approssimata e la matrice originale risulti minimo. Come per il modello LSA, anche per l&#8217;NMF, il livello di troncamento P è uno dei parametri di input, un altro parametro è il numero di iterazioni. La matrice W è una matrice MxP (attributi x topic) le cui colonne sono i vettori della base generata da NMF. Quindi gli elementi della j-esima colonna di W, indicata con w<sub>j</sub>, corrispondono ai pesi di ciascun attributo rispetto al topic j-esimo. Ordinando i valori dei pesi e selezionando gli attributi con i pesi più alti possiamo ottenere una descrizione del topic j-esimo. Ogni topic è rappresentato come combinazione lineare degli attributi con maggior peso. Un&#8217;interpretazione simile può essere data alla matrice H di dimensioni PxN (topic x documenti) avente colonne sparse e non negative. Il j-esimo elemento della i-esima colonna di H indica in che misura il j-esimo topic è presente nell&#8217;i-esimo documento. Quindi, ogni documento sarebbe rappresentato come combinazione lineare di basi non negative (ossia dei topic). <em>Se l&#8217;input è una matrice TDM l&#8217;interprestazione di W e H è invertita.</em></p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">La fattorizzazione non negativa è preferita ad altri metodi di approssimazione grazie a due caratteristiche fondamentali: interpretabilità e basso utilizzo di memoria che non aumentano i costi computazionali del metodo. D’altra parte però, si ha anche qualche svantaggio. A differenza della SVD, la NMF non è supportata da una base teorica che ne assicura la convergenza ad un minimo assoluto ma gli algoritmi della fattorizzazione non negativa portano, quando c&#8217;è convergenza, solo a minimi locali che quindi sono legati, anche in maniera importante, al punto di inizializzazione (ossia a come è inizializzata la matrice W). Sono stati proposti differenti meccanismi di inizializzazione che permettono di ottenere un&#8217;alta riduzione dell&#8217;errore e una più veloce convergenza degli algoritmi NMF adottati. A differenza di LSA i vettori dei topic appresi da NMF non sono ortogonali tra loro, ciò indica che i topic possono non essere ben separati. Esistono tuttavia delle varianti di NMF che impongono un vingolo di &#8220;quasi ortogonalità&#8221; ai vettori base.</div></div>
+<p>NMF vanta una estesa varietà di impieghi: nel text-mining appunto, per il riconoscimento di SPAM, per l&#8217;<em>information filtering</em> basato sulle preferenze dell&#8217;utente, classificazione di documenti, creazione automatica di riassunti, analisi delle immagini per il riconoscimento di volti e (ma non solo) <em>object detection</em>, analisi degli spettri sonori, <em>financial data mining</em>, etc.</p>
+<p>Per sklearn:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># genero proiezione da tf-idf allo spazio ridotto NMF
+from sklearn.decomposition import NMF
+nmf = NMF(n_components=P, init='random', random_state=0)
+# oppure nmf = NMF(n_components=P, init='nndsvdar', random_state=0)
+corpus_nmf = nmf.fit_transform(corpus_tfidf)
+
+# per visualizzazare i topic
+pd.DataFrame(nmf.components_,index=["topic "+ str(idx) for idx in range(0,P)], columns=vectorizer.get_feature_names()).transpose()
+
+# per visualizzare i documenti nello spazio ridotto
+pd.DataFrame(corpus_nmf,index=[elem[:35] for elem in C], columns=["topic "+ str(idx) for idx in range(0,P)])
+
+# per visualizzare la mappa di calore delle differenze
+# (per il blocco completo di istruzioni si veda blocco della mappa di calore di LSA)
+# ..
+# red_dist=euclidean_distances(corpus_nmf)
+# ...</pre>
+<p>L&#8217;implementazione della trasformazione NMF in sklearn prevede la possibilità di specificare, attraverso il parametro <code data-enlighter-language="python" class="EnlighterJSRAW">init</code> di <code data-enlighter-language="python" class="EnlighterJSRAW">NMF</code> diversi metodi di inizializzazione dell&#8217;algoritmo sottostante. Nella figura seguente sono rappresentate le mappe di calore ottenute assumendo due diversi algoritmi di inizializzazione: <code data-enlighter-language="python" class="EnlighterJSRAW">random</code> (<em>non-negative random matrices</em>) e <code data-enlighter-language="python" class="EnlighterJSRAW">nndsvdar</code> (<em>non-negative Double Singular Value Decomposition NNDSVD with zeros filled with small random values</em>).</p>
+<div id="attachment_5220" style="width: 363px" class="wp-caption aligncenter"><img data-attachment-id="5220" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/hmnmfrand/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfrand.png?fit=353%2C256&amp;ssl=1" data-orig-size="353,256" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="hmnmfrand" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfrand.png?fit=300%2C218&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfrand.png?fit=353%2C256&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfrand.png?resize=353%2C256&#038;ssl=1" alt="NMF con init=random" class="size-full wp-image-5220" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfrand.png?w=353&amp;ssl=1 353w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfrand.png?resize=300%2C218&amp;ssl=1 300w" sizes="(max-width: 353px) 100vw, 353px" data-recalc-dims="1" /><p class="wp-caption-text">NMF con init=random</p></div>
+<div id="attachment_5221" style="width: 363px" class="wp-caption aligncenter"><img data-attachment-id="5221" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/hmnmfnn/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfnn.png?fit=353%2C256&amp;ssl=1" data-orig-size="353,256" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="hmnmfnn" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfnn.png?fit=300%2C218&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfnn.png?fit=353%2C256&amp;ssl=1" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfnn.png?resize=353%2C256&#038;ssl=1" alt="NMF con init=nndsvdar" class="size-full wp-image-5221" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfnn.png?w=353&amp;ssl=1 353w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmnmfnn.png?resize=300%2C218&amp;ssl=1 300w" sizes="(max-width: 353px) 100vw, 353px" data-recalc-dims="1" /><p class="wp-caption-text">NMF con init=nndsvdar</p></div>
+<p>Per approfondimenti:</p>
+<ul>
+<li><a href="http://dottorato.di.uniba.it/dottoratoXXVII/progetti/Casalino.pdf" target="_blank">Metodi conmputazionali per l&#8217;estrazione di caratteristiche semanticamente rilevanti da dati espressi in forma matriciale</a></li>
+<li><a href="http://amslaurea.unibo.it/4628/2/palitta_davide_tesi.pdf" target="_blank">Approssimazione di matrici ed applicazioni al text mining</a></li>
+</ul>
+<hr />
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">I modelli LSA e NMF si fondano su specifici trattamenti matematici della matrice DTM (o TDM). Sul piano computazionale questi trattamenti possono essere particolarmente onerosi. Per contenere il peso computazionale si applicano delle ipotesi semplificatorie che introducono delle approssimazioni nei risultati rispetto a quanto ottenibile con il modello originale, queste ipotesi rientrano nel bagaglio degli algoritmi e loro rispettive varianti che ogni modello ha come dote.</p>
+<p>Ad ogni modo, LSA e NMF sono <em>document-dependent</em> nel senso che l&#8217;individuazione dei vettori base che definiscono lo spazio ridotto si fonda su operazioni matematiche applicate alla DTM. Maggiore è la dimensione del corpus e, quindi, di conseguenza la dimensione della matrice DTM, maggiore sarà il carico computazionale generato dai modelli per l&#8217;individuazione dei vettori base. Inoltre, l&#8217;aggiunta di nuovi documenti richiede la riesecuzione dei calcoli (sebbene vi siano varianti algoritmiche in grado di supportare l&#8217;aggiunta di nuovi documenti ma con progressiva penalizzazione dell&#8217;ortogonalità dei vettori base).</div></div>
+<p><strong>[RI]:</strong> il modello <em>Random Indexing </em>(RI)<em> (o Random Projections)</em> propone un approccio <em>document-independent</em>. In particolare, detto P il livello di troncamento acquisito come parametro di input, ad ogni parola del vocabolario è assegnato un vettore sparso di P elementi (detto <em>index-vector) </em>contenente un piccolo insieme di valori +1 e -1 distribuiti casualmente (diverse implementazioni del modello possono ricorrere ad altri valori casuali). La composizione dei vettori conferisce agli stessi una &#8220;quasi ortogonalità&#8221; che implica una separabilità di topic ossia questi possono assumersi sufficientemente distanti gli uni dagli altri e pertanto accettabilmente esclusivi. Difatti, il prodotto scalare tra due vettori base sarà un numero molto piccolo e dunque essi si possono assumere quasi ortogonali (<em>nearly orthogonal</em>). I vettori ottenuti possono essere combinati per ottenere una matrice F<sub>MxP</sub> (attributo x topic) detta <strong>matrice di proiezione</strong>. Ogni riga della matrice è un vettore che rappresenta un attributo del vocabolario nello spazio ridotto. Questa matrice è dunque ottenuta senza nessuna riduzione della DTM e ciò spiega la definizione <em>document-independent</em>. Il passo successivo di RI consiste nel proiettare i vettori riga della matrice DTM, qui indicata con A<sub>NxM</sub>, sullo spazio ridotto costruito al punto precedente. La versione ridotta della DTM (contenente tutti i vettori documenti sullo spazio ridotto) sarà dunque definita dal prodotto matriciale A<sub>NxM</sub> * F<sub>MxP</sub>.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Comparato con LSA, RI è anzitutto un modello incrementale che consente un ampliamento del corpus (aggiunta di nuovi documenti) senza la ripetizione di costose riduzioni sulla matrice TDM. Inoltre la costruzione dello spazio ridotto consente di poter eseguire analisi di similarità senza necessariamente una preventiva elaborazione di tutti i vettori documenti. Il modello RSI si basa sulla tecnica incrementale <em>Random Projections</em>.</div></div>
+<p>RI non è esente da limiti. La quasi ortogonalità dei vettori base può indurre distorsioni sulla similarità soprattutto quando si scelgono piccoli valori di P per rappresentare corpus di grandi dimensioni. La costruzione della matrice di proiezione assume quindi rilievo centrale ed è guidata da una serie di risultati ampiamente recepiti nelle implementazioni correnti del modello (come per esempio le distribuzioni semplificate di Achlioptas, 2001). Diversi studi in letteratura dimostrano come le prestazioni di RI siano riconducibili a quelli di LSA. Come LSA, RI può risentire del problema della polisemia.</p>
+<p>RI è stato usato per una varietà di scopi inclusa la processazione delle immagini. Inoltre nel caso dei documenti di testo, diversi risultati dimostrano che un prefiltraggio con lemmatizzazione può garantire risultati superiori anche a LSA.</p>
+<p>Con gensim l&#8217;implementazione della trasformazione RI si ottiene così:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># generazione del modello RP
+rp = models.RpModel(corpus_tfidf, num_topics=P, id2word=V)
+# proiezione della rappresentazione vettoriale tf-idf sullo spazio ridotto RP
+corpus_rp=rp[corpus_tfidf]
+
+# per visualizzare le rappresentazioni vettoriali dei documenti nello spazio ridotto
+for reduced_doc in corpus_rp: print reduced_doc</pre>
+<p>Con sklearn:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># genero proiezione dallo spazio di origine tf-idf sullo spazio ridotto RP
+from sklearn import random_projection
+rp = random_projection.GaussianRandomProjection(n_components=P)
+corpus_rp= rp.fit_transform(corpus_tfidf)
+
+# per visualizzazare i topic
+pd.DataFrame(rp.components_,index=["topic "+ str(idx) for idx in range(0,10)], columns=vectorizer.get_feature_names()).transpose()
+
+# per visualizzare i documenti nello spazio ridotto
+pd.DataFrame(corpus_rp,index=[elem[:35] for elem in C], columns=["topic "+ str(idx) for idx in range(0,10)])
+
+# per visualizzare la mappa di calore delle differenze
+# (per il blocco completo di istruzioni si veda blocco precedente per la generazione della mappa di calore di LSA
+# ..
+# red_dist=euclidean_distances(corpus_rp)
+# ...</pre>
+<p>Nel caso di sklearn si è usata l&#8217;implementazione <em>Gaussian Projection Random</em> (Proiezione Gaussiana Casuale) che riduce la dimensionalità proiettando lo spazio di origine su una matrice generata casualmente i cui elementi sono assegnati mediante la seguente distribuzione:</p>
+<p><img src="//s0.wp.com/latex.php?latex=N%280%2C+%5Cfrac%7B1%7D%7Bn_%7Bcomponents%7D%7D%29&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="N(0, &#92;frac{1}{n_{components}})" title="N(0, &#92;frac{1}{n_{components}})" class="latex" /></p>
+<p>La mappa di calore per RI è mostrata nella figura sottostante.</p>
+<p><img data-attachment-id="5223" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/hmrigauss/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmrigauss.png?fit=346%2C256&amp;ssl=1" data-orig-size="346,256" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="hmrigauss" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmrigauss.png?fit=300%2C222&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmrigauss.png?fit=346%2C256&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmrigauss.png?resize=346%2C256&#038;ssl=1" alt="hmrigauss" class="aligncenter size-full wp-image-5223" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmrigauss.png?w=346&amp;ssl=1 346w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/hmrigauss.png?resize=300%2C222&amp;ssl=1 300w" sizes="(max-width: 346px) 100vw, 346px" data-recalc-dims="1" /></p>
+<p>Link per approfondimenti:</p>
+<ul>
+<li><a href="http://eprints.sics.se/221/1/RI_intro.pdf" target="_blank">An Introduction to Random Indexing, M. Sahlgren</a></li>
+<li><a href="http://www.umiacs.umd.edu/~oard/desi4/papers/rangan.pdf" target="_blank">Discovery of Related Terms in a corpus using Reflective Ranom Indexing</a></li>
+<li><a href="http://www.shiwali.me/content/mohan_cicling_2008.pdf" target="_blank">Discovery Word Senses from Text Using Random Indexing</a></li>
+</ul>
+<hr />
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">A differenza dei modelli descritti in precedenza, il prossimo, l&#8217;LDA, è un modello completamente generativo in cui le assegnazioni dei topic per i documenti sono calcolate a partire da una distribuzione di probabilità definita su parametri casuali piuttosto che essere vincolate alla matrice delle distribuzioni (DTM) valutata empiricamente sui documenti di training.</div></div>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Dato un certo insieme di dati osservabili relativi ad un fenomeno, un modello probabilistico generativo si basa sull&#8217;assunto che i dati siano generati da un qualche processo casuale parametrizzato. Il focus è dunque tutto sullo studio di questo processo. Calcolato il set di parametri del processo che meglio si adatta ai dati a disposizione, si può utilizzare il modello per predire o simulare valori per tutte le variabili del modello. In generale, l&#8217;approccio generativo si basa sulla creazione di un modello dei dati che poi viene utilizzato per predire le risposte desiderate (o dati di uscita). Un approccio discriminativo, al contrario, cercherebbe di modellare direttamente la relazione tra dati in entrata e quelli in uscita, in modo da minimizzare una qualche funzione di perdita (<em>loss function</em>).</div></div>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Per una comprensione più approfondita di LDA, potrebbe aiutare la consultazione del ripasso generale che propongo nel post <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/" target="_blank">Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</a>.</div></div>
+<p><strong>[LDA]: Latent Dirichlet Allocation (LDA) </strong>è un modello probabilistico generativo che si sviluppa attorno all&#8217;idea di modellare il processo che è alla base della creazione dei documenti, per poter poi inferire l&#8217;individuazione dei topic latenti.</p>
+<p>Supponiamo di voler scrivere un documento pescando a caso da un&#8217;urna uno o più biglietti con sopra scritto un argomento. Ipotizziamo ora di conoscere, per ogni argomento estratto, in quale proporzione scegliere le parole dal vocabolario per comporre il documento. Questa è l&#8217;idea di processo casuale su cui si basa il modello generativo di LDA. Ovviamente si tratta di un&#8217;idea semplificata (rispetto alla realtà) che aiuta però a dominare la complessità del fenomeno reale e a creare un modello matematico trattabile.</p>
+<p>Chiarita l&#8217;intuizione, più formalmente possiamo dire che in LDA ogni documento è considerato come una mistura casuale di topic sui quali è definita una distribuzione di probabilità (in seguito indicata con <strong>θ</strong><sub>d</sub>). I topic sono indipendenti dal documento e per ciascuno di essi esiste una distribuzione di probabilità sugli attributi di un vocabolario (in seguito indicata con <strong>φ</strong><sub>p</sub>): ogni attributo può essere generato dai topic per mezzo di distribuzioni condizionate fissate. Ciascun topic contiene diversi attributi, ognuno con un proprio valore di probabilità.</p>
+<p>Dato un corpus C di N documenti, i dati osservabili sono gli M attributi estratti dai documenti e che compongono il vocabolario V. Data la rappresentazione BOW dei documenti, la generica variabile w<sub>d,n</sub> indica che l&#8217;attributo n è presente nel documento d. Le idee alla base di LDA ci suggeriscono che ogni attributo è generato da un topic, quindi, introduciamo delle variabili che contengono l&#8217;assegnazione dei topic agli attributi, per esempio una variabile z<sub>d,n</sub> indica l&#8217;assegnazione di un topic per l&#8217;attributo n nel documento d. w<sub>d,n</sub> dipende da z<sub>d,n</sub>. Quello che a noi interessa sono le proporzioni in cui i P topic sono presenti in un documento d e questo può essere modellato da una distribuzione di probabilità che indichiamo con <strong>θ</strong><sub>d</sub><span id='easy-footnote-6' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-6' title='Se N è il numero di documenti e P il numero di topic, avremo N distribuzioni di probabilità &lt;strong&gt;θ&lt;/strong&gt;&lt;sub&gt;d&lt;/sub&gt; che possono essere assemblate in una matrice Θ&lt;sub&gt;NxP&lt;/sub&gt;.'><sup>6</sup></a></span>. z<sub>d,n</sub> dipende da <strong>θ</strong><sub>d</sub>. Un&#8217;altra cosa che ci interessa sono le proporzioni di assegnazione di ogni attributo di un documento in un topic; anche queste proporzioni possono essere modellate da una distribuzione di probabilità che indichiamo con <strong>φ</strong><sub>p</sub><span id='easy-footnote-7' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-7' title='Se M è il numero di attributi del vocabolario e P il numero di topic, avremo P distribuzioni di probabilità &lt;strong&gt;φ&lt;/strong&gt;&lt;sub&gt;p&lt;/sub&gt; che possono essere assemblate in una matrice Φ&lt;sub&gt;PxM&lt;/sub&gt;.'><sup>7</sup></a></span>.  w<sub>d,n</sub> dipende da <strong>φ</strong><sub>k</sub>. Riassumendo abbiamo una relazione di dipendenze che possiamo così sinteticamente rappresentare:</p>
+<p><strong>θ</strong><sub>d</sub> &#8211;&gt; z<sub>d,n</sub> &#8211;&gt; w<sub>d,n</sub> &lt;&#8211; <strong>φ</strong><sub>p</sub></p>
+<p>Se conoscessimo le distribuzioni di probabilità <strong>θ</strong><sub>d</sub> (per ogni d) e <strong>φ</strong><sub>p</sub> (per ogni p) allora il nostro modello sarebbe già pronto per l&#8217;uso in quanto sapremmo con quale proporzione assegnare i topic ai documenti e le parole ai topic. Purtroppo però le due distribuzioni sono incognite e dobbiamo determinarle. Quello che possiamo fare è ricorrere alla teoria della probabilità: se consideriamo <strong>z</strong> e <strong>w</strong> come variabili casuali multinomiali e le loro corrispondenti <strong>θ</strong>, <strong>φ</strong> come distribuzioni di Dirichlet allora, in virtù di una speciale relazione tra multinomiale e Dirichlet, è possibile calcolare con buona approssimazione le incognite <strong>θ</strong> e <strong>φ</strong>.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">La distribuzione di Dirichlet (distribuzione a priori coniugata della multinomiale) quando utilizzata per modellare le probabilità a priori incognite di una distribuzione discreta multinomiale fornisce delle probabilità a posteriori che sono correlate secondo specifici parametri (detti iperparametri) alle stesse probabilità incognite a priori. Dunque i valori di probabilità che otteniamo approssimano i valori incogniti.</div></div>
+<p>A questo punto possiamo delineare i passaggi chiave di un algoritmo di LDA:</p>
+<ol>
+<li>inizializzazione dei parametri:
+<ul>
+<li>numero dei topic (P)</li>
+<li>iperparametri delle Dirichlet<span id='easy-footnote-8' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-8' title='In &lt;a href=&quot;http://psiexp.ss.uci.edu/research/papers/SteyversGriffithsLSABookFormatted.pdf&quot; target=&quot;_blank&quot;&gt;Probabilistic Topic Models di Steyvers e Griffiths&lt;/a&gt; si suggeriscono, su base sperimentale, le seguenti assegnazioni α=50/P e β=0.01 (dove P è il numero di topic). Per ogni distribuzione &lt;strong&gt;θ&lt;/strong&gt; si utilizza il parametro α, invece, β è applicato in ogni distribuzione &lt;strong&gt;φ&lt;/strong&gt;. I valori degli iperparametri rappresentano l&amp;#8217;ipotetica distribuzione di probabilità a priori. Porre a 1 un iperparametro vuol dire assumere una distribuzione delle probabilità uniforme a priori. I due iperparametri '><sup>8</sup></a></span>: α per la distribuzione <strong>θ</strong>, β (o talvolta η) per la distribuzione <strong>φ</strong></li>
+<li>numero di iterazioni sul corpus (talvolta chiamato &#8220;passi sul corpus&#8221; o <em>passes</em>)</li>
+</ul>
+</li>
+<li>si assegnano in modo casuale tutti gli attributi dei documenti ai topic (ossia si valorizzano in modo casuale tutte le z<sub>d,n</sub>)</li>
+<li>si genera la matrice C<sup>wt</sup><sub>MxP</sub> in cui gli elementi contano il numero di volte che ogni attributo è assegnato ad un topic</li>
+<li>si genera la matrice C<sup>dt</sup><sub>NxP</sub> in cui gli elementi contano il numero di volte che ogni documento è assegnato ad un topic</li>
+<li>si considera ogni documento del corpus e per ogni documento si considera a turno ogni singolo attributo
+<ul>
+<li>si calcola la probabilità di assegnazione dell&#8217;attributo su tutti i topic e in funzione di queste probabilità (si seleziona il topic con la probabilità più alta) si aggiorna l&#8217;assegnazione dell&#8217;attributo ad un topic (cioè si aggiorna l&#8217;associazione fatta al punto 1 precedente)</li>
+<li>si riaggiornano i conteggi in C<sup>wt</sup><sub>MxP</sub></li>
+<li>si riaggiornano i conteggi in C<sup>dt</sup><sub>NxP</sub></li>
+</ul>
+</li>
+</ol>
+<p>Il passaggio 5 e relativi sottopassaggi, sono chiamati <strong>ciclo di campionamento di Gibbs</strong> e sono ripetuti sull&#8217;intero corpus un numero di volte pari al numero di iterazioni impostato come parametro di input. Possiamo pensare ad ogni documento come ad un insieme disordinato di attributi; i topic di un documento vengono individuati osservando le occorrenze degli attributi al suo interno e confrontandole con le distribuzioni degli attributi per ciascun topic.</p>
+<p>La probabilità calcolata nel ciclo di Gibbs è così definita:</p>
+<p><img src="//s0.wp.com/latex.php?latex=P%28+z_i%3Dj%7C+z_%7B-i%7D%2C+w_i%2C+d_i%29+%5Cpropto+%5Cfrac%7B+%7BC_%7B+d_ij+%7D%5E%7BDT%7D%7D%2B+%5Calpha+%7D%7B+%5Csum_%7Bt%3D1%7D%5E%7BP%7DC_%7B+d_it+%7D%5E%7BDT%7D+%2B+P+%5Ccdot+%5Calpha%7D+%5Ccdot+%5Cfrac%7B+%7BC_%7B+w_ij+%7D%5E%7BWT%7D%7D%2B+%5Cbeta+%7D%7B+%5Csum_%7Bw%3D1%7D%5E%7BM%7DC_%7B+wj+%7D%5E%7BWT%7D+%2B+M+%5Ccdot+%5Cbeta%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="P( z_i=j| z_{-i}, w_i, d_i) &#92;propto &#92;frac{ {C_{ d_ij }^{DT}}+ &#92;alpha }{ &#92;sum_{t=1}^{P}C_{ d_it }^{DT} + P &#92;cdot &#92;alpha} &#92;cdot &#92;frac{ {C_{ w_ij }^{WT}}+ &#92;beta }{ &#92;sum_{w=1}^{M}C_{ wj }^{WT} + M &#92;cdot &#92;beta}" title="P( z_i=j| z_{-i}, w_i, d_i) &#92;propto &#92;frac{ {C_{ d_ij }^{DT}}+ &#92;alpha }{ &#92;sum_{t=1}^{P}C_{ d_it }^{DT} + P &#92;cdot &#92;alpha} &#92;cdot &#92;frac{ {C_{ w_ij }^{WT}}+ &#92;beta }{ &#92;sum_{w=1}^{M}C_{ wj }^{WT} + M &#92;cdot &#92;beta}" class="latex" /></p>
+<p>La notazione a sinistra indica indica la probabilità che l&#8217;attributo i è assegnato al topic j considerando le assegnazioni sui topic di tutti gli altri attributi (ad eccezione dell&#8217;attributo i); w<sub>i</sub> e d<sub>i</sub> sarebbero gli indici di attributo e documento correntemente selezionati nel ciclo in altre parole rappresentano l&#8217;iterazione corrente del ciclo. Nella parte a sinistra abbiamo il prodotto di due probabilità: la prima esprime la probabilità di assegnazione del topic j al documento d, la seconda è la probabilità di assegnazione dell&#8217;attributo corrente i al topic j. Il denominatore della prima probabilità corrisponde al numero totale di occorrenze del documento corrente su tutti i topic (ad eccezione del topic j corrente) più il numero di parole M moltiplicato per α, il denominatore della seconda probabilità corrisponde al numero totale di occorrenze di parole sul topic in esame (ad eccezione del documento i corrente) addizionato al numero di documenti moltiplicato per β. Il risultato è un vettore di probabilità (una per topic). Queste probabilità regolano le proporzioni di assegnazione dello specifico attributo ad ogni topic. L&#8217;attributo viene quindi riassegnato al topic più probabile (aggiornamento della allocazione casuale definita al punto 1).</p>
+<p>Le matrici Θ<sub>NxP</sub> e Φ<sub>PxM</sub> &#8211; che rappresentano il complesso delle incognite (dette anche descrittori dei documenti) e sono anche l&#8217;output atteso da LDA &#8211; sono ottenute così:</p>
+<p><img src="//s0.wp.com/latex.php?latex=%5Ctheta_%7Bd_ij%7D+%3D+%5Cfrac%7B+%7BC_%7B+d_ij+%7D%5E%7BDT%7D%7D%2B+%5Calpha+%7D%7B+%5Csum_%7Bt%3D1%7D%5E%7BP%7DC_%7B+d_it+%7D%5E%7BDT%7D+%2B+%5Calpha%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="&#92;theta_{d_ij} = &#92;frac{ {C_{ d_ij }^{DT}}+ &#92;alpha }{ &#92;sum_{t=1}^{P}C_{ d_it }^{DT} + &#92;alpha}" title="&#92;theta_{d_ij} = &#92;frac{ {C_{ d_ij }^{DT}}+ &#92;alpha }{ &#92;sum_{t=1}^{P}C_{ d_it }^{DT} + &#92;alpha}" class="latex" /><br />
+<img src="//s0.wp.com/latex.php?latex=%5Cphi_%7Bw_ij%7D+%3D+%5Cfrac%7B+%7BC_%7B+w_ij+%7D%5E%7BWT%7D%7D%2B+%5Cbeta+%7D%7B+%5Csum_%7Bw%3D1%7D%5E%7BM%7DC_%7B+wj+%7D%5E%7BWT%7D+%2B%C2%A0+%5Cbeta%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="&#92;phi_{w_ij} = &#92;frac{ {C_{ w_ij }^{WT}}+ &#92;beta }{ &#92;sum_{w=1}^{M}C_{ wj }^{WT} +  &#92;beta}" title="&#92;phi_{w_ij} = &#92;frac{ {C_{ w_ij }^{WT}}+ &#92;beta }{ &#92;sum_{w=1}^{M}C_{ wj }^{WT} +  &#92;beta}" class="latex" /></p>
+<p>Il modello LDA è ora completo: abbiamo un modello probabilistico della distribuzione dei topic nel corpus basato su una tecnica non supervisionata (in quanto non esiste nessuna conoscenza ed etichettatura dei topic durante la fase di addestramento).</p>
+<p>LDA ha parecchi punti degni di nota. Per iniziare le probabilità delle parole vengono massimizzate distribuendo le parole tra gli argomenti; questo significa che non può accadere che si assegni a tutte le parole in ciascun topic un valore di probabilità proporzionale al numero di occorrenze che si misura su tutto il corpus in quanto l&#8217;evidenza farà sì che le parole si distribuiscano &#8220;a blocchi&#8221; tra i diversi argomenti. Un altro punto è che, in LDA, l&#8217;uso della distribuzione di Dirichlet sulle proporzioni di topic incoraggia la dispersione: un documento sarà penalizzato in caso contenga molti argomenti diversi; più i valori di α si avvicinano a 0, maggiore è la probabilità che sia presente un solo argomento per documento. Questi aspetti portano ad avere raggruppamenti di attributi che molto probabilmente compariranno sempre insieme conferendo ai topic un &#8220;spessore semantico&#8221; potenzialmente apprezzabile per l&#8217;utilizzatore umano. Quindi, in definitiva, considerando i documenti come frutto di un processo generativo che porta a scegliere gli attributi in base a dei topic di interesse per il documento stesso, LDA stabilisce quali insiemi di parole hanno più probabilità di co-occorrenza e così facendo individua gli argomenti che hanno generato il documento.</p>
+<p>Il modello LDA produce classificazioni più accurate dell&#8217;LSA e più robuste nei confronti di polisemia e rappresentazione su differenti livelli di astrazione (presenza di più topic). A differenza di LSA e dei modelli non probabilistici precedentemente analizzati, LDA consente di catturare le statistiche inter- ed intra-documento. Nel lavoro <a href="http://digital.library.unt.edu/ark:/67531/metadc103284/m2/1/high_res_d/dissertation.pdf">Comparing Latent Dirichlet Allocation and Latent Semantic Analysis as Classifier</a>, sono forniti utili spunti comparativi.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Algoritmi basati sulla ricerca di topic latenti come LDA, a partire da una descrizione di tipo <em>bag of words</em> visuali di immagini, sono stati utilizzati con successo anche per applicazioni di classificazione, segmentazione e <em>image retrieval</em>. Grazie ad essi è possibile ottenere una riduzione della dimensionalità nella rappresentazione delle immagini e al tempo stesso inferire informazioni di più alto livello.</div></div>
+<p>Per gensim:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># generazione del modello LDA
+schema_lda = models.LdaModel(corpus_bow, num_topics=P, id2word=V)
+
+# per visualizzare l'elenco dei topic
+schema_lda.show_topics()
+
+# per la visualizzazione grafica interattiva
+vis_data = pyLDAvis.gensim.prepare(schema_lda, corpus_bow, V)
+# oppure vis_data = pyLDAvis.gensim.prepare(schema_lda, corpus_bow, V, mds='tsne')
+pyLDAvis.display(vis_data)</pre>
+<p>Nel blocco precedente la generazione del modello LDA ha richiesto una semplice istruzione. La visualizzazione dei topic, come negli esempi precedenti, può essere ottenuta mediante la funzione <code data-enlighter-language="python" class="EnlighterJSRAW">show_topics</code>.</p>
+<p>Per l&#8217;esplorazione visuale dei topic appare particolarmente conveniente l&#8217;impiego del <a href="https://pyldavis.readthedocs.io/en/latest/readme.html" target="_blank">tool pyLDAvis</a> che mediante <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling" target="_blank">scalatura multidimensionale</a> (<em>MultiDimensional Scaling</em>, MDS) propone una visualizzazione in due dimensioni dello spazio ridotto LDA e dei suoi topic. Il tool è in grado di supportare diversi algoritmi MDS, come per esempio la scalatura multidimensionale classica (c<em>lassical multidimensional scaling</em>) utilizzata come default o anche la <em>t-distributed stochastic neighbor embedding</em> (t-SNE), selezionabili impostando il parametro <code data-enlighter-language="python" class="EnlighterJSRAW">mds</code> nella funzione <code data-enlighter-language="python" class="EnlighterJSRAW">prepare</code>. Ulteriori approfondimenti su t-SNE possono essere trovati in Wikipedia su <a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding" target="_blank">t-distributed stochastic neighbor embedding</a>.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+Per utilizzare pyLDAvis: fare click su un cerchio nel pannello di sinistra per selezionare un topic e il grafico a barre nel pannello di destra visualizzerà i 30 attributi più rilevanti<span id='easy-footnote-9' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-9' title='Dato il parametro di pesatura 0 ≤ λ ≤ 1, la &lt;strong&gt;rilevanza&lt;/strong&gt; è definita come λ * (p (w | t)) + (1 &amp;#8211; λ) * log (p (w | t) / p (w)), dove p(w | t) e la probabilità di assegnazione dell&amp;#8217;attributo w al topic t e p (w) è la probabilità dell&amp;#8217;attributo w su tutti i topic.'><sup>9</sup></a></span> per il topic selezionato. Le lunghezze delle barre rosse (proporzionali a p (w | t)) rappresentano la frequenza di un attributo in un dato topic; le lunghezza delle barre blu (proporzionali a p (w)) rappresentano la frequenza di un attributo nell&#8217;intero corpus. Modificando il valore di λ è possibile cambiare la classifica dei 30 attributi: piccoli valori di λ (vicino a 0) evidenziano gli attributi potenzialmente rari, ma esclusivi per il topic selezionato; grandi valori di λ (vicino a 1) evidenziano attributi frequenti, ma non necessariamente esclusivi, per il topic selezionato. Uno studio empirico proposto dagli ideatori di pyLDAvis, suggerisce che l&#8217;impostazione di λ a 0.6 può talvolta aiutare nell&#8217;interpretazione dei topic, ma questo ovviamente può variare con il dataset e i topic individuati da LDA. Per ulteriori approfondimenti su pyLDAvis, rinvio ad un post dedicato.<br />
+</div></div>
+<p>Fermo restando l&#8217;importanza dai dettagli matematici ed implementativi dei singoli algoritmi MDS, la scelta del tipo di scalatura può essere fatta, in prima istanza, sulla base delle visualizzazione risultante che meglio favorisce la nostra analisi. A titolo esemplificativo nelle figure seguenti sono mostrate le schermate di pyLDAvis applicate su un modello LDA generato da gensim, con MDS classica (prima figura) e t-SNE (seconda figura).</p>
+<p><img data-attachment-id="5227" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/pyldavis-gensim-pca-600/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-PCA-600.png?fit=979%2C614&amp;ssl=1" data-orig-size="979,614" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="pyldavis-gensim-PCA-600" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-PCA-600.png?fit=300%2C188&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-PCA-600.png?fit=900%2C564&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-PCA-600.png?resize=900%2C564&#038;ssl=1" alt="pyldavis-gensim-PCA-600" class="aligncenter size-full wp-image-5227" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-PCA-600.png?w=979&amp;ssl=1 979w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-PCA-600.png?resize=300%2C188&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-PCA-600.png?resize=768%2C482&amp;ssl=1 768w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p><img data-attachment-id="5228" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/pyldavis-gensim-tsne-600/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-tsne-600.png?fit=979%2C603&amp;ssl=1" data-orig-size="979,603" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="pyldavis-gensim-tsne-600" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-tsne-600.png?fit=300%2C185&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-tsne-600.png?fit=900%2C554&amp;ssl=1" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-tsne-600.png?resize=900%2C554&#038;ssl=1" alt="pyldavis-gensim-tsne-600" class="aligncenter size-full wp-image-5228" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-tsne-600.png?w=979&amp;ssl=1 979w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-tsne-600.png?resize=300%2C185&amp;ssl=1 300w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-gensim-tsne-600.png?resize=768%2C473&amp;ssl=1 768w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html" target="_blabk">LDA in sklearn</a> è così accessibile:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python">from sklearn.decomposition import LatentDirichletAllocation
+
+def print_top_words(model, feature_names, n_top_words):
+	for topic_idx, topic in enumerate(model.components_):
+		print("Topic #%d:" % topic_idx)
+		print(" ".join([feature_names[i] for i in topic.argsort()[:-n_top_words - 1:-1]]))
+		print()
+
+# generazione modello e proiezione del corpus BOW sullo spazio ridotto LDA (CASO 1)
+lda = LatentDirichletAllocation(n_topics=P, random_state=0)
+corpus_lda=lda.fit_transform(corpus_bow)
+
+# generazione modello e proiezione del corpus TD-IDF sullo spazio ridotto LDA (CASO 2)
+lda_tfidf = LatentDirichletAllocation(n_topics=P, random_state=0)
+lda_tfidf.fit(corpus_tfidf)
+
+# per la visualizzazione dei topic
+print("\nTopics in LDA model (BOW projection):")
+tf_feature_names = vectorizer.get_feature_names()
+print_top_words(lda, tf_feature_names, 10)
+
+print("\nTopics in LDA model (TF-IDF projection):")
+print_top_words(lda_tfidf, tf_feature_names, 10)
+
+# per la visualizzazione grafica interattiva
+pyLDAvis.display(pyLDAvis.sklearn.prepare(lda, corpus_bow, vectorizer))
+# oppure pyLDAvis.display(pyLDAvis.sklearn.prepare(lda_tfidf, corpus_tfidf, vectorizer))
+</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">Topics in LDA model (BOW projection):
+Topic #0:
+rete reti apprendimento neurali funzione essere puo piu modo modello
+Topic #1:
+sistemi approccio piu teoria rete collegamenti note com esempio ricerca
+Topic #2:
+funzione modello progetti vista rete relazioni neurali applicazioni solo funzioni
+Topic #3:
+inoltre prima rispetto ogni stato serie supporto funzioni piu essere
+Topic #4:
+modello contiene essere campo nome puo data mining informazioni piu
+Topic #5:
+conoscenza base inglese essere linguaggio esempio file isbn puo web
+Topic #6:
+data dati mining analisi essere ricerca tecniche informazioni applicazioni piu
+Topic #7:
+learning correlate voci esterni collegamenti machine linguaggio programmazione simile file
+Topic #8:
+apprendimento algoritmi dati automatico sistema esempi funzione insieme essere metodi
+Topic #9:
+intelligenza artificiale essere piu computer viene umano sistemi ricerca apprendimento
+
+Topics in LDA model (TF-IDF projection):
+Topic #0:
+funzione caso analisi insieme possibile alcuni chiamato punto esempio inoltre
+Topic #1:
+rete reti learning collegamenti esterni note neurali standard automatico modello
+Topic #2:
+progetti modello funzione standard relazioni sistema vista tecniche funzioni ogni
+Topic #3:
+vista punto attivita stati scienze caso neurali comportamento livello piu
+Topic #4:
+file processo meno database contiene wikimedia progetti commons immagini piu
+Topic #5:
+conoscenza dati web base essere intelligenza stato piu artificiale esempio
+Topic #6:
+dati data mining modello utilizzato piu viene concetto informatica web
+Topic #7:
+network database inglese learning machine tipo contiene approccio programmazione risultati
+Topic #8:
+apprendimento algoritmi dati automatico insieme mining data ricerca relazioni esempi
+Topic #9:
+intelligenza artificiale primo viene inoltre john stato dopo prima rispetto</pre>
+<p>Come mostrato nel blocco precedente, il tool pyLDAvis può essere agevolmente usato anche sul modello LDA generato da sklearn. A titolo esemplificativo nelle figure seguenti è mostrata la schermata di pyLDAvis su un modello LDA generato da sklearn (con scalatura classica).</p>
+<p><img data-attachment-id="5231" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/pyldavis-sklearn-pca/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-sklearn-PCA.png?fit=978%2C596&amp;ssl=1" data-orig-size="978,596" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="pyldavis-sklearn-PCA" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-sklearn-PCA.png?fit=300%2C183&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-sklearn-PCA.png?fit=900%2C548&amp;ssl=1" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-sklearn-PCA.png?resize=900%2C548&#038;ssl=1" alt="pyldavis-sklearn-PCA" class="aligncenter size-full wp-image-5231" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-sklearn-PCA.png?w=978&amp;ssl=1 978w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-sklearn-PCA.png?resize=300%2C183&amp;ssl=1 300w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/pyldavis-sklearn-PCA.png?resize=768%2C468&amp;ssl=1 768w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p><strong>[HDP]:</strong> In LDA, il parametro P è uno dei parametri di input del modello e la sua determinazione introduce un grado di incertezza ed esige prove. Nella variante di LDA chiamata <strong>Hierarchical Dirichlet Process (HDP)</strong>, il numero P è determinato automaticamente dai dati, in particolare, è usata una distribuzione di Dirichlet anche per catturare l&#8217;incertezza su P. Non approfondiremo ulteriormente il modello, rinviando a <a href="http://jmlr.csail.mit.edu/proceedings/papers/v15/wang11a/wang11a.pdf" target="_blank">Online Variational Inference for the Hierarchical Dirichlet Process</a> per ulteriori dettagli.</p>
+<p>Per gensim:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="python"># generazione del modello HDP
+schema_hdp = models.HdpModel(corpus_bow, id2word=V)
+
+# proiezione di BOW sullo spazio ridotto di HDP
+corpus_hdp=schema_hdp[corpus_bow]
+
+# visualizzo l'elenco dei primi 10 topic (e per ogni topic i 10 attributi più rilevanti)
+schema_hdp.print_topics(topics=10,topn=10)
+
+# per la visualizzazione grafica interattiva
+pyLDAvis.display(gensimvis.prepare(schema_hdp, corpus_bow, V))</pre>
+<p>Per approfondimenti:</p>
+<ul>
+<li><a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf" target="_blank">Latent Dirichlet Allocation, D. M. Blei, A. Y. Ng, M. I. Jordan</a></li>
+<li><a href="https://www.cs.princeton.edu/~blei/papers/Blei2011.pdf" target="_blank">Introduction to Probabilistic Topic Models</a></li>
+<li><a href="https://youtu.be/4p9MSJy761Y" target="_blank">Computation Linguistic I: Topic Modeling</a></li>
+<li><a href="http://www.lambertoballan.net/downloads/serainzac-apr12.pdf" target="_blank">Classificazione di immagini con metodi multimodali generativo-discriminativi</a></li>
+<li><a href="http://brooksandrew.github.io/simpleblog/articles/latent-dirichlet-allocation-under-the-hood/" target="_blank">Latent Dirichlet Allocation &#8211; under the hood</a></li>
+<li><a href="http://chdoig.github.io/pytexas2015-topic-modeling/#/" target="_blank&quot;">Introduction to Topic Modeling in Python</a></li>
+<li><a href="http://tesi.cab.unipd.it/45981/1/Ferraccioli_Federico.pdf" target="_blank">Topic Model Workout: un approccio per l&#8217;analisi di microblogging, mass media e dintorni</a></li>
+<li><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4416183/pdf/1471-2105-16-S6-S2.pdf" target="_blank">Probabilistic topic modeling for the analysis and classification of genomic sequences, From 10th Internation Meeting of Computational Intelligence Methods for Bioinformatics and Biostatics</a></li>
+<li><a href="http://machinelearning.ru/wiki/images/1/1f/Voron14aist.pdf" target="_blank">Tutorial on Probabilistic Topic Modeling: Additive Regularization for Stochastic Matrix Factorization</a></li>
+<li><a href="http://cseweb.ucsd.edu/~dhu/docs/research_exam09.pdf" target="_blank">Latent Dirichlet Allocation for Text, Images and Music</a></li>
+<li><a href="http://epub.wu.ac.at/3558/1/main.pdf" target="_blank">Latent Dirichlet Allocation in R</a></li>
+</ul>
+<ol class="easy-footnotes-wrapper"><li class="easy-footnote-single"><span id="easy-footnote-bottom-1" class="easy-footnote-margin-adjust"></span>Le parole testuali (<em>word token</em>) sono un sottoinsieme di questi attributi.<a class="easy-footnote-to-top" href="#easy-footnote-1"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-2" class="easy-footnote-margin-adjust"></span>Nella locuzione &#8220;matrice documento-termine&#8221; la parola &#8220;termine&#8221; deve essere intesa in modo equivalente ad &#8220;attributo&#8221;.<a class="easy-footnote-to-top" href="#easy-footnote-2"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-3" class="easy-footnote-margin-adjust"></span>La base è un insieme di vettori grazie ai quali possiamo: ricostruire tutti i vettori dello spazio vettoriale mediante combinazioni lineari; costruire tutti i vettori in modo unico.<a class="easy-footnote-to-top" href="#easy-footnote-3"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-4" class="easy-footnote-margin-adjust"></span><a href="https://docs.python.org/2/library/pickle.html" target="_blank">pickle — Python object serialization</a><a class="easy-footnote-to-top" href="#easy-footnote-4"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-5" class="easy-footnote-margin-adjust"></span>Il nome S<strong>VD troncata</strong> (<em>truncated SVD</em>) descrive esattamente l&#8217;approccio, precedentemente analizzato, secondo cui non si considerano tutti i valori singolari scaturiti dalla SVD, ma solo i primi P (ossia i valori più grandi). I restanti valori singolari vengono invece posti a zero.<a class="easy-footnote-to-top" href="#easy-footnote-5"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-6" class="easy-footnote-margin-adjust"></span>Se N è il numero di documenti e P il numero di topic, avremo N distribuzioni di probabilità <strong>θ</strong><sub>d</sub> che possono essere assemblate in una matrice Θ<sub>NxP</sub>.<a class="easy-footnote-to-top" href="#easy-footnote-6"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-7" class="easy-footnote-margin-adjust"></span>Se M è il numero di attributi del vocabolario e P il numero di topic, avremo P distribuzioni di probabilità <strong>φ</strong><sub>p</sub> che possono essere assemblate in una matrice Φ<sub>PxM</sub>.<a class="easy-footnote-to-top" href="#easy-footnote-7"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-8" class="easy-footnote-margin-adjust"></span>In <a href="http://psiexp.ss.uci.edu/research/papers/SteyversGriffithsLSABookFormatted.pdf" target="_blank">Probabilistic Topic Models di Steyvers e Griffiths</a> si suggeriscono, su base sperimentale, le seguenti assegnazioni α=50/P e β=0.01 (dove P è il numero di topic). Per ogni distribuzione <strong>θ</strong> si utilizza il parametro α, invece, β è applicato in ogni distribuzione <strong>φ</strong>. I valori degli iperparametri rappresentano l&#8217;ipotetica distribuzione di probabilità a priori. Porre a 1 un iperparametro vuol dire assumere una distribuzione delle probabilità uniforme a priori. I due iperparametri <a class="easy-footnote-to-top" href="#easy-footnote-8"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-9" class="easy-footnote-margin-adjust"></span>Dato il parametro di pesatura 0 ≤ λ ≤ 1, la <strong>rilevanza</strong> è definita come λ * (p (w | t)) + (1 &#8211; λ) * log (p (w | t) / p (w)), dove p(w | t) e la probabilità di assegnazione dell&#8217;attributo w al topic t e p (w) è la probabilità dell&#8217;attributo w su tutti i topic.<a class="easy-footnote-to-top" href="#easy-footnote-9"></a></li></ol>	</div><!-- .entry-content -->
+
+	
+			<div class="entry-meta">
+			<ul class="meta-list">
+
+				<!-- Categories -->
+				
+					<li class="meta-cat">
+						<span>Pubblicato in:</span>
+
+						<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" rel="category tag">Machine Learning</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" rel="category tag">Programming</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" rel="category tag">Training</a>					</li>
+
+				
+				<!-- Tags -->
+				
+					<li class="meta-tag">
+						<span>Tagged in:</span>
+
+						<span  class="tag">allocation</span>, <span  class="tag">allocazione</span>, <span  class="tag">analisi</span>, <span  class="tag">analysis</span>, <span  class="tag">attributo</span>, <span  class="tag">bow</span>, <span  class="tag">corpus</span>, <span  class="tag">decomposizione</span>, <span  class="tag">dimensionalità</span>, <span  class="tag">dirichlet</span>, <span  class="tag">distributional semantics</span>, <span  class="tag">distribuzionale</span>, <span  class="tag">DTM</span>, <span  class="tag">HDP</span>, <span  class="tag">hierarchical</span>, <span  class="tag">information retrieval</span>, <span  class="tag">ipotesi</span>, <span  class="tag">latent</span>, <span  class="tag">latente</span>, <span  class="tag">LDA</span>, <span  class="tag">LSA</span>, <span  class="tag">LSI</span>, <span  class="tag">matrice</span>, <span  class="tag">Natural Language Processing</span>, <span  class="tag">NMF</span>, <span  class="tag">peso</span>, <span  class="tag">probabilistico</span>, <span  class="tag">probabilità</span>, <span  class="tag">process</span>, <span  class="tag">query</span>, <span  class="tag">R</span>, <span  class="tag">RI</span>, <span  class="tag">riduzione dimensionalità</span>, <span  class="tag">riduzione dimensione topic modeling</span>, <span  class="tag">RP</span>, <span  class="tag">semantic</span>, <span  class="tag">semantica</span>, <span  class="tag">similarità</span>, <span  class="tag">simplesso</span>, <span  class="tag">sparsa</span>, <span  class="tag">sparsità</span>, <span  class="tag">spazio</span>, <span  class="tag">statistica</span>, <span  class="tag">TDM</span>, <span  class="tag">termini</span>, <span  class="tag">TF-IDF</span>, <span  class="tag">topic</span>, <span  class="tag">trasformazioni</span>, <span  class="tag">troncamento</span>, <span  class="tag">valori singolari</span>, <span  class="tag">vettore</span>, <span  class="tag">vocabolario</span>, <span  class="tag">word embedding</span>, <span  class="tag">word2vec</span>					</li>
+
+				
+			</ul><!-- .meta-list -->
+		</div><!-- .entry-meta -->
+	
+</article><!-- #post-## -->
+	<div class="author-profile">
+		<a class="author-profile-avatar" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
+
+		<div class="author-profile-info">
+			<h3 class="author-profile-title">
+									Pubblicato da								lorenzo</h3>
+
+							<div class="author-description">
+					<p>Full-time engineer. I like to write about data science and artificial intelligence.</p>
+				</div>
+			
+			<div class="author-profile-links">
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/"><i class="fa fa-pencil-square"></i> Tutti gli articoli</a>
+
+							</div>
+		</div><!-- .author-drawer-text -->
+	</div><!-- .author-profile -->
+
+
+			<!-- Comment toggle and share buttons -->
+			<div class="share-comment click">
+
+									<div class="share-icons open">
+						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-1699" class="share-twitter sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/?share=twitter" target="_blank" title="Fai clic qui per condividere su Twitter"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Twitter (Si apre in una nuova finestra)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-1699" class="share-linkedin sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/?share=linkedin" target="_blank" title="Fai clic qui per condividere su LinkedIn"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su LinkedIn (Si apre in una nuova finestra)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-1699" class="share-google-plus-1 sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/?share=google-plus-1" target="_blank" title="Fai clic qui per condividere su Google+"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Google+ (Si apre in una nuova finestra)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/?share=email" target="_blank" title="Fai clic qui per inviare l'articolo via mail ad un amico"><span></span><span class="sharing-screen-reader-text">Fai clic qui per inviare l'articolo via mail ad un amico (Si apre in una nuova finestra)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/#print" target="_blank" title="Fai clic qui per stampare"><span></span><span class="sharing-screen-reader-text">Fai clic qui per stampare (Si apre in una nuova finestra)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-1699" class="share-facebook sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/?share=facebook" target="_blank" title="Fai clic per condividere su Facebook"><span></span><span class="sharing-screen-reader-text">Fai clic per condividere su Facebook (Si apre in una nuova finestra)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+				
+									<a class="comments-toggle button" href="#">
+						<span><i class="fa fa-comments"></i>
+							Lascia un commento						</span>
+						<span><i class="fa fa-times"></i> Nascondi commenti</span>
+					</a>
+							</div>
+
+			
+	<div id="comments" class="comments-area click">
+
+		
+		
+				
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond" style="display:none;">Annulla risposta</a></small></h3>
+						<form id="commentform" class="comment-form">
+				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&#038;postid=1699&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=monsterid&#038;greeting=Vuoi+commentare%3F&#038;greeting_reply=Rispondi+a+%25s&#038;color_scheme=light&#038;lang=it_IT&#038;jetpack_version=4.9&#038;sig=bbe6f3e06307e54882133340df2574a01ff39ff2#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Ffondamenti-trasformazioni-con-riduzione-dimensionalita%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+				<!--[if !IE]><!-->
+				<script>
+					document.addEventListener( 'DOMContentLoaded', function () {
+						var commentForms = document.getElementsByClassName( 'jetpack_remote_comment' );
+						for ( var i = 0; i < commentForms.length; i++ ) {
+							commentForms[i].allowTransparency = false;
+							commentForms[i].scrolling = 'no';
+						}
+					} );
+				</script>
+				<!--<![endif]-->
+			</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+
+		
+	</div><!-- #comments -->
+
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area">
+		<style type="text/css">
+.qtranxs_widget ul { margin: 0; }
+.qtranxs_widget ul li
+{
+display: inline; /* horizontal list, use "list-item" or other appropriate value for vertical list */
+list-style-type: none; /* use "initial" or other to enable bullets */
+margin: 0 5px 0 0; /* adjust spacing between items */
+opacity: 0.5;
+-o-transition: 1s ease opacity;
+-moz-transition: 1s ease opacity;
+-webkit-transition: 1s ease opacity;
+transition: 1s ease opacity;
+}
+/* .qtranxs_widget ul li span { margin: 0 5px 0 0; } */ /* other way to control spacing */
+.qtranxs_widget ul li.active { opacity: 0.8; }
+.qtranxs_widget ul li:hover { opacity: 1; }
+.qtranxs_widget img { box-shadow: none; vertical-align: middle; display: initial; }
+.qtranxs_flag { height:12px; width:18px; display:block; }
+.qtranxs_flag_and_text { padding-left:20px; }
+.qtranxs_flag span { display:none; }
+</style>
+<aside id="qtranslate-2" class="widget qtranxs_widget"><h2 class="widget-title">Selezione lingua:</h2>
+<ul class="language-chooser language-chooser-image qtranxs_language_chooser" id="qtranslate-2-chooser">
+<li class="lang-it active"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/fondamenti-trasformazioni-con-riduzione-dimensionalita/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
+<li class="lang-en"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
+</ul><div class="qtranxs_widget_end"></div>
+</aside><aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h2 class="widget-title">Iscriviti al Blog via E-Mail</h2>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>Inseririsci il tuo indirizzo email e riceverai i nuovi post via mail.</p>
+</div>					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field-blog_subscription-3">
+							Indirizzo Email						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-3" placeholder="Indirizzo Email" />
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe" />
+						<input type="hidden" name="source" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/" />
+						<input type="hidden" name="sub-type" value="widget" />
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3" />
+												<input type="submit" value="Iscriviti" name="jetpack_subscriptions_widget" />
+					</p>
+							</form>
+
+			<script>
+			/*
+			Custom functionality for safari and IE
+			 */
+			(function( d ) {
+				// In case the placeholder functionality is available we remove labels
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.querySelector( 'label[for=subscribe-field-blog_subscription-3]' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+
+				// Make sure the email value is filled in before allowing submit
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'),
+					input = d.getElementById('subscribe-field-blog_subscription-3'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+
+							return false;
+						}
+					};
+
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recenti</h2>		<ul>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
+						</li>
+				</ul>
+		</aside>		<aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categorie</h2>		<ul>
+	<li class="cat-item cat-item-10"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" >API generation</a>
+</li>
+	<li class="cat-item cat-item-333"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" >Data Engineering</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" >Data Mining</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" >Data visualization</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" >Deep Learning</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" >Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" >Programming</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" >Tools</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" >Training</a>
+</li>
+		</ul>
+</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h2 class="widget-title">Twitter</h2><a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="IT" data-partner="jetpack" href="https://twitter.com/BEmatic">I miei Cinguettii</a></aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" class="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">
+	<div>
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" value="" name="s" id="s" class="search-input" placeholder="Cerca..." />
+
+		<button type="submit" id="searchsubmit">
+			<i class="fa fa-search"></i> <span>Ricerca</span>
+		</button>
+	</div>
+</form></aside>	</div><!-- #secondary .widget-area -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+	<!-- Next and previous post links -->
+	
+		<nav class="post-navigation">
+			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/wordle-bs70420probability.png?resize=800%2C280&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Successivo</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/" rel="prev">Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</a></div><span>16/07/2016</span></div></div>
+			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/scraping-1-e1472407353263.png?resize=338%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Precedente</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/" rel="next">Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</a></div><span>28/08/2016</span></div></div>		</nav><!-- .post-navigation -->
+	
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="container">
+
+					<div class="footer-widgets">
+				<aside id="text-2" class="widget widget_text"><h2 class="widget-title">Benvenuto</h2>			<div class="textwidget">Questo blog è una collezione di appunti personali in inglese e in italiano sull'apprendimento automatico e sistemi cognitivi. Buona lettura.
+<hr/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
+<br/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
+<hr/>
+<span class="su-qrcode su-qrcode-align-center"><a target="_blank" title="ApprendimentoAutomatico.it"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog&size=100x100&format=png&margin=0&color=0-0-0&bgcolor=255-255-255" alt="ApprendimentoAutomatico.it" /></a></span></div>
+		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQ9BEBk2V5xptV" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/markpeng/general-tips-for-participating-kaggle-competitions" title="General Tips for participating Kaggle Competitions" target="_blank">General Tips for participating Kaggle Competitions</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/markpeng">Mark Peng</a></strong> </div></div>
+		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archivi</h2>		<ul>
+			<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>&nbsp;(8)</li>
+		</ul>
+		</aside>			</div>
+		
+		<div class="footer-bottom">
+			
+			<div class="footer-tagline">
+				<div class="site-info">
+					Ad maiora!				</div>
+			</div><!-- .footer-tagline -->
+		</div><!-- .footer-bottom -->
+	</div><!-- .container -->
+</footer><!-- #colophon -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/fondamenti-trasformazioni-con-riduzione-dimensionalita\/":1699};
+	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/" method="post">
+			<label for="target_email">Invia a indirizzo e-mail</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Il tuo nome</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Il tuo indirizzo e-mail</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			<script>jQuery( document ).ready( function(){ document.getElementById('jetpack-source_f_name').value = '' });</script>
+			
+			<img style="float: right; display: none" class="loading" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Invia e-mail" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel">Annulla</a>
+
+			<div class="errors errors-1" style="display: none;">
+				L'articolo non è stato pubblicato, controlla gli indirizzi e-mail!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Verifica dell'e-mail non riuscita. Riprova.			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Ci dispiace, il tuo blog non consente di condividere articoli tramite e-mail.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<link rel='stylesheet' id='qtipstyles-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='easyfootnotescss-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/easy-footnotes.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='dashicons-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='su-box-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/box-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201802'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Janaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var paperback_js_vars = {"ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","load_fixed":"true"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var settings_obj = {"ajax_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"06c07c87f6","confirm":"Are you sure to delete item?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"it","ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"16afb09915","display_exif":"0","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Commento","post_comment":"Pubblica un commento","write_comment":"Scrivi un Commento...","loading_comments":"Caricamento commenti...","download_original":"Vedi immagine a grandezza originale<span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Assicurati di scrivere del testo nel commento.","no_comment_email":"Fornisci un indirizzo e-mail per commentare.","no_comment_author":"Fornisci il tuo nome per commentare.","comment_post_error":"Si \u00e8 verificato un problema durante la pubblicazione del commento. Riprova pi\u00f9 tardi.","comment_approved":"Il tuo commento \u00e8 stato approvato.","comment_unapproved":"Il tuo commento deve venire moderato.","camera":"Fotocamera","aperture":"Apertura","shutter_speed":"Velocit\u00e0 di scatto","focal_length":"Lunghezza focale","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-login.php?redirect_to=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Ffondamenti-trasformazioni-con-riduzione-dimensionalita%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Obbligatorio)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Nome (Obbligatorio)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Sito web<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel.js?ver=20170209'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtipcall.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=1699&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=bbe6f3e06307e54882133340df2574a01ff39ff2#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Ffondamenti-trasformazioni-con-riduzione-dimensionalita%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=1699&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=bbe6f3e06307e54882133340df2574a01ff39ff2#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Ffondamenti-trasformazioni-con-riduzione-dimensionalita%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type='text/javascript' src='https://stats.wp.com/e-201802.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.9',blog:'114978248',post:'1699',tz:'1',srv:'www.apprendimentoautomatico.it'} ]);
+	_stq.push([ 'clickTrackerInit', '114978248', '1699' ]);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php">
+
+	<title>Fondamenti: selezione attributi e rappresentazione dei documenti - Machine Learning &amp; Cognitive</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v4.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Questo post è il primo di una serie denominata &#8220;Fondamenti&#8221;. L&#8217;obiettivo della serie è fornire una panoramica delle principali tecniche [&hellip;]" />
+<meta name="twitter:title" content="Fondamenti: selezione attributi e rappresentazione dei documenti - Machine Learning &amp; Cognitive" />
+<meta name="twitter:site" content="@BEmatic" />
+<meta name="twitter:image" content="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/0ae0764.jpg?fit=821%2C524&#038;ssl=1" />
+<meta name="twitter:creator" content="@BEmatic" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Fondamenti: selezione attributi e rappresentazione dei documenti Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='paperback-style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
+<style id='paperback-style-inline-css' type='text/css'>
+
+		/* Top Nav Background Color */
+		.top-navigation,
+		.secondary-navigation ul.sub-menu {
+			background-color: #343e47;
+		}
+
+		/* Top Nav Text Color */
+		.top-navigation,
+		.top-navigation nav a,
+		.top-navigation li ul li a,
+		.drawer-toggle {
+			color: #ffffff;
+		}
+
+		.main-navigation:not(.secondary-navigation) ul.menu > li.current-menu-item > a {
+			border-color: #f35245;
+		}
+
+		/* Header Background Color */
+		.site-identity {
+			background-color: #ecf1f7;
+		}
+
+		/* Header Text Color */
+		.main-navigation a,
+		.site-title a,
+		.site-description {
+			color: #383f49;
+		}
+
+		/* Accent Color */
+		.hero-cats a,
+		.post-navigation .nav-label,
+		.entry-cats a {
+			background-color: #f35245;
+		}
+
+		.page-numbers.current,
+		.page-numbers:hover,
+		#page #infinite-handle button:hover {
+			background-color: #f35245;
+		}
+
+		/* Footer Background Color */
+		.site-footer {
+			background-color: #343e47;
+		}
+
+		/* Footer Text Color */
+		.site-footer .widget-title,
+		.site-footer a:hover {
+			color: #ffffff;
+		}
+
+		.site-footer,
+		.site-footer a {
+			color: rgba( 255, 255, 255, 0.8);
+		}
+
+		/* Footer Border Color */
+		.footer-widgets ul li,
+		.footer-widgets + .footer-bottom {
+			border-color: rgba( 255, 255, 255, 0.3);
+		}
+	
+</style>
+<link rel='stylesheet' id='paperback-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7COpen%2BSans%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='overlay_settings_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-webfonts-css'  href='//fonts.googleapis.com/css?family=Source+Code+Pro%3Aregular%2C700&#038;ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='social-logos-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
+<link rel='https://api.w.org/' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.6.1" />
+<link rel='shortlink' href='https://wp.me/p7Mr5S-1c' />
+<link rel="alternate" type="application/json+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Festrazione-attributi-da-testi-con-python%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Festrazione-attributi-da-testi-con-python%2F&#038;format=xml" />
+<style type="text/css">
+.main-navigation {
+    max-width: 45% !important;
+}
+.site-title-wrap {
+    max-width: 55% !important;
+}
+.site-title {
+     font-size: 25px;
+}
+.easy-footnote sup {
+    font-size: 60% !important;
+    font-style: normal !important;;
+    vertical-align: super !important;;
+    position: relative !important;
+    color: red;
+}
+
+span.easy-footnote>a { border-bottom: 0 !important; }
+
+a.easy-footnote-to-top { border-bottom: 0 !important; }
+
+.site-title a::before {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
+    background-size: 25px 25px;
+    content: " ";
+    height: 25px;
+    left: -26px;
+    position: absolute;
+    top: 6px;
+    width: 25px;
+    /*background-size: 25px 25px;
+    background-repeat: no-repeat;*/
+    /*color: #f35245;
+    content: "";
+    font-family: "FontAwesome";
+    font-size: 25px;
+    margin-right: 10px;*/
+}
+
+.site-title {
+    margin-left: 25px !important;
+}
+
+span.post-lang-en {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
+    background-repeat: no-repeat;
+    background-size: 45px 45px;
+    border: 1px dotted lightblue;
+    border-radius: 3px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+}
+</style>
+<style type="text/css">
+.qtranxs_flag_it {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+.qtranxs_flag_en {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+</style>
+<link hreflang="it" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/estrazione-attributi-da-testi-con-python/" rel="alternate" />
+<link hreflang="en" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/" rel="alternate" />
+<link hreflang="x-default" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/" rel="alternate" />
+<meta name="generator" content="qTranslate-X 3.4.6.8" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//i0.wp.com'>
+<link rel='dns-prefetch' href='//i1.wp.com'>
+<link rel='dns-prefetch' href='//i2.wp.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+<style type='text/css'>img#wpstats{display:none}</style>	<style type="text/css">
+					.site-identity {
+				padding: 2% 0;
+			}
+		
+					.single .hero-posts .with-featured-image {
+				padding-top: 7%;
+			}
+		
+		
+			</style>
+
+		<style>
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon {
+			width: 20px !important;
+			height: 28px !important;
+			padding: 6px 0 !important;
+			margin-right: 0 !important;
+		}
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon:before {
+			content: "\f466";
+		}
+		</style><!--Start Cookie Script--> <script type="text/javascript" charset="UTF-8" src="//cookie-script.com/s/f67066386a32612237b658624241e0af.js"></script> <!--End Cookie Script-->
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+</head>
+
+<body class="single single-post postid-74 single-format-standard has-sidebar two-column">
+
+
+<header id="masthead" class="site-header" role="banner">
+
+		<div class="top-navigation">
+			<div class="container">
+
+				<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>				</nav><!-- .secondary-navigation -->
+
+				<div class="top-navigation-right">
+											<nav class="social-navigation" role="navigation">
+							<div class="menu-social-media-container"><ul id="menu-social-media" class="menu"><li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li id="menu-item-5830" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>						</nav><!-- .social-navigation -->
+					
+					<div class="overlay-toggle drawer-toggle drawer-open-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-search"></i>
+							Esplora						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+
+					<div class="overlay-toggle drawer-toggle drawer-menu-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-bars"></i>
+							Menu						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+				</div><!-- .top-navigation-right -->
+			</div><!-- .container -->
+		</div><!-- .top-navigation -->
+
+		<div class="drawer-wrap">
+			<div class="drawer drawer-explore">
+	<div class="container">
+		<div class="drawer-search">
+			
+<div class="big-search">
+	<form method="get" id="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" role="search">
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" name="s" id="big-search" placeholder="Cerca..." value="" onfocus="if(this.value==this.getAttribute('placeholder'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('placeholder');"/><br />
+
+		<div class="search-controls">
+		
+			<div class="search-select-wrap">
+				<select class="search-select" name="category_name">
+
+					<option value="">Tutto il sito</option>
+
+					<option value="api-generation">API generation</option><option value="collaterali">Collaterals</option><option value="data-engineering">Data Engineering</option><option value="data-mining">Data Mining</option><option value="visualizzazione-dei-dati">Data visualization</option><option value="deep-learning">Deep Learning</option><option value="machine-learning">Machine Learning</option><option value="programmazione">Programming</option><option value="strumenti">Tools</option><option value="formazione">Training</option>				</select>
+			</div>
+
+		
+			<input type="submit" class="submit button" name="submit" id="big-search-submit" value="Ricerca" />
+		</div><!-- .search-controls -->
+	</form><!-- #big-searchform -->
+
+</div><!-- .big-search -->		</div>
+
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Categorie</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
+		
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Tags</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/python/" title="View all posts in Python" >Python</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/bow/" title="View all posts in bow" >bow</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/azure/" title="View all posts in azure" >azure</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/classification/" title="View all posts in classification" >classification</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
+			</div>
+		
+		<div class="widget tax-widget">
+			<h2 class="widget-title">Archivi</h2>
+
+				<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>
+		</div>
+	</div><!-- .container -->
+</div><!-- .drawer -->
+<div class="drawer drawer-menu-explore">
+	<div class="container">
+					<nav id="drawer-navigation" class="main-navigation drawer-navigation" role="navigation">
+				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li id="menu-item-5843" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>			</nav><!-- #site-navigation -->
+		
+					<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>			</nav><!-- .secondary-navigation -->
+		
+					<nav class="social-navigation" role="navigation">
+				<div class="menu-social-media-container"><ul id="menu-social-media-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>			</nav><!-- .footer-navigation -->
+			</div><!-- .container -->
+</div><!-- .drawer -->		</div><!-- .drawer-wrap -->
+
+		<div class="site-identity clear">
+			<div class="container">
+				<!-- Site title and logo -->
+					<div class="site-title-wrap">
+		<!-- Use the Site Logo feature, if supported -->
+		
+		<div class="titles-wrap">
+							<p class="site-title"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" rel="home">Machine Learning &amp; Cognitive</a></p>
+ 			
+							<p class="site-description">ApprendimentoAutomatico.it</p>
+					</div>
+	</div><!-- .site-title-wrap -->
+
+				<!-- Main navigation -->
+				<nav id="site-navigation" class="main-navigation enabled" role="navigation">
+					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+
+			</div><!-- .container -->
+		</div><!-- .site-identity-->
+
+					<div class="featured-posts-wrap clear">
+				<div class="featured-posts clear">
+					<div class="featured-header">
+						<span class="featured-header-category"></span>
+						<span class="featured-header-close"><i class="fa fa-times"></i> Chiudi</span>
+					</div>
+
+					<div class="post-container clear"></div>
+				</div>
+			</div>
+		</header><!-- .site-header -->
+
+
+<div class="mini-bar">
+			<div class="mini-title">
+			<!-- Next and previous post links -->
+			<div class="fixed-nav"><a class="fixed-image" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-di-andrew-ng/"> <img width="65" height="37" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/large-icon.png?fit=65%2C37&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="large-icon" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/large-icon.png?w=460&amp;ssl=1 460w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/large-icon.png?resize=300%2C169&amp;ssl=1 300w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="4959" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-di-andrew-ng/large-icon/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/large-icon.png?fit=460%2C259&amp;ssl=1" data-orig-size="460,259" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="large-icon" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/large-icon.png?fit=300%2C169&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/large-icon.png?fit=460%2C259&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Successivo</span><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-di-andrew-ng/" rel="prev">Machine Learning di Andrew Ng su Coursera</a></div></div>
+		</div>
+	
+	<ul class="mini-menu">
+					<li>
+				<a class="drawer-open-toggle" href="#">
+					<span><i class="fa fa-search"></i> Esplora</span>
+				</a>
+			</li>
+				<li class="back-to-top">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+		<li class="back-to-menu">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+	</ul>
+</div><!-- .mini-bar-->
+
+	<div class="hero-wrapper">
+
+		<div class="hero-posts">
+			
+	<div id="post-74" class="with-featured-image hero-post post-74 post type-post status-publish format-standard has-post-thumbnail hentry category-data-mining category-machine-learning category-programmazione category-formazione tag-analisi-automatica-del-testo tag-attributo tag-bow tag-corpus tag-curse-of-dimensionality tag-cut-off tag-dizionario tag-documento tag-estrazione-attributi tag-filtraggio tag-gensim tag-lemmatizzatore tag-matrice-documento-termine tag-matrice-sparsa tag-matrice-termine-documento tag-matrici-lessicali tag-metriche-di-pesatura tag-modello-di-rappresentazione tag-n-gramma tag-natural-language-processing tag-nltk tag-normalizzazione tag-pattern tag-pesi tag-pos-tagging tag-python tag-rimozione-punteggiatura tag-scipy tag-stemming tag-stop-list tag-stop-word tag-text-cleaning tag-text-mining tag-token tag-topic tag-topic-modeling tag-treetagger tag-treetaggerwrapper tag-unigramma tag-vocabolario">
+
+		<!-- Get the hero background image -->
+		
+			<div class="site-header-bg-wrap">
+				<div class="header-opacity">
+					<div class="header-gradient"></div>
+					<div class="site-header-bg background-effect" style="background-image: url(https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/0ae0764.jpg?fit=821%2C524&#038;ssl=1); opacity: 0.3;"></div>
+				</div>
+			</div><!-- .site-header-bg-wrap -->
+
+		
+		<div class="container hero-container">
+			<div class="hero-cats"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/">Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/">Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/">Programming</a></div>
+			<!-- Hero title -->
+			<div class="hero-text">
+									<h1 class="entry-title">Fondamenti: selezione attributi e rappresentazione dei documenti</h1>
+				
+				<div class="hero-date">
+										<!-- Create an avatar link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di ">
+						<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=44&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=88&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-44 photo' height='44' width='44' />					</a>
+					<!-- Create an author post link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/">
+						lorenzo					</a>
+					<span class="hero-on-span">&nbsp;</span>
+					<span class="hero-date-span">Jul 2016</span>
+				</div>
+			</div><!-- .photo-overlay -->
+		</div><!-- .container -->
+	</div>
+		</div><!-- .hero-posts -->
+
+	</div><!-- .hero-wrapper -->
+
+<div id="page" class="hfeed site container">
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-74" class="post full-post post-74 type-post status-publish format-standard has-post-thumbnail hentry category-data-mining category-machine-learning category-programmazione category-formazione tag-analisi-automatica-del-testo tag-attributo tag-bow tag-corpus tag-curse-of-dimensionality tag-cut-off tag-dizionario tag-documento tag-estrazione-attributi tag-filtraggio tag-gensim tag-lemmatizzatore tag-matrice-documento-termine tag-matrice-sparsa tag-matrice-termine-documento tag-matrici-lessicali tag-metriche-di-pesatura tag-modello-di-rappresentazione tag-n-gramma tag-natural-language-processing tag-nltk tag-normalizzazione tag-pattern tag-pesi tag-pos-tagging tag-python tag-rimozione-punteggiatura tag-scipy tag-stemming tag-stop-list tag-stop-word tag-text-cleaning tag-text-mining tag-token tag-topic tag-topic-modeling tag-treetagger tag-treetaggerwrapper tag-unigramma tag-vocabolario">
+
+		
+	<div class="entry-content">
+		<p><span class="dropcap">Q</span>uesto post è il primo di una serie denominata &#8220;Fondamenti&#8221;. L&#8217;obiettivo della serie è fornire una panoramica delle principali tecniche utilizzate per estrarre automaticamente conoscenza da testo non strutturato, come pagine web, email, forum e documenti in generale.</p>
+<p>Il focus principale è sul <em>topic modeling</em>, ossia l&#8217;approccio semantico per <strong>identificare gli argomenti di documenti attraverso l&#8217;analisi della distribuzione delle parole</strong>. Il topic modeling è una delle tante applicazioni del <em>text mining</em><span id='easy-footnote-1' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-1' title='Il &lt;em&gt;data mining&lt;/em&gt; estrae sapere o conoscenza a partire da grandi quantità di dati, attraverso metodi automatici o semi-automatici. Il &lt;em&gt;text mining&lt;/em&gt; o &lt;em&gt;text data mining&lt;/em&gt; è una forma particolare di data mining dove i dati sono costituiti da testi scritti in linguaggio naturale, quindi da documenti &amp;#8220;destrutturati&amp;#8221;.'><sup>1</sup></a></span> e si fonda su algoritmi di apprendimento che suddividono la collezione di documenti in raggruppamenti ciascuno facente riferimento ad un certo <strong><em>topic</em></strong> o <strong>argomento in senso generale</strong>. L&#8217;individuazione dei raggruppamenti avviene in modo automatico senza ausilio di addestramenti basati su esempi e quindi senza una preventiva supervisione da parte dell&#8217;uomo: il topic modeling rientra pertanto nella classe dei <strong>metodi di apprendimento non supervisionati su dati testuali</strong>.</p>
+<p>Solitamente, i suddetti argomenti richiedono una competenza multidisciplinare e i materiali per lo studio, quando disponibili in Italiano, tendono ad approfondire aspetti teorici tralasciando gli impieghi pratici. Scopo della serie &#8220;Fondamenti&#8221; è riassumere i concetti chiave, fornendo un apparato nozionistico ridotto ai fondamenti e focalizzando l&#8217;impiego pratico attraverso esempi concreti su una estesa varietà di ambienti di programmazione (tra cui, in primis, Python e R) e librerie specializzate (e.g. scikit-learn, gensim, NLTK, Pattern). L&#8217;obiettivo della serie è anche suggerire un percorso attraverso una molteplicità di strumenti tecnici, lasciando poi al lettore ogni approfondimento e applicazione ai suoi casi particolari.</p>
+<p>In questo post, introdurremo gli elementi per giungere alla piena comprensione del concetto di <strong>modello di rappresentazione dei documenti</strong> di una collezione (corpus). Il modello di rappresentazione è l&#8217;elemento centrale attorno al quale si sviluppa ogni processo di analisi automatica del testo.<span id="more-74"></span></p>
+<hr />
+<p>Un <strong>corpus</strong> (il plurale è <strong>corpora</strong>) è un insieme di testi confrontabili tra di loro ed appartenenti ad uno stesso contesto. Considereremo un testo come una sequenza di frasi e una frase come una sequenza di <strong><em>token</em></strong><span id='easy-footnote-2' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-2' title='&lt;strong&gt;Tokenizzare&lt;/strong&gt; un testo significa dividere le sequenze di caratteri in unità minime di analisi dette appunto token.'><sup>2</sup></a></span>. Nelle lingue segmentate come l&#8217;Italiano, un modo per estrarre i token consiste nell&#8217;usare gli spazi come delimitatori dei token stessi<span id='easy-footnote-3' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-3' title='Nelle lingue segmentate i confini di parola sono marcati da spazi bianchi. Nelle lingue non segmentate i confini di parola non sono marcati esplicitamente nella scrittura (e.g. cinese, giapponese) e il processo di tokenizzazione richiede anzitutto una segmentazione chiamata &lt;em&gt;word segmentation&lt;/em&gt; (qualcosa di simile all&amp;#8217;&lt;a href=&quot;https://it.wikipedia.org/wiki/Algoritmo_di_Viterbi&quot;&gt;algoritmo di Viterbi&lt;/a&gt;).'><sup>3</sup></a></span>. L&#8217;algoritmo di estrazione dei token è chiamato <strong>tokenizzatore</strong> ed esistono molteplici implementazioni ciascuna basata su specifici criteri di estrazione.</p>
+<p>Un tipo particolare di token sono le parole testuali (<em>word token</em>) che possono denotare: un oggetto (sostantivo), un&#8217;azione o uno stato (verbo), una qualità (aggettivo, avverbio), una relazione (preposizione). Altri tipi di token sono per esempio: date, numeri, valute, titoli, sigle, abbreviazioni. Dunque le parole testuali sono da considerare come un sottoinsieme dei possibili token estraibili da un testo<span id='easy-footnote-4' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-4' title='La nozione di token è distinta da quella di parola, poiché la tokenizzazione non si basa generalmente su criteri morfosintattici o semantici: la forma &amp;#8220;mandarglielo&amp;#8221; corrisponde a 1 token ma ha 3 parole morfologiche (mandare + gli + lo).'><sup>4</sup></a></span>.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Tecnicamente considereremo un testo come una sequenza di caratteri in codifica Unicode UTF-8 (tipo stringa in Python) e un corpus come una <strong>sequenza ordinata di stringhe </strong>ognuna identificata da un indice numerico (il tipo lista in Python).</div></div>
+<hr />
+<p>A titolo esemplificativo, definiamo il seguente corpus a cui in seguito ci riferiremo con il nome di <code data-enlighter-language="python" class="EnlighterJSRAW">rawcorpus1</code>:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+rawcorpus1=[&quot;La volpe voleva mangiare l´uva&quot;, &quot;L´uva era troppo in alto per la volpe&quot;, &quot;La volpe non riusciva a raggiungere l´uva&quot;, &quot;La volpe rinunciò sostenendo che l´uva non era ancora matura&quot;, &#039;La volpe era furba, ma a volte la furbizia non paga&#039;]
+</pre></p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">In queste note assumiamo che i documenti del corpus siano già stati sottoposti a <em>text cleaning</em>, ossia siano stati ripuliti da tutti gli elementi che potrebbero alterarne le successive elaborazioni: si è eseguita una spoliazione dei formati di gestione del testo (XML o altro). Per esempio, i testi sorgenti potrebbero essere stati incapsulati in pagine HTML e in tal caso si sarebbe resa necessaria la rimozione del mark-up HTML, l&#8217;eliminazione dei titoli per la barra di navigazione, frammenti di codice JavaScript, link, ecc. Altre forme di cleaning (non necessariamente legate ad HTML) prevedono la rimozione di tabelle, didascalie delle figure, intestazioni delle pagine e in generale materiale ripetuto per ragioni tipografiche.</div></div>
+<hr />
+<p>Non tutte le parole in un testo sono significative, per esempio: articoli, congiunzioni e preposizioni contengono uno scarso potere informativo e quindi non sono utili alla nostra analisi. Se queste parole fossero conservate si incrementerebbe il numero di parametri (<strong>dimensioni</strong>) da elaborare con una penalizzazione sui costi computazionali e con il rischio di confondere i risultati<span id='easy-footnote-5' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-5' title='L&amp;#8217;incremento del numero di parametri influenzerebbe la dimensione del corpus di documenti nel senso che sarebbero richiesti molti documenti in più per poter condurre il text mining. Corpus limitati e un elevato numero di parametri inducono gli algoritmi di text mining nel difettare in generalizzazione, non riuscendo ad operare in modo accettabile su documenti aggiunti successivamente.'><sup>5</sup></a></span>.</p>
+<p>In particolare, definiamo <strong>vuote</strong> le parole che non sono portatrici di significato autonomo (dette anche <strong><em>stop word</em></strong>), in quanto elementi necessari alla costruzione della frase; oppure sono parole strumentali con funzioni grammaticali e/o sintattiche (e.g. &#8220;hanno&#8221;, &#8220;questo&#8221;, &#8220;perché&#8221;, &#8220;non&#8221;, &#8220;tuttavia&#8221;). La rimozione delle stop word è eseguita mediante un filtraggio basato su <strong><em>stop list</em></strong>. Una stop list è un elenco precostituito di stop word. Esistono stop list per ogni lingua. Tecnicamente sono disponibili molte implementazioni di filtri basati su stop list. In seguito ne valutiamo due.</p>
+<p>1) <strong>Impiego della libreria <a href="https://pypi.python.org/pypi/nltk">NLTK</a></strong>. NLTK è un&#8217;ampia libreria con funzioni per la processazione del linguaggio naturale (<em>Natural Language Processing</em>, NLP) e con estensioni multilingua (incluso il supporto dell&#8217;Italiano per gran parte delle funzionalità). Tra le funzioni offerte è incluso il supporto per il filtraggio con stop list. Nell&#8217;esempio seguente, si ottiene da NLTK la stop list per l&#8217;Italiano e si visualizza il numero di stop word contenute nella lista.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+from nltk.corpus import stopwords
+stoplist = stopwords.words(&#039;italian&#039;)
+
+len(stoplist)
+</pre></p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+219
+</pre></p>
+<p>2) <strong>Impiego della libreria <a href="https://pypi.python.org/pypi/stop-words">stop-words</a></strong>. Questa è un libreria multilingua specializzata unicamente nel filtraggio su stop list. Nell&#8217;esempio seguente, si ottiene la stop list per l&#8217;Italiano e si visualizza il numero di stop word contenute nella lista.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+from stop_words import get_stop_words
+stoplist=get_stop_words(&#039;italian&#039;)
+
+len(stoplist)
+</pre></p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW"> 
+308
+</pre></p>
+[themify_box style=&#8221;info&#8221;]La stop list della libreria stop-words appare più selettiva, includendo un numero maggiore di stop word.[/themify_box]
+<p>Il filtraggio mediante stop list si ottiene in Python con una riga di codice:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+filtered_corpus = [[word for word in unicode(document,&#039;utf-8&#039;).lower().split() if word not in stoplist] for document in rawcorpus1]
+
+print filtered_corpus
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[[u'volpe', u'voleva', u'mangiare', u"l´uva"]
+[u"l´uva", u'troppo', u'alto', u'volpe']
+[u'volpe', u'riusciva', u'raggiungere', u"l´uva"]
+[u'volpe', u'rinunciò', u'sostenendo', u"l´uva", u'matura']
+[u'volpe', u'furba,', u'volte', u'furbizia', u'paga']]</pre>
+<p>Dopo il filtraggio, ogni documento del corpus consiste di una lista di token &#8220;sopravvissuti&#8221; alla rimozione. I token possono essere parole singole o anche combinazioni di parole dette <strong>n-grammi</strong> (come vedremo negli approfondimenti in calce al presente post).</p>
+<hr />
+<p>Il complesso di token estratti e filtrati dal corpus prende il nome di <strong>vocabolario </strong>(solitamente indicato con la lettera <strong>V</strong>). In seguito chiameremo <strong>attributo</strong> ogni generico token contenuto nel vocabolario. Ad ogni corpus è sempre associato un vocabolario.</p>
+<p>Il vocabolario è un oggetto speciale che incapsula un elenco indicizzato degli attributi. A ciascun attributo è associato un indice numerico univoco<span id='easy-footnote-6' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-6' title='In Python è un intero positivo che parte da 0.'><sup>6</sup></a></span>.</p>
+<p>Utilizzando la liberia <a href="https://radimrehurek.com/gensim/">gensim</a> che è specializzata nella modellazione e recupero di contenuti testuali, la creazione di un vocabolario si risolve in poche istruzioni:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+from gensim import corpora
+
+V = corpora.Dictionary(filtered_corpus)
+
+for i in range(0,len(V)):
+	print i, V[i]
+
+print(V.token2id)
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">0 voleva
+1 l´uva
+2 volpe
+3 mangiare
+4 alto
+5 troppo
+6 riusciva
+7 raggiungere
+8 rinunciò
+9 sostenendo
+10 matura
+11 furbizia
+12 paga
+13 furba,
+14 volte
+
+{u'alto': 4, u'rinunciò': 8,
+u"l´uva": 1, u'furba,': 13,
+u'raggiungere': 7, u'voleva': 0,
+u'matura': 10, u'troppo': 5,
+u'furbizia': 11, u'sostenendo': 9,
+u'volpe': 2, u'mangiare': 3,
+u'riusciva': 6, u'paga': 12,
+u'volte': 14}</pre>
+<p>Nell&#8217;esempio precedente, abbiamo visualizzato il vocabolario per avere un&#8217;evidenza delle associazioni tra ciascun attributo e il rispettivo indice numerico.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Con riferimento all&#8217;esempio precedente, il <a href="https://radimrehurek.com/gensim/corpora/dictionary.html" target="_blank">vocabolario gensim</a> (chiamato dizionario) è un oggetto complesso dotato di molte funzioni e proprietà. Per esempio, la proprietà <code data-enlighter-language="python" class="EnlighterJSRAW">token2id</code> è un array associativo contenente il numero di occorrenze nel corpus di ogni attributo.</div></div>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Vocabolario o <a href="https://it.wikipedia.org/wiki/Dizionario">Dizionario</a>? Vocabolario e dizionario non sono la stessa cosa. Il termine vocabolario, rispetto a dizionario, può avere anche il significato di corpus lessicale ossia &#8220;patrimonio lessicale di una lingua&#8221; o &#8220;insieme dei vocaboli propri di un certo settore o di un singolo autore&#8221;. In tal senso, per i nostri scopi appare più indicato l&#8217;impiego della parola vocabolario. Comunque, i due termini sono spesso usati in modo interscambiabile.</div></div>
+<hr />
+<p>Un vocabolario agevola la rappresentazione dei documenti nel corpus come vettori. Se <strong>N</strong> è il numero di documenti di un corpus e <strong>M</strong> è il numero di attributi indicizzati nel vocabolario, il corpus può essere rappresentato come una matrice di dimensioni <strong>NxM</strong> chiamata <strong>matrice documento-termine</strong> (DTM).</p>
+<p>L&#8217;i-esima riga di una matrice DTM corrisponde alla rappresentazione vettoriale dell&#8217;i-esimo documento del corpus ed è chiamato <strong>vettore documento</strong>. A volte si preferisce usare la trasposta della DTM che è chiamata <strong>matrice termine-documento</strong> (TDM). Le matrici DTM e TDM sono anche chiamate <strong>matrici lessicali</strong>.</p>
+<p>Gli elementi di un vettore documento sono chiamati <strong>pesi</strong> e ciascun peso è associato ad uno specifico attributo di V. Per calcolare i valori dei pesi sono disponibili varie <strong>metriche di pesatura</strong>. Una metrica basilare consiste nell&#8217;assegnare il valore 0 per indicare l&#8217;assenza dell&#8217;attributo nel documento e il valore 1 per indicarne la presenza. In questo caso si parla di <strong>schema di rappresentazione booleano</strong> del corpus.</p>
+<p>Un&#8217;altra metrica è quella <strong>frequentista</strong> e assegna un valore che è pari al numero di occorrenze dell&#8217;attributo nel documento: il generico peso w<sub>ij</sub> ha un valore corrispondente al numero di occorrenze dell&#8217;attributo i-esimo di V nel documento j-esimo. Usando la metrica frequentista, si ottiene una rappresentazione del corpus chiamata <strong>schema di ponderazione</strong> o più comunemente <em>bag of words</em> (BOW). Più specificatamente, si parla di <strong>schema di rappresentazione BOW del corpus</strong>.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">A seconda dello schema di rappresentazione utilizzato il contenuto della matrice DTM (o TDM) cambia.</div></div>
+<p>In gensim la creazione di uno schema BOW del corpus si ottiene così:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+corpus_bow = [V.doc2bow(document) for document in filtered_corpus]
+
+print corpus_bow
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[[(0, 1), (1, 1), (2, 1), (3, 1)],
+[(1, 1), (2, 1), (4, 1), (5, 1)],
+[(1, 1), (2, 1), (6, 1), (7, 1)],
+[(1, 1), (2, 1), (8, 1), (9, 1), (10, 1)],
+[(2, 1), (11, 1), (12, 1), (13, 1), (14, 1)]]</pre>
+<p>Nell&#8217;esempio precedente, è stato anche visualizzato il corpus BOW. Come si può notare, gensim non memorizza esattamente il corpus come una matrice NxM, ma ne crea una versione compressa dove ogni documento è rappresentato come una lista di coppie di valori (tante coppie quanti sono gli attributi con peso non nullo nel documento). Nella generica coppia (i,w<sub>ij</sub>): i è l&#8217;indice dell&#8217;attributo in V e w<sub>ij</sub> è il peso dell&#8217;attributo nel documento j-esimo. Dunque, con riferimento all&#8217;esempio precedente, nel primo documento del corpus, gli attributi <em>voleva</em> (0), <em>l&#8217;uva</em> (1), <em>volpe</em> (2), <em>mangiare</em> (3) compaiono rispettivamente con occorrenza unitaria.</p>
+<p>Anche con la libreria di apprendimento automatico <a href="http://scikit-learn.org/stable/">scikit-learn</a> (in seguito <strong>sklearn</strong>), l&#8217;operazione di creazione di un dizionario e della rappresentazione BOW del corpus è alla portata di poche linee di codice Python:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction import text
+
+my_stop_words = text.ENGLISH_STOP_WORDS.union(get_stop_words(&#039;italian&#039;))
+vectorizer = CountVectorizer(analyzer=u&#039;word&#039;, stop_words=set(my_stop_words))
+corpus_bow=vectorizer.fit_transform(rawcorpus1)
+
+corpus_bow.shape # visualizza la dimensione della matrice DTM
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">(5,15)</pre>
+<p>sklearn dispone di un facilitatore nativo per il filtraggio delle stop word e già integra una stop list localizzata in inglese. Come mostrato nell&#8217;esempio precedente, la stop list nativa di sklearn può essere facilmente estesa con altre liste (p.e. quella ottenuta con la libreria stop-words). Un vettorizzatore (<code data-enlighter-language="python" class="EnlighterJSRAW">CountVectorizer</code>) provvede a creare la rappresentazione BOW. Il risultato è una rappresentazione matriciale del corpus avente dimensioni 5&#215;15 (N=5, M=15). Per comparazione con gensim, diamo ora uno sguardo al vocabolario e al corpus BOW ottenuti con sklearn:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+V=vectorizer.get_feature_names()
+
+for i in range(0,len(V)):
+	print i,V[i]
+
+print corpus_bow
+
+corpus_bow.todense()
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">0 alto
+1 furba
+2 furbizia
+3 mangiare
+4 matura
+5 paga
+6 raggiungere
+7 rinunciò
+8 riusciva
+9 sostenendo
+10 troppo
+11 uva
+12 voleva
+13 volpe
+14 volte
+
+(0, 13) 1
+(0, 12) 1
+(0, 3) 1
+(0, 11) 1
+(1, 13) 1
+(1, 11) 1
+(1, 10) 1
+(1, 0) 1
+(2, 13) 1
+(2, 11) 1
+(2, 8) 1
+(2, 6) 1
+(3, 13) 1
+(3, 11) 1
+(3, 7) 1
+(3, 9) 1
+(3, 4) 1
+(4, 13) 1
+(4, 1) 1
+(4, 14) 1
+(4, 2) 1
+(4, 5) 1
+
+[[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0],
+[0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+[0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+[0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1]]
+</pre>
+<p>sklearn gestice la rappresentazione matriciale del corpus mediante la classe <a href="http://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.sparse.csr_matrix.html" target="_blank">csr_matrix</a> della libreria scientifica <a href="https://www.scipy.org/" target="_blank">SciPy</a>. Nell&#8217;esempio precedente, è immediato ottenere la visualizzazione in formato sparso (non compresso) della matrice DTM, mediante una semplice invocazione del metodo <code data-enlighter-language="python" class="EnlighterJSRAW">todense</code>.</p>
+<p>Come si può notare la matrice DTM è composta da un gran numero di zeri (poiché non tutti gli attributi di V sono presenti in ogni documento, in ogni riga ci saranno molti pesi nulli corrispondenti ad occorrenze nulle dei vari attributi in ciascun documento). In analisi numerica, una matrice i cui valori sono quasi tutti uguali a zero è definita <strong>matrice sparsa</strong><sup><a href="https://it.wikipedia.org/wiki/Matrice_sparsa" target="_blank">[Source]</a></sup>.</p>
+<hr />
+<p><strong>Approfondimento 1: Rimozione parole in base a specifiche soglie di occorrenza</strong></p>
+<p>Quando si costruisce un vocabolario si potrebbe decidere di rimuovere gli attributi aventi un&#8217;occorrenza superiore ad una soglia massima e/o inferiore ad una soglia minima (quest&#8217;ultima chiamata <em>cut-off</em>). L&#8217;assegnazione di valori alle soglie minima e massima può richiedere un&#8217;indagine preliminare sul corpus.</p>
+<p>Per quanto concerne il cut-off, un valore potrebbe essere 1, cioè decidiamo di rimuovere tutte le parole che compaiono una sola volta nell&#8217;intero corpus (queste parole sono chiamate <a href="https://it.wikipedia.org/wiki/Hapax_legomenon" target="_blank"><strong>hapax</strong></a>).</p>
+<p>Con la libreria gensim si può procedere come segue:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+from six import iteritems
+
+once_ids = [tokenid for tokenid, docfreq in iteritems(V.dfs) if docfreq == 1]
+
+V.filter_tokens(once_ids)
+</pre></p>
+<p>Con la libreria sklearn basta istanziare il vettorizzatore specificando il parametro <code data-enlighter-language="python" class="EnlighterJSRAW">min_df</code> a cui possiamo assegnare un valore reale oppure intero. Il valore intero specifica il numero di occorrenze minimo al di sotto del quale un attributo deve essere scartato. Un valore reale (tra 0 e 1) specifica invece la quota percentuale di documenti in cui un attributo deve comparire per non essere scartato. Per esempio, gli attributi <em>uva</em> e <em>volpe</em> sono quelli più presenti nel corpus. In particolare, l&#8217;attributo <em>uva</em> compare in 4 documenti su 5 ossia nell&#8217;80% del corpus. Se impostiamo <code data-enlighter-language="python" class="EnlighterJSRAW">mid_df</code> a 0.8, nel dizionario saranno certamente inclusi gli attributi <em>volpe</em> e <em>uva. </em>Se impostiamo a 0.9 (90%), nel dizionario sarà incluso solo l&#8217;onnipresente <em>volpe</em>. Per escludere gli attributi che occorrono una sola volta (cioè considerare solo quelli che compaiono almeno 2 volte), possiamo procedere come segue:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+vectorizer = CountVectorizer(analyzer=u&#039;word&#039;, stop_words=set(my_stop_words), mid_df=2)
+</pre></p>
+<p>I codici esemplificativi mostrati in precedenza possono essere facilmente adattati per la gestione di una soglia massima. Nel caso di gensim basta modificare la condizione nell&#8217;istruzione <code data-enlighter-language="python" class="EnlighterJSRAW">if</code>. Nel caso di sklearn il parametro da impostare è <code data-enlighter-language="python" class="EnlighterJSRAW">max_df</code> che può assumere valore intero (per un conteggio assoluto) o reale (indicante una proporzione di documenti come nel caso di <code data-enlighter-language="python" class="EnlighterJSRAW">min_df</code>).</p>
+<hr />
+<p><span style="text-decoration: underline;"><strong>Approfondimento 2: Rimozione punteggiatura</strong></span></p>
+<p>Nel processo di tokenizzazione assume particolare importanza il trattamento della punteggiatura. I segni di punteggiatura devono essere trattati come segni indipendenti anche quando sono attaccati ad una parola. Sono difficilmente gestibili perché possono avere impieghi differenti. Per esempio il punto può indicare la fine della frase, un&#8217;abbreviazione, il punto decimale in valori numerici, ecc. L&#8217;apostrofo che compare di norma in mezzo a due parole diverse, secondo il criterio di tokenizzazione basato su spazi bianchi, comporterebbe l&#8217;errata identificazione delle due parole come un&#8217;unica.</p>
+<p>Dagli esempi precedenti possiamo verificare che il vettorizzatore integrato nella libreria sklearn esegue una processazione dei testi più robusta riconoscendo come separatori lo spazio bianco, la punteggiatura, le virgolette, i trattini (-/|), le parentesi ([{}]) e i caratteri speciali (#@$%°&amp;^*).</p>
+<p>Nel caso in cui abbiamo usato gensim, invece, avendo implementato una tokenizzazione basata esclusivamente sugli spazi bianchi, ci ritroviamo con attributi estratti come &#8220;<em>l&#8217;uva&#8221;</em> e &#8220;<em>furba,&#8221;</em> che contengono punteggiatura; potrebbe dunque essere utile applicare preliminarmente un ulteriore filtro sulla punteggiatura come segue:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import re
+
+filtered_corpus = [re.sub(ur&quot;[^\w\d&#039;\s]+&quot;,&#039;&#039;,document).split() for document in rawcorpus1]
+
+print filtered_corpus</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[['La', 'volpe', 'voleva', 'mangiare', "l´uva"],
+["L´uva", 'era', 'troppo', 'in', 'alto', 'per', 'la', 'volpe'],
+['La', 'volpe', 'non', 'riusciva', 'a', 'raggiungere', "l´uva"],
+['La', 'volpe', 'rinunciò', 'sostenendo', 'che', "l´uva", 'non', 'era', 'ancora', 'matura'],
+['La', 'volpe', 'era', 'furba', 'ma', 'a', 'volte', 'la', 'furbizia', 'non', 'paga']]</pre>
+<p>oppure usando il tokenizzatore <strong>wordpunct_tokenize</strong> incluso nella libreria NLTK e in grado di suddividere il testo usando gli spazi bianchi e i segni di punteggiatura (;:,.!?):</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import nltk
+filtered_corpus=[]
+for document in rawcorpus1:
+	tokens=nltk.wordpunct_tokenize(document)
+	text=nltk.Text(tokens)
+	filtered_corpus.append([word for word in text if len(word)&gt;1])
+
+print filtered_corpus
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[['La', 'volpe', 'voleva', 'mangiare', 'uva'],
+['uva', 'era', 'troppo', 'in', 'alto', 'per', 'la', 'volpe'],
+['La', 'volpe', 'non', 'riusciva', 'raggiungere', 'uva'],
+['La', 'volpe', 'rinunciò', 'sostenendo', 'che', 'uva', 'non', 'era', 'ancora', 'matura'],
+['La', 'volpe', 'era', 'furba', 'ma', 'volte', 'la', 'furbizia', 'non', 'paga']]</pre>
+<p>Dopo la rimozione della punteggiatura si può applicare il filtraggio con stop list.</p>
+<p><strong>Approfondimento 3: Bag of N-grams</strong><br />
+Data una sequenza ordinata di elementi, un n-gramma è una sua sottosequenza di n elementi. Secondo l&#8217;applicazione, gli elementi in questione possono essere fonemi, sillabe, lettere, parole, ecc. Un n-gramma è di lunghezza 1 è chiamato &#8220;unigramma&#8221;, di lunghezza 2 &#8220;digramma&#8221;, di lunghezza 3 &#8220;trigramma&#8221; e, da lunghezza 4 in poi, &#8220;n-gramma&#8221;. La vettorizzazione del corpus che abbiamo analizzato fino a questo momento prevede la selezione di attributi che sono essenzialmente <em>unigrammi</em>. Tuttavia è possibile estendere la selezione ad attributi che sono anche combinazioni di 2 o più attributi. Il modello di rappresentazione BOW esteso agli n-grammi è chiamato <em>Bag of N-grams</em>.</p>
+<p>Seguono alcuni esempi per chiarire il punto.</p>
+<p>Usando la libreria sklearn, possiamo eseguire una vettorizzazione basata sulla selezione sia di unigrammi sia di digrammi, impostando il parametro <code data-enlighter-language="python" class="EnlighterJSRAW">ngram_range</code>:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+vectorizer = CountVectorizer(analyzer=u&#039;word&#039;, stop_words=set(my_stop_words), ngram_range = (1,2))
+....
+for i in range(0,len(V)): print i,V[i]
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">0 alto
+1 alto volpe
+2 furba
+3 furba volte
+4 furbizia
+5 furbizia paga
+6 mangiare
+7 mangiare uva
+8 matura
+9 paga
+10 raggiungere
+11 raggiungere uva
+12 rinunciò
+13 rinunciò sostenendo
+14 riusciva
+15 riusciva raggiungere
+16 sostenendo
+17 sostenendo uva
+18 troppo
+19 troppo alto
+20 uva
+21 uva matura
+22 uva troppo
+23 voleva
+24 voleva mangiare
+25 volpe
+26 volpe furba
+27 volpe rinunciò
+28 volpe riusciva
+29 volpe voleva
+30 volte
+31 volte furbizia</pre>
+<p>Utilizzando la libreria gensim in combinazione con NLTK, possiamo procedere nel seguente modo:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import nltk
+import string
+from gensim.models import Phrases
+from nltk.corpus import stopwords
+
+bigram = Phrases()
+for document in documents:
+	document = [word.decode(&#039;utf-8&#039;) for word in nltk.word_tokenize(document.lower()) if word not in string.punctuation]
+	bigram.add_vocab([document])
+
+bigram.vocab
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">defaultdict(int,
+{'a': 2,
+'a_raggiungere': 1,
+'a_volte': 1,
+'alto': 1,
+'alto_per': 1,
+'ancora': 1,
+'ancora_matura': 1,
+'che': 1,
+'che_l'uva': 1,
+'era': 3,
+'era_ancora': 1,
+'era_furba': 1,
+'era_troppo': 1,
+'furba': 1,
+'furba_ma': 1,
+'furbizia': 1,
+'furbizia_non': 1,
+'in': 1,
+'in_alto': 1,
+'l´uva': 4,
+'l´uva_era': 1,
+'l´uva_non': 1,
+'la': 6,
+'la_furbizia': 1,
+'la_volpe': 5,
+'ma': 1,
+'ma_a': 1,
+'mangiare': 1,
+'mangiare_l'uva': 1,
+'matura': 1,
+'non': 3,
+'non_era': 1,
+'non_paga': 1,
+'non_riusciva': 1,
+'paga': 1,
+'per': 1,
+'per_la': 1,
+'raggiungere': 1,
+'raggiungere_l'uva': 1,
+'rinunciò': 1,
+'rinunciò_sostenendo': 1,
+'riusciva': 1,
+'riusciva_a': 1,
+'sostenendo': 1,
+'sostenendo_che': 1,
+'troppo': 1,
+'troppo_in': 1,
+'voleva': 1,
+'voleva_mangiare': 1,
+'volpe': 5,
+'volpe_era': 1,
+'volpe_non': 1,
+'volpe_rinunciò': 1,
+'volpe_voleva': 1,
+'volte': 1,
+'volte_la': 1})</pre>
+<p>Incrementare il numero di attributi vuol dire aumentare la dimensione delle rappresentazioni vettoriali dei documenti. Di conseguenza, le operazioni che implicheranno l&#8217;uso di questi vettori ne risentiranno sul piano computazionale.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">L&#8217;espressione <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality"><span class="highlight selected">maledizione </span>della dimensionalità</a> (coniata da <a href="https://it.wikipedia.org/wiki/Richard_Bellman" target="_blank">Richard Bellman</a>) indica il problema derivante dal rapido incremento delle dimensioni dello spazio matematico associato all&#8217;aggiunta di variabili (qui degli attributi); questo incremento porta ad una maggiore dispersione dei dati all&#8217;interno dello spazio descritto dalle variabili rilevate (qui la sparsità della matrice termine-documento), ad una maggiore difficoltà nella stima e, in generale, nel cogliere delle strutture nei dati stessi.</div></div>
+<p><strong>Approfondimento 4: Analisi del testo, un breve recap</strong></p>
+<p>Nelle note precedenti abbiamo visto che il testo grezzo (<em>raw</em>) necessita di opportuni pre-trattamenti. La tokenizzazione, ovvero l&#8217;operazione mediante la quale si suddivide il testo in token si estrinseca in passi di identificazione ed estrazione secondo specifici criteri di trattamento dei caratteri di separazione. I token comprendono svariate categorie di parti del testo (parole, punteggiatura, numeri, ecc) o possono anche essere delle unità complesse (come le date). E&#8217; bene ricordare che esistono implementazioni più sofisticate della semplice suddivisione basata su spazi che abbiamo adottato in uno dei nostri esempi precedenti. La libreria NLTK offre una varietà di tokenizzatori (questo è il nome degli algoritmi che eseguono la tokenizzazione).</p>
+<p>Nell&#8217;esempio seguente, definiremo per comodità un corpus a cui ci riferiremo con il nome di <code data-enlighter-language="python" class="EnlighterJSRAW">rawcorpus2</code> e, riusando del codice esemplificativo già introdotto in precedenza per la libreria gensim, richiameremo il tokenizzatore Word Tokenizer di NLTK:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+rawcorpus2=[&quot;Il 12 GENNAIO 2002 l´Euro diventa moneta corrente in 12 paesi dell´Unione Europea&quot;, &#039;Il 29/10/1929, definito in seguito come il giovedì nero, avvenne il crollo finanziario della borsa di Wall Street&#039;]
+
+from nltk.tokenize import word_tokenize
+
+filtered_corpus = [[word for word in word_tokenize(unicode(document,&quot;utf-8&quot;))] for document in rawcorpus2]
+
+print filtered_corpus</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[[u'Il', u'12', u'GENNAIO', u'2002', u"l´Euro", u'diventa', u'moneta', u'corrente', u'in', u'12', u'paesi', u"dell´Unione", u'Europea'],
+[u'Il', u'29/10/1929', u',', u'definito', u'in', u'seguito', u'come', u'il', u'giovedì', u'nero', u',', u'avvenne', u'il', u'crollo', u'finanziario', u'della', u'borsa', u'di', u'Wall', u'Street']]</pre>
+<p>Si noti dall&#8217;output dell&#8217;esempio come la versione filtrata dei documenti consista di token che sono parole, numeri, date, punteggiatura<span id='easy-footnote-7' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-7' title='Il Word Tokenizer di NLTK si basa su semplici regole euristiche: le sequenze di stringhe alfabetiche ininterrotte fanno parte di un unico token; i token sono separati fra loro tramite spazi o simboli di punteggiatura.'><sup>7</sup></a></span>. Questi token sono candidati ad essere gli attributi che compariranno nel vocabolario, si rendono dunque necessari ulteriori filtraggi.</p>
+<p>Un passaggio ulteriore, per un filtraggio più selettivo, consiste della rimozione delle stop word. Sempre su <code data-enlighter-language="python" class="EnlighterJSRAW">rawcorpus2</code>:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import string
+from stop_words import get_stop_words
+
+stoplist=get_stop_words(&#039;italian&#039;)
+
+filtered_corpus = [[word for word in word_tokenize(unicode(document,&quot;utf-8&quot;).lower()) if word not in stoplist and word not in string.punctuation] for document in rawcorpus2]
+
+print filtered_corpus</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[[u'12', u'gennaio', u'2002', u"l´euro", u'diventa', u'moneta', u'corrente', u'12', u'paesi', u"dell´unione", u'europea'],
+[u'29/10/1929', u'definito', u'seguito', u'giovedì', u'nero', u'avvenne', u'crollo', u'finanziario', u'borsa', u'wall', u'street']]</pre>
+[themify_box style=&#8221;info&#8221;]A volte conviene eliminare le stop word, altre volte invece è preferibile mantenerle nel corpus stesso. La rimozione delle stop word dal testo potrebbe causare una perdita di informazioni rilevanti. Le stopword sono utili, per esempio, quando sono presenti in una parola composta (per esempio l&#8217;articolo nel titolo di un film), oppure l&#8217;eliminazione della negazione &#8220;non&#8221; in una frase cambierebbe completamente il messaggio dell&#8217;autore. Dunque, è necessario valutare, caso per caso, l&#8217;eliminazione delle stop word ed eventualmente ricorrere a normalizzazioni preliminari (p.e. basate su elenchi predefiniti) per selezionare le parole che non dovrebbero essere trattate come stop word (p.e. mediante la costruzione di digrammi o n-grammi).[/themify_box]
+<p>Nell&#8217;esempio precedente contestualmente alla rimozione delle stopword si è anche provveduto a:</p>
+<ul>
+<li>rimozione dei token corrispondenti a caratteri speciali, parentesi e trattini</li>
+<li>trasformazione di tutti i caratteri in minuscoli</li>
+</ul>
+<p>Il passaggio di trasformazione in minuscolo può essere inteso come una forma semplificata di <strong>normalizzazione</strong>. La normalizzazione consente di escludere ogni possibile differenza del tipo maiuscolo/minuscolo (p.e. abbassando le maiuscole non rilevanti<span id='easy-footnote-8' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-8' title='Nel nostro esempio abbiamo ridotto le maiuscole in modo &amp;#8220;massivo&amp;#8221;, senza una specifica distinzione per parola.'><sup>8</sup></a></span>), uniformando la grafia dei nomi propri, sigle ed altre entità, trasformando gli apostrofi in accenti<span id='easy-footnote-9' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-9' title='Quando forme tipografiche diverse vengono condotte a una stessa forma standard, si dice che sono state ricondotte a una &lt;strong&gt;forma normalizzata&lt;/strong&gt;.'><sup>9</sup></a></span>. Per rendere più efficace la normalizzazione, si possono utilizzare elenchi precompilati di parole specifiche per ogni lingua e/o argomento.</p>
+<p>Tra le possibili pre-elaborazioni c&#8217;è lo <strong><em>stemming</em></strong> (<strong>troncamento</strong>) delle parole. Lo stemming sostituisce ad una parola il suo rispettivo <strong><em>stem</em></strong>. Uno stem è la porzione di parola ottenuta rimuovendo prefissi e suffissi. Un esempio è dato da <strong>mang</strong> che potrebbe essere lo stem per <strong>mangiare</strong>, <strong>mangio</strong>, <strong>mangiato</strong>, <strong>mangi</strong>, ecc. Lo stemming è utile perchè riduce le varianti di una stessa parola-radice ad un concetto comune (rappresentato appunto dallo stem) contribuendo altresì a ridurre il numero di attributi che andranno a comporre il vocabolario.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Lo stemming a volte può causare ambiguità e, in particolare, negli algoritmi di stemming si possono verificare due tipi di errore:</p>
+<ul>
+<li><strong>Overstemming</strong>: lo stemmer rende alla stessa radice parole che, in realtà, hanno significati diversi facendo sì che il termine non sia correttamente interpretato;</li>
+<li><strong>Understemming</strong>: lo stemmer crea diverse radici da parole che, in realtà, hanno la stessa origine.</li>
+</ul>
+</div></div>
+<p>La libreria NLTK include l&#8217;implementazione di diversi algoritmi per lo stemming (e.g. Porter, Lancaster, Snowball) chiamati <strong><em>stemmer</em></strong>. Nell&#8217;esempio seguente usiamo lo <em>Snowball Stemmer</em> sul corpus <code data-enlighter-language="python" class="EnlighterJSRAW">rawcorpus2</code> tokenizzato mediante <code data-enlighter-language="python" class="EnlighterJSRAW">wordpunct_tokenize</code> di NLTK:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+from nltk.stem import SnowballStemmer
+
+stemmed_corpus=[[snowball_stemmer.stem(word) for word in document] for document in filtered_corpus]
+
+stemmed_corpus
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[[u'12',
+u'gennai',
+u'2002',
+u"l´eur",
+u'divent',
+u'monet',
+u'corrent',
+u'12',
+u'paes',
+u"dell´union",
+u'europe'],
+[u'29/10/1929',
+u'defin',
+u'segu',
+u'gioved',
+u'ner',
+u'avvenn',
+u'croll',
+u'finanziar',
+u'bors',
+u'wall',
+u'street']]</pre>
+<p>Mentre lo stemmer esegue un troncamento della parola, il <strong>lemmatizzatore</strong> è un algoritmo che riconduce ogni parola di un testo alla <strong>forma base</strong> o <strong>canonica</strong> chiamata <strong>lemma</strong>, ossia nella forma in cui comparirebbe in un dizionario. Dunque un lemmatizzatore assocerebbe alla parola &#8220;mangiato&#8221; la parola &#8220;mangiare&#8221; piuttosto che una versione troncata come &#8220;mang&#8221; dello stemmer.</p>
+<p>Esistono varie implementazioni di lemmatizzatori che risultano specializzate a seconda delle lingue supportate<span id='easy-footnote-10' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-10' title='Anche gli stemmer, come i lemmatizzatori, sono specializzati a seconda delle lingue supportate.'><sup>10</sup></a></span>. Il lemmatizzatore individua il lemma corrispondente ad ogni parola, attribuendo allo stesso lemma tutte le parole che da quel lemma derivano. Un vocabolario <strong>V</strong> si dice <strong>lemmatizzato</strong> se contiene solo le forme canoniche delle parole (lemmi). Un vocabolario lemmatizzato ha dimensioni significativamente ridotte rispetto ad un vocabolario completo cioè contenente le forme flesse (mangiato, mangio, ecc.)<span id='easy-footnote-11' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-11' title='Nelle lingue ricche di forme flesse, come l&amp;#8217;Italiano, il Tedesco o il Francese, un vocabolario completo può avere anche dieci o venti volte il numero di parole di un vocabolario lemmatizzato. Anche nelle lingue povere di versioni flesse, un vocabolario completo ha però tipicamente almeno il doppio dei termini di un vocabolario lemmatizzato. Per esempio, nel caso dell&amp;#8217;Inglese che è una lingua povera di forme flesse, la forma canonica di un verbo prevede la creazione di tre forme flesse aggiuntive, mediante suffissazione con &lt;em&gt;-s&lt;/em&gt; (per la terza persona singolare del presente), &lt;em&gt;-ed&lt;/em&gt; (per il passato) e con &lt;em&gt;-ing&lt;/em&gt; (per il gerundio).'><sup>11</sup></a></span>.</p>
+<p>Un&#8217;implementazione efficace di lemmatizzatore è fornita dal tool <a href="http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/" target="_blank">TreeTragger</a>, sviluppato dall&#8217;Institute for Computational Linguistics of the University of Stuttgart con licenza parzialmente libera, che supporta una estesa varietà di lingue tra cui l&#8217;Italiano. TreeTragger non è sviluppato nativamente in Python ma è disponibile un wrapper (<a href="https://pypi.python.org/pypi/treetaggerwrapper/2.0.6" target="_blank">TreeTaggerWrapper</a>) che consente un&#8217;integrazione più stretta con il linguaggio.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import treetaggerwrapper
+tagger=treetaggerwrapper.TreeTagger(TAGLANG=&#039;it&#039;)
+lemmatized_corpus=[tagger.make_tags(unicode(document,&quot;utf-8&quot;)) for document in rawcorpus2]
+
+for document in lemmatized_corpus:
+	for element in document:
+		print element</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">Il DET:def il
+12 NUM @card@
+GENNAIO NOM gennaio
+2002 NUM @card@
+l´ DET:def il
+Euro NOM euro
+diventa VER:pres diventare
+moneta NOM moneta
+corrente ADJ corrente
+in PRE in
+12 NUM @card@
+paesi NOM paese
+dell´ PRE:det del
+Unione NOM unione
+Europea ADJ europeo
+Il DET:def il
+29 NUM @card@
+/ PON /
+10 NUM @card@
+/ PON /
+1929 NUM @card@
+, PON ,
+definito VER:pper definire
+in PRE in
+seguito NOM seguito
+come CON come
+il DET:def il
+giovedì NOM giovedì
+nero ADJ nero
+, PON ,
+avvenne VER:remo avvenire
+il DET:def il
+crollo NOM crollo
+finanziario ADJ finanziario
+della PRE:det del
+borsa NOM borsa
+di PRE di
+Wall NPR Wall
+Street NPR Street</pre>
+<p>Nell&#8217;esempio è visualizzata la versione lemmatizzata del corpus <code data-enlighter-language="python" class="EnlighterJSRAW">rawcorpus2</code>. La processazione del linguaggio naturale prevede una fase chiamata <em><strong>Part-Of-Speech tagging</strong></em> o <em><strong>POS-tagging</strong></em> (in italiano la traduzione sarebbe &#8220;etichettatura delle parti del discorso&#8221;) in cui a ogni attributo estratto dal testo si associa un&#8217;etichetta indicante la sua categoria grammaticale. Nell&#8217;esempio precedente queste etichette sono visualizzate in corrispondenza di ciascuna parola  e ad ogni parola è automaticamente associato il lemma riconosciuto. Le etichette, o <em>tag</em>, sono reperite attraverso <em>tagset</em><span id='easy-footnote-12' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-12' title='Il tagset per l&amp;#8217;Italiano usato in TreeTagger è disponibile seguendo il link &lt;a href=&quot;http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/italian-tagset.txt&quot; target=&quot;_blank&quot;&gt;Italian tagset used in the TreeTagger parameter file&lt;/a&gt;.'><sup>12</sup></a></span>.</p>
+<p>L&#8217;etichettatura POS permette di estrarre parole in funzione della forma grammaticale. Nell&#8217;esempio che segue, si estraggono i lemmi dei soli verbi riconosciuti.</p>
+<p>Un&#8217;implementazione nativa in Python di lemmatizzatore compatibile anche con l&#8217;Italiano è inclusa nella libreria <a href="http://www.clips.ua.ac.be/pages/pattern" target="_blank">Pattern</a> del CLiPS (Conputational Linguistics &amp; Psycholinguistics Research Center), i cui sorgenti sono rilasciati sotto licenze BSD. Pattern è una libreria estesa che include funzionalità per il data mining, processazione del linguaggio naturale<span id='easy-footnote-13' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-13' title='Il tagset utilizzato da Pattern è disponibile su &lt;a href=&quot;http://www.clips.ua.ac.be/pages/mbsp-tags&quot; target=&quot;_blank&quot;&gt;Penn Treebank II tag set&lt;/a&gt;.'><sup>13</sup></a></span> (tra cui il lemmatizzatore), apprendimento automatico, analisi delle reti e visualizzazione.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+from pattern.it import parsetree
+from pattern.search import search
+lemmatized_corpus=[parsetree(document,relations=True,lemmata=True) for document in rawcorpus2]
+
+for document in lemmatized_corpus:
+	for match in search(&#039;VB&#039;,document):
+		for words in match:
+			print words.tags
+</pre></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw">[[Sentence("Il/DT/B-NP/O/O/il 12/CD/I-NP/O/O/12 GENNAIO/NN/I-NP/O/O/gennaio 2002/CD/B-NP/O/NP-SBJ-1/2002 l´/DT/I-NP/O/NP-SBJ-1/l´ Euro/NN/I-NP/O/NP-SBJ-1/euro diventa/VB/B-VP/O/VP-1/diventare moneta/NN/B-NP/O/NP-OBJ-1/moneta corrente/NN/I-NP/O/NP-OBJ-1/corrente in/IN/B-PP/B-PNP/O/in 12/CD/B-NP/I-PNP/O/12 paesi/NNS/I-NP/I-PNP/O/paese dell´/IN/B-PP/B-PNP/O/dell´ Unione/NNP/B-NP/I-PNP/O/unione Europea/NNP/I-NP/I-PNP/O/europea")],
+[Sentence('Il/DT/O/O/O/il 29&amp;slash;10&amp;slash;1929/CD/O/O/O/29 ,/,/O/O/O/, definito/JJ/B-ADJP/O/O/definito in/IN/B-PP/B-PNP/O/in seguito/NN/B-NP/I-PNP/O/seguito come/IN/B-PP/B-PNP/O/come il/DT/B-NP/I-PNP/O/il giovedì/NN/I-NP/I-PNP/O/giovedì nero/JJ/I-NP/I-PNP/O/nero ,/,/O/O/O/, avvenne/NNS/B-NP/O/O/avvenna il/DT/B-NP/O/O/il crollo/NN/I-NP/O/O/crollo finanziario/JJ/I-NP/O/O/finanziario della/IN/B-PP/B-PNP/O/della borsa/NN/B-NP/I-PNP/O/borsa di/IN/B-PP/B-PNP/O/di Wall/NNP/B-NP/I-PNP/O/wall Street/NNP/I-NP/I-PNP/O/street')]]
+
+[u'diventa', u'VB', u'B-VP', 'O', 'VP-1', u'diventare']</pre>
+<p>E&#8217; interessante notare le differenze tra gli output dei due lemmatizzatori sulla lingua italiana. In particolare il POS tagging in Pattern non ha riconosciuto come verbi le parole &#8220;definito&#8221; e &#8220;avvenne&#8221;, di conseguenza, i lemmi generati non sono quelli attesi. TreeTagger appare raggiungere un più elevato livello di qualità nella individuazione del giusto lemma per l&#8217;Italiano. C&#8217;è da aggiungere, comunque, che Pattern è una libreria con una grande quantità di funzioni non specializzata esclusivamente su POS tagging e lemmatizzazione. Si noti, inoltre, che le prestazioni degli strumenti di processazione del linguaggio naturale, in termini di precisione ed accuratezza, sono superiori per la lingua inglese rispetto ad altre lingue e ciò è confermato anche da molteplici risultati di ricerche in letteratura.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+Una delle due domande più frequenti quando si tratta di filtrare documenti grezzi è: quali e quanti filtraggi applicare e in che ordine?</p>
+<p>Non esiste una risposta unica. Il pretrattamento della collezione di documenti grezzi è finalizzato alla selezione degli attributi per la costruzione del vocabolario V. La dimensione di V impatta direttamente sui vettori usati per la rappresentazione dei documenti e sul peso computazionale delle operazioni eseguite sui vettori stessi. Bisogna tuttavia considerare un aspetto fondamentale: sebbene fino a questo momento si sia considerato il solo modello di rappresentazione BOW, come vedremo nei prossimi post della serie &#8220;Fondamenti&#8221;, esistono altri modelli che trasformano la BOW in rappresentazioni più sofisticate e ridotte (in termini dimensionali dei vettori) in grado di catturare secondo vari approcci (e.g. algebrico, probabilistico) gli elementi più significativi dei testi.</p>
+<p>In generale, la rimozione delle stop word è un tipo di filtraggio che ben si adatta alla maggioranza dei modelli di rappresentazione.</p>
+<p>Alcuni modelli (e.g. probabilistici o deep basati su reti neurali) manifestano un&#8217;intrinseca capacità di selezione delle parole anche in assenza di un esplicito prefiltraggio. Tuttavia non è possibile generalizzare e ogni corpus richiede una specifica attenzione. Comunque, un fattore comune a tutti i modelli è che un mancato prefiltraggio influenza la dimensionalità delle rappresentazioni e ciò ha sempre un impatto negativo sui tempi di elaborazione e richiede corpus più estesi (cioè composti da un numero maggiore di documenti rispetto al caso con prefiltraggio).</p>
+<p>In altri casi un pretrattamento appare condizione essenziale per ottenere prestazioni migliori, per esempio il modello <em>Random Indexing</em> che incontreremo in uno dei prossimi post della serie &#8220;Fondamenti&#8221;, nonostante la sua leggerezza in termini computazionali, è in grado di raggiungere e superare le prestazioni di modelli più complessi (come il <em>Latent Semantic Analysis</em>) se si applica in via preventiva una catena di prefiltraggio basata su normalizzazione e stemming.<br />
+</div></div>
+<hr />
+<p>Ulteriori link per approfondimenti:</p>
+<ul>
+<li><a href="https://blogs.princeton.edu/etc/files/2014/03/Text-Analysis-with-NLTK-Cheatsheet.pdf" target="_blank">Text Analysis with NLTK Cheatsheet</a></li>
+<li><a href="http://labcdnew.humnet.unipi.it/wp-content/uploads/2015/01/Lorenzo-Marinelli-Analisi-automatica-dei-test.pdf" target="_blank">Analisi automatica dei testi: le basi e gli strumenti.</a></li>
+<li><a href="http://applieddatamining.blogspot.it/2013/06/nlp-using-python-and-nltk.html" target="_blank">NLP using Python and NLTK</a></li>
+<li><a href="http://didattica.uniroma2.it/assets/uploads/corsi/39157/Analisi_di_dati_testuali.pdf" target="_blank">Analisi statistica di dati testuali </a></li>
+<li><a href="http://www.uniroma2.it/didattica/Statistica_Sociale/deposito/bolasco.pdf" target="_blank">Statistica testuale e text mining : alcuni paradigmi applicativi</a></li>
+<li><a href="http://www.unimib.it/upload/gestioneFiles/Symphonya/lastita/f20032/saccardiita22003.pdf" target="_blank">Data Mining e Marketing Intelligence</a></li>
+<li><a href="http://sameekhan.org/pub/I_K_2015_KER.pdf" target="_blank">A Survey on Text Mining in Social Networks</a></li>
+<li><a href="http://textminingonline.com/dive-into-nltk-part-iv-stemming-and-lemmatization" target="_blank">Dive Into NLTK, Part IV: Stemming and Lemmatization</a></li>
+<li><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" target="_blank">Processing Raw Text (NLTK official doc)</a></li>
+<li><a href="http://users.dsic.upv.es/~prosso/resources/CalcagnoTesina.pdf" target="_blank">Implementazione e Valutazione di Tecniche di Information Retrieval basate su Stem, Lemma e Synset</a></li>
+<li><a href="http://ww2.unime.it/annalieconomia/file/num1/latona.pdf" target="_blank">Analisi Automatica dei Testi</a></li>
+<li><a href="http://tesi.cab.unipd.it/25036/1/Tesi_per_pdf.pdf" target="_blank">NATURAL LANGUAGE PROCESSING E TECNICHE SEMANTICHE PER IL SUPPORTO ALLA DIAGNOSI: UN ESPERIMENTO</a></li>
+<li><a href="http://amslaurea.unibo.it/6433/1/dipaolo_denis_tesi.pdf" target="_blank">PREDICTIVE TEXT MINING: METODI DI PREVISIONE DI INDICI DI BORSA BASATI SU TWITTER</a></li>
+<li><a href="http://mcburton.net/blog/joy-of-tm/" target="_blank">The Joy of Topic Modeling</a></li>
+<li><a href="http://www.memotef.uniroma1.it/sites/dipartimento/files/file%20lezioni/3%20dispensa%20ADT%20x%20MEAD%202012.pdf" target="_blank">Tipi, livelli e fasi dell&#8217;analisi automatica dei testi</a></li>
+<li><a href="http://www.aisv.it/AISVScuolaEstiva2009/materials/1IntroduzioneallaStatisticaTestuale.pdf" target="_blank">Lezione 1/Introduzione alla Statistica Testuale</a></li>
+<li><a href="http://bugs.unica.it/~gppe/did/ca/tesine/2012/12deiana_dessi.pdf" target="_blank">Text Mining: Teoria e Applicazioni Numeriche</a></li>
+<li><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/docslide.it_tesi-fabio-donofrio.pdf" target="_blank">Information extraction da testi non strutturati</a></li>
+</ul>
+<ol class="easy-footnotes-wrapper"><li class="easy-footnote-single"><span id="easy-footnote-bottom-1" class="easy-footnote-margin-adjust"></span>Il <em>data mining</em> estrae sapere o conoscenza a partire da grandi quantità di dati, attraverso metodi automatici o semi-automatici. Il <em>text mining</em> o <em>text data mining</em> è una forma particolare di data mining dove i dati sono costituiti da testi scritti in linguaggio naturale, quindi da documenti &#8220;destrutturati&#8221;.<a class="easy-footnote-to-top" href="#easy-footnote-1"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-2" class="easy-footnote-margin-adjust"></span><strong>Tokenizzare</strong> un testo significa dividere le sequenze di caratteri in unità minime di analisi dette appunto token.<a class="easy-footnote-to-top" href="#easy-footnote-2"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-3" class="easy-footnote-margin-adjust"></span>Nelle lingue segmentate i confini di parola sono marcati da spazi bianchi. Nelle lingue non segmentate i confini di parola non sono marcati esplicitamente nella scrittura (e.g. cinese, giapponese) e il processo di tokenizzazione richiede anzitutto una segmentazione chiamata <em>word segmentation</em> (qualcosa di simile all&#8217;<a href="https://it.wikipedia.org/wiki/Algoritmo_di_Viterbi">algoritmo di Viterbi</a>).<a class="easy-footnote-to-top" href="#easy-footnote-3"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-4" class="easy-footnote-margin-adjust"></span>La nozione di token è distinta da quella di parola, poiché la tokenizzazione non si basa generalmente su criteri morfosintattici o semantici: la forma &#8220;mandarglielo&#8221; corrisponde a 1 token ma ha 3 parole morfologiche (mandare + gli + lo).<a class="easy-footnote-to-top" href="#easy-footnote-4"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-5" class="easy-footnote-margin-adjust"></span>L&#8217;incremento del numero di parametri influenzerebbe la dimensione del corpus di documenti nel senso che sarebbero richiesti molti documenti in più per poter condurre il text mining. Corpus limitati e un elevato numero di parametri inducono gli algoritmi di text mining nel difettare in generalizzazione, non riuscendo ad operare in modo accettabile su documenti aggiunti successivamente.<a class="easy-footnote-to-top" href="#easy-footnote-5"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-6" class="easy-footnote-margin-adjust"></span>In Python è un intero positivo che parte da 0.<a class="easy-footnote-to-top" href="#easy-footnote-6"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-7" class="easy-footnote-margin-adjust"></span>Il Word Tokenizer di NLTK si basa su semplici regole euristiche: le sequenze di stringhe alfabetiche ininterrotte fanno parte di un unico token; i token sono separati fra loro tramite spazi o simboli di punteggiatura.<a class="easy-footnote-to-top" href="#easy-footnote-7"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-8" class="easy-footnote-margin-adjust"></span>Nel nostro esempio abbiamo ridotto le maiuscole in modo &#8220;massivo&#8221;, senza una specifica distinzione per parola.<a class="easy-footnote-to-top" href="#easy-footnote-8"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-9" class="easy-footnote-margin-adjust"></span>Quando forme tipografiche diverse vengono condotte a una stessa forma standard, si dice che sono state ricondotte a una <strong>forma normalizzata</strong>.<a class="easy-footnote-to-top" href="#easy-footnote-9"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-10" class="easy-footnote-margin-adjust"></span>Anche gli stemmer, come i lemmatizzatori, sono specializzati a seconda delle lingue supportate.<a class="easy-footnote-to-top" href="#easy-footnote-10"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-11" class="easy-footnote-margin-adjust"></span>Nelle lingue ricche di forme flesse, come l&#8217;Italiano, il Tedesco o il Francese, un vocabolario completo può avere anche dieci o venti volte il numero di parole di un vocabolario lemmatizzato. Anche nelle lingue povere di versioni flesse, un vocabolario completo ha però tipicamente almeno il doppio dei termini di un vocabolario lemmatizzato. Per esempio, nel caso dell&#8217;Inglese che è una lingua povera di forme flesse, la forma canonica di un verbo prevede la creazione di tre forme flesse aggiuntive, mediante suffissazione con <em>-s</em> (per la terza persona singolare del presente), <em>-ed</em> (per il passato) e con <em>-ing</em> (per il gerundio).<a class="easy-footnote-to-top" href="#easy-footnote-11"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-12" class="easy-footnote-margin-adjust"></span>Il tagset per l&#8217;Italiano usato in TreeTagger è disponibile seguendo il link <a href="http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/italian-tagset.txt" target="_blank">Italian tagset used in the TreeTagger parameter file</a>.<a class="easy-footnote-to-top" href="#easy-footnote-12"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-13" class="easy-footnote-margin-adjust"></span>Il tagset utilizzato da Pattern è disponibile su <a href="http://www.clips.ua.ac.be/pages/mbsp-tags" target="_blank">Penn Treebank II tag set</a>.<a class="easy-footnote-to-top" href="#easy-footnote-13"></a></li></ol>	</div><!-- .entry-content -->
+
+	
+			<div class="entry-meta">
+			<ul class="meta-list">
+
+				<!-- Categories -->
+				
+					<li class="meta-cat">
+						<span>Pubblicato in:</span>
+
+						<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" rel="category tag">Data Mining</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" rel="category tag">Machine Learning</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" rel="category tag">Programming</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" rel="category tag">Training</a>					</li>
+
+				
+				<!-- Tags -->
+				
+					<li class="meta-tag">
+						<span>Tagged in:</span>
+
+						<span  class="tag">analisi automatica del testo</span>, <span  class="tag">attributo</span>, <span  class="tag">bow</span>, <span  class="tag">corpus</span>, <span  class="tag">curse of dimensionality</span>, <span  class="tag">cut-off</span>, <span  class="tag">dizionario</span>, <span  class="tag">documento</span>, <span  class="tag">estrazione attributi</span>, <span  class="tag">filtraggio</span>, <span  class="tag">gensim</span>, <span  class="tag">lemmatizzatore</span>, <span  class="tag">matrice documento-termine</span>, <span  class="tag">matrice sparsa</span>, <span  class="tag">matrice termine-documento</span>, <span  class="tag">matrici lessicali</span>, <span  class="tag">metriche di pesatura</span>, <span  class="tag">modello di rappresentazione</span>, <span  class="tag">n-gramma</span>, <span  class="tag">Natural Language Processing</span>, <span  class="tag">nltk</span>, <span  class="tag">normalizzazione</span>, <span  class="tag">Pattern</span>, <span  class="tag">pesi</span>, <span  class="tag">POS tagging</span>, <span  class="tag">Python</span>, <span  class="tag">rimozione punteggiatura</span>, <span  class="tag">SciPy</span>, <span  class="tag">stemming</span>, <span  class="tag">stop list</span>, <span  class="tag">stop word</span>, <span  class="tag">text cleaning</span>, <span  class="tag">text mining</span>, <span  class="tag">token</span>, <span  class="tag">topic</span>, <span  class="tag">topic modeling</span>, <span  class="tag">TreeTagger</span>, <span  class="tag">TreeTaggerWrapper</span>, <span  class="tag">unigramma</span>, <span  class="tag">vocabolario</span>					</li>
+
+				
+			</ul><!-- .meta-list -->
+		</div><!-- .entry-meta -->
+	
+</article><!-- #post-## -->
+	<div class="author-profile">
+		<a class="author-profile-avatar" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
+
+		<div class="author-profile-info">
+			<h3 class="author-profile-title">
+									Pubblicato da								lorenzo</h3>
+
+							<div class="author-description">
+					<p>Full-time engineer. I like to write about data science and artificial intelligence.</p>
+				</div>
+			
+			<div class="author-profile-links">
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/"><i class="fa fa-pencil-square"></i> Tutti gli articoli</a>
+
+							</div>
+		</div><!-- .author-drawer-text -->
+	</div><!-- .author-profile -->
+
+
+			<!-- Comment toggle and share buttons -->
+			<div class="share-comment click">
+
+									<div class="share-icons open">
+						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-74" class="share-twitter sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/?share=twitter" target="_blank" title="Fai clic qui per condividere su Twitter"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Twitter (Si apre in una nuova finestra)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-74" class="share-linkedin sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/?share=linkedin" target="_blank" title="Fai clic qui per condividere su LinkedIn"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su LinkedIn (Si apre in una nuova finestra)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-74" class="share-google-plus-1 sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/?share=google-plus-1" target="_blank" title="Fai clic qui per condividere su Google+"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Google+ (Si apre in una nuova finestra)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/?share=email" target="_blank" title="Fai clic qui per inviare l'articolo via mail ad un amico"><span></span><span class="sharing-screen-reader-text">Fai clic qui per inviare l'articolo via mail ad un amico (Si apre in una nuova finestra)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#print" target="_blank" title="Fai clic qui per stampare"><span></span><span class="sharing-screen-reader-text">Fai clic qui per stampare (Si apre in una nuova finestra)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-74" class="share-facebook sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/?share=facebook" target="_blank" title="Fai clic per condividere su Facebook"><span></span><span class="sharing-screen-reader-text">Fai clic per condividere su Facebook (Si apre in una nuova finestra)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+				
+									<a class="comments-toggle button" href="#">
+						<span><i class="fa fa-comments"></i>
+							Lascia un commento						</span>
+						<span><i class="fa fa-times"></i> Nascondi commenti</span>
+					</a>
+							</div>
+
+			
+	<div id="comments" class="comments-area click">
+
+		
+		
+				
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#respond" style="display:none;">Annulla risposta</a></small></h3>
+						<form id="commentform" class="comment-form">
+				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&#038;postid=74&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=monsterid&#038;greeting=Vuoi+commentare%3F&#038;greeting_reply=Rispondi+a+%25s&#038;color_scheme=light&#038;lang=it_IT&#038;jetpack_version=4.9&#038;sig=13f8ff3bdb231ed27943c01df5c18cd42017477b#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Festrazione-attributi-da-testi-con-python%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+				<!--[if !IE]><!-->
+				<script>
+					document.addEventListener( 'DOMContentLoaded', function () {
+						var commentForms = document.getElementsByClassName( 'jetpack_remote_comment' );
+						for ( var i = 0; i < commentForms.length; i++ ) {
+							commentForms[i].allowTransparency = false;
+							commentForms[i].scrolling = 'no';
+						}
+					} );
+				</script>
+				<!--<![endif]-->
+			</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+
+		
+	</div><!-- #comments -->
+
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area">
+		<style type="text/css">
+.qtranxs_widget ul { margin: 0; }
+.qtranxs_widget ul li
+{
+display: inline; /* horizontal list, use "list-item" or other appropriate value for vertical list */
+list-style-type: none; /* use "initial" or other to enable bullets */
+margin: 0 5px 0 0; /* adjust spacing between items */
+opacity: 0.5;
+-o-transition: 1s ease opacity;
+-moz-transition: 1s ease opacity;
+-webkit-transition: 1s ease opacity;
+transition: 1s ease opacity;
+}
+/* .qtranxs_widget ul li span { margin: 0 5px 0 0; } */ /* other way to control spacing */
+.qtranxs_widget ul li.active { opacity: 0.8; }
+.qtranxs_widget ul li:hover { opacity: 1; }
+.qtranxs_widget img { box-shadow: none; vertical-align: middle; display: initial; }
+.qtranxs_flag { height:12px; width:18px; display:block; }
+.qtranxs_flag_and_text { padding-left:20px; }
+.qtranxs_flag span { display:none; }
+</style>
+<aside id="qtranslate-2" class="widget qtranxs_widget"><h2 class="widget-title">Selezione lingua:</h2>
+<ul class="language-chooser language-chooser-image qtranxs_language_chooser" id="qtranslate-2-chooser">
+<li class="lang-it active"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/estrazione-attributi-da-testi-con-python/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
+<li class="lang-en"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
+</ul><div class="qtranxs_widget_end"></div>
+</aside><aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h2 class="widget-title">Iscriviti al Blog via E-Mail</h2>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>Inseririsci il tuo indirizzo email e riceverai i nuovi post via mail.</p>
+</div>					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field-blog_subscription-3">
+							Indirizzo Email						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-3" placeholder="Indirizzo Email" />
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe" />
+						<input type="hidden" name="source" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/" />
+						<input type="hidden" name="sub-type" value="widget" />
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3" />
+												<input type="submit" value="Iscriviti" name="jetpack_subscriptions_widget" />
+					</p>
+							</form>
+
+			<script>
+			/*
+			Custom functionality for safari and IE
+			 */
+			(function( d ) {
+				// In case the placeholder functionality is available we remove labels
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.querySelector( 'label[for=subscribe-field-blog_subscription-3]' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+
+				// Make sure the email value is filled in before allowing submit
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'),
+					input = d.getElementById('subscribe-field-blog_subscription-3'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+
+							return false;
+						}
+					};
+
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recenti</h2>		<ul>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
+						</li>
+				</ul>
+		</aside>		<aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categorie</h2>		<ul>
+	<li class="cat-item cat-item-10"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" >API generation</a>
+</li>
+	<li class="cat-item cat-item-333"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" >Data Engineering</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" >Data Mining</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" >Data visualization</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" >Deep Learning</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" >Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" >Programming</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" >Tools</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" >Training</a>
+</li>
+		</ul>
+</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h2 class="widget-title">Twitter</h2><a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="IT" data-partner="jetpack" href="https://twitter.com/BEmatic">I miei Cinguettii</a></aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" class="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">
+	<div>
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" value="" name="s" id="s" class="search-input" placeholder="Cerca..." />
+
+		<button type="submit" id="searchsubmit">
+			<i class="fa fa-search"></i> <span>Ricerca</span>
+		</button>
+	</div>
+</form></aside>	</div><!-- #secondary .widget-area -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+	<!-- Next and previous post links -->
+	
+		<nav class="post-navigation">
+			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/large-icon.png?resize=460%2C259&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Successivo</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-di-andrew-ng/" rel="prev">Machine Learning di Andrew Ng su Coursera</a></div><span>04/07/2016</span></div></div>
+			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/07/blog_geolayout6.png?resize=800%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Precedente</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/" rel="next">Introduzione a Gephi in 11 passi</a></div><span>06/07/2016</span></div></div>		</nav><!-- .post-navigation -->
+	
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="container">
+
+					<div class="footer-widgets">
+				<aside id="text-2" class="widget widget_text"><h2 class="widget-title">Benvenuto</h2>			<div class="textwidget">Questo blog è una collezione di appunti personali in inglese e in italiano sull'apprendimento automatico e sistemi cognitivi. Buona lettura.
+<hr/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
+<br/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
+<hr/>
+<span class="su-qrcode su-qrcode-align-center"><a target="_blank" title="ApprendimentoAutomatico.it"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog&size=100x100&format=png&margin=0&color=0-0-0&bgcolor=255-255-255" alt="ApprendimentoAutomatico.it" /></a></span></div>
+		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQ9BEBk2V5xptV" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/markpeng/general-tips-for-participating-kaggle-competitions" title="General Tips for participating Kaggle Competitions" target="_blank">General Tips for participating Kaggle Competitions</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/markpeng">Mark Peng</a></strong> </div></div>
+		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archivi</h2>		<ul>
+			<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>&nbsp;(8)</li>
+		</ul>
+		</aside>			</div>
+		
+		<div class="footer-bottom">
+			
+			<div class="footer-tagline">
+				<div class="site-info">
+					Ad maiora!				</div>
+			</div><!-- .footer-tagline -->
+		</div><!-- .footer-bottom -->
+	</div><!-- .container -->
+</footer><!-- #colophon -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/estrazione-attributi-da-testi-con-python\/":74};
+	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/" method="post">
+			<label for="target_email">Invia a indirizzo e-mail</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Il tuo nome</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Il tuo indirizzo e-mail</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			<script>jQuery( document ).ready( function(){ document.getElementById('jetpack-source_f_name').value = '' });</script>
+			
+			<img style="float: right; display: none" class="loading" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Invia e-mail" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel">Annulla</a>
+
+			<div class="errors errors-1" style="display: none;">
+				L'articolo non è stato pubblicato, controlla gli indirizzi e-mail!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Verifica dell'e-mail non riuscita. Riprova.			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Ci dispiace, il tuo blog non consente di condividere articoli tramite e-mail.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<link rel='stylesheet' id='qtipstyles-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='easyfootnotescss-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/easy-footnotes.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='dashicons-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='su-box-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/box-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201802'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Janaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var paperback_js_vars = {"ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","load_fixed":"true"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var settings_obj = {"ajax_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"06c07c87f6","confirm":"Are you sure to delete item?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtipcall.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=74&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=13f8ff3bdb231ed27943c01df5c18cd42017477b#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Festrazione-attributi-da-testi-con-python%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=74&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=13f8ff3bdb231ed27943c01df5c18cd42017477b#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Festrazione-attributi-da-testi-con-python%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type='text/javascript' src='https://stats.wp.com/e-201802.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.9',blog:'114978248',post:'74',tz:'1',srv:'www.apprendimentoautomatico.it'} ]);
+	_stq.push([ 'clickTrackerInit', '114978248', '74' ]);
+</script>
+
+</body>
+</html>

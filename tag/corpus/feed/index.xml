@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>corpus &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/corpus/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>corpus &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/#respond</comments>
+		<pubDate>Sun, 28 Aug 2016 17:10:22 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[API]]></category>
+		<category><![CDATA[bot]]></category>
+		<category><![CDATA[corpora]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[generare dataset]]></category>
+		<category><![CDATA[generare testset]]></category>
+		<category><![CDATA[ipython]]></category>
+		<category><![CDATA[italiano]]></category>
+		<category><![CDATA[jupyter]]></category>
+		<category><![CDATA[raw corpus]]></category>
+		<category><![CDATA[scraping]]></category>
+		<category><![CDATA[seeds]]></category>
+		<category><![CDATA[wikimedia]]></category>
+		<category><![CDATA[wikipedia]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5342</guid>
+		<description><![CDATA[<p>Talvolta può essere necessario operare, per scopi dimostrativi o altre ragioni, su un corpus di dimensioni modeste consistente di documenti [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/">Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5342</post-id>	</item>
+		<item>
+		<title>Fondamenti: trasformazioni con riduzione di dimensionalità</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
+		<pubDate>Sun, 24 Jul 2016 09:03:30 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[allocation]]></category>
+		<category><![CDATA[allocazione]]></category>
+		<category><![CDATA[analisi]]></category>
+		<category><![CDATA[analysis]]></category>
+		<category><![CDATA[attributo]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[decomposizione]]></category>
+		<category><![CDATA[dimensionalità]]></category>
+		<category><![CDATA[dirichlet]]></category>
+		<category><![CDATA[distributional semantics]]></category>
+		<category><![CDATA[distribuzionale]]></category>
+		<category><![CDATA[DTM]]></category>
+		<category><![CDATA[HDP]]></category>
+		<category><![CDATA[hierarchical]]></category>
+		<category><![CDATA[information retrieval]]></category>
+		<category><![CDATA[ipotesi]]></category>
+		<category><![CDATA[latent]]></category>
+		<category><![CDATA[latente]]></category>
+		<category><![CDATA[LDA]]></category>
+		<category><![CDATA[LSA]]></category>
+		<category><![CDATA[LSI]]></category>
+		<category><![CDATA[matrice]]></category>
+		<category><![CDATA[Natural Language Processing]]></category>
+		<category><![CDATA[NMF]]></category>
+		<category><![CDATA[peso]]></category>
+		<category><![CDATA[probabilistico]]></category>
+		<category><![CDATA[probabilità]]></category>
+		<category><![CDATA[process]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[R]]></category>
+		<category><![CDATA[RI]]></category>
+		<category><![CDATA[riduzione dimensionalità]]></category>
+		<category><![CDATA[riduzione dimensione topic modeling]]></category>
+		<category><![CDATA[RP]]></category>
+		<category><![CDATA[semantic]]></category>
+		<category><![CDATA[semantica]]></category>
+		<category><![CDATA[similarità]]></category>
+		<category><![CDATA[simplesso]]></category>
+		<category><![CDATA[sparsa]]></category>
+		<category><![CDATA[sparsità]]></category>
+		<category><![CDATA[spazio]]></category>
+		<category><![CDATA[statistica]]></category>
+		<category><![CDATA[TDM]]></category>
+		<category><![CDATA[termini]]></category>
+		<category><![CDATA[TF-IDF]]></category>
+		<category><![CDATA[topic]]></category>
+		<category><![CDATA[trasformazioni]]></category>
+		<category><![CDATA[troncamento]]></category>
+		<category><![CDATA[valori singolari]]></category>
+		<category><![CDATA[vettore]]></category>
+		<category><![CDATA[vocabolario]]></category>
+		<category><![CDATA[word embedding]]></category>
+		<category><![CDATA[word2vec]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1699</guid>
+		<description><![CDATA[<p>Nei post precedenti della serie Fondamenti si è mostrato come un generico testo possa essere rappresentato dall'insieme delle sue parole, trascurando [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1699</post-id>	</item>
+		<item>
+		<title>Fondamenti: selezione attributi e rappresentazione dei documenti</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#respond</comments>
+		<pubDate>Mon, 04 Jul 2016 21:40:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Mining]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[analisi automatica del testo]]></category>
+		<category><![CDATA[attributo]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[curse of dimensionality]]></category>
+		<category><![CDATA[cut-off]]></category>
+		<category><![CDATA[dizionario]]></category>
+		<category><![CDATA[documento]]></category>
+		<category><![CDATA[estrazione attributi]]></category>
+		<category><![CDATA[filtraggio]]></category>
+		<category><![CDATA[gensim]]></category>
+		<category><![CDATA[lemmatizzatore]]></category>
+		<category><![CDATA[matrice documento-termine]]></category>
+		<category><![CDATA[matrice sparsa]]></category>
+		<category><![CDATA[matrice termine-documento]]></category>
+		<category><![CDATA[matrici lessicali]]></category>
+		<category><![CDATA[metriche di pesatura]]></category>
+		<category><![CDATA[modello di rappresentazione]]></category>
+		<category><![CDATA[n-gramma]]></category>
+		<category><![CDATA[Natural Language Processing]]></category>
+		<category><![CDATA[nltk]]></category>
+		<category><![CDATA[normalizzazione]]></category>
+		<category><![CDATA[Pattern]]></category>
+		<category><![CDATA[pesi]]></category>
+		<category><![CDATA[POS tagging]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[rimozione punteggiatura]]></category>
+		<category><![CDATA[SciPy]]></category>
+		<category><![CDATA[stemming]]></category>
+		<category><![CDATA[stop list]]></category>
+		<category><![CDATA[stop word]]></category>
+		<category><![CDATA[text cleaning]]></category>
+		<category><![CDATA[text mining]]></category>
+		<category><![CDATA[token]]></category>
+		<category><![CDATA[topic]]></category>
+		<category><![CDATA[topic modeling]]></category>
+		<category><![CDATA[TreeTagger]]></category>
+		<category><![CDATA[TreeTaggerWrapper]]></category>
+		<category><![CDATA[unigramma]]></category>
+		<category><![CDATA[vocabolario]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=74</guid>
+		<description><![CDATA[<p>Questo post è il primo di una serie denominata "Fondamenti". L'obiettivo della serie è fornire una panoramica delle principali tecniche [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
+	</channel>
+</rss>

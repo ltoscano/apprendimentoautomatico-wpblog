@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Data Mining &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>Data Mining &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Fondamenti: selezione attributi e rappresentazione dei documenti</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/#respond</comments>
+		<pubDate>Mon, 04 Jul 2016 21:40:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Mining]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[analisi automatica del testo]]></category>
+		<category><![CDATA[attributo]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[curse of dimensionality]]></category>
+		<category><![CDATA[cut-off]]></category>
+		<category><![CDATA[dizionario]]></category>
+		<category><![CDATA[documento]]></category>
+		<category><![CDATA[estrazione attributi]]></category>
+		<category><![CDATA[filtraggio]]></category>
+		<category><![CDATA[gensim]]></category>
+		<category><![CDATA[lemmatizzatore]]></category>
+		<category><![CDATA[matrice documento-termine]]></category>
+		<category><![CDATA[matrice sparsa]]></category>
+		<category><![CDATA[matrice termine-documento]]></category>
+		<category><![CDATA[matrici lessicali]]></category>
+		<category><![CDATA[metriche di pesatura]]></category>
+		<category><![CDATA[modello di rappresentazione]]></category>
+		<category><![CDATA[n-gramma]]></category>
+		<category><![CDATA[Natural Language Processing]]></category>
+		<category><![CDATA[nltk]]></category>
+		<category><![CDATA[normalizzazione]]></category>
+		<category><![CDATA[Pattern]]></category>
+		<category><![CDATA[pesi]]></category>
+		<category><![CDATA[POS tagging]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[rimozione punteggiatura]]></category>
+		<category><![CDATA[SciPy]]></category>
+		<category><![CDATA[stemming]]></category>
+		<category><![CDATA[stop list]]></category>
+		<category><![CDATA[stop word]]></category>
+		<category><![CDATA[text cleaning]]></category>
+		<category><![CDATA[text mining]]></category>
+		<category><![CDATA[token]]></category>
+		<category><![CDATA[topic]]></category>
+		<category><![CDATA[topic modeling]]></category>
+		<category><![CDATA[TreeTagger]]></category>
+		<category><![CDATA[TreeTaggerWrapper]]></category>
+		<category><![CDATA[unigramma]]></category>
+		<category><![CDATA[vocabolario]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=74</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
+	</channel>
+</rss>

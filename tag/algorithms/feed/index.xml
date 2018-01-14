@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>algorithms &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/algorithms/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>algorithms &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Introduction to decision trees with BigML: a step by step guide</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/#respond</comments>
+		<pubDate>Sat, 10 Dec 2016 19:57:28 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[algorithms]]></category>
+		<category><![CDATA[bigml]]></category>
+		<category><![CDATA[context]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[decision tree]]></category>
+		<category><![CDATA[decision trees bigml]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[one-click]]></category>
+		<category><![CDATA[pipeline]]></category>
+		<category><![CDATA[topic modeling]]></category>
+		<category><![CDATA[tutorial]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5997</guid>
+		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5997</post-id>	</item>
+		<item>
+		<title>Machine Learning: the best cheat sheets in one page</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/#respond</comments>
+		<pubDate>Sun, 04 Dec 2016 12:13:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[accuracy]]></category>
+		<category><![CDATA[algorithms]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[cheatsheet]]></category>
+		<category><![CDATA[class]]></category>
+		<category><![CDATA[classification]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[feature]]></category>
+		<category><![CDATA[forest]]></category>
+		<category><![CDATA[jungle]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[label]]></category>
+		<category><![CDATA[large]]></category>
+		<category><![CDATA[learn]]></category>
+		<category><![CDATA[linear]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[machine learning cheat sheet]]></category>
+		<category><![CDATA[scikit-learn]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5891</guid>
+		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/">Machine Learning: the best cheat sheets in one page</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5891</post-id>	</item>
+	</channel>
+</rss>

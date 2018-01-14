@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php">
+
+	<title>A gentle introduction to TensorFlow with python (and RNN) - Machine Learning &amp; Cognitive</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v4.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="What is TensorFlow? It&#8217;s an open source library made by google for being used in Machine Learning (ML) problems, specially [&hellip;]" />
+<meta name="twitter:title" content="A gentle introduction to TensorFlow with python (and RNN) - Machine Learning &amp; Cognitive" />
+<meta name="twitter:site" content="@BEmatic" />
+<meta name="twitter:image" content="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/tensorflowpython.png?fit=450%2C497&#038;ssl=1" />
+<meta name="twitter:creator" content="@BEmatic" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Comments Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; A gentle introduction to TensorFlow with python (and RNN) Comments Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='paperback-style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
+<style id='paperback-style-inline-css' type='text/css'>
+
+		/* Top Nav Background Color */
+		.top-navigation,
+		.secondary-navigation ul.sub-menu {
+			background-color: #343e47;
+		}
+
+		/* Top Nav Text Color */
+		.top-navigation,
+		.top-navigation nav a,
+		.top-navigation li ul li a,
+		.drawer-toggle {
+			color: #ffffff;
+		}
+
+		.main-navigation:not(.secondary-navigation) ul.menu > li.current-menu-item > a {
+			border-color: #f35245;
+		}
+
+		/* Header Background Color */
+		.site-identity {
+			background-color: #ecf1f7;
+		}
+
+		/* Header Text Color */
+		.main-navigation a,
+		.site-title a,
+		.site-description {
+			color: #383f49;
+		}
+
+		/* Accent Color */
+		.hero-cats a,
+		.post-navigation .nav-label,
+		.entry-cats a {
+			background-color: #f35245;
+		}
+
+		.page-numbers.current,
+		.page-numbers:hover,
+		#page #infinite-handle button:hover {
+			background-color: #f35245;
+		}
+
+		/* Footer Background Color */
+		.site-footer {
+			background-color: #343e47;
+		}
+
+		/* Footer Text Color */
+		.site-footer .widget-title,
+		.site-footer a:hover {
+			color: #ffffff;
+		}
+
+		.site-footer,
+		.site-footer a {
+			color: rgba( 255, 255, 255, 0.8);
+		}
+
+		/* Footer Border Color */
+		.footer-widgets ul li,
+		.footer-widgets + .footer-bottom {
+			border-color: rgba( 255, 255, 255, 0.3);
+		}
+	
+</style>
+<link rel='stylesheet' id='paperback-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7COpen%2BSans%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='overlay_settings_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-webfonts-css'  href='//fonts.googleapis.com/css?family=Source+Code+Pro%3Aregular%2C700&#038;ver=3.3' type='text/css' media='all' />
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel-ie8fix.css?ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/spin.js?ver=1.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/jquery.spin.js?ver=1.3'></script>
+<link rel='https://api.w.org/' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.6.1" />
+<link rel='shortlink' href='https://wp.me/p7Mr5S-1uX' />
+<link rel="alternate" type="application/json+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fen%2Fgentle-introduction-to-tensorflow-with-python-and-rnn%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fen%2Fgentle-introduction-to-tensorflow-with-python-and-rnn%2F&#038;format=xml" />
+<style type="text/css">
+.main-navigation {
+    max-width: 45% !important;
+}
+.site-title-wrap {
+    max-width: 55% !important;
+}
+.site-title {
+     font-size: 25px;
+}
+.easy-footnote sup {
+    font-size: 60% !important;
+    font-style: normal !important;;
+    vertical-align: super !important;;
+    position: relative !important;
+    color: red;
+}
+
+span.easy-footnote>a { border-bottom: 0 !important; }
+
+a.easy-footnote-to-top { border-bottom: 0 !important; }
+
+.site-title a::before {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
+    background-size: 25px 25px;
+    content: " ";
+    height: 25px;
+    left: -26px;
+    position: absolute;
+    top: 6px;
+    width: 25px;
+    /*background-size: 25px 25px;
+    background-repeat: no-repeat;*/
+    /*color: #f35245;
+    content: "";
+    font-family: "FontAwesome";
+    font-size: 25px;
+    margin-right: 10px;*/
+}
+
+.site-title {
+    margin-left: 25px !important;
+}
+
+span.post-lang-en {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
+    background-repeat: no-repeat;
+    background-size: 45px 45px;
+    border: 1px dotted lightblue;
+    border-radius: 3px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+}
+</style>
+<style type="text/css">
+.qtranxs_flag_it {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+.qtranxs_flag_en {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+</style>
+<link hreflang="it" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/gentle-introduction-to-tensorflow-with-python-and-rnn/" rel="alternate" />
+<link hreflang="en" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/" rel="alternate" />
+<link hreflang="x-default" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/" rel="alternate" />
+<meta name="generator" content="qTranslate-X 3.4.6.8" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//i0.wp.com'>
+<link rel='dns-prefetch' href='//i1.wp.com'>
+<link rel='dns-prefetch' href='//i2.wp.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+<style type='text/css'>img#wpstats{display:none}</style>	<style type="text/css">
+					.site-identity {
+				padding: 2% 0;
+			}
+		
+					.single .hero-posts .with-featured-image {
+				padding-top: 7%;
+			}
+		
+		
+			</style>
+
+		<style>
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon {
+			width: 20px !important;
+			height: 28px !important;
+			padding: 6px 0 !important;
+			margin-right: 0 !important;
+		}
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon:before {
+			content: "\f466";
+		}
+		</style><!--Start Cookie Script--> <script type="text/javascript" charset="UTF-8" src="//cookie-script.com/s/f67066386a32612237b658624241e0af.js"></script> <!--End Cookie Script-->
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+</head>
+
+<body class="single single-post postid-5763 single-format-standard has-sidebar two-column">
+
+
+<header id="masthead" class="site-header" role="banner">
+
+		<div class="top-navigation">
+			<div class="container">
+
+				<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
+</ul>
+</li>
+<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
+</ul></div>				</nav><!-- .secondary-navigation -->
+
+				<div class="top-navigation-right">
+											<nav class="social-navigation" role="navigation">
+							<div class="menu-social-media-container"><ul id="menu-social-media" class="menu"><li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li id="menu-item-5830" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>						</nav><!-- .social-navigation -->
+					
+					<div class="overlay-toggle drawer-toggle drawer-open-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-search"></i>
+							Explore						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Close						</span>
+					</div><!-- .overlay-toggle-->
+
+					<div class="overlay-toggle drawer-toggle drawer-menu-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-bars"></i>
+							Menu						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Close						</span>
+					</div><!-- .overlay-toggle-->
+				</div><!-- .top-navigation-right -->
+			</div><!-- .container -->
+		</div><!-- .top-navigation -->
+
+		<div class="drawer-wrap">
+			<div class="drawer drawer-explore">
+	<div class="container">
+		<div class="drawer-search">
+			
+<div class="big-search">
+	<form method="get" id="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/" role="search">
+		<label class="screen-reader-text" for="s">Search for:</label>
+
+		<input type="text" name="s" id="big-search" placeholder="Search here..." value="" onfocus="if(this.value==this.getAttribute('placeholder'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('placeholder');"/><br />
+
+		<div class="search-controls">
+		
+			<div class="search-select-wrap">
+				<select class="search-select" name="category_name">
+
+					<option value="">Entire Site</option>
+
+					<option value="api-generation">API generation</option><option value="collaterali">Collaterals</option><option value="data-engineering">Data Engineering</option><option value="data-mining">Data Mining</option><option value="visualizzazione-dei-dati">Data visualization</option><option value="deep-learning">Deep Learning</option><option value="machine-learning">Machine Learning</option><option value="programmazione">Programming</option><option value="strumenti">Tools</option><option value="formazione">Training</option>				</select>
+			</div>
+
+		
+			<input type="submit" class="submit button" name="submit" id="big-search-submit" value="Search" />
+		</div><!-- .search-controls -->
+	</form><!-- #big-searchform -->
+
+</div><!-- .big-search -->		</div>
+
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Categories</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
+		
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Tags</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/python/" title="View all posts in Python" >Python</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/bow/" title="View all posts in bow" >bow</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/azure/" title="View all posts in azure" >azure</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/classification/" title="View all posts in classification" >classification</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
+			</div>
+		
+		<div class="widget tax-widget">
+			<h2 class="widget-title">Archives</h2>
+
+				<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>
+		</div>
+	</div><!-- .container -->
+</div><!-- .drawer -->
+<div class="drawer drawer-menu-explore">
+	<div class="container">
+					<nav id="drawer-navigation" class="main-navigation drawer-navigation" role="navigation">
+				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li id="menu-item-5843" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>			</nav><!-- #site-navigation -->
+		
+					<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
+</ul></div>			</nav><!-- .secondary-navigation -->
+		
+					<nav class="social-navigation" role="navigation">
+				<div class="menu-social-media-container"><ul id="menu-social-media-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>			</nav><!-- .footer-navigation -->
+			</div><!-- .container -->
+</div><!-- .drawer -->		</div><!-- .drawer-wrap -->
+
+		<div class="site-identity clear">
+			<div class="container">
+				<!-- Site title and logo -->
+					<div class="site-title-wrap">
+		<!-- Use the Site Logo feature, if supported -->
+		
+		<div class="titles-wrap">
+							<p class="site-title"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/" rel="home">Machine Learning &amp; Cognitive</a></p>
+ 			
+							<p class="site-description">ApprendimentoAutomatico.it</p>
+					</div>
+	</div><!-- .site-title-wrap -->
+
+				<!-- Main navigation -->
+				<nav id="site-navigation" class="main-navigation enabled" role="navigation">
+					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+
+			</div><!-- .container -->
+		</div><!-- .site-identity-->
+
+					<div class="featured-posts-wrap clear">
+				<div class="featured-posts clear">
+					<div class="featured-header">
+						<span class="featured-header-category"></span>
+						<span class="featured-header-close"><i class="fa fa-times"></i> Close</span>
+					</div>
+
+					<div class="post-container clear"></div>
+				</div>
+			</div>
+		</header><!-- .site-header -->
+
+
+<div class="mini-bar">
+			<div class="mini-title">
+			<!-- Next and previous post links -->
+			<div class="fixed-nav"><a class="fixed-image" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/"> <img width="65" height="59" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?fit=65%2C59&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="blue-robot-vector-art" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?w=450&amp;ssl=1 450w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?resize=300%2C270&amp;ssl=1 300w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="5663" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/blue-robot-vector-art/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?fit=450%2C405&amp;ssl=1" data-orig-size="450,405" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="blue-robot-vector-art" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?fit=300%2C270&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?fit=450%2C405&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Next</span><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" rel="prev">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</a></div></div>
+		</div>
+	
+	<ul class="mini-menu">
+					<li>
+				<a class="drawer-open-toggle" href="#">
+					<span><i class="fa fa-search"></i> Explore</span>
+				</a>
+			</li>
+				<li class="back-to-top">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+		<li class="back-to-menu">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+	</ul>
+</div><!-- .mini-bar-->
+
+	<div class="hero-wrapper">
+
+		<div class="hero-posts">
+			
+	<div id="post-5763" class="with-featured-image hero-post post-5763 post type-post status-publish format-standard has-post-thumbnail hentry category-programmazione category-formazione tag-deep-learning tag-handwritten-digit-classification tag-introduction-tensorflow-python tag-lstm tag-machine-learning tag-mnist tag-neural-networks tag-recurrent-neural-network tag-rnn tag-tensor tag-tensorflow">
+
+		<!-- Get the hero background image -->
+		
+			<div class="site-header-bg-wrap">
+				<div class="header-opacity">
+					<div class="header-gradient"></div>
+					<div class="site-header-bg background-effect" style="background-image: url(https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/tensorflowpython.png?fit=450%2C497&#038;ssl=1); opacity: 0.3;"></div>
+				</div>
+			</div><!-- .site-header-bg-wrap -->
+
+		
+		<div class="container hero-container">
+			<div class="hero-cats"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/">Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/">Training</a></div>
+			<!-- Hero title -->
+			<div class="hero-text">
+									<h1 class="entry-title">A gentle introduction to TensorFlow with python (and RNN)</h1>
+				
+				<div class="hero-date">
+										<!-- Create an avatar link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by  ">
+						<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=44&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=88&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-44 photo' height='44' width='44' />					</a>
+					<!-- Create an author post link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/">
+						lorenzo					</a>
+					<span class="hero-on-span">on</span>
+					<span class="hero-date-span">Nov 2016</span>
+				</div>
+			</div><!-- .photo-overlay -->
+		</div><!-- .container -->
+	</div>
+		</div><!-- .hero-posts -->
+
+	</div><!-- .hero-wrapper -->
+
+<div id="page" class="hfeed site container">
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-5763" class="post full-post post-5763 type-post status-publish format-standard has-post-thumbnail hentry category-programmazione category-formazione tag-deep-learning tag-handwritten-digit-classification tag-introduction-tensorflow-python tag-lstm tag-machine-learning tag-mnist tag-neural-networks tag-recurrent-neural-network tag-rnn tag-tensor tag-tensorflow">
+
+		
+	<div class="entry-content">
+		<h2>What is TensorFlow?</h2>
+<p><img src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/notebooks/man-thinking.jpg?w=900&#038;ssl=1" data-recalc-dims="1"><br />
+It&#8217;s an open source library made by google for being used in Machine Learning (ML) problems, specially problems that is related to Neural Networks. It&#8217;s written in C++ from the ground, designed to be very efficient in computations.</p>
+<p>You can think of TensorFlow as a tool that transforms your ML code into a GPU running code, so that saves you a lot of time as a developer also, it uses its magic to make things run very efficient and uses the resources on your machine in a very good way.</p>
+<h2>So, When Can I say that Tensorflow is my best option for my project?</h2>
+<p>Basically, TensorFlow shines more in the area of using neural networks -with the most of its types- especially in the Deep Learning area that can be touched through most of the apps like:</p>
+<ul>
+<li>image processing and learning tasks, like when the Facebook suggest to tag someone in an image or detecting words on an image via your mobile camera and convert it into a text,</li>
+<li>machine game players, like Googles Alpha Go,</li>
+<li>coloring white and black picture.</li>
+</ul>
+<p>TensorFlow is great for both research and product side; it has a flexible architecture which allows you to deploy computation to one or more CPUs or GPUs in a desktop, server, or mobile device with a single API.</p>
+<p>Tensorflow also provide a very useful tool called <b>TensorBoard</b>, it makes you explor visually the models made by others and debug them.</p>
+<p><img src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/notebooks/tensorboard.gif?w=900&#038;ssl=1" data-recalc-dims="1"></p>
+<h2>Let&#8217;s start discovering this awesome tool</h2>
+<ul>
+<li>First you need to install it on your machine, you just need to follow this guide</p>
+<p>    <a href="https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html#download-and-setup" target="_blank">https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html#download-and-setup</a></li>
+<li>After you successfully installed it, just open your python shell and try to import it (we will be using python 3 in this tutorial)</li>
+</ul>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import tensorflow as tf 
+</pre></p>
+<p>Next, let&#8217;s play with it, but before playing let&#8217;s define some basic parts of TensorFlow. The main idea here is to express our numeric computation as a graph which has:</p>
+<ul>
+<li>nodes that represent operations that take zero or more Tensors, performs some computation and produces zero or more Tensors</li>
+<li>tensors are multi-dimensional array which flow between nodes</li>
+</ul>
+<p>x * y</p>
+<p>so x and y are tensors and the multiplication is the operation</p>
+<p><img src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/notebooks/basic.png?w=900&#038;ssl=1" data-recalc-dims="1"></p>
+<h4>let&#8217;s take a closer look</h4>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+x = tf.constant([[5.5, 5.5]])
+y = tf.constant([[2.],[2.]])
+
+product = tf.matmul(x, y)
+print(product)
+</pre></p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+Tensor(&quot;MatMul:0&quot;, shape=(1, 1), dtype=float32)
+</pre></p>
+<h4>so what&#8217;s happend?</h4>
+<p>First we defined x and y as constant matrices with predefined values, then we defined our operation as Matrix Multiplication and finally we tried to print our variables, but as you see, nothing actually happened, WHY?</p>
+<p>The reason is TensorFlow operations are different from basic python operations, in python operations made line by line but in TensorFlow the whole operation runs as a unit, which called a <b>Session</b>. So, we need to define our session and run our operation via it like this:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+sess = tf.Session()
+result = sess.run(product)
+print(result)
+sess.close()
+</pre></p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+[[ 22.]]
+</pre></p>
+<h4>we can also make it this way (looks similar to open and close a file)</h4>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+with tf.Session() as sess:
+    result = sess.run([product])
+    print(result)
+</pre><br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+[array([[ 22.]], dtype=float32)]
+</pre></p>
+<p>This was a very basic intro to what is TensorFlow and how we can start dealing with this computation library, you can design your graph with your custom operations.</p>
+<p>Now let&#8217;s jump into a more complex example which we will be using RNN (<a href="https://en.wikipedia.org/wiki/Long_short-term_memory" target="_blank">LSTM</a>) with the MNIST dataset. In the land of neural networks the most &#8220;classic&#8221; classical problem is the MNIST handwritten digit classification.</p>
+<h2>First, What is RNN (Recurrent Neural Network)?</h2>
+<p>RNNs are Neural Nets with loops , that makes it able with sequential information unlike the normal neural nets.</p>
+<h4>Normal NN</h4>
+<p><img src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/notebooks/nn.png?w=900&#038;ssl=1" data-recalc-dims="1"></p>
+<h4>RNN</h4>
+<p><img src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/notebooks/rnn.png?w=900&#038;ssl=1" data-recalc-dims="1"></p>
+<p>RNNs makes more sense when we dealing with data changes its states by time, it&#8217;s ability of feedbacking the info from state to another makes it able to deal with data like video frames which each frame should be connected to the one before to make a good sense of what happening and also data like conversations, like you ask your google assistant or Siri or even Cortana about the time in England, then you ask it &#8220;How is the Weather there!&#8221;, it should connect this with the last info related to understanding the meaning by &#8220;there&#8221;.</p>
+<h2>So let&#8217;s get into the business</h2>
+<p>In this tutorial, we will deal with the MNIST Data set, which is a collection of handwritten digit images, we will make a model that learns to classify these images and tells us what digit is written in this one!</p>
+<p>Ready?</p>
+<p><img src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/notebooks/ready.jpg?w=900&#038;ssl=1" data-recalc-dims="1"></p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import tensorflow as tf
+from tensorflow.python.ops import rnn, rnn_cell
+import numpy as np
+
+# Import MNIST data
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets(&quot;/tmp/data/&quot;, one_hot=True)
+</pre></p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+Extracting /tmp/data/train-images-idx3-ubyte.gz
+Extracting /tmp/data/train-labels-idx1-ubyte.gz
+Extracting /tmp/data/t10k-images-idx3-ubyte.gz
+Extracting /tmp/data/t10k-labels-idx1-ubyte.gz
+</pre></p>
+<p>First, we import our dependencies, then load the MNIST dataset from TensorFlow lib, it might take minutes till it downloads the dataset from the internet.</p>
+<p>Just to look at the data, I can grab the first array of image data and reshape it back into an 28&#215;28 pixel image.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+tmp = mnist.train.images[2]
+tmp = tmp.reshape((28,28))
+plt.imshow(tmp, cmap = cm.Greys)
+plt.show()
+</pre></p>
+<p><img src="data:image/png;base64,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"></p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+learning_rate = 0.001
+training_iters = 100000
+batch_size = 128
+display_step = 100
+</pre></p>
+<p>Here we define our parameters that we will be using in the learning process, it really depends on your design, try to change these parameters and see what the difference is&#8230;</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+# here  we start building our RNN
+# First
+# Network Parameters
+n_input = 28 # MNIST data input (img shape: 28*28)
+n_steps = 28 # timesteps, remember inputs from up to 28 time steps in the past
+n_hidden = 128 # hidden layer num of features
+n_classes = 10 # MNIST total classes (0-9 digits)
+
+# tf Graph input
+x = tf.placeholder(&quot;float&quot;, [None, n_steps, n_input])
+y = tf.placeholder(&quot;float&quot;, [None, n_classes])
+
+# Define weights
+weights = {
+    &#039;out&#039;: tf.Variable(tf.random_normal([n_hidden, n_classes]))
+}
+biases = {
+    &#039;out&#039;: tf.Variable(tf.random_normal([n_classes]))
+}
+</pre></p>
+<p>Here we start building our RNN. Our dataset contains images with size 28*28 pixels, so we define our parameters based on this.</p>
+<p>Then define our input data(the images) as x and target(the labels like 1,2,&#8230;9) as y.</p>
+<p>Then we define weights and biases for our model.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+def RNN(x, weights, biases):
+
+    # Prepare data shape to match `rnn` function requirements
+    # Current data input shape: (batch_size, n_steps, n_input)
+    # Required shape: &#039;n_steps&#039; tensors list of shape (batch_size, n_input)
+    
+    # Permuting batch_size and n_steps
+    x = tf.transpose(x, [1, 0, 2])
+    # Reshaping to (n_steps*batch_size, n_input)
+    x = tf.reshape(x, [-1, n_input])
+    # Split to get a list of &#039;n_steps&#039; tensors of shape (batch_size, n_input)
+    x = tf.split(0, n_steps, x)
+
+    # Define a lstm cell with tensorflow
+    lstm_cell = rnn_cell.BasicLSTMCell(n_hidden, forget_bias=1.0)
+
+    # Get lstm cell output
+    outputs, states = rnn.rnn(lstm_cell, x, dtype=tf.float32)
+
+    # Linear activation, using rnn inner loop last output
+    return tf.matmul(outputs[-1], weights[&#039;out&#039;]) + biases[&#039;out&#039;]
+
+pred = RNN(x, weights, biases)
+
+# Define loss and optimizer
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+
+# Evaluate model
+correct_pred = tf.equal(tf.argmax(pred,1), tf.argmax(y,1))
+accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+
+# Initializing the variables
+init = tf.initialize_all_variables()
+</pre></p>
+<p>Here we just adjust our data to use it in building our RNN by using the rnn and rnn_cell modules that we just imported it makes us able to make a basic RNN with specs we define.</p>
+<p>So we make the input more flatten the list of pixels that are 28*28 for each input pic.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+# Launch the graph
+with tf.Session() as sess:
+    sess.run(init)
+    step = 1
+    # Keep training until reach max iterations
+    while step * batch_size &lt; training_iters:
+        batch_x, batch_y = mnist.train.next_batch(batch_size)
+        # Reshape data to get 28 seq of 28 elements
+        batch_x = batch_x.reshape((batch_size, n_steps, n_input))
+        # Run optimization op (backprop)
+        sess.run(optimizer, feed_dict={x: batch_x, y: batch_y})
+        if step % display_step == 0:
+            # Calculate batch accuracy
+            acc = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
+            # Calculate batch loss
+            loss = sess.run(cost, feed_dict={x: batch_x, y: batch_y})
+            print (&quot;Iter &quot; + str(step*batch_size) + &quot;, Minibatch Loss= &quot; + \
+                  &quot;{:.6f}&quot;.format(loss) + &quot;, Training Accuracy= &quot; + \
+                  &quot;{:.5f}&quot;.format(acc))
+        step += 1
+    print(&quot;Optimization Finished!&quot;)
+
+    # Calculate accuracy for 128 mnist test images
+    test_len = 128
+    test_data = mnist.test.images[:test_len].reshape((-1, n_steps, n_input))
+    test_label = mnist.test.labels[:test_len]
+    print (&quot;Testing Accuracy:&quot;, \
+        sess.run(accuracy, feed_dict={x: test_data, y: test_label}))
+</pre><br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+Iter 12800, Minibatch Loss= 0.305791, Training Accuracy= 0.90625
+Iter 25600, Minibatch Loss= 0.252651, Training Accuracy= 0.92969
+Iter 38400, Minibatch Loss= 0.203888, Training Accuracy= 0.93750
+Iter 51200, Minibatch Loss= 0.097179, Training Accuracy= 0.96094
+Iter 64000, Minibatch Loss= 0.091221, Training Accuracy= 0.97656
+Iter 76800, Minibatch Loss= 0.176814, Training Accuracy= 0.95312
+Iter 89600, Minibatch Loss= 0.110684, Training Accuracy= 0.96875
+Optimization Finished!
+Testing Accuracy: 0.992188
+</pre></p>
+<p>After we defined the data inputs and our RNN, It&#8217;s time to begin TRAINING: first, we make our session to use it to make our computations happens, we run through our data in the sequential manner, we get them into pieces every piece is sized by the batch size that we defined, then we take every piece and feed it to our optimizer and calculate our accuracy and error and repeat it by feeding new chunks, and so on in this process our accuracy getting better the more we feed it the more our accuracy getting better.</p>
+<p>Testing accuracy 99.2%! Over 97% the result is very acceptable. The best models can get to over 99.7% accuracy! (For more information, have a look at this <a href="http://rodrigob.github.io/are_we_there_yet/build/classification_datasets_results.html" target="_blank">list of results</a>).</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+sess.close()
+</pre></p>
+<p>After we finished our job we close the session. Goodnight TensorFlow!</p>
+<p>Are you interested in object classification? Give a look to my post <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/" target="_blank">Image recognition tutorial in Python/MXNet using deep convolutional</a>.<br />
+To learn about neural networks in general, Michael Nielsen&#8217;s <a href="http://neuralnetworksanddeeplearning.com/chap1.html" target="_blank">free online book</a> is an excellent resource.</p>
+<ul>
+<li>TensorFlow GitHub repository: <a href="https://github.com/ltoscano/tensorflow" target="_blank">https://github.com/ltoscano/tensorflow</a></li>
+<li>TensorFlow Web site: <a href="http://tensorflow.org/" target="_blank">http://tensorflow.org/</a></li>
+</ul>
+	</div><!-- .entry-content -->
+
+	
+			<div class="entry-meta">
+			<ul class="meta-list">
+
+				<!-- Categories -->
+				
+					<li class="meta-cat">
+						<span>Posted in:</span>
+
+						<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" rel="category tag">Programming</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" rel="category tag">Training</a>					</li>
+
+				
+				<!-- Tags -->
+				
+					<li class="meta-tag">
+						<span>Tagged in:</span>
+
+						<span  class="tag">Deep Learning</span>, <span  class="tag">handwritten digit classification</span>, <span  class="tag">introduction tensorflow python</span>, <span  class="tag">LSTM</span>, <span  class="tag">machine learning</span>, <span  class="tag">mnist</span>, <span  class="tag">neural networks</span>, <span  class="tag">recurrent neural network</span>, <span  class="tag">rnn</span>, <span  class="tag">tensor</span>, <span  class="tag">tensorflow</span>					</li>
+
+				
+			</ul><!-- .meta-list -->
+		</div><!-- .entry-meta -->
+	
+</article><!-- #post-## -->
+	<div class="author-profile">
+		<a class="author-profile-avatar" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
+
+		<div class="author-profile-info">
+			<h3 class="author-profile-title">
+									Posted by								lorenzo</h3>
+
+							<div class="author-description">
+					<p>Full-time engineer. I like to write about data science and artificial intelligence.</p>
+				</div>
+			
+			<div class="author-profile-links">
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/"><i class="fa fa-pencil-square"></i> All Posts</a>
+
+							</div>
+		</div><!-- .author-drawer-text -->
+	</div><!-- .author-profile -->
+
+
+			<!-- Comment toggle and share buttons -->
+			<div class="share-comment click">
+
+									<div class="share-icons open">
+						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-5763" class="share-twitter sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-5763" class="share-linkedin sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-5763" class="share-google-plus-1 sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/#print" target="_blank" title="Click to print"><span></span><span class="sharing-screen-reader-text">Click to print (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-5763" class="share-facebook sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+				
+									<a class="comments-toggle button" href="#">
+						<span><i class="fa fa-comments"></i>
+							Leave a comment						</span>
+						<span><i class="fa fa-times"></i> Hide comments</span>
+					</a>
+							</div>
+
+			
+	<div id="comments" class="comments-area click">
+
+		
+		
+				
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/#respond" style="display:none;">Cancel reply</a></small></h3>
+						<form id="commentform" class="comment-form">
+				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&#038;postid=5763&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=monsterid&#038;greeting=Vuoi+commentare%3F&#038;greeting_reply=Leave+a+Reply+to+%25s&#038;color_scheme=light&#038;lang=en_US&#038;jetpack_version=4.9&#038;sig=57cdb102e3bd2977d426f6e6b72fcdc16d2f5dc3#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Fgentle-introduction-to-tensorflow-with-python-and-rnn%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+				<!--[if !IE]><!-->
+				<script>
+					document.addEventListener( 'DOMContentLoaded', function () {
+						var commentForms = document.getElementsByClassName( 'jetpack_remote_comment' );
+						for ( var i = 0; i < commentForms.length; i++ ) {
+							commentForms[i].allowTransparency = false;
+							commentForms[i].scrolling = 'no';
+						}
+					} );
+				</script>
+				<!--<![endif]-->
+			</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+
+		
+	</div><!-- #comments -->
+
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area">
+		<style type="text/css">
+.qtranxs_widget ul { margin: 0; }
+.qtranxs_widget ul li
+{
+display: inline; /* horizontal list, use "list-item" or other appropriate value for vertical list */
+list-style-type: none; /* use "initial" or other to enable bullets */
+margin: 0 5px 0 0; /* adjust spacing between items */
+opacity: 0.5;
+-o-transition: 1s ease opacity;
+-moz-transition: 1s ease opacity;
+-webkit-transition: 1s ease opacity;
+transition: 1s ease opacity;
+}
+/* .qtranxs_widget ul li span { margin: 0 5px 0 0; } */ /* other way to control spacing */
+.qtranxs_widget ul li.active { opacity: 0.8; }
+.qtranxs_widget ul li:hover { opacity: 1; }
+.qtranxs_widget img { box-shadow: none; vertical-align: middle; display: initial; }
+.qtranxs_flag { height:12px; width:18px; display:block; }
+.qtranxs_flag_and_text { padding-left:20px; }
+.qtranxs_flag span { display:none; }
+</style>
+<aside id="qtranslate-2" class="widget qtranxs_widget"><h2 class="widget-title">Language:</h2>
+<ul class="language-chooser language-chooser-image qtranxs_language_chooser" id="qtranslate-2-chooser">
+<li class="lang-it"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/gentle-introduction-to-tensorflow-with-python-and-rnn/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
+<li class="lang-en active"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
+</ul><div class="qtranxs_widget_end"></div>
+</aside><aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h2 class="widget-title">Subscribe to Blog via Email</h2>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>Subscribe to Receive E-mail Notification of New Posts.</p>
+</div>					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field-blog_subscription-3">
+							Email Address						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-3" placeholder="Email Address" />
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe" />
+						<input type="hidden" name="source" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/" />
+						<input type="hidden" name="sub-type" value="widget" />
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3" />
+												<input type="submit" value="Subscribe" name="jetpack_subscriptions_widget" />
+					</p>
+							</form>
+
+			<script>
+			/*
+			Custom functionality for safari and IE
+			 */
+			(function( d ) {
+				// In case the placeholder functionality is available we remove labels
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.querySelector( 'label[for=subscribe-field-blog_subscription-3]' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+
+				// Make sure the email value is filled in before allowing submit
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'),
+					input = d.getElementById('subscribe-field-blog_subscription-3'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+
+							return false;
+						}
+					};
+
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recents</h2>		<ul>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
+						</li>
+				</ul>
+		</aside>		<aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>		<ul>
+	<li class="cat-item cat-item-10"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" >API generation</a>
+</li>
+	<li class="cat-item cat-item-333"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/data-engineering/" >Data Engineering</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" >Data Mining</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" >Data visualization</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" >Deep Learning</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" >Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" >Programming</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" >Tools</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" >Training</a>
+</li>
+		</ul>
+</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h2 class="widget-title">My Twitter</h2><a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="EN" data-partner="jetpack" href="https://twitter.com/BEmatic">My Tweets</a></aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" class="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+
+		<input type="text" value="" name="s" id="s" class="search-input" placeholder="Search here..." />
+
+		<button type="submit" id="searchsubmit">
+			<i class="fa fa-search"></i> <span>Search</span>
+		</button>
+	</div>
+</form></aside>	</div><!-- #secondary .widget-area -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+	<!-- Next and previous post links -->
+	
+		<nav class="post-navigation">
+			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?resize=450%2C280&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Next</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" rel="prev">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</a></div><span>02/11/2016</span></div></div>
+			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/apache-ecosystem.jpg?resize=450%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Previous</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/" rel="next">Understanding Apache Ecosystem: stream processing</a></div><span>18/11/2016</span></div></div>		</nav><!-- .post-navigation -->
+	
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="container">
+
+					<div class="footer-widgets">
+				<aside id="text-2" class="widget widget_text"><h2 class="widget-title">Welcome</h2>			<div class="textwidget">This site is a collection of personal notes both in English and Italian about machine learning and cognitive computing. Enjoy the reading!
+<hr/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
+<br/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
+<hr/>
+<span class="su-qrcode su-qrcode-align-center"><a target="_blank" title="ApprendimentoAutomatico.it"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog&size=100x100&format=png&margin=0&color=0-0-0&bgcolor=255-255-255" alt="ApprendimentoAutomatico.it" /></a></span></div>
+		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQ9BEBk2V5xptV" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/markpeng/general-tips-for-participating-kaggle-competitions" title="General Tips for participating Kaggle Competitions" target="_blank">General Tips for participating Kaggle Competitions</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/markpeng">Mark Peng</a></strong> </div></div>
+		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archives</h2>		<ul>
+			<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>&nbsp;(8)</li>
+		</ul>
+		</aside>			</div>
+		
+		<div class="footer-bottom">
+			
+			<div class="footer-tagline">
+				<div class="site-info">
+					Ad maiora!				</div>
+			</div><!-- .footer-tagline -->
+		</div><!-- .footer-bottom -->
+	</div><!-- .container -->
+</footer><!-- #colophon -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/en\/gentle-introduction-to-tensorflow-with-python-and-rnn\/":5763};
+	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Your Email Address</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			<script>jQuery( document ).ready( function(){ document.getElementById('jetpack-source_f_name').value = '' });</script>
+			
+			<img style="float: right; display: none" class="loading" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Send Email" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201802'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Janaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var paperback_js_vars = {"ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","load_fixed":"true"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var settings_obj = {"ajax_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"06c07c87f6","confirm":"Are you sure to delete item?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"16afb09915","display_exif":"0","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-login.php?redirect_to=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Fgentle-introduction-to-tensorflow-with-python-and-rnn%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel.js?ver=20170209'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=5763&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.9&sig=57cdb102e3bd2977d426f6e6b72fcdc16d2f5dc3#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Fgentle-introduction-to-tensorflow-with-python-and-rnn%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=5763&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.9&sig=57cdb102e3bd2977d426f6e6b72fcdc16d2f5dc3#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Fgentle-introduction-to-tensorflow-with-python-and-rnn%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type='text/javascript' src='https://stats.wp.com/e-201802.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.9',blog:'114978248',post:'5763',tz:'1',srv:'www.apprendimentoautomatico.it'} ]);
+	_stq.push([ 'clickTrackerInit', '114978248', '5763' ]);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Training &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>Training &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Intuitions on the fly on Blockchain</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/#respond</comments>
+		<pubDate>Mon, 01 May 2017 23:15:47 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Engineering]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[BaaS]]></category>
+		<category><![CDATA[bitcoin]]></category>
+		<category><![CDATA[block]]></category>
+		<category><![CDATA[blockchain]]></category>
+		<category><![CDATA[bricks]]></category>
+		<category><![CDATA[chain]]></category>
+		<category><![CDATA[cloud]]></category>
+		<category><![CDATA[cryptocurrency]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[distributed]]></category>
+		<category><![CDATA[ecosystem]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[game theory]]></category>
+		<category><![CDATA[ledger]]></category>
+		<category><![CDATA[microsoft]]></category>
+		<category><![CDATA[miner]]></category>
+		<category><![CDATA[mining]]></category>
+		<category><![CDATA[p2p]]></category>
+		<category><![CDATA[payment]]></category>
+		<category><![CDATA[peer]]></category>
+		<category><![CDATA[service]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6142</guid>
+		<description><![CDATA[<p>An increasing number of articles suggest fascinating combinations of Blockchain and Machine Learning. It could be useful to introduce some [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6142</post-id>	</item>
+		<item>
+		<title>Hype cycle e Apprendimento Automatico: in che fase siamo?</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/#respond</comments>
+		<pubDate>Wed, 05 Apr 2017 22:53:44 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[apprendimento automatico]]></category>
+		<category><![CDATA[apprendimento profondo]]></category>
+		<category><![CDATA[ciclo]]></category>
+		<category><![CDATA[esagerazione]]></category>
+		<category><![CDATA[gartner]]></category>
+		<category><![CDATA[hype cycle]]></category>
+		<category><![CDATA[illusione]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6133</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6133</post-id>	</item>
+		<item>
+		<title>A gentle introduction to TensorFlow with python (and RNN)</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/#respond</comments>
+		<pubDate>Fri, 18 Nov 2016 08:44:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[handwritten digit classification]]></category>
+		<category><![CDATA[introduction tensorflow python]]></category>
+		<category><![CDATA[LSTM]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[mnist]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[recurrent neural network]]></category>
+		<category><![CDATA[rnn]]></category>
+		<category><![CDATA[tensor]]></category>
+		<category><![CDATA[tensorflow]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5763</guid>
+		<description><![CDATA[<p>What is TensorFlow? It's an open source library made by google for being used in Machine Learning (ML) problems, specially [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/">A gentle introduction to TensorFlow with python (and RNN)</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/gentle-introduction-to-tensorflow-with-python-and-rnn/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5763</post-id>	</item>
+		<item>
+		<title>Image recognition tutorial in Python/MXNet using deep convolutional</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comments</comments>
+		<pubDate>Tue, 04 Oct 2016 18:38:56 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cnn]]></category>
+		<category><![CDATA[convolutional]]></category>
+		<category><![CDATA[FC]]></category>
+		<category><![CDATA[feature extraction]]></category>
+		<category><![CDATA[fully connected]]></category>
+		<category><![CDATA[image]]></category>
+		<category><![CDATA[image tagging]]></category>
+		<category><![CDATA[imagenet]]></category>
+		<category><![CDATA[layer]]></category>
+		<category><![CDATA[mxnet]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[polling]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[recognition]]></category>
+		<category><![CDATA[subsampling]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587</guid>
+		<description><![CDATA[<p>I would like to introduce in this post some specific CNN implementations which are able to offer a cognitive image [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/">Image recognition tutorial in Python/MXNet using deep convolutional</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5587</post-id>	</item>
+		<item>
+		<title>Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/#respond</comments>
+		<pubDate>Thu, 22 Sep 2016 07:48:27 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cnn]]></category>
+		<category><![CDATA[convolution]]></category>
+		<category><![CDATA[convolutional]]></category>
+		<category><![CDATA[DMLC]]></category>
+		<category><![CDATA[dnn]]></category>
+		<category><![CDATA[feature extraction]]></category>
+		<category><![CDATA[GPU]]></category>
+		<category><![CDATA[hubel]]></category>
+		<category><![CDATA[identificazione oggetti immagini]]></category>
+		<category><![CDATA[ILSVRC]]></category>
+		<category><![CDATA[imagenet]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[mechanical turk]]></category>
+		<category><![CDATA[mobile]]></category>
+		<category><![CDATA[mxnet]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[polling]]></category>
+		<category><![CDATA[pre-addestrati]]></category>
+		<category><![CDATA[preprocessing]]></category>
+		<category><![CDATA[programmazione dichiarativa]]></category>
+		<category><![CDATA[reti convoluzionali]]></category>
+		<category><![CDATA[sift]]></category>
+		<category><![CDATA[softmax]]></category>
+		<category><![CDATA[subsampling]]></category>
+		<category><![CDATA[surf]]></category>
+		<category><![CDATA[svm]]></category>
+		<category><![CDATA[turi]]></category>
+		<category><![CDATA[wiesel]]></category>
+		<category><![CDATA[wordnet]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5436</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/">Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5436</post-id>	</item>
+		<item>
+		<title>Fondamenti: trasformazioni con riduzione di dimensionalità</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
+		<pubDate>Sun, 24 Jul 2016 09:03:30 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[allocation]]></category>
+		<category><![CDATA[allocazione]]></category>
+		<category><![CDATA[analisi]]></category>
+		<category><![CDATA[analysis]]></category>
+		<category><![CDATA[attributo]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[decomposizione]]></category>
+		<category><![CDATA[dimensionalità]]></category>
+		<category><![CDATA[dirichlet]]></category>
+		<category><![CDATA[distributional semantics]]></category>
+		<category><![CDATA[distribuzionale]]></category>
+		<category><![CDATA[DTM]]></category>
+		<category><![CDATA[HDP]]></category>
+		<category><![CDATA[hierarchical]]></category>
+		<category><![CDATA[information retrieval]]></category>
+		<category><![CDATA[ipotesi]]></category>
+		<category><![CDATA[latent]]></category>
+		<category><![CDATA[latente]]></category>
+		<category><![CDATA[LDA]]></category>
+		<category><![CDATA[LSA]]></category>
+		<category><![CDATA[LSI]]></category>
+		<category><![CDATA[matrice]]></category>
+		<category><![CDATA[Natural Language Processing]]></category>
+		<category><![CDATA[NMF]]></category>
+		<category><![CDATA[peso]]></category>
+		<category><![CDATA[probabilistico]]></category>
+		<category><![CDATA[probabilità]]></category>
+		<category><![CDATA[process]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[R]]></category>
+		<category><![CDATA[RI]]></category>
+		<category><![CDATA[riduzione dimensionalità]]></category>
+		<category><![CDATA[riduzione dimensione topic modeling]]></category>
+		<category><![CDATA[RP]]></category>
+		<category><![CDATA[semantic]]></category>
+		<category><![CDATA[semantica]]></category>
+		<category><![CDATA[similarità]]></category>
+		<category><![CDATA[simplesso]]></category>
+		<category><![CDATA[sparsa]]></category>
+		<category><![CDATA[sparsità]]></category>
+		<category><![CDATA[spazio]]></category>
+		<category><![CDATA[statistica]]></category>
+		<category><![CDATA[TDM]]></category>
+		<category><![CDATA[termini]]></category>
+		<category><![CDATA[TF-IDF]]></category>
+		<category><![CDATA[topic]]></category>
+		<category><![CDATA[trasformazioni]]></category>
+		<category><![CDATA[troncamento]]></category>
+		<category><![CDATA[valori singolari]]></category>
+		<category><![CDATA[vettore]]></category>
+		<category><![CDATA[vocabolario]]></category>
+		<category><![CDATA[word embedding]]></category>
+		<category><![CDATA[word2vec]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1699</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1699</post-id>	</item>
+		<item>
+		<title>Protected: Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/#respond</comments>
+		<pubDate>Sat, 16 Jul 2016 20:15:35 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Training]]></category>
+		<category><![CDATA[bayes]]></category>
+		<category><![CDATA[beta]]></category>
+		<category><![CDATA[binomiale]]></category>
+		<category><![CDATA[classificatore]]></category>
+		<category><![CDATA[densità]]></category>
+		<category><![CDATA[dirichlet]]></category>
+		<category><![CDATA[discriminante]]></category>
+		<category><![CDATA[distribuzione]]></category>
+		<category><![CDATA[eulero]]></category>
+		<category><![CDATA[fondamenti]]></category>
+		<category><![CDATA[funzione di massa]]></category>
+		<category><![CDATA[funzione di probabilità]]></category>
+		<category><![CDATA[multinomiale]]></category>
+		<category><![CDATA[naive bayes]]></category>
+		<category><![CDATA[nozioni]]></category>
+		<category><![CDATA[pdf]]></category>
+		<category><![CDATA[pmf]]></category>
+		<category><![CDATA[probabilità]]></category>
+		<category><![CDATA[probabilità composta]]></category>
+		<category><![CDATA[probabilità totale]]></category>
+		<category><![CDATA[simplesso]]></category>
+		<category><![CDATA[spazio campionario]]></category>
+		<category><![CDATA[teoria probabilita]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1912</guid>
+		<description><![CDATA[<p>There is no excerpt because this is a protected post.</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/">Protected: Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1912</post-id>	</item>
+		<item>
+		<title>Fondamenti: schemi di rappresentazione e trasformazioni</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/#respond</comments>
+		<pubDate>Fri, 08 Jul 2016 23:11:41 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[bag of words]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[dimensionalità]]></category>
+		<category><![CDATA[idf]]></category>
+		<category><![CDATA[inverse document frequency]]></category>
+		<category><![CDATA[metrica di pesatura]]></category>
+		<category><![CDATA[paridimensionale]]></category>
+		<category><![CDATA[pesi]]></category>
+		<category><![CDATA[rappresentazione]]></category>
+		<category><![CDATA[rappresentazione e trasformazione documenti]]></category>
+		<category><![CDATA[riduzione di dimensionalità]]></category>
+		<category><![CDATA[tfidf]]></category>
+		<category><![CDATA[trasformazione]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1034</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/">Fondamenti: schemi di rappresentazione e trasformazioni</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1034</post-id>	</item>
+		<item>
+		<title>Causalità, dati e apprendimento automatico</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/#respond</comments>
+		<pubDate>Fri, 08 Jul 2016 00:18:52 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[causalità]]></category>
+		<category><![CDATA[causalita data science]]></category>
+		<category><![CDATA[cognitive computing]]></category>
+		<category><![CDATA[correlazione]]></category>
+		<category><![CDATA[correlazioni spurie]]></category>
+		<category><![CDATA[elaborazione cognitiva]]></category>
+		<category><![CDATA[knime]]></category>
+		<category><![CDATA[mlp]]></category>
+		<category><![CDATA[nlp]]></category>
+		<category><![CDATA[perceptrone]]></category>
+		<category><![CDATA[rete neurale]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=500</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/">Causalità, dati e apprendimento automatico</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">500</post-id>	</item>
+		<item>
+		<title>Fondamenti: selezione attributi e rappresentazione dei documenti</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/#respond</comments>
+		<pubDate>Mon, 04 Jul 2016 21:40:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Mining]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[analisi automatica del testo]]></category>
+		<category><![CDATA[attributo]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[curse of dimensionality]]></category>
+		<category><![CDATA[cut-off]]></category>
+		<category><![CDATA[dizionario]]></category>
+		<category><![CDATA[documento]]></category>
+		<category><![CDATA[estrazione attributi]]></category>
+		<category><![CDATA[filtraggio]]></category>
+		<category><![CDATA[gensim]]></category>
+		<category><![CDATA[lemmatizzatore]]></category>
+		<category><![CDATA[matrice documento-termine]]></category>
+		<category><![CDATA[matrice sparsa]]></category>
+		<category><![CDATA[matrice termine-documento]]></category>
+		<category><![CDATA[matrici lessicali]]></category>
+		<category><![CDATA[metriche di pesatura]]></category>
+		<category><![CDATA[modello di rappresentazione]]></category>
+		<category><![CDATA[n-gramma]]></category>
+		<category><![CDATA[Natural Language Processing]]></category>
+		<category><![CDATA[nltk]]></category>
+		<category><![CDATA[normalizzazione]]></category>
+		<category><![CDATA[Pattern]]></category>
+		<category><![CDATA[pesi]]></category>
+		<category><![CDATA[POS tagging]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[rimozione punteggiatura]]></category>
+		<category><![CDATA[SciPy]]></category>
+		<category><![CDATA[stemming]]></category>
+		<category><![CDATA[stop list]]></category>
+		<category><![CDATA[stop word]]></category>
+		<category><![CDATA[text cleaning]]></category>
+		<category><![CDATA[text mining]]></category>
+		<category><![CDATA[token]]></category>
+		<category><![CDATA[topic]]></category>
+		<category><![CDATA[topic modeling]]></category>
+		<category><![CDATA[TreeTagger]]></category>
+		<category><![CDATA[TreeTaggerWrapper]]></category>
+		<category><![CDATA[unigramma]]></category>
+		<category><![CDATA[vocabolario]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=74</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
+	</channel>
+</rss>

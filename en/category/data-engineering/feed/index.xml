@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Data Engineering &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/data-engineering/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>Data Engineering &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Intuitions on the fly on Blockchain</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/#respond</comments>
+		<pubDate>Mon, 01 May 2017 23:15:47 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Engineering]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[BaaS]]></category>
+		<category><![CDATA[bitcoin]]></category>
+		<category><![CDATA[block]]></category>
+		<category><![CDATA[blockchain]]></category>
+		<category><![CDATA[bricks]]></category>
+		<category><![CDATA[chain]]></category>
+		<category><![CDATA[cloud]]></category>
+		<category><![CDATA[cryptocurrency]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[distributed]]></category>
+		<category><![CDATA[ecosystem]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[game theory]]></category>
+		<category><![CDATA[ledger]]></category>
+		<category><![CDATA[microsoft]]></category>
+		<category><![CDATA[miner]]></category>
+		<category><![CDATA[mining]]></category>
+		<category><![CDATA[p2p]]></category>
+		<category><![CDATA[payment]]></category>
+		<category><![CDATA[peer]]></category>
+		<category><![CDATA[service]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6142</guid>
+		<description><![CDATA[<p>An increasing number of articles suggest fascinating combinations of Blockchain and Machine Learning. It could be useful to introduce some [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6142</post-id>	</item>
+		<item>
+		<title>Understanding Apache Ecosystem: stream processing</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/#respond</comments>
+		<pubDate>Fri, 18 Nov 2016 17:00:43 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Engineering]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[Beam]]></category>
+		<category><![CDATA[big data]]></category>
+		<category><![CDATA[cloud]]></category>
+		<category><![CDATA[cloudera]]></category>
+		<category><![CDATA[Flink]]></category>
+		<category><![CDATA[Flume]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[Hadoop]]></category>
+		<category><![CDATA[Kafka]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[Oozie]]></category>
+		<category><![CDATA[Samza]]></category>
+		<category><![CDATA[semi-structured]]></category>
+		<category><![CDATA[Spark]]></category>
+		<category><![CDATA[Sqoop]]></category>
+		<category><![CDATA[Storm]]></category>
+		<category><![CDATA[stream processing]]></category>
+		<category><![CDATA[streaming]]></category>
+		<category><![CDATA[structured]]></category>
+		<category><![CDATA[Thrift]]></category>
+		<category><![CDATA[unstructured]]></category>
+		<category><![CDATA[Кафка]]></category>
+		<category><![CDATA[потоковой обработки слабоструктурированных данных]]></category>
+		<category><![CDATA[структурированных данных]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5775</guid>
+		<description><![CDATA[<p>In this article I will show how a normal big data/machine learning project progresses, taking in account the stream processing [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/">Understanding Apache Ecosystem: stream processing</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/stream-processing-and-analysis-to-move-within-the-apache-ecosystem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5775</post-id>	</item>
+	</channel>
+</rss>

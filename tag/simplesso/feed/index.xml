@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>simplesso &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/simplesso/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>simplesso &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Fondamenti: trasformazioni con riduzione di dimensionalità</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
+		<pubDate>Sun, 24 Jul 2016 09:03:30 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[allocation]]></category>
+		<category><![CDATA[allocazione]]></category>
+		<category><![CDATA[analisi]]></category>
+		<category><![CDATA[analysis]]></category>
+		<category><![CDATA[attributo]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[decomposizione]]></category>
+		<category><![CDATA[dimensionalità]]></category>
+		<category><![CDATA[dirichlet]]></category>
+		<category><![CDATA[distributional semantics]]></category>
+		<category><![CDATA[distribuzionale]]></category>
+		<category><![CDATA[DTM]]></category>
+		<category><![CDATA[HDP]]></category>
+		<category><![CDATA[hierarchical]]></category>
+		<category><![CDATA[information retrieval]]></category>
+		<category><![CDATA[ipotesi]]></category>
+		<category><![CDATA[latent]]></category>
+		<category><![CDATA[latente]]></category>
+		<category><![CDATA[LDA]]></category>
+		<category><![CDATA[LSA]]></category>
+		<category><![CDATA[LSI]]></category>
+		<category><![CDATA[matrice]]></category>
+		<category><![CDATA[Natural Language Processing]]></category>
+		<category><![CDATA[NMF]]></category>
+		<category><![CDATA[peso]]></category>
+		<category><![CDATA[probabilistico]]></category>
+		<category><![CDATA[probabilità]]></category>
+		<category><![CDATA[process]]></category>
+		<category><![CDATA[query]]></category>
+		<category><![CDATA[R]]></category>
+		<category><![CDATA[RI]]></category>
+		<category><![CDATA[riduzione dimensionalità]]></category>
+		<category><![CDATA[riduzione dimensione topic modeling]]></category>
+		<category><![CDATA[RP]]></category>
+		<category><![CDATA[semantic]]></category>
+		<category><![CDATA[semantica]]></category>
+		<category><![CDATA[similarità]]></category>
+		<category><![CDATA[simplesso]]></category>
+		<category><![CDATA[sparsa]]></category>
+		<category><![CDATA[sparsità]]></category>
+		<category><![CDATA[spazio]]></category>
+		<category><![CDATA[statistica]]></category>
+		<category><![CDATA[TDM]]></category>
+		<category><![CDATA[termini]]></category>
+		<category><![CDATA[TF-IDF]]></category>
+		<category><![CDATA[topic]]></category>
+		<category><![CDATA[trasformazioni]]></category>
+		<category><![CDATA[troncamento]]></category>
+		<category><![CDATA[valori singolari]]></category>
+		<category><![CDATA[vettore]]></category>
+		<category><![CDATA[vocabolario]]></category>
+		<category><![CDATA[word embedding]]></category>
+		<category><![CDATA[word2vec]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1699</guid>
+		<description><![CDATA[<p>Nei post precedenti della serie Fondamenti si è mostrato come un generico testo possa essere rappresentato dall'insieme delle sue parole, trascurando [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1699</post-id>	</item>
+		<item>
+		<title>Protetto: Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/#respond</comments>
+		<pubDate>Sat, 16 Jul 2016 20:15:35 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Training]]></category>
+		<category><![CDATA[bayes]]></category>
+		<category><![CDATA[beta]]></category>
+		<category><![CDATA[binomiale]]></category>
+		<category><![CDATA[classificatore]]></category>
+		<category><![CDATA[densità]]></category>
+		<category><![CDATA[dirichlet]]></category>
+		<category><![CDATA[discriminante]]></category>
+		<category><![CDATA[distribuzione]]></category>
+		<category><![CDATA[eulero]]></category>
+		<category><![CDATA[fondamenti]]></category>
+		<category><![CDATA[funzione di massa]]></category>
+		<category><![CDATA[funzione di probabilità]]></category>
+		<category><![CDATA[multinomiale]]></category>
+		<category><![CDATA[naive bayes]]></category>
+		<category><![CDATA[nozioni]]></category>
+		<category><![CDATA[pdf]]></category>
+		<category><![CDATA[pmf]]></category>
+		<category><![CDATA[probabilità]]></category>
+		<category><![CDATA[probabilità composta]]></category>
+		<category><![CDATA[probabilità totale]]></category>
+		<category><![CDATA[simplesso]]></category>
+		<category><![CDATA[spazio campionario]]></category>
+		<category><![CDATA[teoria probabilita]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1912</guid>
+		<description><![CDATA[<p>Non è disponibile alcun riassunto in quanto si tratta di un articolo protetto.</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/">Protetto: Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/recap-nozioni-per-applicazioni-su-modelli-probabilistici/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1912</post-id>	</item>
+	</channel>
+</rss>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Python &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/python/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>Python &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/#respond</comments>
+		<pubDate>Sun, 01 Jan 2017 22:25:03 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[AUC]]></category>
+		<category><![CDATA[boosted]]></category>
+		<category><![CDATA[boosting]]></category>
+		<category><![CDATA[breadth]]></category>
+		<category><![CDATA[categorical]]></category>
+		<category><![CDATA[classification]]></category>
+		<category><![CDATA[continous]]></category>
+		<category><![CDATA[cross validation]]></category>
+		<category><![CDATA[decision tree]]></category>
+		<category><![CDATA[depth]]></category>
+		<category><![CDATA[ensemble]]></category>
+		<category><![CDATA[forest]]></category>
+		<category><![CDATA[gbm]]></category>
+		<category><![CDATA[gradient]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[grid search]]></category>
+		<category><![CDATA[heuristic]]></category>
+		<category><![CDATA[hyperparameter]]></category>
+		<category><![CDATA[hypothesis]]></category>
+		<category><![CDATA[information gain]]></category>
+		<category><![CDATA[learning rate]]></category>
+		<category><![CDATA[model]]></category>
+		<category><![CDATA[multivariate]]></category>
+		<category><![CDATA[prediction]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[regression]]></category>
+		<category><![CDATA[root]]></category>
+		<category><![CDATA[rules]]></category>
+		<category><![CDATA[scikit-learn]]></category>
+		<category><![CDATA[supervised]]></category>
+		<category><![CDATA[training set]]></category>
+		<category><![CDATA[univariate]]></category>
+		<category><![CDATA[weights]]></category>
+		<category><![CDATA[xgboost]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6032</guid>
+		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6032</post-id>	</item>
+		<item>
+		<title>Image recognition tutorial in Python/MXNet using deep convolutional</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/#comments</comments>
+		<pubDate>Tue, 04 Oct 2016 18:38:56 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cnn]]></category>
+		<category><![CDATA[convolutional]]></category>
+		<category><![CDATA[FC]]></category>
+		<category><![CDATA[feature extraction]]></category>
+		<category><![CDATA[fully connected]]></category>
+		<category><![CDATA[image]]></category>
+		<category><![CDATA[image tagging]]></category>
+		<category><![CDATA[imagenet]]></category>
+		<category><![CDATA[layer]]></category>
+		<category><![CDATA[mxnet]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[polling]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[recognition]]></category>
+		<category><![CDATA[subsampling]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587</guid>
+		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/">Image recognition tutorial in Python/MXNet using deep convolutional</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5587</post-id>	</item>
+		<item>
+		<title>Exploring Tweets: a python-based demonstrator</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/exploring-tweets-python-based-demonstrator/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/exploring-tweets-python-based-demonstrator/#respond</comments>
+		<pubDate>Fri, 30 Sep 2016 20:31:38 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data visualization]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[influencers]]></category>
+		<category><![CDATA[kaggle]]></category>
+		<category><![CDATA[LDA]]></category>
+		<category><![CDATA[network data]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[social networks]]></category>
+		<category><![CDATA[topics]]></category>
+		<category><![CDATA[tweets]]></category>
+		<category><![CDATA[twitter]]></category>
+		<category><![CDATA[visual network]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5564</guid>
+		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/exploring-tweets-python-based-demonstrator/">Exploring Tweets: a python-based demonstrator</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/exploring-tweets-python-based-demonstrator/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5564</post-id>	</item>
+		<item>
+		<title>Filtraggio delle stop word con nodo custom in Knime</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/#respond</comments>
+		<pubDate>Mon, 29 Aug 2016 15:42:44 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[filtering]]></category>
+		<category><![CDATA[knime]]></category>
+		<category><![CDATA[knime stopword]]></category>
+		<category><![CDATA[node]]></category>
+		<category><![CDATA[pandas]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[stop list]]></category>
+		<category><![CDATA[stop word]]></category>
+		<category><![CDATA[token]]></category>
+		<category><![CDATA[tokenizer]]></category>
+		<category><![CDATA[wrapper]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5377</guid>
+		<description><![CDATA[<p>Un'operazione di filtraggio importante, nella processazione dei dataset, consiste nella rimozione delle stop word. In questo post propongo due esempi [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/">Filtraggio delle stop word con nodo custom in Knime</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5377</post-id>	</item>
+		<item>
+		<title>Fondamenti: selezione attributi e rappresentazione dei documenti</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#respond</comments>
+		<pubDate>Mon, 04 Jul 2016 21:40:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Mining]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[analisi automatica del testo]]></category>
+		<category><![CDATA[attributo]]></category>
+		<category><![CDATA[bow]]></category>
+		<category><![CDATA[corpus]]></category>
+		<category><![CDATA[curse of dimensionality]]></category>
+		<category><![CDATA[cut-off]]></category>
+		<category><![CDATA[dizionario]]></category>
+		<category><![CDATA[documento]]></category>
+		<category><![CDATA[estrazione attributi]]></category>
+		<category><![CDATA[filtraggio]]></category>
+		<category><![CDATA[gensim]]></category>
+		<category><![CDATA[lemmatizzatore]]></category>
+		<category><![CDATA[matrice documento-termine]]></category>
+		<category><![CDATA[matrice sparsa]]></category>
+		<category><![CDATA[matrice termine-documento]]></category>
+		<category><![CDATA[matrici lessicali]]></category>
+		<category><![CDATA[metriche di pesatura]]></category>
+		<category><![CDATA[modello di rappresentazione]]></category>
+		<category><![CDATA[n-gramma]]></category>
+		<category><![CDATA[Natural Language Processing]]></category>
+		<category><![CDATA[nltk]]></category>
+		<category><![CDATA[normalizzazione]]></category>
+		<category><![CDATA[Pattern]]></category>
+		<category><![CDATA[pesi]]></category>
+		<category><![CDATA[POS tagging]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[rimozione punteggiatura]]></category>
+		<category><![CDATA[SciPy]]></category>
+		<category><![CDATA[stemming]]></category>
+		<category><![CDATA[stop list]]></category>
+		<category><![CDATA[stop word]]></category>
+		<category><![CDATA[text cleaning]]></category>
+		<category><![CDATA[text mining]]></category>
+		<category><![CDATA[token]]></category>
+		<category><![CDATA[topic]]></category>
+		<category><![CDATA[topic modeling]]></category>
+		<category><![CDATA[TreeTagger]]></category>
+		<category><![CDATA[TreeTaggerWrapper]]></category>
+		<category><![CDATA[unigramma]]></category>
+		<category><![CDATA[vocabolario]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=74</guid>
+		<description><![CDATA[<p>Questo post è il primo di una serie denominata "Fondamenti". L'obiettivo della serie è fornire una panoramica delle principali tecniche [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
+	</channel>
+</rss>

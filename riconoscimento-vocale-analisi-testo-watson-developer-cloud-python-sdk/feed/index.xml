@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Commenti a: Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+	<item>
+		<title>Di: Mattia</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comment-4</link>
+		<dc:creator><![CDATA[Mattia]]></dc:creator>
+		<pubDate>Mon, 16 Jan 2017 21:09:57 +0000</pubDate>
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5639#comment-4</guid>
+		<description><![CDATA[post molto interessante, grazie Lorenzo
+
+resto perplesso rispetto alla scelta costo per evento dell&#039;API Alchemy; se volessi analizzare in modo puntuale i commenti a un video penso che questo approccio porterebbe a costi davvero eccessivi.
+
+in ogni caso la piattaforma IBM Watson si posiziona davvero molto bene]]></description>
+		<content:encoded><![CDATA[<p>post molto interessante, grazie Lorenzo</p>
+<p>resto perplesso rispetto alla scelta costo per evento dell&#8217;API Alchemy; se volessi analizzare in modo puntuale i commenti a un video penso che questo approccio porterebbe a costi davvero eccessivi.</p>
+<p>in ogni caso la piattaforma IBM Watson si posiziona davvero molto bene</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

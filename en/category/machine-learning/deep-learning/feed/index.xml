@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Deep Learning &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>Deep Learning &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Image recognition tutorial in Python/MXNet using deep convolutional</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comments</comments>
+		<pubDate>Tue, 04 Oct 2016 18:38:56 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cnn]]></category>
+		<category><![CDATA[convolutional]]></category>
+		<category><![CDATA[FC]]></category>
+		<category><![CDATA[feature extraction]]></category>
+		<category><![CDATA[fully connected]]></category>
+		<category><![CDATA[image]]></category>
+		<category><![CDATA[image tagging]]></category>
+		<category><![CDATA[imagenet]]></category>
+		<category><![CDATA[layer]]></category>
+		<category><![CDATA[mxnet]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[polling]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[recognition]]></category>
+		<category><![CDATA[subsampling]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587</guid>
+		<description><![CDATA[<p>I would like to introduce in this post some specific CNN implementations which are able to offer a cognitive image [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/">Image recognition tutorial in Python/MXNet using deep convolutional</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5587</post-id>	</item>
+		<item>
+		<title>Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/#respond</comments>
+		<pubDate>Thu, 22 Sep 2016 07:48:27 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cnn]]></category>
+		<category><![CDATA[convolution]]></category>
+		<category><![CDATA[convolutional]]></category>
+		<category><![CDATA[DMLC]]></category>
+		<category><![CDATA[dnn]]></category>
+		<category><![CDATA[feature extraction]]></category>
+		<category><![CDATA[GPU]]></category>
+		<category><![CDATA[hubel]]></category>
+		<category><![CDATA[identificazione oggetti immagini]]></category>
+		<category><![CDATA[ILSVRC]]></category>
+		<category><![CDATA[imagenet]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[mechanical turk]]></category>
+		<category><![CDATA[mobile]]></category>
+		<category><![CDATA[mxnet]]></category>
+		<category><![CDATA[neural networks]]></category>
+		<category><![CDATA[polling]]></category>
+		<category><![CDATA[pre-addestrati]]></category>
+		<category><![CDATA[preprocessing]]></category>
+		<category><![CDATA[programmazione dichiarativa]]></category>
+		<category><![CDATA[reti convoluzionali]]></category>
+		<category><![CDATA[sift]]></category>
+		<category><![CDATA[softmax]]></category>
+		<category><![CDATA[subsampling]]></category>
+		<category><![CDATA[surf]]></category>
+		<category><![CDATA[svm]]></category>
+		<category><![CDATA[turi]]></category>
+		<category><![CDATA[wiesel]]></category>
+		<category><![CDATA[wordnet]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5436</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/">Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5436</post-id>	</item>
+		<item>
+		<title>Protected: Magellano an open source Cognitive Computing demonstrator</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/#respond</comments>
+		<pubDate>Mon, 29 Aug 2016 22:40:53 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data visualization]]></category>
+		<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[cognitive]]></category>
+		<category><![CDATA[cognitive computing]]></category>
+		<category><![CDATA[concepts]]></category>
+		<category><![CDATA[conceptual]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[deep networks]]></category>
+		<category><![CDATA[demonstrator]]></category>
+		<category><![CDATA[LDA]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[map]]></category>
+		<category><![CDATA[neural network]]></category>
+		<category><![CDATA[opensource]]></category>
+		<category><![CDATA[sankey]]></category>
+		<category><![CDATA[shallow network]]></category>
+		<category><![CDATA[topics]]></category>
+		<category><![CDATA[watson]]></category>
+		<category><![CDATA[word2vec]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5413</guid>
+		<description><![CDATA[<p>There is no excerpt because this is a protected post.</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/">Protected: Magellano an open source Cognitive Computing demonstrator</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/magellano-an-open-source-cognitive-computing-demonstrator/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5413</post-id>	</item>
+		<item>
+		<title>Causalità, dati e apprendimento automatico</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/#respond</comments>
+		<pubDate>Fri, 08 Jul 2016 00:18:52 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[causalità]]></category>
+		<category><![CDATA[causalita data science]]></category>
+		<category><![CDATA[cognitive computing]]></category>
+		<category><![CDATA[correlazione]]></category>
+		<category><![CDATA[correlazioni spurie]]></category>
+		<category><![CDATA[elaborazione cognitiva]]></category>
+		<category><![CDATA[knime]]></category>
+		<category><![CDATA[mlp]]></category>
+		<category><![CDATA[nlp]]></category>
+		<category><![CDATA[perceptrone]]></category>
+		<category><![CDATA[rete neurale]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=500</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/">Causalità, dati e apprendimento automatico</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">500</post-id>	</item>
+	</channel>
+</rss>

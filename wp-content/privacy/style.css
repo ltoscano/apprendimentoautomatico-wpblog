@@ -1,0 +1,135 @@
+*,::before,::after {
+box-sizing:border-box;
+}
+
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,th,td {
+margin:0;
+padding:0;
+}
+
+p,li,span,div,label {
+color:#000;
+}
+
+#headerPopUp {
+background-color:#ebebeb;
+font-size:26px;
+height:49px;
+left:0;
+line-height:49px;
+position:fixed;
+text-align:center;
+top:0;
+width:100%;
+z-index:7;
+}
+
+a {
+color:#008cba;
+text-decoration-line:none;
+text-decoration-style:solid;
+line-height:inherit;
+background-color:transparent;
+}
+
+a:hover {
+cursor:pointer;
+color:#3281a8;
+text-decoration-line:none;
+text-decoration-style:solid;
+}
+
+a:hover,a:focus {
+color:#0078a0;
+}
+
+a:link,a:visited {
+color:#0087c1;
+text-decoration-line:none;
+text-decoration-style:solid;
+}
+
+a:active,a:hover {
+outline-width:0;
+outline-style:none;
+}
+
+.float-left {
+float:left;
+}
+
+#headerPopUp a.logoPopUp {
+padding-left:10px;
+display:block;
+height:49px;
+width:49px;
+font-size:14px;
+}
+
+.mrl {
+margin-right:15px;
+}
+
+.float-right {
+float:right;
+}
+
+#headerPopUp a.printPopUp {
+color:#0087c1;
+cursor:pointer;
+display:inline-block;
+font-size:14px;
+text-align:left;
+}
+
+html,body {
+height:100%;
+font-size:100%;
+}
+
+body {
+background-color:#fff;
+background-image:none;
+background-repeat:repeat;
+background-attachment:scroll;
+background-position:0 0;
+background-clip:border-box;
+background-origin:padding-box;
+background-size:auto auto;
+line-height:1.5;
+position:relative;
+cursor:auto;
+font-family:"Whitney A", "Whitney B";
+font-weight:400;
+font-style:normal;
+color:#000;
+font-size:1.9rem;
+margin:0;
+padding:0;
+}
+
+strong,b {
+font-weight:700;
+line-height:inherit;
+}
+
+p {
+font-family:inherit;
+font-weight:400;
+font-size:1rem;
+line-height:1.6;
+margin-bottom:1.25rem;
+text-rendering:optimizelegibility;
+}
+
+#contentPopUp {
+font-size:14px;
+margin-top:49px;
+padding:40px;
+}
+
+ul {
+font-size:1rem;
+line-height:1.6;
+margin-left:20px;
+}

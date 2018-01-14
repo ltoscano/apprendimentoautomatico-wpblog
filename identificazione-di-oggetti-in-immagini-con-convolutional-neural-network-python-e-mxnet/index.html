@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php">
+
+	<title>Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet - Machine Learning &amp; Cognitive</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v4.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Ci sono molti strumenti che permettono di identificare un oggetto in un&#8217;immagine, come ad esempio il modello bag of visual [&hellip;]" />
+<meta name="twitter:title" content="Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet - Machine Learning &amp; Cognitive" />
+<meta name="twitter:site" content="@BEmatic" />
+<meta name="twitter:image" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&#038;ssl=1" />
+<meta name="twitter:creator" content="@BEmatic" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='paperback-style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
+<style id='paperback-style-inline-css' type='text/css'>
+
+		/* Top Nav Background Color */
+		.top-navigation,
+		.secondary-navigation ul.sub-menu {
+			background-color: #343e47;
+		}
+
+		/* Top Nav Text Color */
+		.top-navigation,
+		.top-navigation nav a,
+		.top-navigation li ul li a,
+		.drawer-toggle {
+			color: #ffffff;
+		}
+
+		.main-navigation:not(.secondary-navigation) ul.menu > li.current-menu-item > a {
+			border-color: #f35245;
+		}
+
+		/* Header Background Color */
+		.site-identity {
+			background-color: #ecf1f7;
+		}
+
+		/* Header Text Color */
+		.main-navigation a,
+		.site-title a,
+		.site-description {
+			color: #383f49;
+		}
+
+		/* Accent Color */
+		.hero-cats a,
+		.post-navigation .nav-label,
+		.entry-cats a {
+			background-color: #f35245;
+		}
+
+		.page-numbers.current,
+		.page-numbers:hover,
+		#page #infinite-handle button:hover {
+			background-color: #f35245;
+		}
+
+		/* Footer Background Color */
+		.site-footer {
+			background-color: #343e47;
+		}
+
+		/* Footer Text Color */
+		.site-footer .widget-title,
+		.site-footer a:hover {
+			color: #ffffff;
+		}
+
+		.site-footer,
+		.site-footer a {
+			color: rgba( 255, 255, 255, 0.8);
+		}
+
+		/* Footer Border Color */
+		.footer-widgets ul li,
+		.footer-widgets + .footer-bottom {
+			border-color: rgba( 255, 255, 255, 0.3);
+		}
+	
+</style>
+<link rel='stylesheet' id='paperback-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7COpen%2BSans%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='overlay_settings_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-webfonts-css'  href='//fonts.googleapis.com/css?family=Source+Code+Pro%3Aregular%2C700&#038;ver=3.3' type='text/css' media='all' />
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel-ie8fix.css?ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/spin.js?ver=1.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/jquery.spin.js?ver=1.3'></script>
+<link rel='https://api.w.org/' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.6.1" />
+<link rel='shortlink' href='https://wp.me/p7Mr5S-1pG' />
+<link rel="alternate" type="application/json+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fidentificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fidentificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet%2F&#038;format=xml" />
+<style type="text/css">
+.main-navigation {
+    max-width: 45% !important;
+}
+.site-title-wrap {
+    max-width: 55% !important;
+}
+.site-title {
+     font-size: 25px;
+}
+.easy-footnote sup {
+    font-size: 60% !important;
+    font-style: normal !important;;
+    vertical-align: super !important;;
+    position: relative !important;
+    color: red;
+}
+
+span.easy-footnote>a { border-bottom: 0 !important; }
+
+a.easy-footnote-to-top { border-bottom: 0 !important; }
+
+.site-title a::before {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
+    background-size: 25px 25px;
+    content: " ";
+    height: 25px;
+    left: -26px;
+    position: absolute;
+    top: 6px;
+    width: 25px;
+    /*background-size: 25px 25px;
+    background-repeat: no-repeat;*/
+    /*color: #f35245;
+    content: "";
+    font-family: "FontAwesome";
+    font-size: 25px;
+    margin-right: 10px;*/
+}
+
+.site-title {
+    margin-left: 25px !important;
+}
+
+span.post-lang-en {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
+    background-repeat: no-repeat;
+    background-size: 45px 45px;
+    border: 1px dotted lightblue;
+    border-radius: 3px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+}
+</style>
+<style type="text/css">
+.qtranxs_flag_it {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+.qtranxs_flag_en {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+</style>
+<link hreflang="it" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" rel="alternate" />
+<link hreflang="en" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" rel="alternate" />
+<link hreflang="x-default" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" rel="alternate" />
+<meta name="generator" content="qTranslate-X 3.4.6.8" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//i0.wp.com'>
+<link rel='dns-prefetch' href='//i1.wp.com'>
+<link rel='dns-prefetch' href='//i2.wp.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+<style type='text/css'>img#wpstats{display:none}</style>	<style type="text/css">
+					.site-identity {
+				padding: 2% 0;
+			}
+		
+					.single .hero-posts .with-featured-image {
+				padding-top: 7%;
+			}
+		
+		
+			</style>
+
+		<style>
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon {
+			width: 20px !important;
+			height: 28px !important;
+			padding: 6px 0 !important;
+			margin-right: 0 !important;
+		}
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon:before {
+			content: "\f466";
+		}
+		</style><!--Start Cookie Script--> <script type="text/javascript" charset="UTF-8" src="//cookie-script.com/s/f67066386a32612237b658624241e0af.js"></script> <!--End Cookie Script-->
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+</head>
+
+<body class="single single-post postid-5436 single-format-standard has-sidebar two-column">
+
+
+<header id="masthead" class="site-header" role="banner">
+
+		<div class="top-navigation">
+			<div class="container">
+
+				<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>				</nav><!-- .secondary-navigation -->
+
+				<div class="top-navigation-right">
+											<nav class="social-navigation" role="navigation">
+							<div class="menu-social-media-container"><ul id="menu-social-media" class="menu"><li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li id="menu-item-5830" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>						</nav><!-- .social-navigation -->
+					
+					<div class="overlay-toggle drawer-toggle drawer-open-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-search"></i>
+							Esplora						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+
+					<div class="overlay-toggle drawer-toggle drawer-menu-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-bars"></i>
+							Menu						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+				</div><!-- .top-navigation-right -->
+			</div><!-- .container -->
+		</div><!-- .top-navigation -->
+
+		<div class="drawer-wrap">
+			<div class="drawer drawer-explore">
+	<div class="container">
+		<div class="drawer-search">
+			
+<div class="big-search">
+	<form method="get" id="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" role="search">
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" name="s" id="big-search" placeholder="Cerca..." value="" onfocus="if(this.value==this.getAttribute('placeholder'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('placeholder');"/><br />
+
+		<div class="search-controls">
+		
+			<div class="search-select-wrap">
+				<select class="search-select" name="category_name">
+
+					<option value="">Tutto il sito</option>
+
+					<option value="api-generation">API generation</option><option value="collaterali">Collaterals</option><option value="data-engineering">Data Engineering</option><option value="data-mining">Data Mining</option><option value="visualizzazione-dei-dati">Data visualization</option><option value="deep-learning">Deep Learning</option><option value="machine-learning">Machine Learning</option><option value="programmazione">Programming</option><option value="strumenti">Tools</option><option value="formazione">Training</option>				</select>
+			</div>
+
+		
+			<input type="submit" class="submit button" name="submit" id="big-search-submit" value="Ricerca" />
+		</div><!-- .search-controls -->
+	</form><!-- #big-searchform -->
+
+</div><!-- .big-search -->		</div>
+
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Categorie</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
+		
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Tags</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/python/" title="View all posts in Python" >Python</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/bow/" title="View all posts in bow" >bow</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/azure/" title="View all posts in azure" >azure</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/classification/" title="View all posts in classification" >classification</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
+			</div>
+		
+		<div class="widget tax-widget">
+			<h2 class="widget-title">Archivi</h2>
+
+				<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>
+		</div>
+	</div><!-- .container -->
+</div><!-- .drawer -->
+<div class="drawer drawer-menu-explore">
+	<div class="container">
+					<nav id="drawer-navigation" class="main-navigation drawer-navigation" role="navigation">
+				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li id="menu-item-5843" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>			</nav><!-- #site-navigation -->
+		
+					<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>			</nav><!-- .secondary-navigation -->
+		
+					<nav class="social-navigation" role="navigation">
+				<div class="menu-social-media-container"><ul id="menu-social-media-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>			</nav><!-- .footer-navigation -->
+			</div><!-- .container -->
+</div><!-- .drawer -->		</div><!-- .drawer-wrap -->
+
+		<div class="site-identity clear">
+			<div class="container">
+				<!-- Site title and logo -->
+					<div class="site-title-wrap">
+		<!-- Use the Site Logo feature, if supported -->
+		
+		<div class="titles-wrap">
+							<p class="site-title"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" rel="home">Machine Learning &amp; Cognitive</a></p>
+ 			
+							<p class="site-description">ApprendimentoAutomatico.it</p>
+					</div>
+	</div><!-- .site-title-wrap -->
+
+				<!-- Main navigation -->
+				<nav id="site-navigation" class="main-navigation enabled" role="navigation">
+					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+
+			</div><!-- .container -->
+		</div><!-- .site-identity-->
+
+					<div class="featured-posts-wrap clear">
+				<div class="featured-posts clear">
+					<div class="featured-header">
+						<span class="featured-header-category"></span>
+						<span class="featured-header-close"><i class="fa fa-times"></i> Chiudi</span>
+					</div>
+
+					<div class="post-container clear"></div>
+				</div>
+			</div>
+		</header><!-- .site-header -->
+
+
+<div class="mini-bar">
+			<div class="mini-title">
+			<!-- Next and previous post links -->
+			<div class="fixed-nav"><a class="fixed-image" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/"> <img width="65" height="48" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?fit=65%2C48&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="CognitiveHumans" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?w=400&amp;ssl=1 400w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?resize=300%2C224&amp;ssl=1 300w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?resize=320%2C240&amp;ssl=1 320w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="5431" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/cognitivehumans-2/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?fit=400%2C298&amp;ssl=1" data-orig-size="400,298" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="CognitiveHumans" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?fit=300%2C224&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?fit=400%2C298&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Successivo</span><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/" rel="prev">Magellano an open source Cognitive Computing demonstrator</a></div></div>
+		</div>
+	
+	<ul class="mini-menu">
+					<li>
+				<a class="drawer-open-toggle" href="#">
+					<span><i class="fa fa-search"></i> Esplora</span>
+				</a>
+			</li>
+				<li class="back-to-top">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+		<li class="back-to-menu">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+	</ul>
+</div><!-- .mini-bar-->
+
+	<div class="hero-wrapper">
+
+		<div class="hero-posts">
+			
+	<div id="post-5436" class="with-featured-image hero-post post-5436 post type-post status-publish format-standard has-post-thumbnail hentry category-deep-learning category-programmazione category-formazione tag-cnn tag-convolution tag-convolutional tag-deep-learning tag-dmlc tag-dnn tag-feature-extraction tag-gpu tag-hubel tag-identificazione-oggetti-immagini tag-ilsvrc tag-imagenet tag-kernel tag-mechanical-turk tag-mobile tag-mxnet tag-neural-networks tag-polling tag-pre-addestrati tag-preprocessing tag-programmazione-dichiarativa tag-reti-convoluzionali tag-sift tag-softmax tag-subsampling tag-surf tag-svm tag-turi tag-wiesel tag-wordnet">
+
+		<!-- Get the hero background image -->
+		
+			<div class="site-header-bg-wrap">
+				<div class="header-opacity">
+					<div class="header-gradient"></div>
+					<div class="site-header-bg background-effect" style="background-image: url(https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&#038;ssl=1); opacity: 0.3;"></div>
+				</div>
+			</div><!-- .site-header-bg-wrap -->
+
+		
+		<div class="container hero-container">
+			<div class="hero-cats"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/">Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/">Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/">Training</a></div>
+			<!-- Hero title -->
+			<div class="hero-text">
+									<h1 class="entry-title">Identificazione di oggetti in immagini con Convolutional Neural Network, Python e MXNet</h1>
+				
+				<div class="hero-date">
+										<!-- Create an avatar link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di ">
+						<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=44&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=88&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-44 photo' height='44' width='44' />					</a>
+					<!-- Create an author post link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/">
+						lorenzo					</a>
+					<span class="hero-on-span">&nbsp;</span>
+					<span class="hero-date-span">Sep 2016</span>
+				</div>
+			</div><!-- .photo-overlay -->
+		</div><!-- .container -->
+	</div>
+		</div><!-- .hero-posts -->
+
+	</div><!-- .hero-wrapper -->
+
+<div id="page" class="hfeed site container">
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-5436" class="post full-post post-5436 type-post status-publish format-standard has-post-thumbnail hentry category-deep-learning category-programmazione category-formazione tag-cnn tag-convolution tag-convolutional tag-deep-learning tag-dmlc tag-dnn tag-feature-extraction tag-gpu tag-hubel tag-identificazione-oggetti-immagini tag-ilsvrc tag-imagenet tag-kernel tag-mechanical-turk tag-mobile tag-mxnet tag-neural-networks tag-polling tag-pre-addestrati tag-preprocessing tag-programmazione-dichiarativa tag-reti-convoluzionali tag-sift tag-softmax tag-subsampling tag-surf tag-svm tag-turi tag-wiesel tag-wordnet">
+
+		
+	<div class="entry-content">
+		<p><span class="dropcap">C</span>i sono molti strumenti che permettono di identificare un oggetto in un&#8217;immagine, come ad esempio il modello <em>bag of visual words</em>, tramite i descrittori di feature SIFT (<em>scale-invariant feature transform</em>) o SURF (<em>speeded up robust feature</em>), oppure l&#8217;utilizzo delle macchine a vettori di supporto (SVM, <em>support vector machine</em>); tuttavia, in questi ultimi anni, le reti neurali profonde (<strong>DNN</strong>, <em>deep neural networks</em>) hanno contribuito con un nuovo impulso alla ricerca e sono, pertanto, sempre più utilizzate. Infatti, l&#8217;abilità delle DNN nell&#8217;apprendere, a partire da grandi insiemi di esempi, funzioni complesse, non-lineari e ad alta dimensionalità, le rende perfette candidate per i compiti di riconoscimento di immagini. Un tipo particolare di DNN sono le <strong>reti neurali convoluzionali</strong> (<strong>CNN</strong>, <em>convolutional neural networks</em>) usate con grande successo per problemi di riconoscimento automatico di pattern bidimensionali come la rivelazione di oggetti, facce e loghi nelle immagini. In questo post introduco alcune specifiche implementazioni di CNN in grado di offrire un&#8217;elaborazione cognitiva delle immagini che è molto prossima allo stato dell&#8217;arte. Il codice esemplificativo è basato sull&#8217;impiego del framework <a href="http://mxnet.io/" target="_blank">MXNet</a> in combinazione con il linguaggio Python.<span id="more-5436"></span><br />
+<hr/>MXNet è un progetto open source, distribuito con Apache License Version 2.0, frutto della collaborazione di gruppi di ricerca e sviluppo facenti capo ad importanti istituti quali CMU, NYU, NUS e MIT. MXNet è un progetto del <a href="http://dmlc.ml/" target="_blank">DMLC</a>: un gruppo di aziende, laboratori e università impegnate in realizzazioni che contribuiscono da anni a definire lo stato dell&#8217;arte in materia di <em>machine learning</em>.</p>
+<p>MXNet è essenzilamente un framework per l&#8217;implementazione di soluzioni di apprendimento profondo (<em>deep learning</em>), è sviluppato nativamente in C++ e include interfacce verso i linguaggi e ambienti più diffusi (p.e. Python, Go, R, Matlab, ecc.). Esso può essere eseguito efficientemente sia su CPU sia su sistemi ad alte prestazioni basati su GPU/Cuda, può scalare su architetture distribuite, è sufficientemente leggero per funzionare su dispositivi mobile. E&#8217; anche parte integrante di altri framework come per esempio <a href="https://turi.com/" target="_blank">Turi</a>.</p>
+<p>MXnet si fonda su un <a href="http://mxnet.readthedocs.io/en/latest/system/program_model.html" target="_blank">connubbio tra due modelli di programmazione</a>: la <a href="https://en.wikipedia.org/wiki/Imperative_programming" target="_blank">programmazione imperativa</a> (<em>imperative programming</em>) e la <a href="https://en.wikipedia.org/wiki/Symbolic_programming" target="_blank">programmazione dichiarativa o simbolica</a> (<em>symbolic programming</em>). La programmazione dichiarativa consente di implementare facilmente prototipi svincoltati dalla particolare natura del dato grezzo conferendo maggiore genericità ai modelli risultanti. Un&#8217;introduzione a MXnet è fornita nel documento <a href="http://arxiv.org/pdf/1512.01274v1.pdf" target="_blank">MXNet: A Flexible and Efficient Machine Learning Library for Heterogeneous Distributed System</a>.</p>
+<p>Nell&#8217;arsenale di MXNet sono incluse molte implementazioni per la creazione di CNN (in parte utilizzate anche in questo post).</p>
+<hr />
+<h3>Prima di tutto: i dati!</h3>
+<p>Una collezione di riferimento, liberamente accessibile, per lo sviluppo di algoritmi di processazione di immagini è <strong>ImageNet</strong>. Questa collezione ha una dimensione che è di gran lunga più grande di qualsiasi altra cosa disponibile nella comunità della <em>computer vision</em> e sta contribuendo allo sviluppo di algoritmi di riconoscimento finemente addestrati che non avrebbero potuto essere altrimenti prodotti.<br />
+ImageNet è infatti un imponente archivio di immagini catalogate in categorie e sottocategorie che raccoglie oltre 14 milioni di immagini diverse indicizzate in 21K+ categorie. Per organizzare questa enorme collezione di immagini è usato il database di vocaboli inglesi <a href="https://wordnet.princeton.edu/" target="_blank">WordNet</a>.<span id='easy-footnote-1' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-1' title='Grazie all&amp;#8217;organizzazione gerarchica di WordNet, se un sistema di riconoscimento non è sicuro che una data immagine mostri, per esempio, un cane, può verificare il successivo livello (mammiferi) o quello superiore (animali). Questo è un grande vantaggio derivante dall&amp;#8217;impiego di WordNet.'><sup>1</sup></a></span> La catalogazione delle immagini è eseguita manualmente attraverso il sistema <a href="https://www.mturk.com/mturk/welcome" target="_blank">Mechanical Turk</a> di Amazon che consente di organizzare migliaia di esseri umani per eseguire compiti di piccola entità.<br />
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+Ogni anno la competizione <strong>ILSVRC</strong> (<em>ImageNet Large Scale Visual Recognition Competition</em>) invita le persone che lavorano nel campo della computer vision a misurare i progressi fatti nel riconoscimento e classificazione automatica delle immagini. I sistemi in competizione sono prima collaudati su sottoinsiemi arbitrariamente grandi di immagini già correttamente etichettate (provenienti da ImageNet) e poi sono chiamati ad etichettarne altre mai viste, infine, durante un workshop che si svolge dopo la competizione, i vincitori condividono e discutono le loro tecniche. Nel 2010 il sistema che vinse era in grado di etichettare correttamente il 72% delle immagini (per gli esseri umani la media era del 95%). Nel 2012 un&#8217;équipe guidata da Geoffrey Hinton, dell&#8217;università di Toronto, ha raggiunto un livello di precisione dell&#8217;84% grazie all&#8217;apprendimento profondo. Quest&#8217;innovazione ha prodotto rapidi miglioramenti e un&#8217;accuratezza del 96% nell&#8217;ImageNet Challenge del 2015, l’edizione in cui le macchine hanno superato per la prima volta gli esseri umani.</div></div>
+<p>Il gruppo DMLC rende disponibili <a href="http://data.dmlc.ml/" target="_blank">reti CNN già addestrate</a> su subset di ImageNet. Come vedremo, questi modelli sono usabili anche con MXNet e ciò può essere un grande vantaggio in quanto l&#8217;addestramento su copiose collezioni di immagini è sempre un compito oneroso in termini computazionali, temporali ed economici.</p>
+<hr />
+<h3>Prossimi passi</h3>
+<p>Per semplificare, ho organizzato questo post in due sezioni. Nella prima sezione illustro come utilizzare i modelli pre-addestrati di DMLC ottenendo, con minimo sforzo, sistemi di classificazione delle immagini che sono allo stato dell&#8217;arte. Nella seconda sezione accenno alle caratteristiche architetturali delle reti CNN e propongo un&#8217;implementazione <em>from scratch</em> di una rete CNN basilare in grado di riconoscere immagini appartenenti a due categorie specifiche: cat e airplane.</p>
+<hr />
+<h3>Caricamento di modelli pre-addestrati allo stato dell&#8217;arte</h3>
+<p>Nel blocco seguente: carico il modello <code data-enlighter-language="raw" class="EnlighterJSRAW">model_21k</code> che è pre-addestrato sull&#8217;intero dataset ImageNet (14M+ immagini in 21K+ categorie). </p>
+<p>Il caricamento è avviato eseguendo la funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">mx.model.FeedForward.load</code> e specificando i parametri <code data-enlighter-language="raw" class="EnlighterJSRAW">prefix</code> che è una stringa arbitraria usata per generare dinamicamente i nomi dei file (p.e. prefix-symbol.json e prefix-{epoch}.params) in cui sono memorizzati i parametri da caricare e <code data-enlighter-language="raw" class="EnlighterJSRAW">iteration</code> che è il numero dell&#8217;epoca (<em>epoch</em>) in cui sono stati generati i parametri. Un&#8217;epoca è semplicemente un&#8217;unità di misura per l&#8217;allenamento di una rete neurale. Si può pensare di allenare la propria rete per un certo numero di epoche e verificare al termine se l&#8217;allenamento ha prodotto buoni risultati o meno. Solitamente, durante l&#8217;addestramento di una rete neurale, i parametri appresi sono memorizzati periodicamente su disco (p.e. al termine di ogni epoca, ogni 10 epoche, ecc.). Per la rete in esame, DMLC fornisce l&#8217;addestramento all&#8217;epoca nona, quindi, imposto <code data-enlighter-language="python" class="EnlighterJSRAW">num_round = 9</code> per caricare il modello all&#8217;epoca data. </p>
+<p>Per poter ottenere delle classificazioni <em>human-readable</em> carico in memoria anche la lista <code data-enlighter-language="raw" class="EnlighterJSRAW">synset</code> che associa l&#8217;indice numerico progressivo assegnato ad ogni categoria ad un elenco di parole che la descrivono. Questa lista è usata per tradurre l&#8217;output della rete (un elenco di indici numerici corrispondenti alle classi con relativa probabilità) in un elenco pesato di parole comprensibili. </p>
+<p>Le immagini da riconoscere devono soddisfare specifici requisiti dettati dalla rete e sono quindi elaborate mediante un&#8217;apposita funzione di pre-processazione <code data-enlighter-language="raw" class="EnlighterJSRAW">preprocessing.PreprocessImage_21k</code>. </p>
+<p>La predizione è eseguita invocando la funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">model.predict</code>.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+# import mxnet
+import mxnet as mx
+# import image preprocessing functions
+import preprocessing
+
+# pretrained model file settings
+prefix = &quot;./datasets/preloaded/model_21k/Inception&quot;
+
+# get the ninth epoch
+num_round = 9
+
+# load model
+model = mx.model.FeedForward.load(prefix=prefix, iteration=num_round)
+
+# load textual tags for each classes
+# used below to translate the predicted classes in a human-readable way
+synset = [l.strip() for l in open(&#039;./datasets/preloaded/model_21k/synset.txt&#039;).readlines()]
+
+# test image preprocessing
+batch = preprocessing.PreprocessImage_21k(&#039;./test-images/candle.jpg&#039;, True)
+# batch = preprocessing.PreprocessImage_21k(&#039;./test-images/funny-cat.jpg&#039;, True)
+
+# get prediction probability of 1000 classes from model
+prob = model.predict(batch)[0]
+# argsort, get prediction index from largest prob to lowest
+pred = np.argsort(prob)[::-1]
+# get top1 label
+top1 = synset[pred[0]]
+print(&quot;Top1: &quot;, top1)
+# get top5 label
+top5 = [synset[pred[i]] for i in range(5)]
+print(&quot;Top5: &quot;, top5)
+</pre></p>
+<p>Per stimolare i modelli pre-addestrati utilizzo le seguenti immagini:</p>
+<div class="su-custom-gallery su-custom-gallery-title-never"><div class="su-custom-gallery-slide"><a><img src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cat.png?resize=200%2C200&#038;ssl=1" alt="cat" data-recalc-dims="1" /><span class="su-custom-gallery-title">cat</span></a></div><div class="su-custom-gallery-slide"><a><img src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/candle.png?resize=200%2C200&#038;ssl=1" alt="candle" data-recalc-dims="1" /><span class="su-custom-gallery-title">candle</span></a></div><div class="su-clear"></div></div>
+<p>Risultato della classificazione dell&#8217;immagine della candela (<code data-enlighter-language="raw" class="EnlighterJSRAW">model_21k</code>):<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+(&#039;Top1: &#039;, &#039;n02948072 Candle, taper, wax light&#039;)
+(&#039;Top5: &#039;, [&#039;n02948072 Candle, taper, wax light&#039;, &#039;n04581829 Wick, taper&#039;, &#039;n04534895 Vigil light, vigil candle&#039;, &#039;n03005515 Chandlery&#039;, &#039;n02948557 Candlestick, candle holder&#039;])
+</pre></p>
+<p>Risultato della classificazione dell&#8217;immagine del gatto (<code data-enlighter-language="raw" class="EnlighterJSRAW">model_21k</code>):<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+(&#039;Top1: &#039;, &#039;n01318894 Pet&#039;)
+(&#039;Top5: &#039;, [&#039;n01318894 Pet&#039;, &#039;n02122878 Tabby, queen&#039;, &#039;n02122725 Tom, tomcat&#039;, &#039;n02123045 Tabby, tabby cat&#039;, &#039;n02122948 Kitten, kitty&#039;])
+</pre></p>
+<p>Altri modelli pre-addestrati, <code data-enlighter-language="raw" class="EnlighterJSRAW">model_bn</code> e <code data-enlighter-language="raw" class="EnlighterJSRAW">model_v3</code>, forniti dal DMLC, possono essere caricati introducendo piccole variazioni al codice precedente, come riportato negli estratti seguenti.</p>
+<p>Secondo modello pre-addestrato <code data-enlighter-language="raw" class="EnlighterJSRAW">model_bn</code>:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+...
+# pretrained model file settings
+prefix = &quot;./datasets/preloaded/model_bn/Inception_BN&quot;
+num_round = 39
+...
+
+# read textual tags for each classes
+# used below to translate the predicted classes in a human-readable way
+synset = [l.strip() for l in open(&#039;./datasets/preloaded/model_bn/synset.txt&#039;).readlines()]
+
+# preprocessing of an image
+batch = preprocessing.PreprocessImage_BN(&#039;./test-images/candle.jpg&#039;, True)
+# or batch = preprocessing.PreprocessImage_BN(&#039;./test-images/funny-cat.jpg&#039;, True)
+...
+</pre></p>
+<p>Risultato della classificazione dell&#8217;immagine della candela (<code data-enlighter-language="raw" class="EnlighterJSRAW">model_bn</code>):<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+(&#039;Top1: &#039;, &#039;n02948072 candle, taper, wax light&#039;)
+(&#039;Top5: &#039;, [&#039;n02948072 candle, taper, wax light&#039;, &#039;n03666591 lighter, light, igniter, ignitor&#039;, &#039;n04456115 torch&#039;, &#039;n03729826 matchstick&#039;, &#039;n04266014 space shuttle&#039;])
+</pre></p>
+<p>Risultato della classificazione dell&#8217;immagine del gatto (<code data-enlighter-language="raw" class="EnlighterJSRAW">model_bn</code>):<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+(&#039;Top1: &#039;, &#039;n02123045 tabby, tabby cat&#039;)
+(&#039;Top5: &#039;, [&#039;n02123045 tabby, tabby cat&#039;, &#039;n02124075 Egyptian cat&#039;, &#039;n02123159 tiger cat&#039;, &#039;n03126707 crane&#039;, &#039;n03649909 lawn mower, mower&#039;])
+</pre></p>
+<p>Terzo modello pre-addestrato <code data-enlighter-language="raw" class="EnlighterJSRAW">model_v3</code>:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+...
+# pretrained model file settings
+prefix = &quot;./datasets/preloaded/model_v3/Inception-7&quot;
+num_round = 1
+...
+
+# read textual tags for each classes
+# used below to translate the predicted classes in a human-readable way
+synset = [l.strip() for l in open(&#039;./datasets/preloaded/model_v3/synset.txt&#039;).readlines()]
+
+# preprocessing of an image
+batch = preprocessing.PreprocessImage_V3(&#039;./test-images/candle.jpg&#039;, True)
+# or batch = preprocessing.PreprocessImage_V3(&#039;./test-images/funny-cat.jpg&#039;, True)
+...
+</pre></p>
+<p>Risultato della classificazione dell&#8217;immagine della candela (<code data-enlighter-language="raw" class="EnlighterJSRAW">model_v3</code>):<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+(&#039;Top1: &#039;, &#039;n02948072 candle, taper, wax light&#039;)
+(&#039;Top5: &#039;, [&#039;n02948072 candle, taper, wax light&#039;, &#039;n02699494 altar&#039;, &#039;n03666591 lighter, light, igniter, ignitor&#039;, &#039;n03729826 matchstick&#039;, &#039;n04456115 torch&#039;])
+</pre></p>
+<p>Risultato della classificazione dell&#8217;immagine del gatto (<code data-enlighter-language="raw" class="EnlighterJSRAW">model_v3</code>):<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+(&#039;Top1: &#039;, &#039;n03126707 crane&#039;)
+(&#039;Top5: &#039;, [&#039;n03126707 crane&#039;, &#039;n04467665 trailer truck, tractor trailer, trucking rig, rig, articulated lorry, semi&#039;, &#039;n02123045 tabby, tabby cat&#039;, &#039;n02123159 tiger cat&#039;, &#039;n04252225 snowplow, snowplough&#039;])
+</pre></p>
+<p>Tutti i modelli pre-addestrati si basano su configurazioni di reti CNN di varia complessità e profondità (la profondità è il numero degli strati che le compongono). La profondità influenza la capacità della rete di riconoscere ed estrarre automaticamente le caratteristiche che compongono un&#8217;immagine (le <em>features</em>).</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Le prestazioni delle reti pre-addestrate fornite da DMLC sono state misurate sul <em>validation set</em> di ILVRC-2012. Per ottenere risultati più pertinenti con il contenuto dell&#8217;immagine, le classificazioni sono solitamente limitate a 1000 classi e si considerano i primi 5 o 20 risultati (Top 5 o Top 20) e più raramente il Top 1. Nel caso della rete <code data-enlighter-language="raw" class="EnlighterJSRAW">model_21k</code> si è misurata una <em>validation performance</em> del 68.3% su Top 1, 89.0% su Top 5 e 96.0% su Top 20 (ossia su 100 immagini estratte dal <em>validation set</em>, 96 sono state riconosciute correttamente). Se estendessimo la classificazione alla totalità delle classi (27K+), si noterebbe un sensibile calo delle prestazioni e in particolare: 41.9% su Top 1, 69.6% su Top 5 e 83.6% su Top 20. Il secondo modello <code data-enlighter-language="raw" class="EnlighterJSRAW">model_bn</code> ha una validation performance dell&#8217;89.5% su Top 5. Il terzo modello <code data-enlighter-language="raw" class="EnlighterJSRAW">model_v3</code> ha un validation perfomance del 76.88% su Top 1 e 93.34% su Top 5. Il secondo e terzo modello sono addestrati sul <em>training set</em> di ILVRC-2012 che consiste di 10 milioni di immagini su circa 10000 classi (è un sottoinsieme dell&#8217;archivio ImageNet).</div></div>
+<p>Normalmente, dopo aver preparato un dataset dove potenzialmente ci possono essere immagini di tutte le dimensioni, si procede con semplici operazioni di <em>resize</em> di ciascuna immagine, <em>crop</em> centrale ed altre manipolazioni. Questo trattamento è ovviamente esterno, fatto cioè prima di avviare l&#8217;allenamento della rete. Una volta pre-trattate, le immagini sono pronte per essere date in pasto alla rete. Ciascuno dei modelli pre-addestrati richiede un tipo specifico di trattamento delle immagini. Per semplificare ho raccolto le varie funzioni di trattamento nel modulo <code data-enlighter-language="raw" class="EnlighterJSRAW">preprocessing</code> che puoi richiedermi compilando la <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/contattami/" target="_blank">form di contatto</a>.</p>
+<h2>Convoluzione</h2>
+<p>Prima di addentrarci nell&#8217;implementazione di un classificatore di immagini basato su CNN, vorrei riassumere alcuni argomenti basilari. Il primo argomento è quello della <strong>convoluzione</strong>.</p>
+<p>Come noto, solitamente ad un&#8217;immagine reale viene associata una griglia composta da un elevato numero di piccoli quadrati detti pixel. La figura seguente propone, per esempio, un&#8217;immagine in bianco e nero a cui è associata una griglia di dimensioni 5&#215;5 pixel.</p>
+<p><img data-attachment-id="5483" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/cnnimagetest/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?fit=161%2C162&amp;ssl=1" data-orig-size="161,162" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cnnimagetest" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?fit=161%2C162&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?fit=161%2C162&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?resize=161%2C162&#038;ssl=1" alt="cnnimagetest" class="aligncenter size-full wp-image-5483" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?w=161&amp;ssl=1 161w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?resize=150%2C150&amp;ssl=1 150w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?resize=65%2C65&amp;ssl=1 65w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnimagetest.png?resize=50%2C50&amp;ssl=1 50w" sizes="(max-width: 161px) 100vw, 161px" data-recalc-dims="1" /></p>
+<p>La rappresentazione matematica più indicata per una griglia siffata è una matrice di pari dimensioni (5&#215;5), tale matrice è chiamata <strong>matrice di pixel</strong> o più in generale <strong>matrice di input</strong>. Ogni elemento della matrice corrisponde ad un pixel e, nel caso di immagini in bianco e nero, può assumere il valore 1 associato al nero o il valore 0 associato al bianco. Nel caso di un&#8217;immagine in tonalità del grigio, la scala di valori ammessi per ogni elemento della matrice è nell&#8217;intervallo intero [0,255], dove 0 è associato al nero e 255 al bianco. I valori interi specificano l&#8217;intensità luminosa. Le immagini a colori sono rappresentate in modo più complesso perchè l&#8217;informazione è multidimensionale. Per rappresentare un colore si usa un determinato spazio definito scegliendo un insieme di colori base. Lo spazio di rappresentazione usato più comunemente è quello RGB (Red-Green-Blue). Un&#8217;immagine codificata con tre colori è rappresentata da un gruppo di 3 matrici ciascuna corrispondente ad un canale di colore (R,G,B). Ogni elemento di ciascuna matrice può variare su un intervallo intero [0,255] e specifica l’intensità del colore fondamentale (o colore base).</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Utilizzando lo spazio RGB in cui ad ogni colore viene associata una terna di valori, che indicano le quantità di rosso, di verde e di blu che consentono di ottenerlo, l&#8217;immagine viene rappresentata come una matrice trimensionale (ovvero un <strong>tensore</strong><span id='easy-footnote-2' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-2' title='Ovviamente la definizione di &lt;a href=&quot;https://it.wikipedia.org/wiki/Tensore&quot; target=&quot;_blank&quot;&gt;tensore&lt;/a&gt; è matematicamente più rigorosa.'><sup>2</sup></a></span>) composta da tre matrici bidimensionali (ognuna delle quali è associata ad un colore fondamentale).</div></div>
+<p>Nella figura sottostante è mostrata una matrice di input che rappresenta l&#8217;immagine precedentemente introdotta<span id='easy-footnote-3' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-3' title='Fonte: &lt;a href=&quot;http://deeplearning.stanford.edu/wiki/index.php/Feature_extraction_using_convolution&quot; target=&quot;_blank&quot;&gt;http://deeplearning.stanford.edu/wiki/index.php/Feature_extraction_using_convolution&lt;/a&gt;'><sup>3</sup></a></span>.</p>
+<p><img data-attachment-id="5484" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/convolution_schematic-2/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/Convolution_schematic-1.gif?fit=526%2C384&amp;ssl=1" data-orig-size="526,384" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="convolution_schematic" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/Convolution_schematic-1.gif?fit=300%2C219&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/Convolution_schematic-1.gif?fit=526%2C384&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/Convolution_schematic-1.gif?resize=526%2C384&#038;ssl=1" alt="convolution_schematic" class="aligncenter size-full wp-image-5484" data-recalc-dims="1" /></p>
+<p>Come mostrato nella figura, supponiamo di far scorrere (dall&#8217;alto in basso e da sinistra a destra) sulla matrice di input, una seconda matrice di dimensioni inferiori, per esempio 3&#215;3, così definita:</p>
+<p><img src="//s0.wp.com/latex.php?latex=%5Cbegin%7Bbmatrix%7D1+%26+0+%26+1%5C%5C0+%26+1+%26+0%5C%5C1+%26+0+%26+1%5Cend%7Bbmatrix%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="&#92;begin{bmatrix}1 &amp; 0 &amp; 1&#92;&#92;0 &amp; 1 &amp; 0&#92;&#92;1 &amp; 0 &amp; 1&#92;end{bmatrix}" title="&#92;begin{bmatrix}1 &amp; 0 &amp; 1&#92;&#92;0 &amp; 1 &amp; 0&#92;&#92;1 &amp; 0 &amp; 1&#92;end{bmatrix}" class="latex" /></p>
+<p>La matrice che scorre è chiamata <em>kernel</em> o filtro (<em>filter</em>) o <em>feature detector</em>. Man mano che si sposta il filtro lungo l&#8217;area della matrice di input, si effettua un&#8217;operazione di prodotto membro a membro, cioè un prodotto scalare, fra i valori del filtro e quelli della porzione della matrice al quale è applicato. Il risultato dello scorrimento del filtro si traduce nella generazione di una <strong>matrice di convoluzione</strong> come quella illustrata in figura (<em>convolved feature</em>). In questo caso la matrice di convoluzione ha dimensioni inferiori alla matrice di input, tuttavia, come vedremo tra breve, con alcuni accorgimenti (p.e. <em>zero-padding</em>) è possibile conservare le dimensioni originali come nella figura seguente.</p>
+<p><img data-attachment-id="5493" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/paddedconv/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddedconv.png?fit=364%2C219&amp;ssl=1" data-orig-size="364,219" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="paddedconv" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddedconv.png?fit=300%2C180&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddedconv.png?fit=364%2C219&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddedconv.png?resize=364%2C219&#038;ssl=1" alt="paddedconv" class="aligncenter size-full wp-image-5493" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddedconv.png?w=364&amp;ssl=1 364w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddedconv.png?resize=300%2C180&amp;ssl=1 300w" sizes="(max-width: 364px) 100vw, 364px" data-recalc-dims="1" /></p>
+<p>Nell&#8217;ambito della computer grafica esiste una estesa varietà di filtri applicabili ad un&#8217;immagine per evidenziarne specifiche particolarità, per esempio con riferimento alla figura seguente (da sinistra a destra): filtro di nitidezza (<em>sharpening</em>) teso a recuperare/aumentare la nitidezza dell&#8217;immagine, filtro di sfocatura (<em>blur</em>), filtro di rilevamento contorni (<em>edge detection</em>) e filtro di rilievo (<em>emboss</em>).</p>
+<p><img data-attachment-id="5494" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/filterscomputergraphics/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?fit=477%2C468&amp;ssl=1" data-orig-size="477,468" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="filterscomputergraphics" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?fit=300%2C294&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?fit=477%2C468&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?resize=477%2C468&#038;ssl=1" alt="filterscomputergraphics" class="aligncenter size-full wp-image-5494" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?w=477&amp;ssl=1 477w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?resize=300%2C294&amp;ssl=1 300w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?resize=65%2C65&amp;ssl=1 65w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/filterscomputergraphics.png?resize=50%2C50&amp;ssl=1 50w" sizes="(max-width: 477px) 100vw, 477px" data-recalc-dims="1" /></p>
+<h2>Cenni sull&#8217;architettura delle reti convoluzionali</h2>
+<p>Le reti CNN sono di fatto delle reti neurali artificiali. Esattamente come queste ultime, infatti, anche le CNN sono costituite da neuroni collegati fra loro tramite dei rami pesati; parametri allenabili delle reti sono sempre quindi i pesi. Tutto quanto noto per le reti neurali ordinarie, cioè <em>forward/backward propagation</em> e aggiornamento dei pesi, vale anche in questo contesto; inoltre un&#8217;intera CNN utilizza sempre una singola funzione di costo differenziabile. Tuttavia le CNN muovono dall&#8217;assunzione che ogni loro input abbia una precisa struttura da riconoscere ossia <u>l&#8217;input non è una sequenza pre-elaborata di dati, ma il dato nella sua forma originale come ad esempio un&#8217;immagine</u>. Prendendo come esempio la matrice di input 5&#215;5 precedentemente mostrata, una CNN consisterà certamente di uno strato di ingresso composto da 25 neuroni (=5&#215;5) il cui compito è acquisire il valore di input corrispondente ad ogni pixel e trasferirlo allo strato nascosto successivo. Nel caso di una rete multistrato tradizionale le uscite di tutti i neuroni dello strato di ingresso sarebbero connesse ad ogni singolo neurone dello strato nascosto contribuendo così a definire un&#8217;<strong>architettura completamente connessa</strong> (<strong>FC</strong>, <em>fully connected</em>). Nel caso delle reti CNN, invece, lo schema delle connessioni è significativamente diverso.</p>
+<p>Per esempio, assumendo di utilizzare un filtro 3&#215;3 come quello mostrato in precedenza e traslando di un pixel per volta (il passo di traslazione è chiamato <em>stride</em>), è come se suddividessimo la matrice di input in 9 aree di uguale dimensione (questa operazione di suddivisione è anche chiamata <strong>piastrellatura dell&#8217;immagine</strong>). Ciascuna di queste aree definisce un <strong>campo ricettivo</strong> (<em>receptive field</em>) di un neurone dello strato nascosto. Nello strato nascosto ci saranno 9 neuroni ciascuno avente come input i valori di uno dei 9 campi ricettivi; in particolare per un neurone gli ingressi sono 9 tanti quanti i pixel coperti dal filtro più un ulteriore ingresso (il bias)<span id='easy-footnote-4' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-4' title='In termini generali, se la matrice di input avesse dimensioni NxMxP con P profondità (p.e. P=3 nel caso di matrice di pixel associata ad un&amp;#8217;immagine a colori) un generico campo ricettivo sarebbe composto da 3x3xP elementi che sarebbero gli ingressi del neurone dello strato nascosto ad esso associato. 3&amp;#215;3 è la dimensione del filtro.'><sup>4</sup></a></span>.</p>
+<p><img data-attachment-id="5530" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/receptivefield-2/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ReceptiveField.png?fit=745%2C496&amp;ssl=1" data-orig-size="745,496" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="receptivefield" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ReceptiveField.png?fit=300%2C200&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ReceptiveField.png?fit=745%2C496&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ReceptiveField.png?resize=745%2C496&#038;ssl=1" alt="receptivefield" class="aligncenter size-full wp-image-5530" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ReceptiveField.png?w=745&amp;ssl=1 745w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ReceptiveField.png?resize=300%2C200&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ReceptiveField.png?resize=375%2C250&amp;ssl=1 375w" sizes="(max-width: 745px) 100vw, 745px" data-recalc-dims="1" /></p>
+<p>Ad ogni ingresso è associato un peso il cui valore corrisponde ad uno specifico elemento del filtro. In sostanza ogni singolo neurone esegue la convoluzione e la rete è addestrata ad apprendere i pesi (ossia gli elementi del filtro) e il valore del bias per minimizzare la funzione di costo. Abbiamo dunque una batteria o <em>depth slice</em> di 9 neuroni ciascuno collegato ad un campo ricettivo. Ogni neurone ha un bias e 3&#215;3 pesi connessi ad un campo ricettivo: si utilizzano questi stessi pesi e bias per tutti i 9 neuroni appartenente allo stesso depth slice. Questo significa che tutti i neuroni del depth slice applicheranno lo stesso filtro (ossia impareranno a riconoscere la stessa feature), solo collocata diversamente nell&#8217;immagine di input. Questo rende le reti convoluzionali adattabili all&#8217;invarianza di un&#8217;immagine alla traslazione. Bias e pesi condivisi sono chiamati <em>shared weights and biases</em>. Quella che qui ho definito batteria di neuroni o depth slice è anche chiamata <strong>mappa di feature</strong> (<em>feature map</em>) o <strong>mappa di attivazione</strong> (<em>activation map</em>). </p>
+<p>Ovviamente, per riconoscere in modo efficace un&#8217;immagine abbiamo bisogno di più filtri applicati alle stesse regioni (ciascuno dovrà imparare a riconoscere differenti specificità), ciò equivale a dire, nel nostro esempio, utilizzare più depth slice di 9 neuroni in parallelo o, equivalentemente, più mappe di attivazione in parallelo. Il numero di mappe di attivazione è chiamato <strong>profondità</strong> (<em>depth</em>). In altri termini, la profondità corrisponde anche al numero di neuroni nello strato convoluzionale che sono connessi allo stesso campo ricettivo locale dell&#8217;input. L&#8217;insieme di neuroni appartenenti a mappe di attivazione diverse, entro lo stesso strato convoluzionale, operanti in parallelo sullo stesso campo ricettivo, è chiamato <strong>colonna</strong> o <em>depth column</em>. Riassumendo: nel nostro esempio, se ogni mappa di feature includesse 9 neuroni (una per ogni campo di ricezione) e avessimo deciso di usare 4 mappe di attivazione (depth=4) il numero di neuroni coinvolti nello strato convoluzionale sarebbe stato 9&#215;4=36 (ossia 9 neuroni per mappa moltiplicato per 4 che è il numero delle mappe).</p>
+<p>Per come abbiamo definito le cose nel nostro esempio, l’output di ogni mappa di attivazione è una matrice convoluzionale di dimensioni 3&#215;3. Spesso può essere utile effettuare un&#8217;operazione di padding, con degli zeri (da qui <em>zero padding</em>) spazialmente lungo i bordi della matrice di pixel. Nella figura sottostante è mostrato lo zero-padding e (in modo semplificato) il processo convolutivo su uno specifico campo ricettivo mediante un neurone all&#8217;interno di una mappa di attivazione.</p>
+<p><img data-attachment-id="5495" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/paddingwconv/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddingWconv.png?fit=507%2C266&amp;ssl=1" data-orig-size="507,266" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="paddingwconv" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddingWconv.png?fit=300%2C157&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddingWconv.png?fit=507%2C266&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddingWconv.png?resize=507%2C266&#038;ssl=1" alt="paddingwconv" class="aligncenter size-full wp-image-5495" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddingWconv.png?w=507&amp;ssl=1 507w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/paddingWconv.png?resize=300%2C157&amp;ssl=1 300w" sizes="(max-width: 507px) 100vw, 507px" data-recalc-dims="1" /></p>
+<p>Nell&#8217;esempio della figura precedente si è utilizzato uno zero-padding pari a 1. Uno zero-padding a 0 vuol dire che in pratica non si ha nessun padding; con uno zero-padding a 1 significa che tutta la matrice di input avrà, per ciascuna dimensione, un bordo di grandezza 1 di zeri e così via. Lo zero-padding ci consente di ovviare al fatto che le dimensioni del receptive field e dello stride scelti potrebbero non permettere l&#8217;intera convoluzione rispetto alle dimensioni della matrice di input.</p>
+<p>Una CNN può comporsi di più strati di convoluzione collegati in cascata. L&#8217;output di ogni strato di convoluzione è un insieme di matrici di convoluzione (ciascuna generata da una mappa di attivazione). L&#8217;insieme di queste matrici definisce un nuovo <strong>volume</strong> di input utilizzato dalle mappe di attivazione dello strato successivo. Più strati convoluzionali possiede una rete e più feature dettagliate essa riesce ad elaborare.</p>
+<p>Solitamente in una rete CNN ogni neurone produce un output tale per cui, superata una certa soglia di attivazione, l&#8217;uscita è proporzionale all&#8217;ingresso e non limitato superiormente. In termini rigorosi si dice che la funzione di attivazione del neurone è una funzione rampa o ReLU. Una funzione siffatta consente all&#8217;uscita di conservare l&#8217;intensità dello stimolo di input (input alto=&gt;uscita alta). Inoltre la derivata di una funzione rampa è una funzione gradino ossia una funzione che restituisce uscita costante 1, se il segnale in ingresso è positivo. Ricordando che in fase di retropropagazione (<em>backpropagation</em>) bias e pesi sono iterativamente aggiornati per minimizzare una funzione di costo &#8211; e questo aggiornamento dipende dalle derivate parziali della funzione di costo rispetto a ciascuno peso e bias (<strong>gradiente</strong>) &#8211; i contributi dei vari gradienti (data l&#8217;azione del gradino) contribuiscono in modo costante alla variazione e non per piccole frazioni. Matematicamente: la derivata parziale della funzione di costo rispetto ad un peso di un generico neurone N è data dal prodotto delle derivate parziali delle funzioni di attivazione rispetto ai pesi dei neuroni a cui nella propagazione in avanti è collegata l&#8217;uscita del neurone N. Se la derivata della funzione di attivazione non fosse un gradino e fosse tale da poter assumere piccoli valori reali nell&#8217;intorno di 0 (come p.e. nel caso della derivata di tanh o della funzione sigmoidea per x grande in valore assoluto) allora i contributi dei piccoli gradienti man mano che si retropropagano (e quindi sono moltiplicati tra loro) contribuirebbero a produrre variazioni sempre più piccole sia dei pesi sia dei bias nei neuroni (moltiplicazioni a cascata di piccole frazioni). Dunque si assisterebbere ad un apprendimento a due marce: più lento per gli strati prossimi all&#8217;ingresso (man mano che i gradienti si propagano all&#8217;indietro, le moltiplicazioni di piccole frazioni producono variazioni sempre più piccole), più veloce per gli strati prossimi all&#8217;uscita. La conseguenza è un ritardo nell&#8217;apprendimento generale della rete. Il fenomeno chiamato <strong>decadimento del gradiente</strong> (<strong>fuga del gradiente</strong> o <em>vanishing gradient</em>) in retroproagazone è risolto appunto con l&#8217;impiego della funzioni di attivazione ReLU (o variazioni della stessa famiglia per casi più specifici). Nelle reti neurali costituite da molti strati si tende a preferire l&#8217;attivazione ReLU per il problema del decadimento del gradiente e con il conseguente vantaggio di un apprendimento più rapido. Ciononstante la funzione tanh può ancora essere usata nelle CNN non particolarmente profonde e a patto di intervenire su altri parametri che regolano l&#8217;apprendimento della rete (p.e. momentum).</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Ulteriori approfondimenti sul problema del decamento del gradiente possono essere trovati nei seguenti link:</p>
+<ul>
+<li><a href="https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b#.hbhgru8po" target="_blank">Rohan #4: The vanishing gradient problem</a></li>
+<li><a href="http://neuralnetworksanddeeplearning.com/chap5.html" target="_blank">Why are deep neural networks hard to train?</a></li>
+<li><a href="https://www.youtube.com/watch?v=SKMpmAOUa2Q" target="_blank">An Old Problem &#8211; Ep. 5 (Deep Learning SIMPLIFIED) e video successivi</a></li>
+</ul>
+</div></div>
+<p>Dunque, una rete CNN si compone di strati convoluzionali alternati da strati di attivazione (generalmente ReLU) come nella figura sottostante<span id='easy-footnote-5' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-5' title='Fonte: &lt;a href=&quot;http://cs231n.github.io&quot; target=&quot;_blank&quot;&gt;http://cs231n.github.io&lt;/a&gt;'><sup>5</sup></a></span>.</p>
+<p><img data-attachment-id="5496" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/convnet-2/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?fit=1255%2C601&amp;ssl=1" data-orig-size="1255,601" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?fit=300%2C144&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?fit=900%2C431&amp;ssl=1" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?resize=900%2C431&#038;ssl=1" alt="" class="aligncenter size-large wp-image-5496" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?resize=1024%2C490&amp;ssl=1 1024w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?resize=300%2C144&amp;ssl=1 300w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?resize=768%2C368&amp;ssl=1 768w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?resize=1200%2C575&amp;ssl=1 1200w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/convnet.jpeg?w=1255&amp;ssl=1 1255w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p>Come mostrato nella figura, le CNN usano anche degli strati di <em>pooling</em> posizionati subito dopo gli strati convoluzionali. Uno strato di pooling suddivide le matrici convoluzionali in regioni e seleziona un unico valore rappresentativo (valore massimo <em>max-pooling</em> o valore medio <em>average pooling</em>) al fine di ridurre i calcoli degli strati successivi e aumentare la robustezza delle feature rispetto alla posizione spaziale. In sostanza il pooling sottocampiona spazialmente ogni mappa di feature di input. Nella figura seguente è mostrato un esempio di max-pooling (selezione del massimo in ciascuna regione).</p>
+<div id="attachment_5498" style="width: 524px" class="wp-caption aligncenter"><img data-attachment-id="5498" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/pool/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/pool.jpeg?fit=514%2C406&amp;ssl=1" data-orig-size="514,406" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;,&quot;resized_images&quot;:&quot;Array&quot;}" data-image-title="pool" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/pool.jpeg?fit=300%2C237&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/pool.jpeg?fit=514%2C406&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/pool.jpeg?resize=514%2C406&#038;ssl=1" alt="Source: http://cs231n.github.io" class="size-full wp-image-5498" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/pool.jpeg?w=514&amp;ssl=1 514w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/pool.jpeg?resize=300%2C237&amp;ssl=1 300w" sizes="(max-width: 514px) 100vw, 514px" data-recalc-dims="1" /><p class="wp-caption-text">Source: http://cs231n.github.io</p></div>
+<div id="attachment_5497" style="width: 797px" class="wp-caption aligncenter"><img data-attachment-id="5497" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/maxpool/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/maxpool.jpeg?fit=787%2C368&amp;ssl=1" data-orig-size="787,368" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;,&quot;resized_images&quot;:&quot;Array&quot;}" data-image-title="maxpool" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/maxpool.jpeg?fit=300%2C140&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/maxpool.jpeg?fit=787%2C368&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/maxpool.jpeg?resize=787%2C368&#038;ssl=1" alt="Source: http://cs231n.github.io" class="size-full wp-image-5497" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/maxpool.jpeg?w=787&amp;ssl=1 787w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/maxpool.jpeg?resize=300%2C140&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/maxpool.jpeg?resize=768%2C359&amp;ssl=1 768w" sizes="(max-width: 787px) 100vw, 787px" data-recalc-dims="1" /><p class="wp-caption-text">Source: http://cs231n.github.io</p></div>
+<p>Dopo un&#8217;alternanza di strati convoluzionali e di pooling, per i compiti di classificazione, all&#8217;ultimo strato della gerarchia è usata una rete neurale tradizionale MLP con funzione di attivazione di tipo <strong>softmax</strong> (esponenziale normalizzato) per lo strato di uscita. Tale rete è anche conosciuta come <em>multinomial logistic regression</em>. La logistic regression è un classificatore probabilistico lineare. Esso è parametrizzato da una matrice di pesi e da un vettore di bias. Per questo tipo di rete si dimostra che le attivazioni dei neuroni output sono probabilità a posteriori di appartenenza di classe e per questo motivo il numero dei neuroni di uscita è pari al numero di classi.</p>
+<p><img data-attachment-id="5499" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/fig1/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/fig1.png?fit=560%2C253&amp;ssl=1" data-orig-size="560,253" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="fig1" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/fig1.png?fit=300%2C136&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/fig1.png?fit=560%2C253&amp;ssl=1" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/fig1.png?resize=560%2C253&#038;ssl=1" alt="fig1" class="aligncenter size-full wp-image-5499" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/fig1.png?w=560&amp;ssl=1 560w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/fig1.png?resize=300%2C136&amp;ssl=1 300w" sizes="(max-width: 560px) 100vw, 560px" data-recalc-dims="1" /></p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">Il multilayer perceptron (MLP) è una rete neurale artificiale di tipo feedforward che, esattamente come tutte le reti di questo tipo, mappa un insieme di dati di input su uno specifico insieme di valori di output. Un MLP ha la caratteristica di possedere più strati di neuroni ed inoltre ciascuno strato è completamente connesso a quello successivo. Fatta eccezione per i neuroni di input, ogni neurone possiede una funzione di attivazione non lineare. Il MLP rappresenta una funzione di approssimazione universale ed è compatibile con la struttura generale di una rete neurale convoluzionale, la quale viene allenata tramite un algoritmo di backpropagation, cosa che fa anche il MLP.</div></div>
+<p>Da un certo punto di vista, possiamo dire che una rete CNN, per la classificazione, è un sistema che si compone di due componenti fondamentali:</p>
+<ul>
+<li>Componente di riconoscimento ed estrazione automatica delle feature. Il riconoscimento avviene mediante applicazione di banchi paralleli di filtri convoluzionali i cui elementi sono appresi automaticamente mediante algoritmo del gradiente discendente (essi corrispondono ai pesi delle connessioni dei neuroni). Intuitivamente questa componente ha come obiettivo quello di apprendere dei filtri che si attivano in presenza di un qualche specifico tipo di feature in una determinata regione spaziale dell&#8217;input.</li>
+<li>Componente di classificazione.</li>
+</ul>
+<p>L’addestramento di una CNN coinvolge entrambe le componenti in cui i parametri degli elementi costitutivi (p.e. neuroni) sono automaticamente variati al fine di minimizzare una funzione di costo.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+Nell&#8217;articolo <a href="http://deeplearning.net/wp-content/uploads/2013/03/dlsvm.pdf" target="_blank">Deep Learning using Linear Support Vector Machine</a> di Yichuan Tanga viene mostrato come, la sostituzione della rete MLP con una support vector machine (SVM) porti a miglioramenti significativi delle performance su diversi dataset popolari come il MNIST (database pubblico di cifre scritte a mano), il CIFAR-10 (10 classi di immagini varie prese da internet) e ICML 2013 (che riguarda il riconoscimento delle espressioni facciali). Nella figura seguente è mostrata un&#8217;architettura combinata di CNN con SVM ove la CNN è mantenuta nella sua architettura generale ma le uscite dell&#8217;ultimo strato nascosto sono usate come feature anche per addestrare una SVM.</p>
+<p><a href="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ccn-svm.png?ssl=1"><img data-attachment-id="5504" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/ccn-svm/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ccn-svm.png?fit=600%2C576&amp;ssl=1" data-orig-size="600,576" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="ccn-svm" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ccn-svm.png?fit=300%2C288&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ccn-svm.png?fit=600%2C576&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ccn-svm.png?resize=300%2C288&#038;ssl=1" alt="ccn-svm" class="aligncenter size-medium wp-image-5504" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ccn-svm.png?resize=300%2C288&amp;ssl=1 300w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ccn-svm.png?w=600&amp;ssl=1 600w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></div></div>
+<p>La capacità di una rete neurale convoluzionale può variare in base al numero di strati che essa possiede. Raramente si può trovare un solo strato convoluzionale, a meno che la rete in questione non sia estremamente semplice. Di solito una CNN possiede una serie di strati convoluzionali: i primi di questi, partendo dallo strato di ingresso ed andando verso lo strato di uscita, servono per ottenere feature di basso livello, come ad esempio linee orizzontali o verticali, angoli, contorni vari, ecc; più si scende nella rete, andando verso lo strato di uscita, e più le feature diventano di alto livello, ovvero esse rappresentano figure anche piuttosto complesse come dei volti, degli oggetti specifici, una scena, ecc. In sostanza dunque più strati convoluzionali possiede una rete e più feature dettagliate essa riesce ad elaborare. La figura seguente mostra le feature estratte ai vari livelli di una rete convoluzionale, per un esame visuale delle modalità operative delle reti profonde suggerisco di installare e provare il <a href="https://github.com/ltoscano/deep-visualization-toolbox" target="_blank">Deep Visualtization Toolbox</a> di Jason Yosinski.</p>
+<p><img data-attachment-id="5500" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/hierarchical_features/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/hierarchical_features.png?fit=754%2C208&amp;ssl=1" data-orig-size="754,208" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="hierarchical_features" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/hierarchical_features.png?fit=300%2C83&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/hierarchical_features.png?fit=754%2C208&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/hierarchical_features.png?resize=754%2C208&#038;ssl=1" alt="hierarchical_features" class="aligncenter size-full wp-image-5500" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/hierarchical_features.png?w=754&amp;ssl=1 754w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/hierarchical_features.png?resize=300%2C83&amp;ssl=1 300w" sizes="(max-width: 754px) 100vw, 754px" data-recalc-dims="1" /></p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+Esistono diverse tipologie di reti CNN, nella figure seguenti sono mostrate le architetture di tre reti famose: AlexNet<span id='easy-footnote-6' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-6' title='Alex Krizhevsky, Ilya Sutskever, and Geoff Hinton. &amp;#8220;Imagenet classification with deep convolutional neural networks&amp;#8221;. In Advances in Neural Information Processing Systems 25, pages 1106, 1114, 2012.'><sup>6</sup></a></span>, VGGnet<span id='easy-footnote-7' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-7' title='Karen Simonyan, Andrew Zisserman. &amp;#8220;Very deep convolutional networks for large scale image recognition&amp;#8221;. Published as a conference paper at ICLR 2015.'><sup>7</sup></a></span>, GoogLenet<span id='easy-footnote-8' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-8' title='Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., Erhan, D., Vanhoucke, V., and Rabinovich,A. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf&quot; target=&quot;_blank&quot;&gt;&amp;#8220;Going deeper with convolutions&amp;#8221;. CoRR, abs/1409.4842, 2014.'><sup>8</sup></a></span>.</a>.</p>
+<p>La rete AlexNet è una fra le prime reti neurali convoluzionali che ha riscosso un enorme successo. Vincitrice della competizione ILSVRC del 2012, questa rete è stata la prima ad ottenere risultati più che buoni su un dataset molto complicato come ImageNet, utilizzando un&#8217;architettura simile a quella descritta in precedenza: una serie di strati convoluzionali seguiti da un&#8217;altra serie di strati FC.</p>
+<p>VGG è il nome di un team di persone che hanno presentato le proprie reti neurali durante la competizione ILSVRC-2014. Si parla di reti al plurale in quanto sono state create più versioni della stessa rete, ciascuna possedente un numero diverso di strati. In base al numero di strati, ognuna di esse viene solitamente chiamata VGG-n. Tutte queste reti risultano essere più &#8220;profonde&#8221; rispetto a quella di AlexNet. Per &#8220;profonde&#8221;, si intende il fatto che sono costituite da un numero di strati con parametri allenabili maggiore di AlexNet (p.e. da 11 a 19 strati allenabili in totale).</p>
+<p><a href="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?ssl=1"><img data-attachment-id="5501" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/cnnarchitecture/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?fit=908%2C430&amp;ssl=1" data-orig-size="908,430" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cnnarchitecture" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?fit=300%2C142&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?fit=900%2C426&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?resize=900%2C426&#038;ssl=1" alt="cnnarchitecture" class="aligncenter size-full wp-image-5501" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?w=908&amp;ssl=1 908w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?resize=300%2C142&amp;ssl=1 300w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/cnnarchitecture.jpg?resize=768%2C364&amp;ssl=1 768w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></a></p>
+<p>GoogLeNet fu costruita nel 2014 da un team di dipendenti di Google ed è chiamata così in onore di una delle prime reti convoluzionali, ovvero LeNet. GoogLeNet è la rete che possiede l&#8217;architettura più complessa fra quelle accennate. Come si è visto con le reti VGG, il metodo più diretto per aumentare le performance di una CNN è quello di aumentare le loro dimensioni lungo la profondità. Tuttavia per GoogLeNet l&#8217;aumento è inteso sia come incremento di profondità, cioè il numero di livelli che la rete possiede, sia come incremento della larghezza della rete, ovvero il numero di strati presenti su uno stesso livello. Segue lo schema architetturale di GoogLeNet.<br />
+<div id="attachment_5503" style="width: 910px" class="wp-caption aligncenter"><a href="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?ssl=1"><img data-attachment-id="5503" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/googlenet/" data-orig-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?fit=1655%2C381&amp;ssl=1" data-orig-size="1655,381" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="googlenet" data-image-description="" data-medium-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?fit=300%2C69&amp;ssl=1" data-large-file="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?fit=900%2C207&amp;ssl=1" src="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?resize=900%2C207&#038;ssl=1" alt="GoogLeNet Architecture" class="size-large wp-image-5503" srcset="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?resize=1024%2C236&amp;ssl=1 1024w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?resize=300%2C69&amp;ssl=1 300w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?resize=768%2C177&amp;ssl=1 768w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?resize=1200%2C276&amp;ssl=1 1200w, https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/googlenet.png?resize=1300%2C299&amp;ssl=1 1300w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></a><p class="wp-caption-text">GoogLeNet Architecture</p></div>
+</div></div>
+<h3>Una rete CNN costruita from scratch per il riconoscimento di immagini</h3>
+<p>A questo punto l&#8217;obiettivo è implementare from scratch una CNN dimostrativa in grado di operare su due classi di immagini: cat e airplane. Per la generazione di training, validation e testing set utilizzo il dataset <a href="https://cs.stanford.edu/~acoates/stl10/" target="_blank">STL-10</a> che è un sottoinsieme di ImageNet. STL-10 consiste di 13000 immagini a colori di dimensioni 96&#215;96 pixel organizzate in 10 classi più altre 100000 immagini non classificate utilizzabili per apprendimento non supervisionato. Le immagini classificate sono organizzate in 5000 immagini (500 per classe) utilizzabili per il training e 8000 immagini (800 per classe) utilizzabili per validation e testing.</p>
+<h4>Preparazione di training, validation e testing set</h4>
+<p>Basandomi sulle funzioni raccolte nel modulo <a href="https://github.com/ltoscano/STL10" target="_blank">STL-10 Utils</a> ho estratto 2600 immagini relative alle categorie cat e airplane. 1820 (70%) immagini sono usate per il training set, 520 (20%) per il validation set, 260 (10%) per il testing set. Ogni set contiene un numero equivalente di immagini di entrambe le categorie. Ho altresì generato tre file &#8220;.lst&#8221; per train, validation e testing set ciascuno contenete l&#8217;elenco delle immagini e per ciascuna la rispettiva classe di appartenenza (0 per airplane e 1 per cat). Infine, utilizzando il tool <code data-enlighter-language="raw" class="EnlighterJSRAW">im2rec</code>, distribuito con il framework MXNet, ho raggruppato le immagini in due archivi binari (aventi estensione &#8220;.rec&#8221;). Ho configurato il tool <code data-enlighter-language="raw" class="EnlighterJSRAW">im2rec</code> in modo da eseguire contestualmente alla creazione dell&#8217;archivio anche il resize a 28&#215;28 e la conversione in grayscale.</p>
+<p>Al termine i dataset sono così organizzati:</p>
+<ul>
+<li><code data-enlighter-language="raw" class="EnlighterJSRAW">train.lst</code>: tabella associativa tra classi e immagini del training set</li>
+<li><code data-enlighter-language="raw" class="EnlighterJSRAW">validation.lst</code>: tabella associativa tra classi e immagini del validation set</li>
+<li><code data-enlighter-language="raw" class="EnlighterJSRAW">test.lst</code>: tabella associativa tra classi e immagini del testing set</li>
+<li><code data-enlighter-language="raw" class="EnlighterJSRAW">train_28_gray.rec</code>: archivio delle immagini 28&#215;28 grayscale di training</li>
+<li><code data-enlighter-language="raw" class="EnlighterJSRAW">val_28_gray.rec</code>: archivio delle immagini 28&#215;28 grayscale di validation</li>
+<li><code data-enlighter-language="raw" class="EnlighterJSRAW">test_28_gray.rec</code>: archivio delle immagini 28&#215;28 grayscale di test</li>
+</ul>
+<p>Se sei interessato al codice python per l&#8217;estrazione delle immagini e la generazione dei file, puoi richiederlo compilando la <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/contattami/" target="_blank">form di contatto</a>. Puoi anche visitare <a href="http://mxnet.readthedocs.io/en/latest/packages/python/io.html" target="_blank">MXNet Python Data Loading API</a> per approfondimenti sull&#8217;impiego di <code data-enlighter-language="raw" class="EnlighterJSRAW">im2rec</code> e il formato dei file &#8220;.lst&#8221;.</p>
+<h4>Creazione e training della rete CNN</h4>
+<p>Nel blocco seguente, eseguo anzitutto le importazioni delle librerie necessarie tra cui spicca, ovviamente, il wrapper python per MXNet. Successivamente creo due istanze della classe <code data-enlighter-language="raw" class="EnlighterJSRAW">mx.io.ImageRecordIter</code>. Gli oggetti di tipo <code data-enlighter-language="raw" class="EnlighterJSRAW">ImageRecordIter</code> sono essenzialmente degli iteratori su blocchi di immagini. Il primo iteratore è configurato per lavorare sulle immagini del training set, il secondo sulle immagini del validation set. </p>
+<p>Nel caso del training set, l&#8217;iteratore è costruito affinchè esegua casualmente dei ritagli <code data-enlighter-language="raw" class="EnlighterJSRAW">rand_crop=True</code> e dei ribaltamenti orizzontali <code data-enlighter-language="raw" class="EnlighterJSRAW">rand_mirror=True</code> delle immagini (ciò aiuta la rete ad apprendere in modo più robusto); questi trattamenti delle immagini non sono richiesti sul validation set. Su entrambi i set imposto la dimensione dell&#8217;immagine <code data-enlighter-language="raw" class="EnlighterJSRAW">data_shape = (1,28,28)</code> dove 1 rappresenta il numero di canali delle immagini e i successivi valori rappresentano rispettivamente larghezza e altezza. Imposto inoltre <code data-enlighter-language="raw" class="EnlighterJSRAW">batch_size = 10</code> su entrambi i set. <code data-enlighter-language="raw" class="EnlighterJSRAW">batch_size</code> rappresenta il numero di elementi di input, cioè di immagini in questo caso, che vengono processate nella rete di volta in volta (importante per l&#8217;allenamento di una rete). Questo parametro va settato in base alla memoria che si ha a disposizione sul proprio computer (memoria della scheda video se si lavora in modalità GPU, oppure la RAM se si lavora in modalità CPU). La variazione di questo parametro non intacca le prestazioni della rete in termini di accuratezza della classificazione. Certamente un valore più basso di batch size provocherà una fase di training più lenta, perchè si processano meno immagini alla volta, ma ciò è in linea col fatto che si possiede un hardware più limitato. Questo parametro non deve essere necessariamente identico su entrambi training e testing set.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+# import library
+# neural network performance analysis
+import seaborn as sns
+import mxnet as mx
+import sys,logging,numpy,random,csv
+from sklearn.metrics import roc_auc_score, auc, precision_recall_curve, roc_curve, average_precision_score
+
+train = mx.io.ImageRecordIter(
+	path_imgrec = &#039;./datasets/stl10/images/train_28_gray.rec&#039;,
+	path_imglist=&quot;./datasets/stl10/images/train.lst&quot;,
+	data_shape = (1,28,28),
+	batch_size = 10,
+	rand_crop = True,
+	rand_mirror = True
+)
+
+val = mx.io.ImageRecordIter(
+	path_imgrec = &#039;./datasets/stl10/images/val_28_gray.rec&#039;,
+	path_imglist=&quot;./datasets/stl10/images/val.lst&quot;,
+	rand_crop = False,
+	rand_mirror = False,
+	data_shape = (1,28,28),
+	batch_size = 10
+)
+</pre></p>
+<p>Nel blocco seguente: configuro il logger per poter giovare di una visualizzazione in debug durante l&#8217;addestramento. Per la riproducibilità dei risultati imposto il generatore di numeri casuali specificando il valore del seme (<em>seed</em>) <code data-enlighter-language="raw" class="EnlighterJSRAW">mx.random.seed(100)</code><span id='easy-footnote-9' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-9' title='Ogni volta che si usa lo stesso seme, si otterrà sempre la stessa identica sequenza di numeri casuali.'><sup>9</sup></a></span>. Imposto inoltre <code data-enlighter-language="raw" class="EnlighterJSRAW">devs = mx.cpu()</code> avendo cura di indicare quale processore utilizzare per l&#8217;elaborazione (nel mio caso la CPU). Suggerisco di dare una lettura a <a href="http://mxnet.readthedocs.io/en/latest/how_to/multi_devices.html" target="_blank">Run MXNet on Multiple CPU/GPUs with Data Parallel</a> per capire come sfrutturare al meglio CPU e GPU.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+# configure logger
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+# set seeds for reproducibility
+mx.random.seed(100)
+
+# device used. CPU in my case.
+devs = mx.cpu()
+</pre></p>
+<p>Finalmente, nel blocco seguente, specifico l&#8217;architettura della rete CNN in modalità &#8220;dichiarativa&#8221; (si noti l&#8217;assenza di qualsiasi riferimento a variabili con dati).</p>
+<p>Ho 4 strati con parametri allenabili: una serie di 2 strati convoluzionali seguita da 2 strati FC (completamente connessi). Ogni strato convoluzionale è seguito da uno strato tanh <code data-enlighter-language="raw" class="EnlighterJSRAW">act_type=&quot;tanh&quot;</code> e da uno strato di MAX pooling <code data-enlighter-language="raw" class="EnlighterJSRAW">pool_type=&quot;max&quot;</code> (l&#8217;attivazione tanh su questa tipologia di rete risulta preferibile alla ReLU). Tutti gli strati di pooling hanno una regione di estensione 2&#215;2 <code data-enlighter-language="raw" class="EnlighterJSRAW">kernel=(2,2)</code> ed uno stride pari a 2 <code data-enlighter-language="raw" class="EnlighterJSRAW">stride=(2,2)</code>: ciò vuol dire che si utilizza sempre un overlapping pooling. Tale scelta è dovuta al fatto che questo tipo di pooling incrementa leggermente le prestazioni della rete rispetto al normale pooling senza overlapping. Dei 2 strati FC il primo possiede 500 neuroni <code data-enlighter-language="raw" class="EnlighterJSRAW">num_hidden=500</code>, mentro l&#8217;ultimo possiede 2 unità <code data-enlighter-language="raw" class="EnlighterJSRAW">num_hidden=2</code> corrispondenti al numero di classi di nostro interesse (cat e airplane).</p>
+<p>Una singola fase di forward propagation implica le seguenti principali operazioni: il primo strato convoluzionale accetta in input una struttura dati 28x28x1 che è la matrice di input (tipicamente il generico input di uno strato convoluzionale è anche chiamato <strong>volume</strong>) e ad essa applica 20 filtri <code data-enlighter-language="raw" class="EnlighterJSRAW">num_filter=20</code>, ognuno di dimensioni 5&#215;5 <code data-enlighter-language="raw" class="EnlighterJSRAW">kernel=(5,5)</code> con uno stride di 1 (valore di default) e nessun zero-padding (valore di default), ottenendo 20 mappe di attivazione di dimensione 24&#215;24. Per calcolare la dimensione del volume in uscita utilizzo le seguenti formule:</p>
+<p><img src="//s0.wp.com/latex.php?latex=W_%7B2%7D%3D%5Cfrac%7BW_%7B1%7D-F%2B2P%7D%7BS%7D%2B1&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="W_{2}=&#92;frac{W_{1}-F+2P}{S}+1" title="W_{2}=&#92;frac{W_{1}-F+2P}{S}+1" class="latex" /><br />
+<img src="//s0.wp.com/latex.php?latex=H_%7B2%7D%3D%5Cfrac%7BH_%7B1%7D-F%2B2P%7D%7BS%7D%2B1&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="H_{2}=&#92;frac{H_{1}-F+2P}{S}+1" title="H_{2}=&#92;frac{H_{1}-F+2P}{S}+1" class="latex" /></p>
+<p>dove W<sub>1</sub>, H<sub>1</sub> sono larghezza ed altezza della regione in ingresso, F è il lato dell&#8217;area del campo ricettivo, S è lo stride, P è l&#8217;ammontare dello zero-padding, K è il numero di filtri. In questo caso particolare: W<sub>2</sub>=24, H<sub>2</sub>=24 con F=5, S=1, P=0.</p>
+<p>Il secondo strato convoluzionale prende in input il volume 12x12x20 ottenuto dal volume 24x24x20 a cui sono state applicate le funzioni tanh ed overlapping pooling (quest&#8217;ultima produce il volume di dimensioni ridotte). Il secondo strato convoluzionale convolve il volume 12x12x20 con 50 kernel di dimensione 5x5x20, uno stride pari a 1 e nessun zero-padding, ottendendo un volume 8x8x50<span id='easy-footnote-10' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-10' title='Dato un volume WxHxP, l&amp;#8217;area di ricezione di ogni neurone di una depth slice è pari W&lt;sub&gt;K&lt;/sub&gt; X H&lt;sub&gt;K&lt;/sub&gt; X P. Dove W&lt;sub&gt;K&lt;/sub&gt; e H&lt;sub&gt;K&lt;/sub&gt; sono larghezza e altezza del kernel. Ogni neurone della slice ha (W&lt;sub&gt;K&lt;/sub&gt; X H&lt;sub&gt;K&lt;/sub&gt; X P) input più il bias.'><sup>10</sup></a></span>. Successivamente dopo le operazioni di tanh, viene applicato un altro strato di pooling identico al precedente e si ottiene un volume 4x4x50.</p>
+<p>A questo punto il primo dei 2 strati FC possedente 500 neuroni effettua il suo normale lavoro, cioè i vari prodotti e somme per ottenere le attivazioni dei suoi 500 neuroni ottenendo un vettore in uscita di dimensioni 1&#215;500. Analoga cosa con il secondo ed ultimo strato FC, il quale possedendo 2 unità, il numero di classi di nostro interesse, produce in output un vettore di dimensioni 1&#215;2.</p>
+<p>La funzione di attivazione softmax dei neuroni in uscita <code data-enlighter-language="raw" class="EnlighterJSRAW">NN_model = mx.symbol.SoftmaxOutput(data=fc2, name=&#039;softmax&#039;)</code> crea ogni output in [0,1] con somma di tutti gli output pari a 1, consentendo di interpretare la risposta della rete come stime di probabilità.</p>
+<p>Per ulteriori approfondimenti su <code data-enlighter-language="raw" class="EnlighterJSRAW">mxbet.symbol.Convolution</code> e valori dei default dei parametri consultare <a href="http://mxnet-mli.readthedocs.io/en/latest/packages/python/symbol.html" target="_blank">MXNet Python Symbolic API</a>.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+data = mx.symbol.Variable(&#039;data&#039;)
+
+# 1st convolutional layer
+conv1 = mx.symbol.Convolution(data=data, kernel=(5,5), num_filter=20)
+tanh1 = mx.symbol.Activation(data=conv1, act_type=&quot;tanh&quot;)
+pool1 = mx.symbol.Pooling(data=tanh1, pool_type=&quot;max&quot;, kernel=(2,2), stride=(2,2))
+
+# 2nd convolutional layer
+conv2 = mx.symbol.Convolution(data=pool1, kernel=(5,5), num_filter=50)
+tanh2 = mx.symbol.Activation(data=conv2, act_type=&quot;tanh&quot;)
+pool2 = mx.symbol.Pooling(data=tanh2, pool_type=&quot;max&quot;,kernel=(2,2), stride=(2,2))
+
+# 1st fully connected layer
+flatten = mx.symbol.Flatten(data=pool2)
+fc1 = mx.symbol.FullyConnected(data=flatten, num_hidden=500)
+tanh3 = mx.symbol.Activation(data=fc1, act_type=&quot;tanh&quot;)
+# 2nd fully connected layer
+fc2 = mx.symbol.FullyConnected(data=tanh3, num_hidden=2)
+
+# Output. Softmax output since we&#039;d like to get some probabilities.
+NN_model = mx.symbol.SoftmaxOutput(data=fc2, name=&#039;softmax&#039;)
+</pre></p>
+<p>Dopo la definizione in modalità dichiarativa dell&#8217;architettura della rete passo alla creazione del modello mediante l&#8217;instanziazione della classe <code data-enlighter-language="raw" class="EnlighterJSRAW">mx.model.FeedForward</code>. </p>
+<p>In fase di costruzione del modello specifico il contesto di esecuzione <code data-enlighter-language="raw" class="EnlighterJSRAW">ctx=devs</code> (la CPU nel mio caso, ma in casi più complessi potrebbe essere una lista di GPU), l&#8217;architettura della rete <code data-enlighter-language="raw" class="EnlighterJSRAW">symbol=NN_model</code>, il numero di epoche <code data-enlighter-language="raw" class="EnlighterJSRAW">num_epoch=400</code>, il valore di learning rate <code data-enlighter-language="raw" class="EnlighterJSRAW">learning_rate=0.0001</code>. Il learning rate è un fattore moltiplicativo per il gradiente; serve a specificare/regolare il grado di apprendimento, o meglio di aggiornamento, rispetto ai pesi e al bias. </p>
+<p>Un altro parametro specificato è il <strong>momentum</strong> <code data-enlighter-language="raw" class="EnlighterJSRAW">momentum=0.9</code>. Il momentum indica il peso dell&#8217;aggiornamento precedente dei parametri durante l&#8217;algoritmo di discesa del gradiente (<em>gradient-descent</em>). Solitamente si lascia sempre il valore 0.9 in quanto è stato visto che in questo modo si ottengono buoni risultati. </p>
+<p>Infine, l&#8217;ultimo parametro specificato è il <strong>weight decay</strong> <code data-enlighter-language="raw" class="EnlighterJSRAW">weight_decay=0.00001</code> è un parametro che influenza il termine di regolarizzazione che appare nella formula per il calcolo della funzione di costo:</p>
+<p><img src="//s0.wp.com/latex.php?latex=C%28W%2Cb%29%3D%5Cfrac%7B1%7D%7B2+%5Ccdot+m%7D%5Ccdot+%5Csum_%7Bi%3D1%7D%5E%7Bm%7D+%5By%5E%7B%28i%29%7D-f_%7BW%2Cb%7D%28x%5E%7B%28i%29%7D%29%5D%5E%7B2%7D%2Bwd%5Ccdot+%5Cleft+%5C%7C+W+%5Cright+%5C%7C%5E%7B2%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="C(W,b)=&#92;frac{1}{2 &#92;cdot m}&#92;cdot &#92;sum_{i=1}^{m} [y^{(i)}-f_{W,b}(x^{(i)})]^{2}+wd&#92;cdot &#92;left &#92;| W &#92;right &#92;|^{2}" title="C(W,b)=&#92;frac{1}{2 &#92;cdot m}&#92;cdot &#92;sum_{i=1}^{m} [y^{(i)}-f_{W,b}(x^{(i)})]^{2}+wd&#92;cdot &#92;left &#92;| W &#92;right &#92;|^{2}" class="latex" /></p>
+<p>dove f<sub>W,b</sub>(x) è l&#8217;uscita della rete, y<sup>x(i)</sup> sono le uscite target in relazione all&#8217;ingresso x<sup>(i)</sup>, m è il numero di campioni di training. W rappresenta tutti i pesi della rete ed è considerato come un vettore. Il secondo addendo è un fattore di regolarizzazione. Il weight decay (wd) regola l&#8217;effetto del fattore di regolarizzazione: un valore elevato rende la rete incapace di trattare le non linearità annullando l&#8217;effetto di gran parte dei pesi (in pratica è come se utilizzassimo una rete più semplice), valori bassi rendono la rete più robusta attenuando moderantamente l&#8217;effetto dei pesi ma consentendo di trattare le non linearità senza incorrere in overfitting. Il weight decay influenza i gradi di libertà della rete. Anche qui di solito viene lasciato intorno ad un valore fisso (0.0005 o valori poco distanti).</p>
+<p>Per rinfrescare i concetti basilari sulle reti neurali suggerisco la lettura di <a href="http://www.crescenziogallo.it/unifg/medicina/TSRM/master_bioimmagini/ann/Tutorial%20Reti%20Neurali%20Artificiali.pdf" target="_blank">Reti Neurali Artificiali Tutorial</a>.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+model = mx.model.FeedForward(
+	ctx = devs,
+	symbol = NN_model,
+	num_epoch = 400,
+	learning_rate = 0.0001,
+	momentum = 0.9,
+	wd = 0.00001
+)
+</pre></p>
+<p>Il passaggio successivo consiste nell&#8217;avviare l&#8217;apprendimento della rete mediante l&#8217;invocazione della funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">model.fit(...)</code>. </p>
+<p><code data-enlighter-language="raw" class="EnlighterJSRAW">fit</code> è una funzione definita nella classe <code data-enlighter-language="raw" class="EnlighterJSRAW">mx.model.FeedForward</code> e, all&#8217;invocazione richiede la specificazione di alcuni parametri. Anzitutto è necessario fornire il training set <code data-enlighter-language="raw" class="EnlighterJSRAW">X=train</code> e il validation set <code data-enlighter-language="raw" class="EnlighterJSRAW">eval_data=val</code>. Al termine nell&#8217;esecuzione di ogni batch è possibile collegare l&#8217;invocazione di una funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">batch_end_callback=mx.callback.Speedometer(batch_size=10)</code> in grado di visualizzare la velocità di apprendimento (numero di campioni processati al secondo). La funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">Speedometer</code> utilizza l&#8217;elenco di funzioni <code data-enlighter-language="raw" class="EnlighterJSRAW">eval_metric=[&#039;accuracy&#039;,roc_auc_score]</code> per calcolare metriche e visualizzarne i valori al termine di ogni batch sul training set. In <code data-enlighter-language="raw" class="EnlighterJSRAW">eval_metric</code> è possibile specificare metriche built-in (accuracy, top_k_accuracy, f1, mae, mse, rmse, cross-entropy) oppure metriche implementate in funzioni esterne come <code data-enlighter-language="raw" class="EnlighterJSRAW">roc_auc_score</code> che è importata da <code data-enlighter-language="raw" class="EnlighterJSRAW">sklearn.metrics</code>. La metrica built-in <code data-enlighter-language="raw" class="EnlighterJSRAW">accuracy</code> è calcolata come il rapporto tra il numero di campioni correttamente classificati (veri positivi + veri negativi) diviso il numero totale di campioni. La metrica <code data-enlighter-language="raw" class="EnlighterJSRAW">roc_auc_score</code> calcola l&#8217;area sotto la curva ROC. <code data-enlighter-language="raw" class="EnlighterJSRAW">Speedometer</code> calcola le suddette metriche sul train set al termine di ogni batch. Quindi se 1000 sono i campioni e batch size è 10, l&#8217;addestramento avverrà su 100 blocchi e ogni 50 blocchi <code data-enlighter-language="raw" class="EnlighterJSRAW">frequent=50</code> saranno visualizzate le statistiche sulle prestazioni della rete in apprendimento. Al termine di ogni epoca saranno anche visualizzate le stesse metriche elencate in <code data-enlighter-language="raw" class="EnlighterJSRAW">eval_metric</code> sul validation set. </p>
+<p>Al termine dell&#8217;esecuzione di ogni epoca è possibile collegare un&#8217;ulteriore funzione in grado di salvare i parametri appresi dalla rete in un <em>checkpoint file</em> su disco <code data-enlighter-language="raw" class="EnlighterJSRAW">epoch_end_callback=mx.callback.do_checkpoint(prefix=&quot;rot_tanh_28_5_400&quot;,period=1)</code> dove <code data-enlighter-language="raw" class="EnlighterJSRAW">prefix</code> è una stringa arbitraria che è utilizzata per generare automaticamente il nome del file di checkpoint (con indice numerico progressivo) e <code data-enlighter-language="raw" class="EnlighterJSRAW">period</code> indica ogni quante epoche deve essere eseguito il salvataggio. Il salvataggio dei dati appresi su disco consente di distribuire i modelli della rete già pre-addestrati all&#8217;epoca che si ritiene più idonea. Per caricare un modello pre-addestrato si può procedere in modo esattamente analogo a quanto già visto precedentemente per i modelli di DMLC.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+model.fit(X=train,
+	eval_data=val,
+	eval_metric=[&#039;accuracy&#039;,roc_auc_score],
+	batch_end_callback=mx.callback.Speedometer(batch_size=10, frequent=50),
+	epoch_end_callback=mx.callback.do_checkpoint(prefix=&quot;rot_tanh_28_5_400&quot;, period=10)
+)
+</pre></p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">La curva ROC (<em>Receiver Operating Characteristics</em>) è una tecnica statistica che che permette di misurare l’accuratezza di una rete lungo tutto il range dei valori possibili. L&#8217;area sottostante alla curva ROC (AUC, acronimo dei termini inglesi <em>Area Under the Curve</em>) è una misura di accuratezza. Se un&#8217;ipotetica rete addestrata discriminasse perfettamente tutti gli input, l&#8217;area della curva ROC avrebbe valore 1, cioè il 100% di accuratezza. Nel caso in cui la rete non discriminasse per niente gli input, la curva ROC avrebbe un&#8217;area di 0.5 (o 50%) che coinciderebbe con l&#8217;area sottostante la diagonale del grafico. L&#8217;area sotto la curva può assumere valori compresi tra 0.5 e 1.0. Tanto maggiore è l’area sotto la curva (cioè tanto più la curva si avvicina al vertice del grafico) tanto maggiore è il potere discriminante della rete. Una rete con AUC compreso tra 0.5 e 0.7 può definirsi poco accurata, una rete con AUC compreso tra 0.7 e 0.9 è moderatamente accurata, una rete con AUC compreso tra 0.9 e 1.0 è altamente accurata.</div></div>
+<p>Nella figura seguente sono mostrati due grafici che ci consentono di analizzare velocemente le prestazioni della rete comparate su training e validation set nello spazio ROC e nello spazio PR con indicazione dell&#8217;AUC come metrica di valutazione.</p>
+<p><img data-attachment-id="5519" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/roc-pr/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ROC-PR.png?fit=894%2C393&amp;ssl=1" data-orig-size="894,393" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="roc-pr" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ROC-PR.png?fit=300%2C132&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ROC-PR.png?fit=894%2C393&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ROC-PR.png?resize=894%2C393&#038;ssl=1" alt="roc-pr" class="aligncenter size-full wp-image-5519" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ROC-PR.png?w=894&amp;ssl=1 894w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ROC-PR.png?resize=300%2C132&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/ROC-PR.png?resize=768%2C338&amp;ssl=1 768w" sizes="(max-width: 894px) 100vw, 894px" data-recalc-dims="1" /></p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">In un problema di decisione binaria, le etichette di un classificatore possono essere indicate come positive o negative. La decisione fatta dal classificatore può essere rappresentata in una struttura nota come <strong>matrice di confusione</strong> (<em>confusion matrix</em>). La matrice di confusione è suddivisa in quattro blocchi. 1) Veri Positivi (TP): sono campioni correttamente etichettati come positivi. 2) Falsi Positivi (FP): sono campioni negativi erroneamente etichettati come positivi. 3) Veri Negativi (TN): sono campioni negativi correttamente etichettati come negativi. 4) Falsi Negativi (FN): sono campioni positivi etichettati erroneamente come negativi. Una matrice di confusione consente di ottenere tutte le metriche necessarie per creare le rappresentazioni mostrate nei grafici precedenti. Nello spazio ROC sono riportate in ascissa le percentuali di errore Falso Positivo (FPR) e in ordinata le percentuale di errore Vero Positivo (TPR). FPR misura la frazione di campioni negativi che sono stati erroneamente classificati come positivi e TPR misura la frazione di campioni positivi che sono stati correttamente classificati come tali. Il grafico che otteniamo è la curva ROC. Nello spazio PR sull&#8217;ascissa sono rappresentati i valori di <strong>Richiamo</strong> (<em>Recall</em>) e sull&#8217;ordinata i valori di <strong>Precisione</strong> (<em>Precision</em>). Richiamo e TPR coincidono, mentre la precisione misura la frazione di campioni classificati come positivi che sono realmente positivi. Per ulteriori informazioni consultare <a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank">Precision and Recall su Wikipedia En</a> e <a href="http://pages.cs.wisc.edu/~jdavis/davisgoadrichcamera2.pdf" target="_blank">The Relationship Between Precision-Recall and ROC Curves</a>.</div></div>
+<p>Segue il codice python per la generazione dei suddetti grafici.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+y_train=[]
+y_val=[]
+with open(&#039;./datasets/stl10/images/train.lst&#039;,&#039;r&#039;) as csvfile:
+	spamreader = csv.reader(csvfile, delimiter=&#039;\t&#039;)
+	for row in spamreader:
+		y_train.append(int(row[1]))
+with open(&#039;./datasets/stl10/images/val.lst&#039;,&#039;r&#039;) as csvfile:
+	spamreader = csv.reader(csvfile, delimiter=&#039;\t&#039;)
+	for row in spamreader:
+		y_val.append(int(row[1]))
+
+y_train=np.array(y_train)
+y_val=np.array(y_val)
+
+y_eval_pred = model.predict( val )[:,1]
+y_train_pred = model.predict( train )[:,1]
+t_fpr, t_tpr, _ = roc_curve( y_train, y_train_pred )
+t_precision, t_recall, _ = precision_recall_curve( y_train, y_train_pred )
+e_fpr, e_tpr, _ = roc_curve( y_val, y_eval_pred )
+e_precision, e_recall, _ = precision_recall_curve( y_val, y_eval_pred )
+
+sns.set_style(&#039;whitegrid&#039;)
+plt.figure( figsize=(15, 6) )
+train_auc = numpy.around( auc(t_fpr, t_tpr), 4 )
+eval_auc = numpy.around( auc(e_fpr, e_tpr), 4 )
+plt.subplot(121)
+plt.title( &quot;ROC&quot; )
+plt.xlabel( &quot;FPR&quot; )
+plt.ylabel( &quot;TPR&quot; )
+plt.plot( t_fpr, t_tpr, alpha=0.6, c=&#039;m&#039;, label=&quot;Training AUC = {}&quot;.format( train_auc ) )
+plt.plot( e_fpr, e_tpr, alpha=0.6, c=&#039;c&#039;, label=&quot;Evaluation AUC = {}&quot;.format( eval_auc ) )
+plt.plot( [0,1], [0, 1], c=&#039;k&#039;, alpha=0.6 )
+plt.legend( loc=2 )
+train_auc = numpy.around( average_precision_score( y_train, y_train_pred ), 4 )
+eval_auc = numpy.around( average_precision_score( y_val, y_eval_pred ), 4 )
+plt.subplot(122)
+plt.title( &quot;ROC&quot; )
+plt.xlabel( &quot;Recall&quot; )
+plt.ylabel( &quot;Precision&quot; )
+plt.plot( t_recall, t_precision, alpha=0.6, c=&#039;m&#039;, label=&quot;Training AUC = {}&quot;.format( train_auc ) )
+plt.plot( e_recall, e_precision, alpha=0.6, c=&#039;c&#039;, label=&quot;Evaluation AUC = {}&quot;.format( eval_auc ) )
+plt.plot( [0,1], [0.5, 0.5], c=&#039;k&#039;, alpha=0.6 )
+plt.ylim(0.5, 1.0)
+plt.legend()
+plt.show()
+</pre></p>
+<p>Finalmente è arrivato il momento di provare le capacità predittive della rete. Utilizzo il testing set composto di 260 immagini equamente distribute sulle due categorie. Questo set include immagini che non sono mai state sottoposte alla rete. Le immagini possono essere estratte dall&#8217;archivio binario &#8220;.rec&#8221; e, mediante il file &#8220;.lst&#8221;, è possibile risalire alla  classe di appartenenza di ciascuna. Ciclando su ogni immagine invoco la funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">model.predict</code> per ottenere l&#8217;elenco di probabilità per ciascuna delle due classi. In breve, questi i risultati che ho ottenuto:</p>
+<p><code data-enlighter-language="raw" class="EnlighterJSRAW">success: 237, total: 260, cat: 129, plane 108</code></p>
+<p>Dunque, su 260 immagini il 91% circa (237 su 260) è stato correttamente riconosciuto, con il 99% dei successi su cat e l&#8217;83% su airplane.</p>
+<p>Risultato di notevole interesse e certamente migliorabile lavorando sui parametri della rete. Ma questa è un&#8217;altra storia.</p>
+<p>Puoi richiedermi dataset, modelli pre-addestrati e moduli software custom compilando la <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/contattami/" target="_blank">form di contatto</a>.</p>
+<hr />
+<p>Per ulteriori approfondimenti, queste sono alcune delle fonti che ho consultato:</p>
+<ul>
+<li><a href="http://amslaurea.unibo.it/6681/1/neri_mattia_tesi.pdf" target="_blank">Segmentazione di Immagini Mammografiche con Convolutional Neural Networks</a></li>
+<li><a href="http://reports-archive.adm.cs.cmu.edu/anon/2015/CMU-CS-15-119.pdf" target="_blank">Dataset Curation through Renders and Ontology Matching</a></li>
+<li><a href="http://tiziano19661.interfree.it/pdf1314/metodi_elab_segnali_13_14.pdf" target="_blank">Appunti su metodi per elaborazione dei segnali</a></li>
+<li><a href="http://www.lambertoballan.net/downloads/uricchio-ott12.pdf" target="_blank">Apprendimento automatico per tagging di immagini su base semantica e sociale</a></li>
+<li><a href="http://tesi.cab.unipd.it/51999/1/tesi.pdf" target="_blank">Applicazioni e limit della classificazione di immagini con reti neurali convoluzionali in dispositivi mobili</a></li>
+<li><a href="http://www.atlantsembedded.com/content/overview-convolutional-neural-networks-what-are-multilayer-perceptrons-doing-exactly" target="_blank">Overview of Convolutional Neural Networks &#8211; What Are Multilayer Perceptrons doing exactly?</a></li>
+<li><a href="http://www.eltamiso.it/nov13/wp-content/uploads/2016/08/La-questione-delle-macchine-da-Internazionale-agosto-2016.pdf" target="_blank">La question delle macchine</a></li>
+<li><a href="https://arxiv.org/pdf/1608.08225v1.pdf" target="_blank">Why does deep and cheap learning work so well?</a></li>
+<li><a href="http://www.ingegneria-informatica.unina.it/sites/default/files/elaborati_tesi/2015/09/Elaborato%20Liccardo%20Biagio%20Marco%20%20N46001785.pdf" target="_blank">Dal percettrone di Rosenblatt alle Reti Convoluzionali</a></li>
+</ul>
+<ol class="easy-footnotes-wrapper"><li class="easy-footnote-single"><span id="easy-footnote-bottom-1" class="easy-footnote-margin-adjust"></span>Grazie all&#8217;organizzazione gerarchica di WordNet, se un sistema di riconoscimento non è sicuro che una data immagine mostri, per esempio, un cane, può verificare il successivo livello (mammiferi) o quello superiore (animali). Questo è un grande vantaggio derivante dall&#8217;impiego di WordNet.<a class="easy-footnote-to-top" href="#easy-footnote-1"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-2" class="easy-footnote-margin-adjust"></span>Ovviamente la definizione di <a href="https://it.wikipedia.org/wiki/Tensore" target="_blank">tensore</a> è matematicamente più rigorosa.<a class="easy-footnote-to-top" href="#easy-footnote-2"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-3" class="easy-footnote-margin-adjust"></span>Fonte: <a href="http://deeplearning.stanford.edu/wiki/index.php/Feature_extraction_using_convolution" target="_blank">http://deeplearning.stanford.edu/wiki/index.php/Feature_extraction_using_convolution</a><a class="easy-footnote-to-top" href="#easy-footnote-3"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-4" class="easy-footnote-margin-adjust"></span>In termini generali, se la matrice di input avesse dimensioni NxMxP con P profondità (p.e. P=3 nel caso di matrice di pixel associata ad un&#8217;immagine a colori) un generico campo ricettivo sarebbe composto da 3x3xP elementi che sarebbero gli ingressi del neurone dello strato nascosto ad esso associato. 3&#215;3 è la dimensione del filtro.<a class="easy-footnote-to-top" href="#easy-footnote-4"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-5" class="easy-footnote-margin-adjust"></span>Fonte: <a href="http://cs231n.github.io/" target="_blank">http://cs231n.github.io</a><a class="easy-footnote-to-top" href="#easy-footnote-5"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-6" class="easy-footnote-margin-adjust"></span>Alex Krizhevsky, Ilya Sutskever, and Geoff Hinton. &#8220;Imagenet classification with deep convolutional neural networks&#8221;. In Advances in Neural Information Processing Systems 25, pages 1106, 1114, 2012.<a class="easy-footnote-to-top" href="#easy-footnote-6"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-7" class="easy-footnote-margin-adjust"></span>Karen Simonyan, Andrew Zisserman. &#8220;Very deep convolutional networks for large scale image recognition&#8221;. Published as a conference paper at ICLR 2015.<a class="easy-footnote-to-top" href="#easy-footnote-7"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-8" class="easy-footnote-margin-adjust"></span>Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., Erhan, D., Vanhoucke, V., and Rabinovich,A. <a href="http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf" target="_blank">&#8220;Going deeper with convolutions&#8221;. CoRR, abs/1409.4842, 2014.<a class="easy-footnote-to-top" href="#easy-footnote-8"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-9" class="easy-footnote-margin-adjust"></span>Ogni volta che si usa lo stesso seme, si otterrà sempre la stessa identica sequenza di numeri casuali.<a class="easy-footnote-to-top" href="#easy-footnote-9"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-10" class="easy-footnote-margin-adjust"></span>Dato un volume WxHxP, l&#8217;area di ricezione di ogni neurone di una depth slice è pari W<sub>K</sub> X H<sub>K</sub> X P. Dove W<sub>K</sub> e H<sub>K</sub> sono larghezza e altezza del kernel. Ogni neurone della slice ha (W<sub>K</sub> X H<sub>K</sub> X P) input più il bias.<a class="easy-footnote-to-top" href="#easy-footnote-10"></a></li></ol>	</div><!-- .entry-content -->
+
+	
+			<div class="entry-meta">
+			<ul class="meta-list">
+
+				<!-- Categories -->
+				
+					<li class="meta-cat">
+						<span>Pubblicato in:</span>
+
+						<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" rel="category tag">Deep Learning</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" rel="category tag">Programming</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" rel="category tag">Training</a>					</li>
+
+				
+				<!-- Tags -->
+				
+					<li class="meta-tag">
+						<span>Tagged in:</span>
+
+						<span  class="tag">cnn</span>, <span  class="tag">convolution</span>, <span  class="tag">convolutional</span>, <span  class="tag">Deep Learning</span>, <span  class="tag">DMLC</span>, <span  class="tag">dnn</span>, <span  class="tag">feature extraction</span>, <span  class="tag">GPU</span>, <span  class="tag">hubel</span>, <span  class="tag">identificazione oggetti immagini</span>, <span  class="tag">ILSVRC</span>, <span  class="tag">imagenet</span>, <span  class="tag">kernel</span>, <span  class="tag">mechanical turk</span>, <span  class="tag">mobile</span>, <span  class="tag">mxnet</span>, <span  class="tag">neural networks</span>, <span  class="tag">polling</span>, <span  class="tag">pre-addestrati</span>, <span  class="tag">preprocessing</span>, <span  class="tag">programmazione dichiarativa</span>, <span  class="tag">reti convoluzionali</span>, <span  class="tag">sift</span>, <span  class="tag">softmax</span>, <span  class="tag">subsampling</span>, <span  class="tag">surf</span>, <span  class="tag">svm</span>, <span  class="tag">turi</span>, <span  class="tag">wiesel</span>, <span  class="tag">wordnet</span>					</li>
+
+				
+			</ul><!-- .meta-list -->
+		</div><!-- .entry-meta -->
+	
+</article><!-- #post-## -->
+	<div class="author-profile">
+		<a class="author-profile-avatar" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
+
+		<div class="author-profile-info">
+			<h3 class="author-profile-title">
+									Pubblicato da								lorenzo</h3>
+
+							<div class="author-description">
+					<p>Full-time engineer. I like to write about data science and artificial intelligence.</p>
+				</div>
+			
+			<div class="author-profile-links">
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/"><i class="fa fa-pencil-square"></i> Tutti gli articoli</a>
+
+							</div>
+		</div><!-- .author-drawer-text -->
+	</div><!-- .author-profile -->
+
+
+			<!-- Comment toggle and share buttons -->
+			<div class="share-comment click">
+
+									<div class="share-icons open">
+						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-5436" class="share-twitter sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/?share=twitter" target="_blank" title="Fai clic qui per condividere su Twitter"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Twitter (Si apre in una nuova finestra)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-5436" class="share-linkedin sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/?share=linkedin" target="_blank" title="Fai clic qui per condividere su LinkedIn"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su LinkedIn (Si apre in una nuova finestra)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-5436" class="share-google-plus-1 sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/?share=google-plus-1" target="_blank" title="Fai clic qui per condividere su Google+"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Google+ (Si apre in una nuova finestra)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/?share=email" target="_blank" title="Fai clic qui per inviare l'articolo via mail ad un amico"><span></span><span class="sharing-screen-reader-text">Fai clic qui per inviare l'articolo via mail ad un amico (Si apre in una nuova finestra)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/#print" target="_blank" title="Fai clic qui per stampare"><span></span><span class="sharing-screen-reader-text">Fai clic qui per stampare (Si apre in una nuova finestra)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-5436" class="share-facebook sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/?share=facebook" target="_blank" title="Fai clic per condividere su Facebook"><span></span><span class="sharing-screen-reader-text">Fai clic per condividere su Facebook (Si apre in una nuova finestra)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+				
+									<a class="comments-toggle button" href="#">
+						<span><i class="fa fa-comments"></i>
+							Lascia un commento						</span>
+						<span><i class="fa fa-times"></i> Nascondi commenti</span>
+					</a>
+							</div>
+
+			
+	<div id="comments" class="comments-area click">
+
+		
+		
+				
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/#respond" style="display:none;">Annulla risposta</a></small></h3>
+						<form id="commentform" class="comment-form">
+				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&#038;postid=5436&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=monsterid&#038;greeting=Vuoi+commentare%3F&#038;greeting_reply=Rispondi+a+%25s&#038;color_scheme=light&#038;lang=it_IT&#038;jetpack_version=4.9&#038;sig=82a8ce3eaaf3ec384eaecd7d9bea17c478f3de6c#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fidentificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+				<!--[if !IE]><!-->
+				<script>
+					document.addEventListener( 'DOMContentLoaded', function () {
+						var commentForms = document.getElementsByClassName( 'jetpack_remote_comment' );
+						for ( var i = 0; i < commentForms.length; i++ ) {
+							commentForms[i].allowTransparency = false;
+							commentForms[i].scrolling = 'no';
+						}
+					} );
+				</script>
+				<!--<![endif]-->
+			</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+
+		
+	</div><!-- #comments -->
+
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area">
+		<style type="text/css">
+.qtranxs_widget ul { margin: 0; }
+.qtranxs_widget ul li
+{
+display: inline; /* horizontal list, use "list-item" or other appropriate value for vertical list */
+list-style-type: none; /* use "initial" or other to enable bullets */
+margin: 0 5px 0 0; /* adjust spacing between items */
+opacity: 0.5;
+-o-transition: 1s ease opacity;
+-moz-transition: 1s ease opacity;
+-webkit-transition: 1s ease opacity;
+transition: 1s ease opacity;
+}
+/* .qtranxs_widget ul li span { margin: 0 5px 0 0; } */ /* other way to control spacing */
+.qtranxs_widget ul li.active { opacity: 0.8; }
+.qtranxs_widget ul li:hover { opacity: 1; }
+.qtranxs_widget img { box-shadow: none; vertical-align: middle; display: initial; }
+.qtranxs_flag { height:12px; width:18px; display:block; }
+.qtranxs_flag_and_text { padding-left:20px; }
+.qtranxs_flag span { display:none; }
+</style>
+<aside id="qtranslate-2" class="widget qtranxs_widget"><h2 class="widget-title">Selezione lingua:</h2>
+<ul class="language-chooser language-chooser-image qtranxs_language_chooser" id="qtranslate-2-chooser">
+<li class="lang-it active"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
+<li class="lang-en"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
+</ul><div class="qtranxs_widget_end"></div>
+</aside><aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h2 class="widget-title">Iscriviti al Blog via E-Mail</h2>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>Inseririsci il tuo indirizzo email e riceverai i nuovi post via mail.</p>
+</div>					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field-blog_subscription-3">
+							Indirizzo Email						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-3" placeholder="Indirizzo Email" />
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe" />
+						<input type="hidden" name="source" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" />
+						<input type="hidden" name="sub-type" value="widget" />
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3" />
+												<input type="submit" value="Iscriviti" name="jetpack_subscriptions_widget" />
+					</p>
+							</form>
+
+			<script>
+			/*
+			Custom functionality for safari and IE
+			 */
+			(function( d ) {
+				// In case the placeholder functionality is available we remove labels
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.querySelector( 'label[for=subscribe-field-blog_subscription-3]' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+
+				// Make sure the email value is filled in before allowing submit
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'),
+					input = d.getElementById('subscribe-field-blog_subscription-3'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+
+							return false;
+						}
+					};
+
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recenti</h2>		<ul>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
+						</li>
+				</ul>
+		</aside>		<aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categorie</h2>		<ul>
+	<li class="cat-item cat-item-10"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" >API generation</a>
+</li>
+	<li class="cat-item cat-item-333"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" >Data Engineering</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" >Data Mining</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" >Data visualization</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" >Deep Learning</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" >Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" >Programming</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" >Tools</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" >Training</a>
+</li>
+		</ul>
+</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h2 class="widget-title">Twitter</h2><a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="IT" data-partner="jetpack" href="https://twitter.com/BEmatic">I miei Cinguettii</a></aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" class="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">
+	<div>
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" value="" name="s" id="s" class="search-input" placeholder="Cerca..." />
+
+		<button type="submit" id="searchsubmit">
+			<i class="fa fa-search"></i> <span>Ricerca</span>
+		</button>
+	</div>
+</form></aside>	</div><!-- #secondary .widget-area -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+	<!-- Next and previous post links -->
+	
+		<nav class="post-navigation">
+			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/CognitiveHumans.jpg?resize=400%2C280&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Successivo</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/" rel="prev">Magellano an open source Cognitive Computing demonstrator</a></div><span>30/08/2016</span></div></div>
+			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/social_networking.png?resize=531%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Precedente</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/exploring-tweets-python-based-demonstrator/" rel="next">Exploring Tweets: a python-based demonstrator</a></div><span>30/09/2016</span></div></div>		</nav><!-- .post-navigation -->
+	
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="container">
+
+					<div class="footer-widgets">
+				<aside id="text-2" class="widget widget_text"><h2 class="widget-title">Benvenuto</h2>			<div class="textwidget">Questo blog è una collezione di appunti personali in inglese e in italiano sull'apprendimento automatico e sistemi cognitivi. Buona lettura.
+<hr/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
+<br/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
+<hr/>
+<span class="su-qrcode su-qrcode-align-center"><a target="_blank" title="ApprendimentoAutomatico.it"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog&size=100x100&format=png&margin=0&color=0-0-0&bgcolor=255-255-255" alt="ApprendimentoAutomatico.it" /></a></span></div>
+		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQ9BEBk2V5xptV" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/markpeng/general-tips-for-participating-kaggle-competitions" title="General Tips for participating Kaggle Competitions" target="_blank">General Tips for participating Kaggle Competitions</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/markpeng">Mark Peng</a></strong> </div></div>
+		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archivi</h2>		<ul>
+			<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>&nbsp;(8)</li>
+		</ul>
+		</aside>			</div>
+		
+		<div class="footer-bottom">
+			
+			<div class="footer-tagline">
+				<div class="site-info">
+					Ad maiora!				</div>
+			</div><!-- .footer-tagline -->
+		</div><!-- .footer-bottom -->
+	</div><!-- .container -->
+</footer><!-- #colophon -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet\/":5436};
+	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/" method="post">
+			<label for="target_email">Invia a indirizzo e-mail</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Il tuo nome</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Il tuo indirizzo e-mail</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			<script>jQuery( document ).ready( function(){ document.getElementById('jetpack-source_f_name').value = '' });</script>
+			
+			<img style="float: right; display: none" class="loading" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Invia e-mail" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel">Annulla</a>
+
+			<div class="errors errors-1" style="display: none;">
+				L'articolo non è stato pubblicato, controlla gli indirizzi e-mail!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Verifica dell'e-mail non riuscita. Riprova.			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Ci dispiace, il tuo blog non consente di condividere articoli tramite e-mail.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<link rel='stylesheet' id='qtipstyles-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='easyfootnotescss-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/easy-footnotes.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='dashicons-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='su-box-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/box-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<link rel='stylesheet' id='su-galleries-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/galleries-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201802'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Janaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var paperback_js_vars = {"ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","load_fixed":"true"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var settings_obj = {"ajax_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"06c07c87f6","confirm":"Are you sure to delete item?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"it","ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"16afb09915","display_exif":"0","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Commento","post_comment":"Pubblica un commento","write_comment":"Scrivi un Commento...","loading_comments":"Caricamento commenti...","download_original":"Vedi immagine a grandezza originale<span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Assicurati di scrivere del testo nel commento.","no_comment_email":"Fornisci un indirizzo e-mail per commentare.","no_comment_author":"Fornisci il tuo nome per commentare.","comment_post_error":"Si \u00e8 verificato un problema durante la pubblicazione del commento. Riprova pi\u00f9 tardi.","comment_approved":"Il tuo commento \u00e8 stato approvato.","comment_unapproved":"Il tuo commento deve venire moderato.","camera":"Fotocamera","aperture":"Apertura","shutter_speed":"Velocit\u00e0 di scatto","focal_length":"Lunghezza focale","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-login.php?redirect_to=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fidentificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Obbligatorio)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Nome (Obbligatorio)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Sito web<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel.js?ver=20170209'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtipcall.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=5436&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=82a8ce3eaaf3ec384eaecd7d9bea17c478f3de6c#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fidentificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=5436&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=82a8ce3eaaf3ec384eaecd7d9bea17c478f3de6c#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fidentificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type='text/javascript' src='https://stats.wp.com/e-201802.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.9',blog:'114978248',post:'5436',tz:'1',srv:'www.apprendimentoautomatico.it'} ]);
+	_stq.push([ 'clickTrackerInit', '114978248', '5436' ]);
+</script>
+
+</body>
+</html>

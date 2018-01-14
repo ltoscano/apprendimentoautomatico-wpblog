@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>classification &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/classification/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>classification &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/#respond</comments>
+		<pubDate>Sun, 01 Jan 2017 22:25:03 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[AUC]]></category>
+		<category><![CDATA[boosted]]></category>
+		<category><![CDATA[boosting]]></category>
+		<category><![CDATA[breadth]]></category>
+		<category><![CDATA[categorical]]></category>
+		<category><![CDATA[classification]]></category>
+		<category><![CDATA[continous]]></category>
+		<category><![CDATA[cross validation]]></category>
+		<category><![CDATA[decision tree]]></category>
+		<category><![CDATA[depth]]></category>
+		<category><![CDATA[ensemble]]></category>
+		<category><![CDATA[forest]]></category>
+		<category><![CDATA[gbm]]></category>
+		<category><![CDATA[gradient]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[grid search]]></category>
+		<category><![CDATA[heuristic]]></category>
+		<category><![CDATA[hyperparameter]]></category>
+		<category><![CDATA[hypothesis]]></category>
+		<category><![CDATA[information gain]]></category>
+		<category><![CDATA[learning rate]]></category>
+		<category><![CDATA[model]]></category>
+		<category><![CDATA[multivariate]]></category>
+		<category><![CDATA[prediction]]></category>
+		<category><![CDATA[Python]]></category>
+		<category><![CDATA[regression]]></category>
+		<category><![CDATA[root]]></category>
+		<category><![CDATA[rules]]></category>
+		<category><![CDATA[scikit-learn]]></category>
+		<category><![CDATA[supervised]]></category>
+		<category><![CDATA[training set]]></category>
+		<category><![CDATA[univariate]]></category>
+		<category><![CDATA[weights]]></category>
+		<category><![CDATA[xgboost]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6032</guid>
+		<description><![CDATA[<p>XGBoost model is a supervised machine learning algorithm that takes in the training data and constructs a model that predicts [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6032</post-id>	</item>
+		<item>
+		<title>Machine Learning: the best cheat sheets in one page</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/#respond</comments>
+		<pubDate>Sun, 04 Dec 2016 12:13:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[accuracy]]></category>
+		<category><![CDATA[algorithms]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[cheatsheet]]></category>
+		<category><![CDATA[class]]></category>
+		<category><![CDATA[classification]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[feature]]></category>
+		<category><![CDATA[forest]]></category>
+		<category><![CDATA[jungle]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[label]]></category>
+		<category><![CDATA[large]]></category>
+		<category><![CDATA[learn]]></category>
+		<category><![CDATA[linear]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[machine learning cheat sheet]]></category>
+		<category><![CDATA[scikit-learn]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5891</guid>
+		<description><![CDATA[<p>Squeezed into a set of short tips and schemes, a cheat sheet is not only a source for visual inspiration [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/">Machine Learning: the best cheat sheets in one page</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/machine-learning-best-cheat-sheets-one-page/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5891</post-id>	</item>
+	</channel>
+</rss>

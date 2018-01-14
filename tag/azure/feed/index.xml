@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>azure &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/azure/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>it-IT</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>azure &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Intuitions on the fly on Blockchain</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/#respond</comments>
+		<pubDate>Mon, 01 May 2017 23:15:47 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Data Engineering]]></category>
+		<category><![CDATA[Tools]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[BaaS]]></category>
+		<category><![CDATA[bitcoin]]></category>
+		<category><![CDATA[block]]></category>
+		<category><![CDATA[blockchain]]></category>
+		<category><![CDATA[bricks]]></category>
+		<category><![CDATA[chain]]></category>
+		<category><![CDATA[cloud]]></category>
+		<category><![CDATA[cryptocurrency]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[distributed]]></category>
+		<category><![CDATA[ecosystem]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[game theory]]></category>
+		<category><![CDATA[ledger]]></category>
+		<category><![CDATA[microsoft]]></category>
+		<category><![CDATA[miner]]></category>
+		<category><![CDATA[mining]]></category>
+		<category><![CDATA[p2p]]></category>
+		<category><![CDATA[payment]]></category>
+		<category><![CDATA[peer]]></category>
+		<category><![CDATA[service]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6142</guid>
+		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">6142</post-id>	</item>
+		<item>
+		<title>Machine Learning: the best cheat sheets in one page</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/#respond</comments>
+		<pubDate>Sun, 04 Dec 2016 12:13:24 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[accuracy]]></category>
+		<category><![CDATA[algorithms]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[cheatsheet]]></category>
+		<category><![CDATA[class]]></category>
+		<category><![CDATA[classification]]></category>
+		<category><![CDATA[dataset]]></category>
+		<category><![CDATA[feature]]></category>
+		<category><![CDATA[forest]]></category>
+		<category><![CDATA[jungle]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[label]]></category>
+		<category><![CDATA[large]]></category>
+		<category><![CDATA[learn]]></category>
+		<category><![CDATA[linear]]></category>
+		<category><![CDATA[machine learning]]></category>
+		<category><![CDATA[machine learning cheat sheet]]></category>
+		<category><![CDATA[scikit-learn]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5891</guid>
+		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/">Machine Learning: the best cheat sheets in one page</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/machine-learning-best-cheat-sheets-one-page/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5891</post-id>	</item>
+		<item>
+		<title>Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comments</comments>
+		<pubDate>Wed, 02 Nov 2016 19:38:49 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[API generation]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[asr]]></category>
+		<category><![CDATA[audio]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[concepts]]></category>
+		<category><![CDATA[emotions analysis]]></category>
+		<category><![CDATA[entities]]></category>
+		<category><![CDATA[language detection]]></category>
+		<category><![CDATA[nlp]]></category>
+		<category><![CDATA[riconoscimento voce]]></category>
+		<category><![CDATA[sdk]]></category>
+		<category><![CDATA[sentiment analysis]]></category>
+		<category><![CDATA[speech]]></category>
+		<category><![CDATA[speech recognition]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[voice]]></category>
+		<category><![CDATA[watson]]></category>
+		<category><![CDATA[watson developer cloud]]></category>
+		<category><![CDATA[watson speech text]]></category>
+		<category><![CDATA[youtube]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5639</guid>
+		<description><![CDATA[<p>In questo post illustro come: estrarre tracce audio da filmati (usando, per esempio, YouTube), eseguire una conversione del parlato in [&#8230;]</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5639</post-id>	</item>
+	</channel>
+</rss>

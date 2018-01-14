@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php">
+
+	<title>Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK - Machine Learning &amp; Cognitive</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v4.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="In questo post illustro come: estrarre tracce audio da filmati (usando, per esempio, YouTube), eseguire una conversione del parlato in [&hellip;]" />
+<meta name="twitter:title" content="Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK - Machine Learning &amp; Cognitive" />
+<meta name="twitter:site" content="@BEmatic" />
+<meta name="twitter:image" content="https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?fit=450%2C405&#038;ssl=1" />
+<meta name="twitter:creator" content="@BEmatic" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK Feed dei commenti" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='paperback-style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
+<style id='paperback-style-inline-css' type='text/css'>
+
+		/* Top Nav Background Color */
+		.top-navigation,
+		.secondary-navigation ul.sub-menu {
+			background-color: #343e47;
+		}
+
+		/* Top Nav Text Color */
+		.top-navigation,
+		.top-navigation nav a,
+		.top-navigation li ul li a,
+		.drawer-toggle {
+			color: #ffffff;
+		}
+
+		.main-navigation:not(.secondary-navigation) ul.menu > li.current-menu-item > a {
+			border-color: #f35245;
+		}
+
+		/* Header Background Color */
+		.site-identity {
+			background-color: #ecf1f7;
+		}
+
+		/* Header Text Color */
+		.main-navigation a,
+		.site-title a,
+		.site-description {
+			color: #383f49;
+		}
+
+		/* Accent Color */
+		.hero-cats a,
+		.post-navigation .nav-label,
+		.entry-cats a {
+			background-color: #f35245;
+		}
+
+		.page-numbers.current,
+		.page-numbers:hover,
+		#page #infinite-handle button:hover {
+			background-color: #f35245;
+		}
+
+		/* Footer Background Color */
+		.site-footer {
+			background-color: #343e47;
+		}
+
+		/* Footer Text Color */
+		.site-footer .widget-title,
+		.site-footer a:hover {
+			color: #ffffff;
+		}
+
+		.site-footer,
+		.site-footer a {
+			color: rgba( 255, 255, 255, 0.8);
+		}
+
+		/* Footer Border Color */
+		.footer-widgets ul li,
+		.footer-widgets + .footer-bottom {
+			border-color: rgba( 255, 255, 255, 0.3);
+		}
+	
+</style>
+<link rel='stylesheet' id='paperback-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7COpen%2BSans%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='overlay_settings_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-webfonts-css'  href='//fonts.googleapis.com/css?family=Source+Code+Pro%3Aregular%2C700&#038;ver=3.3' type='text/css' media='all' />
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel-ie8fix.css?ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='social-logos-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/spin.js?ver=1.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/jquery.spin.js?ver=1.3'></script>
+<link rel='https://api.w.org/' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.6.1" />
+<link rel='shortlink' href='https://wp.me/p7Mr5S-1sX' />
+<link rel="alternate" type="application/json+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Friconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Friconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk%2F&#038;format=xml" />
+<style type="text/css">
+.main-navigation {
+    max-width: 45% !important;
+}
+.site-title-wrap {
+    max-width: 55% !important;
+}
+.site-title {
+     font-size: 25px;
+}
+.easy-footnote sup {
+    font-size: 60% !important;
+    font-style: normal !important;;
+    vertical-align: super !important;;
+    position: relative !important;
+    color: red;
+}
+
+span.easy-footnote>a { border-bottom: 0 !important; }
+
+a.easy-footnote-to-top { border-bottom: 0 !important; }
+
+.site-title a::before {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
+    background-size: 25px 25px;
+    content: " ";
+    height: 25px;
+    left: -26px;
+    position: absolute;
+    top: 6px;
+    width: 25px;
+    /*background-size: 25px 25px;
+    background-repeat: no-repeat;*/
+    /*color: #f35245;
+    content: "";
+    font-family: "FontAwesome";
+    font-size: 25px;
+    margin-right: 10px;*/
+}
+
+.site-title {
+    margin-left: 25px !important;
+}
+
+span.post-lang-en {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
+    background-repeat: no-repeat;
+    background-size: 45px 45px;
+    border: 1px dotted lightblue;
+    border-radius: 3px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+}
+</style>
+<style type="text/css">
+.qtranxs_flag_it {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+.qtranxs_flag_en {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+</style>
+<link hreflang="it" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" rel="alternate" />
+<link hreflang="en" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" rel="alternate" />
+<link hreflang="x-default" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" rel="alternate" />
+<meta name="generator" content="qTranslate-X 3.4.6.8" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//i0.wp.com'>
+<link rel='dns-prefetch' href='//i1.wp.com'>
+<link rel='dns-prefetch' href='//i2.wp.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+<style type='text/css'>img#wpstats{display:none}</style>	<style type="text/css">
+					.site-identity {
+				padding: 2% 0;
+			}
+		
+					.single .hero-posts .with-featured-image {
+				padding-top: 7%;
+			}
+		
+		
+			</style>
+
+		<style>
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon {
+			width: 20px !important;
+			height: 28px !important;
+			padding: 6px 0 !important;
+			margin-right: 0 !important;
+		}
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon:before {
+			content: "\f466";
+		}
+		</style><!--Start Cookie Script--> <script type="text/javascript" charset="UTF-8" src="//cookie-script.com/s/f67066386a32612237b658624241e0af.js"></script> <!--End Cookie Script-->
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+</head>
+
+<body class="single single-post postid-5639 single-format-standard has-sidebar two-column">
+
+
+<header id="masthead" class="site-header" role="banner">
+
+		<div class="top-navigation">
+			<div class="container">
+
+				<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>				</nav><!-- .secondary-navigation -->
+
+				<div class="top-navigation-right">
+											<nav class="social-navigation" role="navigation">
+							<div class="menu-social-media-container"><ul id="menu-social-media" class="menu"><li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li id="menu-item-5830" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>						</nav><!-- .social-navigation -->
+					
+					<div class="overlay-toggle drawer-toggle drawer-open-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-search"></i>
+							Esplora						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+
+					<div class="overlay-toggle drawer-toggle drawer-menu-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-bars"></i>
+							Menu						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Chiudi						</span>
+					</div><!-- .overlay-toggle-->
+				</div><!-- .top-navigation-right -->
+			</div><!-- .container -->
+		</div><!-- .top-navigation -->
+
+		<div class="drawer-wrap">
+			<div class="drawer drawer-explore">
+	<div class="container">
+		<div class="drawer-search">
+			
+<div class="big-search">
+	<form method="get" id="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" role="search">
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" name="s" id="big-search" placeholder="Cerca..." value="" onfocus="if(this.value==this.getAttribute('placeholder'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('placeholder');"/><br />
+
+		<div class="search-controls">
+		
+			<div class="search-select-wrap">
+				<select class="search-select" name="category_name">
+
+					<option value="">Tutto il sito</option>
+
+					<option value="api-generation">API generation</option><option value="collaterali">Collaterals</option><option value="data-engineering">Data Engineering</option><option value="data-mining">Data Mining</option><option value="visualizzazione-dei-dati">Data visualization</option><option value="deep-learning">Deep Learning</option><option value="machine-learning">Machine Learning</option><option value="programmazione">Programming</option><option value="strumenti">Tools</option><option value="formazione">Training</option>				</select>
+			</div>
+
+		
+			<input type="submit" class="submit button" name="submit" id="big-search-submit" value="Ricerca" />
+		</div><!-- .search-controls -->
+	</form><!-- #big-searchform -->
+
+</div><!-- .big-search -->		</div>
+
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Categorie</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
+		
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Tags</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/python/" title="View all posts in Python" >Python</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/bow/" title="View all posts in bow" >bow</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/azure/" title="View all posts in azure" >azure</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/classification/" title="View all posts in classification" >classification</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
+			</div>
+		
+		<div class="widget tax-widget">
+			<h2 class="widget-title">Archivi</h2>
+
+				<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>
+		</div>
+	</div><!-- .container -->
+</div><!-- .drawer -->
+<div class="drawer drawer-menu-explore">
+	<div class="container">
+					<nav id="drawer-navigation" class="main-navigation drawer-navigation" role="navigation">
+				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li id="menu-item-5843" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>			</nav><!-- #site-navigation -->
+		
+					<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Responsabilità del Blog</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/aboutme/">Autore</a></li>
+</ul></div>			</nav><!-- .secondary-navigation -->
+		
+					<nav class="social-navigation" role="navigation">
+				<div class="menu-social-media-container"><ul id="menu-social-media-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>			</nav><!-- .footer-navigation -->
+			</div><!-- .container -->
+</div><!-- .drawer -->		</div><!-- .drawer-wrap -->
+
+		<div class="site-identity clear">
+			<div class="container">
+				<!-- Site title and logo -->
+					<div class="site-title-wrap">
+		<!-- Use the Site Logo feature, if supported -->
+		
+		<div class="titles-wrap">
+							<p class="site-title"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/" rel="home">Machine Learning &amp; Cognitive</a></p>
+ 			
+							<p class="site-description">ApprendimentoAutomatico.it</p>
+					</div>
+	</div><!-- .site-title-wrap -->
+
+				<!-- Main navigation -->
+				<nav id="site-navigation" class="main-navigation enabled" role="navigation">
+					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+
+			</div><!-- .container -->
+		</div><!-- .site-identity-->
+
+					<div class="featured-posts-wrap clear">
+				<div class="featured-posts clear">
+					<div class="featured-header">
+						<span class="featured-header-category"></span>
+						<span class="featured-header-close"><i class="fa fa-times"></i> Chiudi</span>
+					</div>
+
+					<div class="post-container clear"></div>
+				</div>
+			</div>
+		</header><!-- .site-header -->
+
+
+<div class="mini-bar">
+			<div class="mini-title">
+			<!-- Next and previous post links -->
+			<div class="fixed-nav"><a class="fixed-image" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/"> <img width="65" height="65" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?fit=65%2C65&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="catimagecnn" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?w=286&amp;ssl=1 286w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?resize=150%2C150&amp;ssl=1 150w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?resize=65%2C65&amp;ssl=1 65w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?resize=50%2C50&amp;ssl=1 50w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="5474" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/catimagecnn/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&amp;ssl=1" data-orig-size="286,282" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="catimagecnn" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Successivo</span><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="prev">Image recognition tutorial in Python/MXNet using deep convolutional</a></div></div>
+		</div>
+	
+	<ul class="mini-menu">
+					<li>
+				<a class="drawer-open-toggle" href="#">
+					<span><i class="fa fa-search"></i> Esplora</span>
+				</a>
+			</li>
+				<li class="back-to-top">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+		<li class="back-to-menu">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+	</ul>
+</div><!-- .mini-bar-->
+
+	<div class="hero-wrapper">
+
+		<div class="hero-posts">
+			
+	<div id="post-5639" class="with-featured-image hero-post post-5639 post type-post status-publish format-standard has-post-thumbnail hentry category-api-generation category-machine-learning category-programmazione tag-asr tag-audio tag-azure tag-concepts tag-emotions-analysis tag-entities tag-language-detection tag-nlp tag-riconoscimento-voce tag-sdk tag-sentiment-analysis tag-speech tag-speech-recognition tag-taxonomy tag-voice tag-watson tag-watson-developer-cloud tag-watson-speech-text tag-youtube">
+
+		<!-- Get the hero background image -->
+		
+			<div class="site-header-bg-wrap">
+				<div class="header-opacity">
+					<div class="header-gradient"></div>
+					<div class="site-header-bg background-effect" style="background-image: url(https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?fit=450%2C405&#038;ssl=1); opacity: 0.3;"></div>
+				</div>
+			</div><!-- .site-header-bg-wrap -->
+
+		
+		<div class="container hero-container">
+			<div class="hero-cats"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/">API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/">Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/">Programming</a></div>
+			<!-- Hero title -->
+			<div class="hero-text">
+									<h1 class="entry-title">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</h1>
+				
+				<div class="hero-date">
+										<!-- Create an avatar link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di ">
+						<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=44&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=88&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-44 photo' height='44' width='44' />					</a>
+					<!-- Create an author post link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/">
+						lorenzo					</a>
+					<span class="hero-on-span">&nbsp;</span>
+					<span class="hero-date-span">Nov 2016</span>
+				</div>
+			</div><!-- .photo-overlay -->
+		</div><!-- .container -->
+	</div>
+		</div><!-- .hero-posts -->
+
+	</div><!-- .hero-wrapper -->
+
+<div id="page" class="hfeed site container">
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-5639" class="post full-post post-5639 type-post status-publish format-standard has-post-thumbnail hentry category-api-generation category-machine-learning category-programmazione tag-asr tag-audio tag-azure tag-concepts tag-emotions-analysis tag-entities tag-language-detection tag-nlp tag-riconoscimento-voce tag-sdk tag-sentiment-analysis tag-speech tag-speech-recognition tag-taxonomy tag-voice tag-watson tag-watson-developer-cloud tag-watson-speech-text tag-youtube">
+
+		
+	<div class="entry-content">
+		<p><span class="dropcap">I</span>n questo post illustro come: estrarre <strong>tracce audio</strong> da filmati (usando, per esempio, YouTube), eseguire una <strong>conversione del parlato</strong> in testo (<em>speech to text</em>), estrarre <strong>conoscenza dal testo non strutturato</strong> della trascrizione.</p>
+<p>Utilizzo le funzionalità di <a href="http://www.ibm.com/watson/" target="_blank">IBM Watson</a> accessibili mediante <strong>Watson Developer Cloud</strong> e il linguaggio di programmazione Python. </p>
+<p>La scelta di Watson non è vincolante. Funzionalità analoghe potrebbero essere ottenute utilizzando altre soluzioni comparabili come quelle fornite da <a href="https://azure.microsoft.com/en-us/services/machine-learning/" target="_blank">Microsoft Azure ML</a>, <a href="https://cloud.google.com/" target="_blank">Google Cloud Platform</a>, <a href="https://aws.amazon.com/it/machine-learning/" target="_blank">Amazon AWS ML</a> e una pletora di servizi online come <a href="http://monkeylearn.com/" target="_blank">MonkeyLearn</a> e altri. Per esempio, il riconoscimento vocale accessibile con le <a href="https://cloud.google.com/speech/" target="_blank">Speech API di Google</a> supporta 80 lingue che è un numero ben superiore alle attuali capacità di Watson. Ciononostante, grazie anche alla varietà e profondità della sua offerta, Watson assolve sul mercato un ruolo di riferimento con cui è necessario e utile misurarsi.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+<p>Anzitutto, che cos’è <strong>IBM Watson</strong>? Nella sua strategia di diversificazione, IBM ha sempre mostrato una particolare attenzione per l&#8217;intelligenza artificiale, anche contribuendo allo sviluppo tecnologico con passaggi importanti: nel 1997, dopo 8 anni di sviluppi, <a href="https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)" target="_blank">IBM Deep Blue</a> si aggiudicò una rivincita storica a scacchi contro il campione del mondo Kasparov e nel 2011 il nuovo IBM Watson<span id='easy-footnote-1' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-1' title='Il nome è stato scelto in onore del primo presidente dell&amp;#8217;IBM Thomas J. Watson.'><sup>1</sup></a></span>, partecipando al famoso quiz televisivo “Jeopardy!”, fu in grado di battere i due campioni in carica.</p>
+<p>Il Watson dell&#8217;edizione di &#8220;Jeopardy!&#8221; aveva alle spalle circa 6 anni di sviluppi<span id='easy-footnote-2' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-2' title='&lt;a href=&quot;http://www.nianet.org/wp-content/uploads/2016/06/Codella_Langley-ML-Conf-20160816.pptx&quot; target=&quot;_blank&quot;&gt;Cognitive computing and IBM Watson in in Research, Operations, and Medicine&lt;/a&gt;'><sup>2</sup></a></span>. In essenza, Watson nasce come un sofisticato sistema di <a href="https://it.wikipedia.org/wiki/Question_answering" target="_blank">Question Anwering</a> (<strong>QA</strong>) predisposto alla comprensione del linguaggio naturale, alla generazione di ipotesi e all&#8217;apprendimento. Un suo elemento fondamentale è il framework DeepQA che è definito come una <em>massive parrallel probabilistic evidence-based architecture</em><span id='easy-footnote-3' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-3' title='Building Watson: An Overview of the DeepQA Project'><sup>3</sup></a></span> e si basa sull&#8217;impiego concorrente di molteplici algoritmi di analisi della domanda in linguaggio naturale, ricerca delle risposte, classificazione delle risposte secondo la loro plausibilità (e conseguente scelta delle risposte probabilisticamente più giuste in relazione all&#8217;input); il tutto combinato per ottenere miglioramenti consistenti nell&#8217;accuratezza, nel livello di confidenza e nella velocità di processazione. Gli antichi latini dicevano “<em>mens sana in corpore sano</em>” e, il &#8220;corpo&#8221; che ospita la mente di Watson, è indubbiamente sano: i dati più recenti descrivono una griglia di 90 server basati su processori in tecnologia proprietaria <a href="https://en.wikipedia.org/wiki/POWER7" target="_blank">POWER7</a> estremamente parallelizzati, per una potenza complessiva di calcolo di 80 teraFLOPS<span id='easy-footnote-4' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-4' title='FLOPS è un&amp;#8217;abbreviazione di FLoating point Operations Per Second e indica il numero di operazioni in virgola mobile eseguite in un secondo dalla CPU. Il teraFLOP identifica la capacità di un componente, sia questo una GPU, una CPU o un sistema più complesso, di eseguire mille miliardi di operazioni in virgola mobile in un secondo.'><sup>4</sup></a></span> e 16 teraByte di RAM. Il progettista e consulente IBM Tony Pearson aveva stimato i costi dell&#8217;hardware di Watson in tre milioni di dollari. L&#8217;architettura del sistema è certamente in evoluzione stante i continui progressi tecnologici.</p>
+<p>Ad ogni modo, per essere pienamente compreso, Watson non dovrebbe essere considerato come un supercomputer<span id='easy-footnote-5' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-5' title='Watson è ben lontano dalle prestazioni dei supercomputer propriamente detti, per esempio se consideriamo il &lt;a href=&quot;https://en.wikipedia.org/wiki/Titan_(supercomputer)&quot;&gt;Titan&lt;/a&gt; di Cray (20 petaFLOPS e un costo di 100 milioni di dollari) o il cinese &lt;a href=&quot;https://en.wikipedia.org/wiki/Sunway_TaihuLight&quot; target=&quot;_blank&quot;&gt;Sunway TaihuLight&lt;/a&gt; (con potenza di calcolo di 93 petaFLOPS e un costo di oltre 270 milioni di dollari). Ma questa è un&amp;#8217;altra storia!'><sup>5</sup></a></span> ma, più correttamente, è un ecosistema<span id='easy-footnote-6' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-6' title='&lt;a href=&quot;https://www.ibm.com/blogs/bluemix/2014/11/watson-webinar-qa-responses/&quot; target=&quot;_blank&quot;&gt;Top 38 Questions about the Watson Services on Bluemix&lt;/a&gt;'><sup>6</sup></a></span> basato su:</p>
+<ul>
+<li>continui investimenti e sperimentazioni in un&#8217;ampia varietà di contesti operativi: campo finanziario, burocratico, medico, bancario, servizi governativi, viaggi e customer care, culinario. Questi investimenti sono dei veri e propri apripista,</li>
+<li><a href="http://www.ibm.com/watson/products.html" target="_blanl">prodotti commerciali</a> pronti all&#8217;uso e offerti da IBM come servizi a canone su cloud SaaS. Alcuni esempi: Watson Virtual Agent, Watson Explorer, Watson Analytics, Watson Knowledge Studio,</li>
+<li>un esteso set di servizi cognitivi denominati <a href="http://www.ibm.com/watson/developercloud/" target="_blank">Watson Developer Cloud</a> e accessibili mediante API e SDK attraverso la piattaforma PaaS <a href="https://www.ibm.com/cloud-computing/bluemix/" target="_blank">IBM Bluemix</a>.</li>
+</ul>
+<p>Con Watson Developer Cloud, IBM declina i servizi cognitivi di Watson allo sviluppo personalizzato: aziende e sviluppatori possono aggiungere valore combinando le tecnologie di base (classificazione, conversazione, analisi del contenuto, ecc.), sfruttando i vantaggi del PaaS per tutte le necessità di scaling verticale/orizzontale e confezionando il risultato in una forma direttamente commerciabile sul <a href="https://www.ibm.com/marketplace/cognitive/cognitive-apps/us/en-us" target="_blank">marketplace proprietario</a> preposto allo scopo.</p>
+<p>Alle funzionalità originarie di QA che ritroviamo nei servizi <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/nl-classifier.html" target="_blank">Natural Language Classifier</a>, <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/dialog.html" target="_blank">Dialog</a>, <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/retrieve-rank.html" target="_blank">Retrieve e Rank</a> e <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/document-conversion.html" target="_blank">Document Conversion</a>, Watson Developer Cloud aggiunge ulteriori servizi per rendere l&#8217;offerta cognitiva flessibile e multisettoriale (p.e. comprensione contenuto e contesto del testo, analisi emozionale, conversione e sintesi della voce umana, analisi delle immagini, ecc.). La combinazione delle continue sperimentazioni con prodotti commerciali e il Watson Developer Cloud, appare oggi essere l&#8217;espressione più completa dell&#8217;idea che spinse alla creazione di Watson stesso: avere uno strumento per risolvere problemi concreti all&#8217;interno di realtà che hanno a che fare con l&#8217;analisi quotidiana di grosse quantità di dati.<br />
+</div></div>
+<p>Prima di proseguire, ecco di cosa abbiamo bisogno:</p>
+<ul>
+<li>un account su IBM Bluemix (se sei nuovo su Bluemix puoi partire dalla <a href="https://console.ng.bluemix.net/registration/" target="_blank">pagina di registrazione</a>),</li>
+<li>un ambiente Python 2.7 o 3.2+ con libreria <a href="http://pandas.pydata.org/" target="_blank">pandas</a> installata.</li>
+</ul>
+<h4>Estrazione delle tracce audio da un video</h4>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;">
+Attenzione! La scelta di estrarre una traccia audio da un video YouTube è da intendersi come pura sperimentazione, nel pieno rispetto delle policy Google per il download dei video e la loro diffusione. Il video usato per l&#8217;analisi è stato scelto casualmente. Per eventuali questioni relative ai diritti di proprietà sul contenuto del video, rinvio all&#8217;autore/publisher. Tutte le operazioni di analisi descritte in questo post sono applicabili a qualsiasi file audio (a prescindere dalla sorgente, YouTube è un esempio). Dopo le sperimentazioni, il file wav contenente la traccia audio del video è stato cancellato.<br />
+</div></div>
+<p>Un modo semplice per estrarre una traccia audio da un video YouTube consiste nell&#8217;usare il tool <code data-enlighter-language="raw" class="EnlighterJSRAW">youtube-dl</code><span id='easy-footnote-7' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-7' title='La pagina del progetto è &lt;a href=&quot;https://rg3.github.io/youtube-dl/&quot; target=&quot;_blank&quot;&gt;https://rg3.github.io/youtube-dl/&lt;/a&gt;.'><sup>7</sup></a></span>. <code data-enlighter-language="raw" class="EnlighterJSRAW">youtube-dl</code> è installabile nel modo usuale per i package di Python:</p>
+<p><code data-enlighter-language="raw" class="EnlighterJSRAW">pip install youtube-dl</code></p>
+<p>In particolare, ho casualmente scelto il video <em>What is Machine Learning</em> accessibile all&#8217;indirizzo <a href="https://www.youtube.com/watch?v=ty-kTUzMnjk" target="_blank">https://www.youtube.com/watch?v=ty-kTUzMnjk</a>. </p>
+<p>Il comando usato per l&#8217;estrazione è:</p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">youtube-dl &quot;https://www.youtube.com/watch?v=ty-kTUzMnjk&quot; \	
+	--extract-audio \
+	--audio-format wav \
+	--audio-quality 16K \
+	--id</pre></p>
+<p>Il codice alfanumerico <strong>ty-kTUzMnjk</strong> usato nel comando di estrazione è l&#8217;identificativo univoco del video nell&#8217;archivio di YouTube. Una volta acceduto alla pagina del video su YouTube, il codice univoco può essere recuperato dalla barra dell&#8217;indirizzo del browser o facendo click sul pulsante &#8220;Condividi&#8221;.</p>
+<div class="su-note" style="border-color:#e5e55c;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><div class="su-note-inner su-clearfix" style="background-color:#FFFF66;border-color:#ffffe0;color:#333333;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;"><code data-enlighter-language="raw" class="EnlighterJSRAW">youtube-dl</code> potrebbe richiede l’installazione della libreria <a href="https://libav.org/" target="_blank">libav</a>. Sui sistemi Debian/Ubuntu questa libreria è inclusa nel package <code data-enlighter-language="raw" class="EnlighterJSRAW">libav-tools</code>.</div></div>
+<p>Dall&#8217;esecuzione di <code data-enlighter-language="raw" class="EnlighterJSRAW">youtube-dl</code> ottengo un file wav (<code data-enlighter-language="raw" class="EnlighterJSRAW">ty-kTUzMnjk.wav</code>) contenente la traccia audio opportunamente codificata (secondo i requisiti del servizio di speech recognition).</p>
+<h4>Predisposizione dei servizi Watson su Bluemix</h4>
+<p>Assumendo che siamo già registrati su Bluemix, il passo successivo consiste nel configurare un set di credenziali per l&#8217;accesso a due servizi specifici:</p>
+<ul>
+<li><strong>Speech To Text</strong>: converte la voce umana in testo scritto</li>
+<li><strong>AlchemyAPI</strong>: è un insieme di API che consentono l&#8217;analisi del testo attraverso NLP (<em>Natural Language Processing</em>). Mediante queste API è possibile utilizzare diverse funzioni come: estrazione di parole chiave, estrazione di entità, analisi delle opinioni, analisi emozionali, tagging concettuale, estrazione di relazioni, classificazione tassonomica e altro ancora.</li>
+</ul>
+<p>Ci sono diverse modalità per l&#8217;attivazione dei servizi e la configurazione delle credenziali. Il metodo più semplice consiste, partendo dal cruscotto di Bluemix, nel fare click su &#8220;Catalogo&#8221; e scrivere nella <em>search bar</em> il nome (o parte di esso) del servizio a cui siamo interessati e poi fare click sul pulsante &#8220;Filtro&#8221;. Per esempio, se scriviamo <code data-enlighter-language="raw" class="EnlighterJSRAW">speech</code> e facciamo click su &#8220;Filtro&#8221;, il cruscotto visualizzerà un elenco di servizi incluso quello di nostro interesse: &#8220;Speech To Text&#8221;. Facciamo click sul servizio, per accedere alla sua pagina descrittiva. Dalla pagina descrittiva, nella barra a fondo pagina, facciamo click sul pulsante &#8220;Crea&#8221;, per accedere alla sezione di gestione del servizio. Dalla sezione di gestione, facciamo click su &#8220;Credenziali del servizio&#8221; e quindi su &#8220;Visualizza credenziali&#8221;, per ottenere le credenziali nel seguente formato:<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+{
+  &quot;url&quot;: &quot;https://stream.watsonplatform.net/speech-to-text/api&quot;,
+  &quot;password&quot;: &quot;V6l*******&quot;,
+  &quot;username&quot;: &quot;d6c7fe4f-6644-437f-baf2-*******&quot;
+}
+</pre><br />
+Procediamo in modo analogo con il servizio AlchemyAPI, ottenendo un blocco di credenziali simile al seguente:<br />
+<pre data-enlighter-language="raw" class="EnlighterJSRAW">
+{
+  &quot;url&quot;: &quot;https://gateway-a.watsonplatform.net/calls&quot;,
+  &quot;note&quot;: &quot;It may take up to 5 minutes for this key to become active&quot;,
+  &quot;apikey&quot;: &quot;a0e8bb2**************************&quot;
+}
+</pre></p>
+<p>Dalla pagina descrittiva di un servizio di Bluemix, cliccando su &#8220;Gestisci&#8221;, è possibile accedere alla documentazione dettagliata del servizio con informazioni sul funzionamento dello stesso, requisiti, opzioni impostabili, caratteristiche dell&#8217;output generato.</p>
+<h4>Predisposizione ambiente Python per l&#8217;accesso ai servizi di Watson Developer Cloud</h4>
+<p>Per l&#8217;accesso ai servizi di Watson Developer Cloud è disponibile il package <a href="https://github.com/ltoscano/python-sdk" target="_blank">Watson Developer Cloud Python SDK</a> installabile nel modo usuale:</p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+pip install --upgrade watson-developer-cloud
+</pre></p>
+<p>Non c&#8217;è altro da aggiungere. A questo punto, ho tutto quello che serve per interagire con i servizi di Watson.</p>
+<h4>Conversione della voce in testo</h4>
+<p>Il blocco di codice seguente include le istruzioni per richiedere al servizio Speech to Text la processazione del file wav precedentemente generato.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import json
+from os.path import join, dirname
+from watson_developer_cloud import SpeechToTextV1
+import pickle
+
+speech_to_text = SpeechToTextV1(
+    username=&#039;d6c7fe4f-6644-437f-baf2-*******&#039;,
+    password=&#039;V6l*******&#039;,
+    x_watson_learning_opt_out=False
+)
+
+filename=&#039;./ty-kTUzMnjk&#039;
+
+with open(filename+&#039;.wav&#039;, &#039;rb&#039;) as audio_file:
+    results=speech_to_text.recognize(audio_file, 
+                                     content_type=&#039;audio/wav&#039;, 
+                                     continuous=True, 
+                                     timestamps=True, 
+                                     word_confidence=True, 
+                                     profanity_filter=False, 
+                                     word_alternatives_threshold=0.4)
+
+pickle.dump(results, open(filename+&#039;.watson.p&#039;,&#039;wb&#039;))
+</pre></p>
+<p>Un oggetto fondamentale è l&#8217;istanza <code data-enlighter-language="raw" class="EnlighterJSRAW">speech_to_text</code> della classe <code data-enlighter-language="raw" class="EnlighterJSRAW">SpeechToTextV1</code>. Di questo oggetto, richiamo la funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">recognize</code>. Alla funzione è necessario passare alcuni parametri obbligatori: il contenuto del file audio <code data-enlighter-language="raw" class="EnlighterJSRAW">audio_file</code> e il formato audio <code data-enlighter-language="raw" class="EnlighterJSRAW">content_type=&#039;audio/wav&#039;</code>. Inoltre specifico dei parametri di input aggiuntivi: <code data-enlighter-language="raw" class="EnlighterJSRAW">timestamps=True</code> per ottenere i timestamp inizio/fine della parola, espressi in secondi, a partire dall&#8217;inizio dell&#8217;audio; <code data-enlighter-language="raw" class="EnlighterJSRAW">word_confidence=True</code> per attribuzione ad ogni parola di un grado di confidenza variabile nell&#8217;intervallo reale [0 &#8211; 1.0] (un grado 0.5 significa che la parola ha il 50% di possibilità di essere corretta); <code data-enlighter-language="raw" class="EnlighterJSRAW">profanity_filter=False</code> per la disattivazione della censura automatica di parole offensive; <code data-enlighter-language="raw" class="EnlighterJSRAW">word_alternatives_threshold=0.4</code> per l&#8217;impostazione di una soglia minima di confidenza (definita nell&#8217;intervallo rale [0 &#8211; 1.0]) utilizzata per scartare parole potenzialmente corrispondenti alle specifiche porzioni di segnale acustico; <code data-enlighter-language="raw" class="EnlighterJSRAW">continous=True</code> per l&#8217;attivazione del riconoscimento continuo che permette di gestire lunghe pause e lunghi intervalli di parlato (di default la processazione terminerebbe alla prima breve pausa). Un quadro dettagliato dei parametri impostabili è contenuto in <a href="https://www.ibm.com/watson/developercloud/doc/speech-to-text/output.shtml" target="_blank">Transcribing audio: Output features and parameters</a> accessibile dalla pagina descrittiva del servizio.</p>
+<p>Per ottimizzare l&#8217;impiego dei servizi Cloud e agevolarne il riuso, solitamente preferisco salvare le risposte su disco mediante serializzazione. Questo semplice accorgimento consente, in fase di sviluppo e test, di evitare di richiamare il servizio remoto plurime volte per lo stesso tipo di elaborazione. Nel codice utilizzo la libreria <code data-enlighter-language="raw" class="EnlighterJSRAW">pickle</code> per questo scopo. L&#8217;output del servizio è serializzato nel file <code data-enlighter-language="raw" class="EnlighterJSRAW">9uYwifRCGpA.watson.p</code>.</p>
+<h4>Elaborazione della risposta di Watson</h4>
+<p>La risposta del servizio Speech to Text è una codifica JSON sufficientemente estesa, ma facile da interpretare. La funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">recognize</code> restituisce la risposta del servizio in un python dictionary che rappresenta un passo in avanti rispetto alla codifica JSON cruda. Comunque, per semplificare il recupero dei dati, preferisco usare la funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">parse_transcript</code> nel blocco di codice seguente<span id='easy-footnote-8' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-8' title='Questa funzione è stata estratta dal progetto &lt;a href=&quot;https://github.com/ltoscano/watson-word-watcher&quot; target=&quot;_blank&quot;&gt;watson-word-watcher su GitHub&lt;/a&gt; e modificata secondo mia necessità.'><sup>8</sup></a></span>. La funzione restituisce due dictionary, <code data-enlighter-language="raw" class="EnlighterJSRAW">words</code> e <code data-enlighter-language="raw" class="EnlighterJSRAW">lines</code>, agevolmente incorporabili in oggetti <code data-enlighter-language="raw" class="EnlighterJSRAW">DataFrame</code> di pandas e, come tali, anche più comodamente esportabili in formato CSV.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+def parse_transcript(data):
+    &quot;&quot;&quot;
+    data (dict): as derived from standard Watson API JSON
+    returns: two dicts of lists of dicts:
+    {
+        words: [],
+        lines: []
+    }
+    This is something that can be converted to CSV easily
+    {
+        &#039;start&#039;: 1.00
+        &#039;end&#039;: 3.00
+        &#039;confidence&#039;: 0.77
+        &#039;words&#039;: &quot;Hello world&quot;
+        &#039;pregap&#039;: 0.5,
+        &#039;postgap&#039;: 1.2
+    }
+    &quot;&quot;&quot;
+    lines = []
+    words = []
+    prev_line_end = 0
+    line_results = data[&#039;results&#039;]
+    for linenum, result in enumerate(line_results): # each result is a  line
+        if result.get(&#039;alternatives&#039;): # each result may have many alternatives
+            # just pick best alternative
+            lineobj = result.get(&#039;alternatives&#039;)[0]
+            # each line has timestamps per word
+            # filter out the HESITATIONs
+            # Watson adds %HESITATION to indicate things like Uh, Um, Ah, etc.
+            word_timestamps = [o for o in lineobj[&#039;timestamps&#039;] if o[0] != &#039;%HESITATION&#039;]
+            if word_timestamps: # for some reason, timestamps can be empty in some cases
+                linewords = []
+                # confidence value per word is stored in its own list
+                word_confidences = [o for o in lineobj[&#039;word_confidence&#039;] if o[0] != &#039;%HESITATION&#039;]
+                prev_word_end = 0
+                for wordpos, txtobj in enumerate(word_timestamps):
+                    # we track the word&#039;s position in the line so that we can extract the
+                    # corresponding word confidence for the current word
+                    word = {}
+                    word[&quot;line_position&quot;] = wordpos
+                    word[&quot;line_number&quot;] = linenum
+                    word[&#039;confidence&#039;] =  round(word_confidences[wordpos][1], 3)
+                    word[&quot;text&quot;] = txtobj[0]
+                    word[&quot;start&quot;] = txtobj[1]
+                    word[&quot;end&quot;] = txtobj[2]
+                    word[&quot;audible_duration&quot;] = round(word[&quot;end&quot;] - word[&quot;start&quot;], 2)
+                    # calculate delay until previous word
+                    word[&quot;pregap&quot;] = round(word[&quot;start&quot;] - prev_word_end, 2)
+                    prev_word_end = word[&quot;end&quot;]
+                    linewords.append(word)
+
+                words.extend(linewords)
+                
+                line = {}
+                line[&#039;line_number&#039;] = linenum
+                line[&#039;start&#039;] = linewords[0][&#039;start&#039;]
+                line[&#039;end&#039;] = linewords[-1][&#039;end&#039;]
+                line[&#039;text&#039;] = &quot; &quot;.join([w[&#039;text&#039;] for w in linewords])
+                line[&#039;audible_duration&#039;] = round(line[&#039;end&#039;] - line[&#039;start&#039;], 2)
+                line[&#039;confidence&#039;] = round(lineobj[&#039;confidence&#039;], 3)
+                line[&#039;word_count&#039;] = len(words)
+             
+                lines.append(line)
+                
+
+    return {&#039;lines&#039;: lines, &#039;words&#039;: words}
+</pre></p>
+<p>Per la conversione in dataframe:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import pandas as pd
+
+# if you need to unserialize:
+# results=pickle.load(open(&#039;./9uYwifRCGpA.watson.p&#039;,&#039;rb&#039;))
+
+data=parse_transcript(results)
+lines=pd.DataFrame(data[&#039;lines&#039;])
+words=pd.DataFrame(data[&#039;words&#039;])
+</pre></p>
+<p>Nella figura seguente è mostrato il contenuto dei dataframe <code data-enlighter-language="raw" class="EnlighterJSRAW">lines</code> e <code data-enlighter-language="raw" class="EnlighterJSRAW">words</code> (limitato alle prime 4 righe di ciascuno):</p>
+<p><img data-attachment-id="5650" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/schermata-2016-11-01-alle-22-09-35/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?fit=1784%2C902&amp;ssl=1" data-orig-size="1784,902" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;,&quot;resized_images&quot;:&quot;Array&quot;}" data-image-title="schermata-2016-11-01-alle-22-09-35" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?fit=300%2C152&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?fit=900%2C455&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?resize=900%2C455&#038;ssl=1" alt="schermata-2016-11-01-alle-22-09-35" class="aligncenter size-large wp-image-5650" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?resize=1024%2C518&amp;ssl=1 1024w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?resize=300%2C152&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?resize=768%2C388&amp;ssl=1 768w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?resize=1200%2C607&amp;ssl=1 1200w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/Schermata-2016-11-01-alle-22.09.35.png?resize=1300%2C657&amp;ssl=1 1300w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p>Ogni riga del dataframe <code data-enlighter-language="raw" class="EnlighterJSRAW">lines</code> corrisponde ad una frase riconosciuta. I campi di dati sono:</p>
+<ul>
+<li><strong>audible_duration</strong>: durata in secondi della frase</li>
+<li><strong>confidence</strong>: grado di confidenza complessivo sulla frase</li>
+<li><strong>start</strong>: timestamp di inizio frase, espresso in secondi, dall&#8217;inizio dello stream audio</li>
+<li><strong>end</strong>: timestamp di fine frase, espresso in secondi, dall&#8217;inizio dello stream audio</li>
+<li><strong>line_number</strong>: indice numerico univoco della frase</li>
+<li><strong>text</strong>: testo della frase</li>
+<li><strong>word_count</strong>: numero totale delle parole riconosciute dalla prima fase a quella corrente inclusa</li>
+</ul>
+<p>Ognia riga del dataframe <code data-enlighter-language="raw" class="EnlighterJSRAW">words</code> corrisponde ad una parola riconosciuta nel flusso del parlato. I campi di dati sono:</p>
+<ul>
+<li><strong>audible_duration</strong>: durata in secondi della parola</li>
+<li><strong>confidence</strong>: grado di confidenza complessivo sulla parola</li>
+<li><strong>start</strong>: timestamp di inizio parola, espresso in secondi, dall&#8217;inizio dello stream audio</li>
+<li><strong>end</strong>: timestamp di fine parola, espresso in secondi, dall&#8217;inizio dello stream audio</li>
+<li><strong>line_number</strong>: indice della frase a cui è associata la parola</li>
+<li><strong>line_position</strong>: posizione della parola nella frase</li>
+<li><strong>text</strong>: testo della parola</li>
+<li><strong>pregap</strong>: intervallo di silenzio tra la fine della parola precedente e la parola corrente</li>
+</ul>
+<p>L&#8217;intera trascrizione può essere ottenuta con una riga di codice:</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+transcript=&quot;\n&quot;.join((lines[&#039;text&#039;]).tolist())
+print (transcript)
+</pre></p>
+<p>ed ecco l&#8217;output:</p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+machine learning is a method of teaching computers to make predictions based on some data
+it is a branch of artificial intelligence
+which automatically improves programs using data
+for example a machine learning system could be trained on email messages
+to learn to distinguish between spam and non spam messages
+after learning it can be used to classify new email messages into spam and non spam folders
+various fields where machine learning is frequently used our medical diagnosis
+brain machine interfaces
+chem informatics
+self driving cars
+stock market analysis
+a recommendation engine using machine learning could be used to recommend the right product to the right customer
+over time as more data is added and used by the algorithm the performance of the system improves
+</pre></p>
+<p>A titolo comparativo, questa la trascrizione scaricabile dal sito di YouTube:</p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+0:00
+machine learning is a method of teaching computers to make predictions based on
+0:05
+some data it is a branch of artificial intelligence which automatically
+0:10
+improves programs using data for example a machine learning system could be
+0:16
+trained on email messages to learn to distinguish between spam and non-spam
+0:20
+messages after learning it can be used to classify new email messages into spam
+0:27
+and non-spam folders various fields where machine learning is frequently
+0:33
+used our medical diagnosis brain-machine interfaces chem informatics self-driving
+0:40
+cars stock market analysis a recommendation engine using machine
+0:45
+learning could be used to recommend the right product to the right customer over
+0:50
+time as more data is added and used by the algorithm the performance of the
+0:54
+system improves
+</pre></p>
+<h4>Analisi del testo attraverso NLP (<em>Natural Language Processing</em>)</h4>
+<p>Il blocco di codice seguente include le istruzioni per richiedere al servizio AlchemyAPI di Watson specifiche elaborazioni della trascrizione precedentemente generata. In particolare queste le funzioni richieste:</p>
+<ul>
+<li>estrazione di parole chiave: individuazione delle parole chiave nel testo, attribuzione di un grado di rilevanza, analisi del sentiment di ogni parola</li>
+<li>tagging concettuale: identifica concetti generali che potrebbero non essere stati esplicitamente citati nel testo di input ma che sono ad esso correlabili</li>
+<li>classificazione tassonomica: classifica il contenuto del testo di input in una gerarchia di categorie</li>
+<li>analisi emozionale: analisi emozionale di specifiche frasi target in relazione al testo processato. L&#8217;identificazione emozionale avviene sulla base di Rabbia/Anger, Paura/Fear, Gioia/Joy, Tristezza/Sadness, Disgusto/Disgust con relativa attribuazione di punteggio</li>
+<li>analisi del sentiment: analisi del sentiment di specifiche frasi target e del testo complessivo della trascrizione</li>
+<li>tipizzazione automatica di relazioni tra entità nel testo: individuazione delle relazioni di dipedenza tra entità individuate automaticamente nel testo. Le entità tipicamente sono nomi di persona, brand, organizzazioni, città ed altre presenti nel testo.</li>
+</ul>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import json
+from os.path import join, dirname
+from watson_developer_cloud import AlchemyLanguageV1
+
+alchemy_language = AlchemyLanguageV1(api_key=&#039;a0e8bb2**************************&#039;)
+
+# get entity, keyword, taxonomy, concepts with a single call
+comb=alchemy_language.combined(text=transcript, sentiment=True)
+
+concepts=pd.DataFrame(comb[&#039;concepts&#039;])
+keywords=pd.DataFrame(comb[&#039;keywords&#039;])
+taxonomy=pd.DataFrame(comb[&#039;taxonomy&#039;])
+language_detection=comb[&#039;language&#039;]
+
+target_phrases=[&#039;machine learning&#039;, &#039;spam&#039;,
+                &#039;stock market analysis&#039;, 
+                &#039;recommendation engine&#039;,
+                &#039;right product&#039;,
+                &#039;right customer&#039;
+                &#039;data&#039;,
+                &#039;predictions&#039;]
+
+# get targeted sentiment
+res_targ_sent=alchemy_language.targeted_sentiment(text=transcript, 
+                                    targets=target_phrases, 
+                                    language=&#039;english&#039;)
+
+target_sent=pd.DataFrame(res_targ_sent[&#039;results&#039;])
+
+# get targeted emotion
+res_targ_emot=alchemy_language.targeted_emotion(text=transcript, 
+                                    targets=target_phrases, 
+                                    language=&#039;english&#039;)
+
+target_emot=pd.DataFrame(res_targ_emot[&#039;results&#039;])
+
+# get document emotion
+emot=alchemy_language.emotion(text=transcript)
+
+# get typed relations
+relat=alchemy_language.typed_relations(text=transcript)
+</pre></p>
+<p>Con riferimento al blocco di codice precedente, l&#8217;oggetto chiave è l&#8217;istanza <code data-enlighter-language="raw" class="EnlighterJSRAW">alchemy_language</code> della classe <code data-enlighter-language="raw" class="EnlighterJSRAW">AlchemyLanguageV1</code>. La funzione <code data-enlighter-language="raw" class="EnlighterJSRAW">combined</code> consente di circoscrive ad una singola chiamata multiple richieste, nel caso particolare recuperiamo l&#8217;elenco dei concetti <code data-enlighter-language="raw" class="EnlighterJSRAW">concepts</code>, l&#8217;elenco delle parole chiave <code data-enlighter-language="raw" class="EnlighterJSRAW">keywords</code>, la classificazione tassonomica <code data-enlighter-language="raw" class="EnlighterJSRAW">taxonomy</code> e la detection automatica della lingua del parlato <code data-enlighter-language="raw" class="EnlighterJSRAW">language_detection</code>. Nella figura seguente sono mostrate le prime righe dei dataframe <code data-enlighter-language="raw" class="EnlighterJSRAW">concepts</code>, <code data-enlighter-language="raw" class="EnlighterJSRAW">keywords</code> e <code data-enlighter-language="raw" class="EnlighterJSRAW">taxonomy</code>.</p>
+<p><img data-attachment-id="5655" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/watson-concepts-keywords-taxonomy/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?fit=1103%2C486&amp;ssl=1" data-orig-size="1103,486" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="watson-concepts-keywords-taxonomy" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?fit=300%2C132&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?fit=900%2C396&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?resize=900%2C396&#038;ssl=1" alt="watson-concepts-keywords-taxonomy" class="aligncenter size-large wp-image-5655" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?resize=1024%2C451&amp;ssl=1 1024w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?resize=300%2C132&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?resize=768%2C338&amp;ssl=1 768w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/watson-concepts-keywords-taxonomy.png?w=1103&amp;ssl=1 1103w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p>I concetti individuati, in ordine di rilevanza, sono: <em>Machine learning, Computer, Learning, Artificial intelligence, E-mail spam, Cognitive science, Psychology, Scientific method, Computer science, E-mail, Intelligence, Artificial neural network, Alan Turing, Education, Skill, Algorithm, Computer program, Computer vision, Debut albums, Knowledge, Marketing, Fuzzy logic, Information theory, Computational intelligence, Data, Bayesian network, Natural language processing, Stock, Cybernetics, Engine, Medical diagnosis, Machine, Right-wing politics</em>. Ad ogni concetto è attribuito un grado di rilevanza e una serie di collegamenti a risorse su web per la caratterizzazione semantica secondo specifiche ontologie.</p>
+<p>Le parole chiave individuate, in ordine di rilevanza, sono: <em>machine learning, non spam, non spam folders, non spam messages, email messages, new email messages, stock market analysis, artificial intelligence, chem informatics, recommendation engine, various fields, medical diagnosis, brain machine, right product, right customer, data, predictions, example, algorithm, branch, method, computers, interfaces, programs, self, cars</em>. Ad ogni parola è attribuito un grado di rilevanza e un <em>sentiment</em> che può essere <em>positive</em> oppure <em>negative</em> con relativo punteggio. </p>
+<p>Per quanto concerne la tassonomia, Watson ha correttamente inquadrato l&#8217;argomento centrale, assegnando il punteggio più alto alla classificazione <em>/science/computer science/artificial intelligence</em>. Poichè il video si sofferma qualche secondo sull&#8217;impiego degli algoritmi di ML nella discriminazione di mail spamming, compare anche la classificazione <em>/technology and computing/internet technology/email</em> ma con un punteggio più basso. Interessante l&#8217;individuazione di <em>/automotive and vehicles/cars</em> (in virtù dei riferimenti nella trascrizione alle capacità di guida automatica), questo è chiaramente un &#8220;fuori tema&#8221; che Watson ha però correttamente inquadrato come tale assegnandogli una <em>confidence</em> negativa.</p>
+<p>Partendo da un elenco di target che ho liberamente scelto (<em>machine learning, spam, stock market analysis, recommendation engine, right product, predictions</em>) ho richiesto a Watson l&#8217;analisi del sentiment e dell&#8217;emotion di ogni target, stante il testo in input. Nella figura seguente sono visualizzati i dataframe contenenti i dati ricevuti:</p>
+<p><img data-attachment-id="5657" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/watson-target-sent-emot/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot.png?fit=1105%2C507&amp;ssl=1" data-orig-size="1105,507" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="watson-target-sent-emot" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot.png?fit=300%2C138&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot.png?fit=900%2C413&amp;ssl=1" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot-1024x470.png?resize=900%2C413&#038;ssl=1" alt="watson-target-sent-emot" class="aligncenter size-large wp-image-5657" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot.png?resize=1024%2C470&amp;ssl=1 1024w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot.png?resize=300%2C138&amp;ssl=1 300w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot.png?resize=768%2C352&amp;ssl=1 768w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/watson-target-sent-emot.png?w=1105&amp;ssl=1 1105w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p>Notiamo che alla parola <em>spam</em> è stato associato un sentiment <em>negative</em> e una emotion <em>sadness</em> (bravo Watson!). Il sentiment è comprensibilmente <em>neutral</em> (data la brevità della citazione nella trascrizione) sulla parola <em>stock market analysis</em> con una emotion <em>joy</em>.</p>
+<p>La valutazione del sentiment complessivo è così codificata (in <code data-enlighter-language="raw" class="EnlighterJSRAW">emot</code>):</p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+{u&#039;anger&#039;: u&#039;0.515118&#039;, u&#039;joy&#039;: u&#039;0.140224&#039;, u&#039;fear&#039;: u&#039;0.207606&#039;, u&#039;sadness&#039;: u&#039;0.097711&#039;, u&#039;disgust&#039;: u&#039;0.125342&#039;}
+</pre></p>
+<p>Infine le relazioni tipizzate sono così codificate (in <code data-enlighter-language="raw" class="EnlighterJSRAW">relat</code>):</p>
+<p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
+u&#039;language&#039;: u&#039;english&#039;,
+ u&#039;model&#039;: u&#039;en-news&#039;,
+ u&#039;status&#039;: u&#039;OK&#039;,
+ u&#039;totalTransactions&#039;: u&#039;2&#039;,
+ u&#039;typedRelations&#039;: [{u&#039;arguments&#039;: [{u&#039;entities&#039;: [{u&#039;id&#039;: u&#039;-E2&#039;,
+       u&#039;text&#039;: u&#039;customer&#039;,
+       u&#039;type&#039;: u&#039;Person&#039;}],
+     u&#039;part&#039;: u&#039;first&#039;,
+     u&#039;text&#039;: u&#039;customer&#039;},
+    {u&#039;entities&#039;: [{u&#039;id&#039;: u&#039;-E3&#039;,
+       u&#039;text&#039;: u&#039;recommend&#039;,
+       u&#039;type&#039;: u&#039;EventCommunication&#039;}],
+     u&#039;part&#039;: u&#039;second&#039;,
+     u&#039;text&#039;: u&#039;recommend&#039;}],
+   u&#039;score&#039;: u&#039;0.548522&#039;,
+   u&#039;sentence&#039;: u&#039;machine learning is a method of teaching computers to make predictions based on some data it is a branch of artificial intelligence which automatically improves programs using data for example a machine learning system could be trained on email messages to learn to distinguish between spam and non spam messages after learning it can be used to classify new email messages into spam and non spam folders various fields where machine learning is frequently used our medical diagnosis brain machine interfaces chem informatics self driving cars stock market analysis a recommendation engine using machine learning could be used to recommend the right product to the right customer over time as more data is added and used by the algorithm the performance of the system improves&#039;,
+   u&#039;type&#039;: u&#039;affectedBy&#039;}]
+</pre></p>
+<p>Con riferimento alla precedente codifica, Watson ci informa che nel testo analizzato l&#8217;entità <em>customer</em> è influenzata <em>affectedBy</em> dall&#8217;entità <em>recommend</em> e qualifica l&#8217;entità <em>customer</em> come <em>Person</em> e l&#8217;entità <em>recommend</em> come <em>EventCommunication</em>. In effetti, gran parte del testo è dedicata a: <em>&#8230;a recommendation engine using machine learning could be used to recommend the right product to the right customer over time as more data is added and used by the algorithm the performance of the system improves&#8230;</em>. L&#8217;analisi delle interdipendenze concettuali è particolarmente utile, per esempio, nella costruzione di agenti virtuali, chatbot e, in generale, per tutti quei sistemi che devono capire il contesto dell&#8217;interazione per selezionare le più appropiate regole di dialogo.</p>
+<h4>Conclusioni</h4>
+<p>I tempi di interazione con un sistema come Watson sono molto bassi (questo è un bene!) e le modalità di comunicazione sul piano programmatico sono semplificate al massimo. Cloud + API generation + ML elevano la qualità dell&#8217;interazione uomo-macchina ad un livello fatto di <strong>dati</strong> ed <strong>obiettivi</strong>. L&#8217;approccio procedurale classico è sempre più fortemente ridimensionato a favore di un approccio dichiarativo. Scompaiono le complicazioni infrastrutturali, grazie alla scalabilità intrinseca delle piattaforme SaaS che si dimensionano automaticamente in relazione alla complessità del problema da trattare. Il punto chiave oggi è: conoscere e selezionare i servizi, combinarli, armonizzarli per raggiungere l&#8217;obiettivo desiderato. </p>
+<p>Infine, una struttura dati come il dataframe <code data-enlighter-language="raw" class="EnlighterJSRAW">words</code> &#8211; in cui per ogni parola riconosciuta  è registrata la sua posizione (timestamp inizio/fine) nel flusso audio &#8211; apre a operazioni di ricerca audio/video con l&#8217;ausilio di query basate su parole, porzioni di parole o sequenze di parole. Si potrebbero, per esempio, cercare tutte le occorrenze di una o più parole ottenendo un elenco di timestamp utilizzabile per estrarre i blocchi di fotogrammi in cui esse sono pronunciate, come nel seguente esempio<span id='easy-footnote-9' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-9' title='E&amp;#8217; un&amp;#8217;idea parzialmente sviluppata su &lt;a href=&quot;https://github.com/dannguyen/watson-word-watcher&quot; target=&quot;_blank&quot;&gt;https://github.com/dannguyen/watson-word-watcher&lt;/a&gt;.'><sup>9</sup></a></span>: </p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/d5X5EVPQSpY?list=PLLrlUAN-LoO73FrSa6yn8gsPpi7J9TJb7" frameborder="0"></iframe> </p>
+<p>Siamo su un piano di gestione dei file multimediali (dati non strutturati per definizione) dove categorizzazione e recupero possono essere fatti automaticamente in base al reale contenuto. Oppure, più fantasiosamente ma parimenti realizzabile, penso a sistemi di sorveglianza audio/video in grado di agevolare l&#8217;individuazione e/o il recupero completamente automatizzato di porzioni di registrazioni attraverso il potere espressivo di complessi filtri testuali applicabili in batch od online. Per non parlare del marketing. Più in generale, le possibilità di impiego sono veramente enormi. Ciò che apprezzo non è solo la vastità dei problemi che si possono indirizzare, quanto la facilità con cui si possono assemblare soluzioni altamente scalabili sia tecnicamente sia economicamente.</p>
+<p>Per concludere su Watson, è interessante valutare l&#8217;impatto economico che potrebbe avere, in un contesto reale, l&#8217;impiego dei precedenti servizi, nella misura in cui li ho effettivamente utilizzati. Il servizio &#8220;Speech to Text&#8221; è contabilizzato sul tempo di impiego per ogni minuto di conversione (circa 0,02&euro;/Minuto). Per la scrittura di questo post, ho convertito diverse tracce audio (complessivamente circa 350 secondi di flusso audio) e il totale addebitato è di 0,12&euro; (come rilevabile dal cruscotto di Bluemix). Per la traccia audio in esame, la conversione ha richiesto circa 0,04&euro;. La contabilizzazione con &#8220;AlchemyAPI&#8221; è diversa e avviene in base al numero di singole chiamate all&#8217;API anche dette transazioni o eventi (0,00526&euro;/Eventi). Per acquisire le informazioni usate in questo post, ho inoltrato 5 chiamate, per un totale di circa 0,02&euro;. L&#8217;aspetto interessante di AlchemyAPI è che le prime 1000 chiamate giornaliere sono gratuite per Organizzazione<span id='easy-footnote-10' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-10' title='L&amp;#8217;Organizzazione è l&amp;#8217;entità di più alto livello nella gestione di un account Bluemix. Le Organizzazioni sono usate per abilitare la collaborazione tra i membri del team e per facilitare il raggruppamento logico di risorse dei progetti. Un account può gestire più Organizzazioni. Per ulteriori informazioni fare riferimento a &lt;a href=&quot;http://www.redbooks.ibm.com/redbooks/pdfs/sg248374.pdf&quot; target=&quot;_blank&quot;&gt;Essential of Cloud Application Development on IBM Bluemix&lt;/a&gt;.'><sup>10</sup></a></span> su singola istanza. Il pricing di AlchemyAPI scala al ribasso in base alla quantità di chiamate, per esempio, per più di 5 milioni di chiamate il prezzo diventa 0,00015&euro;/Eventi. Ovviamente il modello di pricing dei servizi Watson è sufficientemente articolato, per poter soddisfare una pluralità di possibili esigenze (p.e. richieste di impieghi massivi, istanze e modelli di calcolo dedicati, crittografia dei dati trasmessi, ecc.).</p>
+<ol class="easy-footnotes-wrapper"><li class="easy-footnote-single"><span id="easy-footnote-bottom-1" class="easy-footnote-margin-adjust"></span>Il nome è stato scelto in onore del primo presidente dell&#8217;IBM Thomas J. Watson.<a class="easy-footnote-to-top" href="#easy-footnote-1"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-2" class="easy-footnote-margin-adjust"></span><a href="http://www.nianet.org/wp-content/uploads/2016/06/Codella_Langley-ML-Conf-20160816.pptx" target="_blank">Cognitive computing and IBM Watson in in Research, Operations, and Medicine</a><a class="easy-footnote-to-top" href="#easy-footnote-2"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-3" class="easy-footnote-margin-adjust"></span>Building Watson: An Overview of the DeepQA Project<a class="easy-footnote-to-top" href="#easy-footnote-3"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-4" class="easy-footnote-margin-adjust"></span>FLOPS è un&#8217;abbreviazione di FLoating point Operations Per Second e indica il numero di operazioni in virgola mobile eseguite in un secondo dalla CPU. Il teraFLOP identifica la capacità di un componente, sia questo una GPU, una CPU o un sistema più complesso, di eseguire mille miliardi di operazioni in virgola mobile in un secondo.<a class="easy-footnote-to-top" href="#easy-footnote-4"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-5" class="easy-footnote-margin-adjust"></span>Watson è ben lontano dalle prestazioni dei supercomputer propriamente detti, per esempio se consideriamo il <a href="https://en.wikipedia.org/wiki/Titan_(supercomputer)">Titan</a> di Cray (20 petaFLOPS e un costo di 100 milioni di dollari) o il cinese <a href="https://en.wikipedia.org/wiki/Sunway_TaihuLight" target="_blank">Sunway TaihuLight</a> (con potenza di calcolo di 93 petaFLOPS e un costo di oltre 270 milioni di dollari). Ma questa è un&#8217;altra storia!<a class="easy-footnote-to-top" href="#easy-footnote-5"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-6" class="easy-footnote-margin-adjust"></span><a href="https://www.ibm.com/blogs/bluemix/2014/11/watson-webinar-qa-responses/" target="_blank">Top 38 Questions about the Watson Services on Bluemix</a><a class="easy-footnote-to-top" href="#easy-footnote-6"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-7" class="easy-footnote-margin-adjust"></span>La pagina del progetto è <a href="https://rg3.github.io/youtube-dl/" target="_blank">https://rg3.github.io/youtube-dl/</a>.<a class="easy-footnote-to-top" href="#easy-footnote-7"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-8" class="easy-footnote-margin-adjust"></span>Questa funzione è stata estratta dal progetto <a href="https://github.com/ltoscano/watson-word-watcher" target="_blank">watson-word-watcher su GitHub</a> e modificata secondo mia necessità.<a class="easy-footnote-to-top" href="#easy-footnote-8"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-9" class="easy-footnote-margin-adjust"></span>E&#8217; un&#8217;idea parzialmente sviluppata su <a href="https://github.com/dannguyen/watson-word-watcher" target="_blank">https://github.com/dannguyen/watson-word-watcher</a>.<a class="easy-footnote-to-top" href="#easy-footnote-9"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-10" class="easy-footnote-margin-adjust"></span>L&#8217;Organizzazione è l&#8217;entità di più alto livello nella gestione di un account Bluemix. Le Organizzazioni sono usate per abilitare la collaborazione tra i membri del team e per facilitare il raggruppamento logico di risorse dei progetti. Un account può gestire più Organizzazioni. Per ulteriori informazioni fare riferimento a <a href="http://www.redbooks.ibm.com/redbooks/pdfs/sg248374.pdf" target="_blank">Essential of Cloud Application Development on IBM Bluemix</a>.<a class="easy-footnote-to-top" href="#easy-footnote-10"></a></li></ol>	</div><!-- .entry-content -->
+
+	
+			<div class="entry-meta">
+			<ul class="meta-list">
+
+				<!-- Categories -->
+				
+					<li class="meta-cat">
+						<span>Pubblicato in:</span>
+
+						<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" rel="category tag">API generation</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" rel="category tag">Machine Learning</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" rel="category tag">Programming</a>					</li>
+
+				
+				<!-- Tags -->
+				
+					<li class="meta-tag">
+						<span>Tagged in:</span>
+
+						<span  class="tag">asr</span>, <span  class="tag">audio</span>, <span  class="tag">azure</span>, <span  class="tag">concepts</span>, <span  class="tag">emotions analysis</span>, <span  class="tag">entities</span>, <span  class="tag">language detection</span>, <span  class="tag">nlp</span>, <span  class="tag">riconoscimento voce</span>, <span  class="tag">sdk</span>, <span  class="tag">sentiment analysis</span>, <span  class="tag">speech</span>, <span  class="tag">speech recognition</span>, <span  class="tag">taxonomy</span>, <span  class="tag">voice</span>, <span  class="tag">watson</span>, <span  class="tag">watson developer cloud</span>, <span  class="tag">watson speech text</span>, <span  class="tag">youtube</span>					</li>
+
+				
+			</ul><!-- .meta-list -->
+		</div><!-- .entry-meta -->
+	
+</article><!-- #post-## -->
+	<div class="author-profile">
+		<a class="author-profile-avatar" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/" title="Articoli di lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
+
+		<div class="author-profile-info">
+			<h3 class="author-profile-title">
+									Pubblicato da								lorenzo</h3>
+
+							<div class="author-description">
+					<p>Full-time engineer. I like to write about data science and artificial intelligence.</p>
+				</div>
+			
+			<div class="author-profile-links">
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/author/admin/"><i class="fa fa-pencil-square"></i> Tutti gli articoli</a>
+
+							</div>
+		</div><!-- .author-drawer-text -->
+	</div><!-- .author-profile -->
+
+
+			<!-- Comment toggle and share buttons -->
+			<div class="share-comment click">
+
+									<div class="share-icons open">
+						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-5639" class="share-twitter sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/?share=twitter" target="_blank" title="Fai clic qui per condividere su Twitter"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Twitter (Si apre in una nuova finestra)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-5639" class="share-linkedin sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/?share=linkedin" target="_blank" title="Fai clic qui per condividere su LinkedIn"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su LinkedIn (Si apre in una nuova finestra)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-5639" class="share-google-plus-1 sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/?share=google-plus-1" target="_blank" title="Fai clic qui per condividere su Google+"><span></span><span class="sharing-screen-reader-text">Fai clic qui per condividere su Google+ (Si apre in una nuova finestra)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/?share=email" target="_blank" title="Fai clic qui per inviare l'articolo via mail ad un amico"><span></span><span class="sharing-screen-reader-text">Fai clic qui per inviare l'articolo via mail ad un amico (Si apre in una nuova finestra)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#print" target="_blank" title="Fai clic qui per stampare"><span></span><span class="sharing-screen-reader-text">Fai clic qui per stampare (Si apre in una nuova finestra)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-5639" class="share-facebook sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/?share=facebook" target="_blank" title="Fai clic per condividere su Facebook"><span></span><span class="sharing-screen-reader-text">Fai clic per condividere su Facebook (Si apre in una nuova finestra)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+				
+									<a class="comments-toggle button" href="#">
+						<span><i class="fa fa-comments"></i>
+							Mostra commenti						</span>
+						<span><i class="fa fa-times"></i> Nascondi commenti</span>
+					</a>
+							</div>
+
+			
+	<div id="comments" class="comments-area click">
+
+					<h3 class="comments-title">
+				<span>1 Commento</span>
+			</h3>
+
+			<ol class="comment-list">
+				<li class="comment even thread-even depth-1 clearfix" id="li-comment-4">
+
+	<div class="comment-block" id="comment-4">
+
+		<div class="comment-wrap">
+			<img alt='' src='https://secure.gravatar.com/avatar/54b74b248092f9ec674e05094abbf74e?s=75&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/54b74b248092f9ec674e05094abbf74e?s=150&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-75 photo' height='75' width='75' />
+			<div class="comment-info">
+				<cite class="comment-cite">
+				    Mattia				</cite>
+
+				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comment-4">16 January 2017 at 22:09</a>			</div>
+
+			<div class="comment-content">
+				<p>post molto interessante, grazie Lorenzo</p>
+<p>resto perplesso rispetto alla scelta costo per evento dell&#8217;API Alchemy; se volessi analizzare in modo puntuale i commenti a un video penso che questo approccio porterebbe a costi davvero eccessivi.</p>
+<p>in ogni caso la piattaforma IBM Watson si posiziona davvero molto bene</p>
+				<p class="reply">
+					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/?replytocom=4#respond' onclick='return addComment.moveForm( "comment-4", "4", "respond", "5639" )' aria-label='Rispondi a Mattia'>Rispondi</a>				</p>
+			</div>
+
+					</div>
+	</div>
+</li><!-- #comment-## -->
+			</ol><!-- .comment-list -->
+
+			
+		
+		
+				
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#respond" style="display:none;">Annulla risposta</a></small></h3>
+						<form id="commentform" class="comment-form">
+				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&#038;postid=5639&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=monsterid&#038;greeting=Vuoi+commentare%3F&#038;greeting_reply=Rispondi+a+%25s&#038;color_scheme=light&#038;lang=it_IT&#038;jetpack_version=4.9&#038;sig=4ce21522df4ba24c927d4d2be08ec6f22d1fced9#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Friconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+				<!--[if !IE]><!-->
+				<script>
+					document.addEventListener( 'DOMContentLoaded', function () {
+						var commentForms = document.getElementsByClassName( 'jetpack_remote_comment' );
+						for ( var i = 0; i < commentForms.length; i++ ) {
+							commentForms[i].allowTransparency = false;
+							commentForms[i].scrolling = 'no';
+						}
+					} );
+				</script>
+				<!--<![endif]-->
+			</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+
+		
+	</div><!-- #comments -->
+
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area">
+		<style type="text/css">
+.qtranxs_widget ul { margin: 0; }
+.qtranxs_widget ul li
+{
+display: inline; /* horizontal list, use "list-item" or other appropriate value for vertical list */
+list-style-type: none; /* use "initial" or other to enable bullets */
+margin: 0 5px 0 0; /* adjust spacing between items */
+opacity: 0.5;
+-o-transition: 1s ease opacity;
+-moz-transition: 1s ease opacity;
+-webkit-transition: 1s ease opacity;
+transition: 1s ease opacity;
+}
+/* .qtranxs_widget ul li span { margin: 0 5px 0 0; } */ /* other way to control spacing */
+.qtranxs_widget ul li.active { opacity: 0.8; }
+.qtranxs_widget ul li:hover { opacity: 1; }
+.qtranxs_widget img { box-shadow: none; vertical-align: middle; display: initial; }
+.qtranxs_flag { height:12px; width:18px; display:block; }
+.qtranxs_flag_and_text { padding-left:20px; }
+.qtranxs_flag span { display:none; }
+</style>
+<aside id="qtranslate-2" class="widget qtranxs_widget"><h2 class="widget-title">Selezione lingua:</h2>
+<ul class="language-chooser language-chooser-image qtranxs_language_chooser" id="qtranslate-2-chooser">
+<li class="lang-it active"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
+<li class="lang-en"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
+</ul><div class="qtranxs_widget_end"></div>
+</aside><aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h2 class="widget-title">Iscriviti al Blog via E-Mail</h2>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>Inseririsci il tuo indirizzo email e riceverai i nuovi post via mail.</p>
+</div>					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field-blog_subscription-3">
+							Indirizzo Email						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-3" placeholder="Indirizzo Email" />
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe" />
+						<input type="hidden" name="source" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" />
+						<input type="hidden" name="sub-type" value="widget" />
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3" />
+												<input type="submit" value="Iscriviti" name="jetpack_subscriptions_widget" />
+					</p>
+							</form>
+
+			<script>
+			/*
+			Custom functionality for safari and IE
+			 */
+			(function( d ) {
+				// In case the placeholder functionality is available we remove labels
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.querySelector( 'label[for=subscribe-field-blog_subscription-3]' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+
+				// Make sure the email value is filled in before allowing submit
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'),
+					input = d.getElementById('subscribe-field-blog_subscription-3'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+
+							return false;
+						}
+					};
+
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recenti</h2>		<ul>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
+						</li>
+				</ul>
+		</aside>		<aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categorie</h2>		<ul>
+	<li class="cat-item cat-item-10"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/api-generation/" >API generation</a>
+</li>
+	<li class="cat-item cat-item-333"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/data-engineering/" >Data Engineering</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/" >Data Mining</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/visualizzazione-dei-dati/" >Data visualization</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/deep-learning/" >Deep Learning</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/" >Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/programmazione/" >Programming</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/" >Tools</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/formazione/" >Training</a>
+</li>
+		</ul>
+</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h2 class="widget-title">Twitter</h2><a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="IT" data-partner="jetpack" href="https://twitter.com/BEmatic">I miei Cinguettii</a></aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" class="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">
+	<div>
+		<label class="screen-reader-text" for="s">Cerca:</label>
+
+		<input type="text" value="" name="s" id="s" class="search-input" placeholder="Cerca..." />
+
+		<button type="submit" id="searchsubmit">
+			<i class="fa fa-search"></i> <span>Ricerca</span>
+		</button>
+	</div>
+</form></aside>	</div><!-- #secondary .widget-area -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+	<!-- Next and previous post links -->
+	
+		<nav class="post-navigation">
+			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/09/catimagecnn.png?resize=286%2C280&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Successivo</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="prev">Image recognition tutorial in Python/MXNet using deep convolutional</a></div><span>04/10/2016</span></div></div>
+			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/11/tensorflowpython.png?resize=450%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Precedente</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/" rel="next">A gentle introduction to TensorFlow with python (and RNN)</a></div><span>18/11/2016</span></div></div>		</nav><!-- .post-navigation -->
+	
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="container">
+
+					<div class="footer-widgets">
+				<aside id="text-2" class="widget widget_text"><h2 class="widget-title">Benvenuto</h2>			<div class="textwidget">Questo blog è una collezione di appunti personali in inglese e in italiano sull'apprendimento automatico e sistemi cognitivi. Buona lettura.
+<hr/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
+<br/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
+<hr/>
+<span class="su-qrcode su-qrcode-align-center"><a target="_blank" title="ApprendimentoAutomatico.it"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog&size=100x100&format=png&margin=0&color=0-0-0&bgcolor=255-255-255" alt="ApprendimentoAutomatico.it" /></a></span></div>
+		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQ9BEBk2V5xptV" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/markpeng/general-tips-for-participating-kaggle-competitions" title="General Tips for participating Kaggle Competitions" target="_blank">General Tips for participating Kaggle Competitions</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/markpeng">Mark Peng</a></strong> </div></div>
+		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archivi</h2>		<ul>
+			<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/05/'>maggio 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/04/'>aprile 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2017/01/'>gennaio 2017</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/12/'>dicembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/11/'>novembre 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/10/'>ottobre 2016</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/09/'>settembre 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/08/'>agosto 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/2016/07/'>luglio 2016</a>&nbsp;(8)</li>
+		</ul>
+		</aside>			</div>
+		
+		<div class="footer-bottom">
+			
+			<div class="footer-tagline">
+				<div class="site-info">
+					Ad maiora!				</div>
+			</div><!-- .footer-tagline -->
+		</div><!-- .footer-bottom -->
+	</div><!-- .container -->
+</footer><!-- #colophon -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-54b74b248092f9ec674e05094abbf74e">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk\/":5639};
+	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" method="post">
+			<label for="target_email">Invia a indirizzo e-mail</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Il tuo nome</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Il tuo indirizzo e-mail</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			<script>jQuery( document ).ready( function(){ document.getElementById('jetpack-source_f_name').value = '' });</script>
+			
+			<img style="float: right; display: none" class="loading" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Invia e-mail" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel">Annulla</a>
+
+			<div class="errors errors-1" style="display: none;">
+				L'articolo non è stato pubblicato, controlla gli indirizzi e-mail!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Verifica dell'e-mail non riuscita. Riprova.			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Ci dispiace, il tuo blog non consente di condividere articoli tramite e-mail.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<link rel='stylesheet' id='qtipstyles-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='easyfootnotescss-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/easy-footnotes.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='dashicons-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='su-box-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/box-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201802'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Janaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var paperback_js_vars = {"ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","load_fixed":"true"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var settings_obj = {"ajax_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"06c07c87f6","confirm":"Are you sure to delete item?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"it","ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"16afb09915","display_exif":"0","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Commento","post_comment":"Pubblica un commento","write_comment":"Scrivi un Commento...","loading_comments":"Caricamento commenti...","download_original":"Vedi immagine a grandezza originale<span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Assicurati di scrivere del testo nel commento.","no_comment_email":"Fornisci un indirizzo e-mail per commentare.","no_comment_author":"Fornisci il tuo nome per commentare.","comment_post_error":"Si \u00e8 verificato un problema durante la pubblicazione del commento. Riprova pi\u00f9 tardi.","comment_approved":"Il tuo commento \u00e8 stato approvato.","comment_unapproved":"Il tuo commento deve venire moderato.","camera":"Fotocamera","aperture":"Apertura","shutter_speed":"Velocit\u00e0 di scatto","focal_length":"Lunghezza focale","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-login.php?redirect_to=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Friconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Obbligatorio)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Nome (Obbligatorio)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Sito web<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel.js?ver=20170209'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtipcall.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=5639&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=4ce21522df4ba24c927d4d2be08ec6f22d1fced9#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Friconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=5639&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Rispondi+a+%25s&color_scheme=light&lang=it_IT&jetpack_version=4.9&sig=4ce21522df4ba24c927d4d2be08ec6f22d1fced9#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Friconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type='text/javascript' src='https://stats.wp.com/e-201802.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.9',blog:'114978248',post:'5639',tz:'1',srv:'www.apprendimentoautomatico.it'} ]);
+	_stq.push([ 'clickTrackerInit', '114978248', '5639' ]);
+</script>
+
+</body>
+</html>

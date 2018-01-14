@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>nlp &#8211; Machine Learning &amp; Cognitive</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/nlp/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+
+<image>
+	<url>https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<title>nlp &#8211; Machine Learning &amp; Cognitive</title>
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
+		<title>Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comments</comments>
+		<pubDate>Wed, 02 Nov 2016 19:38:49 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[API generation]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Programming]]></category>
+		<category><![CDATA[asr]]></category>
+		<category><![CDATA[audio]]></category>
+		<category><![CDATA[azure]]></category>
+		<category><![CDATA[concepts]]></category>
+		<category><![CDATA[emotions analysis]]></category>
+		<category><![CDATA[entities]]></category>
+		<category><![CDATA[language detection]]></category>
+		<category><![CDATA[nlp]]></category>
+		<category><![CDATA[riconoscimento voce]]></category>
+		<category><![CDATA[sdk]]></category>
+		<category><![CDATA[sentiment analysis]]></category>
+		<category><![CDATA[speech]]></category>
+		<category><![CDATA[speech recognition]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[voice]]></category>
+		<category><![CDATA[watson]]></category>
+		<category><![CDATA[watson developer cloud]]></category>
+		<category><![CDATA[watson speech text]]></category>
+		<category><![CDATA[youtube]]></category>
+
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5639</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">5639</post-id>	</item>
+		<item>
+		<title>Causalità, dati e apprendimento automatico</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/</link>
+		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/#respond</comments>
+		<pubDate>Fri, 08 Jul 2016 00:18:52 +0000</pubDate>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+				<category><![CDATA[Deep Learning]]></category>
+		<category><![CDATA[Machine Learning]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[causalità]]></category>
+		<category><![CDATA[causalita data science]]></category>
+		<category><![CDATA[cognitive computing]]></category>
+		<category><![CDATA[correlazione]]></category>
+		<category><![CDATA[correlazioni spurie]]></category>
+		<category><![CDATA[elaborazione cognitiva]]></category>
+		<category><![CDATA[knime]]></category>
+		<category><![CDATA[mlp]]></category>
+		<category><![CDATA[nlp]]></category>
+		<category><![CDATA[perceptrone]]></category>
+		<category><![CDATA[rete neurale]]></category>
+
+		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=500</guid>
+		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
+<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/">Causalità, dati e apprendimento automatico</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+]]></description>
+		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/causalita-dati-e-ml-alcune-osservazioni/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">500</post-id>	</item>
+	</channel>
+</rss>

@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php">
+
+	<title>Emotions Detection Via Facial Expressions with python &amp; OpenCV - Machine Learning &amp; Cognitive</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v4.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Machine learning is a computer studies discipline that aims at instilling human-like intelligence into computers by training them on abilities [&hellip;]" />
+<meta name="twitter:title" content="Emotions Detection Via Facial Expressions with python &amp; OpenCV - Machine Learning &amp; Cognitive" />
+<meta name="twitter:site" content="@BEmatic" />
+<meta name="twitter:image" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/Universal_emotions7.jpg?fit=1352%2C802&#038;ssl=1" />
+<meta name="twitter:creator" content="@BEmatic" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Comments Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Emotions Detection Via Facial Expressions with python &#038; OpenCV Comments Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='paperback-style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
+<style id='paperback-style-inline-css' type='text/css'>
+
+		/* Top Nav Background Color */
+		.top-navigation,
+		.secondary-navigation ul.sub-menu {
+			background-color: #343e47;
+		}
+
+		/* Top Nav Text Color */
+		.top-navigation,
+		.top-navigation nav a,
+		.top-navigation li ul li a,
+		.drawer-toggle {
+			color: #ffffff;
+		}
+
+		.main-navigation:not(.secondary-navigation) ul.menu > li.current-menu-item > a {
+			border-color: #f35245;
+		}
+
+		/* Header Background Color */
+		.site-identity {
+			background-color: #ecf1f7;
+		}
+
+		/* Header Text Color */
+		.main-navigation a,
+		.site-title a,
+		.site-description {
+			color: #383f49;
+		}
+
+		/* Accent Color */
+		.hero-cats a,
+		.post-navigation .nav-label,
+		.entry-cats a {
+			background-color: #f35245;
+		}
+
+		.page-numbers.current,
+		.page-numbers:hover,
+		#page #infinite-handle button:hover {
+			background-color: #f35245;
+		}
+
+		/* Footer Background Color */
+		.site-footer {
+			background-color: #343e47;
+		}
+
+		/* Footer Text Color */
+		.site-footer .widget-title,
+		.site-footer a:hover {
+			color: #ffffff;
+		}
+
+		.site-footer,
+		.site-footer a {
+			color: rgba( 255, 255, 255, 0.8);
+		}
+
+		/* Footer Border Color */
+		.footer-widgets ul li,
+		.footer-widgets + .footer-bottom {
+			border-color: rgba( 255, 255, 255, 0.3);
+		}
+	
+</style>
+<link rel='stylesheet' id='paperback-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7COpen%2BSans%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='overlay_settings_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-webfonts-css'  href='//fonts.googleapis.com/css?family=Source+Code+Pro%3Aregular%2C700&#038;ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='social-logos-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
+<link rel='https://api.w.org/' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.6.1" />
+<link rel='shortlink' href='https://wp.me/p7Mr5S-1Az' />
+<link rel="alternate" type="application/json+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fen%2Femotions-detection-via-facial-expressions-with-python-opencv%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fen%2Femotions-detection-via-facial-expressions-with-python-opencv%2F&#038;format=xml" />
+<style type="text/css">
+.main-navigation {
+    max-width: 45% !important;
+}
+.site-title-wrap {
+    max-width: 55% !important;
+}
+.site-title {
+     font-size: 25px;
+}
+.easy-footnote sup {
+    font-size: 60% !important;
+    font-style: normal !important;;
+    vertical-align: super !important;;
+    position: relative !important;
+    color: red;
+}
+
+span.easy-footnote>a { border-bottom: 0 !important; }
+
+a.easy-footnote-to-top { border-bottom: 0 !important; }
+
+.site-title a::before {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
+    background-size: 25px 25px;
+    content: " ";
+    height: 25px;
+    left: -26px;
+    position: absolute;
+    top: 6px;
+    width: 25px;
+    /*background-size: 25px 25px;
+    background-repeat: no-repeat;*/
+    /*color: #f35245;
+    content: "";
+    font-family: "FontAwesome";
+    font-size: 25px;
+    margin-right: 10px;*/
+}
+
+.site-title {
+    margin-left: 25px !important;
+}
+
+span.post-lang-en {
+    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
+    background-repeat: no-repeat;
+    background-size: 45px 45px;
+    border: 1px dotted lightblue;
+    border-radius: 3px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+}
+</style>
+<style type="text/css">
+.qtranxs_flag_it {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+.qtranxs_flag_en {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+</style>
+<link hreflang="it" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/emotions-detection-via-facial-expressions-with-python-opencv/" rel="alternate" />
+<link hreflang="en" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/" rel="alternate" />
+<link hreflang="x-default" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/" rel="alternate" />
+<meta name="generator" content="qTranslate-X 3.4.6.8" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//i0.wp.com'>
+<link rel='dns-prefetch' href='//i1.wp.com'>
+<link rel='dns-prefetch' href='//i2.wp.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+<style type='text/css'>img#wpstats{display:none}</style>	<style type="text/css">
+					.site-identity {
+				padding: 2% 0;
+			}
+		
+					.single .hero-posts .with-featured-image {
+				padding-top: 7%;
+			}
+		
+		
+			</style>
+
+		<style>
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon {
+			width: 20px !important;
+			height: 28px !important;
+			padding: 6px 0 !important;
+			margin-right: 0 !important;
+		}
+		#wpadminbar #wp-admin-bar-yst-email-commenters .ab-icon:before {
+			content: "\f466";
+		}
+		</style><!--Start Cookie Script--> <script type="text/javascript" charset="UTF-8" src="//cookie-script.com/s/f67066386a32612237b658624241e0af.js"></script> <!--End Cookie Script-->
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+</head>
+
+<body class="single single-post postid-6111 single-format-standard has-sidebar two-column">
+
+
+<header id="masthead" class="site-header" role="banner">
+
+		<div class="top-navigation">
+			<div class="container">
+
+				<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
+</ul>
+</li>
+<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
+</ul></div>				</nav><!-- .secondary-navigation -->
+
+				<div class="top-navigation-right">
+											<nav class="social-navigation" role="navigation">
+							<div class="menu-social-media-container"><ul id="menu-social-media" class="menu"><li id="menu-item-10" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li id="menu-item-5830" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>						</nav><!-- .social-navigation -->
+					
+					<div class="overlay-toggle drawer-toggle drawer-open-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-search"></i>
+							Explore						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Close						</span>
+					</div><!-- .overlay-toggle-->
+
+					<div class="overlay-toggle drawer-toggle drawer-menu-toggle">
+						<span class="toggle-visible">
+							<i class="fa fa-bars"></i>
+							Menu						</span>
+						<span>
+							<i class="fa fa-times"></i>
+							Close						</span>
+					</div><!-- .overlay-toggle-->
+				</div><!-- .top-navigation-right -->
+			</div><!-- .container -->
+		</div><!-- .top-navigation -->
+
+		<div class="drawer-wrap">
+			<div class="drawer drawer-explore">
+	<div class="container">
+		<div class="drawer-search">
+			
+<div class="big-search">
+	<form method="get" id="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/" role="search">
+		<label class="screen-reader-text" for="s">Search for:</label>
+
+		<input type="text" name="s" id="big-search" placeholder="Search here..." value="" onfocus="if(this.value==this.getAttribute('placeholder'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('placeholder');"/><br />
+
+		<div class="search-controls">
+		
+			<div class="search-select-wrap">
+				<select class="search-select" name="category_name">
+
+					<option value="">Entire Site</option>
+
+					<option value="api-generation">API generation</option><option value="collaterali">Collaterals</option><option value="data-engineering">Data Engineering</option><option value="data-mining">Data Mining</option><option value="visualizzazione-dei-dati">Data visualization</option><option value="deep-learning">Deep Learning</option><option value="machine-learning">Machine Learning</option><option value="programmazione">Programming</option><option value="strumenti">Tools</option><option value="formazione">Training</option>				</select>
+			</div>
+
+		
+			<input type="submit" class="submit button" name="submit" id="big-search-submit" value="Search" />
+		</div><!-- .search-controls -->
+	</form><!-- #big-searchform -->
+
+</div><!-- .big-search -->		</div>
+
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Categories</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
+		
+					<div class="widget tax-widget">
+				<h2 class="widget-title">Tags</h2>
+
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/python/" title="View all posts in Python" >Python</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/bow/" title="View all posts in bow" >bow</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/azure/" title="View all posts in azure" >azure</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/classification/" title="View all posts in classification" >classification</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
+			</div>
+		
+		<div class="widget tax-widget">
+			<h2 class="widget-title">Archives</h2>
+
+				<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>
+	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>
+		</div>
+	</div><!-- .container -->
+</div><!-- .drawer -->
+<div class="drawer drawer-menu-explore">
+	<div class="container">
+					<nav id="drawer-navigation" class="main-navigation drawer-navigation" role="navigation">
+				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li id="menu-item-5843" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>			</nav><!-- #site-navigation -->
+		
+					<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
+				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
+</ul></div>			</nav><!-- .secondary-navigation -->
+		
+					<nav class="social-navigation" role="navigation">
+				<div class="menu-social-media-container"><ul id="menu-social-media-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a target="_blank" href="https://it.linkedin.com/in/lorenzotoscano">LinkedIn</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5830"><a href="https://twitter.com/BEmatic">Twitter</a></li>
+</ul></div>			</nav><!-- .footer-navigation -->
+			</div><!-- .container -->
+</div><!-- .drawer -->		</div><!-- .drawer-wrap -->
+
+		<div class="site-identity clear">
+			<div class="container">
+				<!-- Site title and logo -->
+					<div class="site-title-wrap">
+		<!-- Use the Site Logo feature, if supported -->
+		
+		<div class="titles-wrap">
+							<p class="site-title"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/" rel="home">Machine Learning &amp; Cognitive</a></p>
+ 			
+							<p class="site-description">ApprendimentoAutomatico.it</p>
+					</div>
+	</div><!-- .site-title-wrap -->
+
+				<!-- Main navigation -->
+				<nav id="site-navigation" class="main-navigation enabled" role="navigation">
+					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+
+			</div><!-- .container -->
+		</div><!-- .site-identity-->
+
+					<div class="featured-posts-wrap clear">
+				<div class="featured-posts clear">
+					<div class="featured-header">
+						<span class="featured-header-category"></span>
+						<span class="featured-header-close"><i class="fa fa-times"></i> Close</span>
+					</div>
+
+					<div class="post-container clear"></div>
+				</div>
+			</div>
+		</header><!-- .site-header -->
+
+
+<div class="mini-bar">
+			<div class="mini-title">
+			<!-- Next and previous post links -->
+			<div class="fixed-nav"><a class="fixed-image" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/"> <img width="65" height="38" src="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/ensembletree.png?fit=65%2C38&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="ensembletree" srcset="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/ensembletree.png?w=410&amp;ssl=1 410w, https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/ensembletree.png?resize=300%2C173&amp;ssl=1 300w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="6093" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/ensembletree/" data-orig-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/ensembletree.png?fit=410%2C237&amp;ssl=1" data-orig-size="410,237" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="ensembletree" data-image-description="" data-medium-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/ensembletree.png?fit=300%2C173&amp;ssl=1" data-large-file="https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/ensembletree.png?fit=410%2C237&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Next</span><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/" rel="prev">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a></div></div>
+		</div>
+	
+	<ul class="mini-menu">
+					<li>
+				<a class="drawer-open-toggle" href="#">
+					<span><i class="fa fa-search"></i> Explore</span>
+				</a>
+			</li>
+				<li class="back-to-top">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+		<li class="back-to-menu">
+			<a href="#">
+				<span><i class="fa fa-bars"></i> Menu</span>
+			</a>
+		</li>
+	</ul>
+</div><!-- .mini-bar-->
+
+	<div class="hero-wrapper">
+
+		<div class="hero-posts">
+			
+	<div id="post-6111" class="with-featured-image hero-post post-6111 post type-post status-publish format-standard has-post-thumbnail hentry category-machine-learning tag-camera tag-cascade tag-crop tag-dataset tag-detect tag-emotion tag-emotions-detection tag-face-detection tag-facial-expression tag-filters tag-haar tag-image-analysis tag-opencv tag-video-analysis">
+
+		<!-- Get the hero background image -->
+		
+			<div class="site-header-bg-wrap">
+				<div class="header-opacity">
+					<div class="header-gradient"></div>
+					<div class="site-header-bg background-effect" style="background-image: url(https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/Universal_emotions7.jpg?fit=1300%2C771&#038;ssl=1); opacity: 0.3;"></div>
+				</div>
+			</div><!-- .site-header-bg-wrap -->
+
+		
+		<div class="container hero-container">
+			<div class="hero-cats"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/">Machine Learning</a></div>
+			<!-- Hero title -->
+			<div class="hero-text">
+									<h1 class="entry-title">Emotions Detection Via Facial Expressions with python &#038; OpenCV</h1>
+				
+				<div class="hero-date">
+										<!-- Create an avatar link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by  ">
+						<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=44&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=88&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-44 photo' height='44' width='44' />					</a>
+					<!-- Create an author post link -->
+					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/">
+						lorenzo					</a>
+					<span class="hero-on-span">on</span>
+					<span class="hero-date-span">Jan 2017</span>
+				</div>
+			</div><!-- .photo-overlay -->
+		</div><!-- .container -->
+	</div>
+		</div><!-- .hero-posts -->
+
+	</div><!-- .hero-wrapper -->
+
+<div id="page" class="hfeed site container">
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-6111" class="post full-post post-6111 type-post status-publish format-standard has-post-thumbnail hentry category-machine-learning tag-camera tag-cascade tag-crop tag-dataset tag-detect tag-emotion tag-emotions-detection tag-face-detection tag-facial-expression tag-filters tag-haar tag-image-analysis tag-opencv tag-video-analysis">
+
+		
+	<div class="entry-content">
+		<p><a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">Machine learning</a> is a computer studies discipline that aims at instilling human-like intelligence into computers by training them on abilities such as computer vision, natural language processing, pattern recognition etc. 2016 was a year where we saw great improvement in this field with machine&#8217;s ability to outdo and dominate human beings in tasks such as image processing, <a href="https://www.udacity.com/self-driving-car" target="_blank">self-driving cars</a>, stock market algorithmic trading and medical diagnosis. Fire up your favorite browser and type machine learning in your preferred browser and you will notice that the world is blazing hot with this exciting field.</p>
+<p>The number of &#8220;machine learning&#8221; searches has skyrocketed in recent years, as Google Trends shows us:</p>
+<div id="attachment_6113" style="width: 760px" class="wp-caption aligncenter"><a href="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/google-trends-machine-learning.png?ssl=1"><img data-attachment-id="6113" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/google-trends-machine-learning/" data-orig-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/google-trends-machine-learning.png?fit=750%2C302&amp;ssl=1" data-orig-size="750,302" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="google-trends-machine-learning" data-image-description="" data-medium-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/google-trends-machine-learning.png?fit=300%2C121&amp;ssl=1" data-large-file="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/google-trends-machine-learning.png?fit=750%2C302&amp;ssl=1" src="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/google-trends-machine-learning.png?resize=750%2C302&#038;ssl=1" alt="Source: Google Trends" class="size-full wp-image-6113" srcset="https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/google-trends-machine-learning.png?w=750&amp;ssl=1 750w, https://i0.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/google-trends-machine-learning.png?resize=300%2C121&amp;ssl=1 300w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" /></a><p class="wp-caption-text">Source: Google Trends</p></div>
+<p>In this tutorial I aim to quench a subset of your machine learning thirst; And for what other reason would you be here? This tutorial is based on training a computer to recognize not just your face but the emotion expressed on it. How cool is that? Imagine walking into your home after a long day of work, and your computer immediately knows what kind of therapeutic music to play based on how you are feeling, or when you are driving the car onboard computer is able to assess your ability to drive based on your emotions. Enough of this introductory gospel, let&#8217;s get into it!</p>
+<p>To successfully get most out of this tutorial you need the following: </p>
+<ul>
+<li>An understanding of python basics</li>
+<li>A successful installation of OpenCV. <a href="http://docs.opencv.org/3.1.0/d5/de5/tutorial_py_setup_in_windows.html#gsc.tab=0" target="_blank">here</a></li>
+<li>Facial emotions dataset, simply the dataset containing a facial images expressing different emotions</li>
+</ul>
+<p>OpenCV is a versatile computer imagery processing package with a wide variety of applications such as object detection in still and motion videos, facial recognition. Here we apply OpenCV facial recognition capabilities by training it to recognize individual emotions through image processing. This is enabled by using openCV internal face recognizer classes. The package is primarily written in C++ using an algorithm known as fisher faces. Even though its written in C++ this tutorial is based on python.</p>
+<h3>Dataset download and processing</h3>
+<p>Dataset download <a href="http://www.consortium.ri.cmu.edu/ckagree/" target="_blank">link</a>.</p>
+<p>The dataset comes in two folders composed of images and emotions encoded into the text files respectively. The images&#8217; emotions are numerically encoded as: 0=neutral, 1=anger, 2=contempt, 3=disgust, 4=fear, 5=happy, 6=sadness, 7=surprise. Extract the dataset and please have a look at a few images and their respective emotions.</p>
+<p>Next we need to clean up our data and organize it in a structured manner suited for our emotion processing scripts. Create a folder known as <code data-enlighter-language="raw" class="EnlighterJSRAW">master</code>. This is the folder that will house all your scripts and the data. Inside this folder create two subfolders; <code data-enlighter-language="raw" class="EnlighterJSRAW">emotions</code> and <code data-enlighter-language="raw" class="EnlighterJSRAW">images</code> respectively.</p>
+<p>Extract all the folders in your dataset containing text files with emotions into the folder <code data-enlighter-language="raw" class="EnlighterJSRAW">emotions</code>. These text files are labeled as S005, S010, etc. And finally extract all the images containing folders into <code data-enlighter-language="raw" class="EnlighterJSRAW">images</code> folder.</p>
+<p>Next we will sort our images based on some selected emotions, which we will work with throughout this tutorial.</p>
+<p>Create a folder known as <code data-enlighter-language="raw" class="EnlighterJSRAW">selected_set</code> inside our master folder. Inside <code data-enlighter-language="raw" class="EnlighterJSRAW">selected_set</code> folder create subfolders each labeled as different emotions mentioned above e.g. <code data-enlighter-language="raw" class="EnlighterJSRAW">disgust</code>, <code data-enlighter-language="raw" class="EnlighterJSRAW">neutral</code>, <code data-enlighter-language="raw" class="EnlighterJSRAW">surprise</code>, etc. In the readme file in the dataset you downloaded, it&#8217;s claimed that archetypical emotions are contained only in a subset of emotion sequences. It&#8217;s organized in a such a manner such that each image sequence involves an emotional expression composed of a neutral face first and terminated with an actual emotion represented by that particular image sequence. In this tutorial we will only deal with two images; the first image in the sequence which is neutral and one with and the actual emotion which is the last image. This is easily done using a short helper python script we will write. Inside the <code data-enlighter-language="raw" class="EnlighterJSRAW">master</code> folder create a python script and name it <code data-enlighter-language="raw" class="EnlighterJSRAW">img_seq.py</code>. You can choose to type or copy paste the following code into it. But typing is recommended for learning the code structure.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import glob as gb
+from shutil import copyfile
+
+emotions_list = [&quot;neutral&quot;, &quot;anger&quot;, &quot;contempt&quot;, &quot;disgust&quot;, &quot;fear&quot;, &quot;happy&quot;, &quot;sadness&quot;, &quot;surprise&quot;] 
+emotions_folders = gb.glob(&quot;emotions\\*&quot;) #Returns a list of all folders with participant numbers
+
+def imageWithEmotionEtraction():
+    for x in emotions_folders:
+        participant = &quot;%s&quot; %x[-4:] #store current participant number
+        for sessions in gb.glob(&quot;%s\\*&quot; %x): 
+            for files in gb.glob(&quot;%s\\*&quot; %sessions):
+                current_session = files[20:-30]
+                file = open(files, &#039;r&#039;)
+                
+                emotion = int(float(file.readline())) 
+                #get path for last image in sequence, which contains the emotion
+                sourcefile_emotion = gb.glob(&quot;images\\%s\\%s\\*&quot; %(participant, current_session))[-1] 
+                #do same for neutral image
+                sourcefile_neutral = gb.glob(&quot;images\\%s\\%s\\*&quot; %(participant, current_session))[0] 
+                #Generate path to put neutral image
+                dest_neut = &quot;selected_set\\neutral\\%s&quot; %sourcefile_neutral[25:] 
+                #Do same for emotion containing image
+                dest_emot = &quot;selected_set\\%s\\%s&quot; %(emotions_list[emotion], sourcefile_emotion[25:]) 
+                
+                copyfile(sourcefile_neutral, dest_neut) #Copy file
+                copyfile(sourcefile_emotion, dest_emot) #Copy file
+if __name__ == &#039;__main__&#039;:
+    imageWithEmotionEtraction()                
+</pre></p>
+<p>The next step in our data organization is extraction of facial images. At the end of this tutorial we will have an emotional classifier and for it to give us real world results, it&#8217;s important that all the images be of the same size with minimal background noise i.e. the image should contain almost only the face. This tasks us to <strong>locate the face on each image, convert it to grayscale, crop it and save the image to the dataset</strong>. This is where the OpenCV magic starts! OpenCV contains four <a href="https://en.wikipedia.org/wiki/Haar-like_features" target="_blank">HAAR filters</a> and cascades that have already been pre-trained for facial detection and thus we need just to call it and get to find and filter image faces for us. We will make use of the four classifiers in a sequence so as to detect as many images as possible. </p>
+<p>You need the four classifiers in your <code data-enlighter-language="raw" class="EnlighterJSRAW">master</code> directory. You can get them from the OpenCV directory installed in your machine already as follows:</p>
+<ul>
+<li>haarcascade_frontalface_default.xml</li>
+<li>haarcascade_frontalface_alt2.xml</li>
+<li>haarcascade_frontalface_alt.xml</li>
+<li>haarcascade_frontalface_alt_tree.xml</li>
+</ul>
+<p>Create a script known as <code data-enlighter-language="raw" class="EnlighterJSRAW">face_detection.py</code> and place the following code into it. The script will detect, convert to grayscale, crop and finally save the image in its respective folder. Create a folder known as <code data-enlighter-language="raw" class="EnlighterJSRAW">final_dataset</code>. Inside this folder create subfolders for the respective mentioned emotions (neutral, angel, etc.). Then finally run your magic script <code data-enlighter-language="raw" class="EnlighterJSRAW">face_detection.py</code>.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+import cv2
+import glob as gb
+
+face_detector1 = cv2.CascadeClassifier(&quot;haarcascade_frontalface_default.xml&quot;)
+face_detector2 = cv2.CascadeClassifier(&quot;haarcascade_frontalface_alt2.xml&quot;)
+face_detector3 = cv2.CascadeClassifier(&quot;haarcascade_frontalface_alt.xml&quot;)
+face_detector4 = cv2.CascadeClassifier(&quot;haarcascade_frontalface_alt_tree.xml&quot;)
+
+emotion_list = [&quot;neutral&quot;, &quot;anger&quot;, &quot;contempt&quot;, &quot;disgust&quot;, &quot;fear&quot;, &quot;happy&quot;, &quot;sadness&quot;, &quot;surprise&quot;] 
+
+def faceDetection(emotion):
+    files = gb.glob(&quot;selected_set\\%s\\*&quot; %emotion) #Get list of all images with emotion
+
+    filenumber = 0
+    for f in files:
+        frame = cv2.imread(f) #Open image
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #Convert image to grayscale
+        
+        #Detect face using 4 different classifiers
+        face1 = face_detector1.detectMultiScale(gray, scaleFactor=1.1, 
+            minNeighbors=10, minSize=(5, 5), flags=cv2.CASCADE_SCALE_IMAGE)
+        face2 = face_detector2.detectMultiScale(gray, scaleFactor=1.1,
+         minNeighbors=10, minSize=(5, 5), flags=cv2.CASCADE_SCALE_IMAGE)
+        face3 = face_detector3.detectMultiScale(gray, scaleFactor=1.1,
+         minNeighbors=10, minSize=(5, 5), flags=cv2.CASCADE_SCALE_IMAGE)
+        face4 = face_detector4.detectMultiScale(gray, scaleFactor=1.1,
+         minNeighbors=10, minSize=(5, 5), flags=cv2.CASCADE_SCALE_IMAGE)
+
+        #Go over detected faces, stop at first detected face, return empty if no face.
+        if len(face1) == 1:
+            facefeatures = face1
+        elif len(face2) == 1:
+            facefeatures == face2
+        elif len(face3) == 1:
+            facefeatures = face3
+        elif len(face4) == 1:
+            facefeatures = face4
+        else:
+            facefeatures = &quot;&quot;
+        
+        #Cut and save face
+        for (x, y, w, h) in facefeatures: #get coordinates and size of rectangle containing face
+            print &quot;face found in file: %s&quot; %f
+            gray = gray[y:y+h, x:x+w] #Cut the frame to size
+            
+            try:
+                out = cv2.resize(gray, (350, 350)) #Resize face so all images have same size
+                cv2.imwrite(&quot;final_dataset\\%s\\%s.jpg&quot; %(emotion, filenumber), out) #Write image
+            except:
+               pass #pass the file on error
+        filenumber += 1 #Increment image number
+
+if __name__ == &#039;__main__&#039;:
+    for emotion in emotion_list: 
+        faceDetection(emotion) #Call our face detection module
+</pre></p>
+<p>In the <code data-enlighter-language="raw" class="EnlighterJSRAW">neutral</code> folder its evident that we have more than one image of the same person expressing more than one emotion. This has a potential of introducing bias in our classifier accuracy in emotion detection and thus we need to clean it up.</p>
+<h3>Training and classification</h3>
+<p>Now our dataset is ready and we need to build our classifier for facial emotional recognition and train it using the dataset we have processed. It&#8217;s important to note that this is a field of machine learning and in machine learning tasks it&#8217;s a well-known gospel that for successful model to be born and validated we usually need two distinct datasets, training and validation sets.  So we divide our data in a ratio of 0.67 for training set and 0.33 for validation set. The training set we use it to train our classification model (yet to be build) and use the validation set to assess the performance of our model on generalization of its recognition capability to new and the dataset it has not been trained on. Create a script known as <code data-enlighter-language="raw" class="EnlighterJSRAW">classifier.py</code> and place the following code in it.</p>
+<p><pre data-enlighter-language="python" class="EnlighterJSRAW">
+#The Emotion Face detection Scripts
+#You can modify this script as you wish
+import cv2
+import glob as gb
+import random
+import numpy as np
+#Emotion list
+emojis = [&quot;neutral&quot;, &quot;anger&quot;, &quot;contempt&quot;, &quot;disgust&quot;, &quot;fear&quot;, &quot;happy&quot;, &quot;sadness&quot;, &quot;surprise&quot;] 
+ #Initialize fisher face classifier
+fisher_face = cv2.createFisherFaceRecognizer()
+
+data = {}
+#Function defination to get file list, randomly shuffle it and split 67/33
+def getFiles(emotion): 
+    files = gb.glob(&quot;final_dataset\\%s\\*&quot; %emotion)
+    random.shuffle(files)
+    training = files[:int(len(files)*0.67)] #get first 67% of file list
+    prediction = files[-int(len(files)*0.33):] #get last 33% of file list
+    return training, prediction
+
+def makeTrainingAndValidationSet():
+    training_data = []
+    training_labels = []
+    prediction_data = []
+    prediction_labels = []
+    for emotion in emojis:
+        training, prediction = getFiles(emotion)
+        #Append data to training and prediction list, and generate labels 0-7
+        for item in training:
+            image = cv2.imread(item) #open image
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) #convert to grayscale
+            training_data.append(gray) #append image array to training data list
+            training_labels.append(emojis.index(emotion))
+    
+        for item in prediction: #repeat above process for prediction set
+            image = cv2.imread(item)
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            prediction_data.append(gray)
+            prediction_labels.append(emojis.index(emotion))
+
+    return training_data, training_labels, prediction_data, prediction_labels
+
+def runClassifier():
+    training_data, training_labels, prediction_data, prediction_labels = makeTrainingAndValidationSet()
+    
+    print &quot;training fisher face classifier suing the training data&quot;
+    print &quot;size of training set is:&quot;, len(training_labels), &quot;images&quot;
+    fisher_face.train(training_data, np.asarray(training_labels))
+
+    print &quot;classification prediction&quot;
+    counter = 0
+    right = 0
+    wrong = 0
+    for image in prediction_data:
+        pred, conf = fisher_face.predict(image)
+        if pred == prediction_labels[counter]:
+            right += 1
+            counter += 1
+        else:
+            wrong += 1
+            counter += 1
+    return ((100*right)/(right + wrong))
+
+#Now run the classifier
+metascore = []
+for i in range(0,10):
+    right = runClassifier()
+    print &quot;got&quot;, right, &quot;percent right!&quot;
+    metascore.append(right)
+
+print &quot;\n\nend score:&quot;, np.mean(metascore), &quot;percent right!&quot;
+</pre></p>
+<p>After running the script in my machine is got a classification accuracy of 67-69% which is pretty good performance considering we have 8 emotional categories we are dealing with. But this can be improved a lot through optimization techniques.</p>
+<h3>Model optimization and enhancement</h3>
+<p>One of the greatest limitation of machine learning models&#8217; performance is lack of enough data to train on. Data creation is expensive especially when it involves real world tasks such as this. In our emotion recognition quest, we face the same devil of data limitation. If you closely examine the dataset we you will notice we have 18 example for &#8220;contempt&#8221; category, 25 for &#8220;fear&#8221; and 28 for &#8220;sadness&#8221;. This could be a likely reason that hinders our model to generalize well on the new datasets as it has been inadequately trained on those categories. </p>
+<p>So in our code, change the emotions list to exclude the three categories as:</p>
+<p><code data-enlighter-language="python" class="EnlighterJSRAW">emotions = [&quot;neutral&quot;, &quot;anger&quot;, &quot;disgust&quot;, &quot;happy&quot;, &quot;surprise&quot;]</code></p>
+<p>On running the script again, I get correct prediction rate of 79-83%. This is a huge boost from our earlier maximum of 69% prediction rate. This confirms the huge limitation of data shortages in machine learning models.</p>
+<p>The dataset we are using is highly optimized and standardized for this task and you wouldn’t be entirely wrong to guess that this makes it easy on our model prediction capabilities. </p>
+<p>You may be wondering that, what if I feed the model with one of my various emotional faces? How would it perform?</p>
+<p>Well you don&#8217;t have to feed the model with your personal images, for security reasons! Ha! Of course you can use your personal images but it would be long tedious task of capturing images of your various emotional faces. Why don’t we turn to our friend google and do a batch download of images, clean them up and we are good to go. There is a lot of online materials on batch image download. Note, the most important thing to consider when dealing with external images is to make sure that on each image there is text overlays on the face, the emotion represented by the image is recognizable and the face is directly facing the camera. Then repeat the process of face cropping script in our <code data-enlighter-language="raw" class="EnlighterJSRAW">face_dedection.py</code> script and finally generate standardized images ready to feed into our classifier model.</p>
+<p>You can download another dataset <a href="http://www.kasrl.org/jaffe.html" target="_blank">here</a>, if you need something ready to use and are curious about one of the first work on facial expressions recognition with machine learning.</p>
+<p>Merge this with our final dataset and run your model again with emotions list as:</p>
+<p><code data-enlighter-language="python" class="EnlighterJSRAW">emotions = [&quot;neutral&quot;, &quot;anger&quot;, &quot;contempt&quot;, &quot;disgust&quot;, &quot;fear&quot;, &quot;happy&quot;, &quot;sadness&quot;, &quot;surprise&quot;]</code></p>
+<p>Play with the model and you should be able to get an accuracy of above 60% which is a great performance considering we went to more “noisy” real world data. </p>
+<p>Now it&#8217;s time to apply the script in detecting your spouse’s emotions and keeping them happy always, ;).</p>
+<hr>
+The code in this tutorial is licensed under the <a href="https://opensource.org/licenses/GPL-3.0">GNU 3.0 open source license</a>. Much of code was inspired by <i>van Gent, P. (2016). Emotion Recognition With Python, OpenCV and a Face Dataset. A tech blog about fun things with Python and embedded electronics. Retrieved from:<br />
+http://www.paulvangent.com/2016/04/01/emotion-recognition-with-python-opencv-and-a-face-dataset/</i><br />
+<br />
+Image dataset by: <i>Michael J. Lyons, Shigeru Akemastu, Miyuki Kamachi, Jiro Gyoba.<br />
+Coding Facial Expressions with Gabor Wavelets, 3rd IEEE International Conference on Automatic Face and Gesture Recognition, pp. 200-205 (1998).</i><br />
+<br />
+I also used the Cohn-Kanade database, get it <a href="http://www.consortium.ri.cmu.edu/ckagree/">here</a>.<br />
+<br />
+On the same topic, I found very good the book &#8220;OpenCV with Python Blueprints: Design and develop advanced computer vision projects using OpenCV with Python&#8221; by Michael Beyeler, and in particular the <a href="https://www.packtpub.com/mapt/book/application_development/9781785282690/7/ch07lvl1sec53/facial-expression-recognition">Chapter 7</a>.</p>
+	</div><!-- .entry-content -->
+
+	
+			<div class="entry-meta">
+			<ul class="meta-list">
+
+				<!-- Categories -->
+				
+					<li class="meta-cat">
+						<span>Posted in:</span>
+
+						<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" rel="category tag">Machine Learning</a>					</li>
+
+				
+				<!-- Tags -->
+				
+					<li class="meta-tag">
+						<span>Tagged in:</span>
+
+						<span  class="tag">camera</span>, <span  class="tag">cascade</span>, <span  class="tag">crop</span>, <span  class="tag">dataset</span>, <span  class="tag">detect</span>, <span  class="tag">emotion</span>, <span  class="tag">emotions detection</span>, <span  class="tag">face detection</span>, <span  class="tag">facial expression</span>, <span  class="tag">filters</span>, <span  class="tag">haar</span>, <span  class="tag">image analysis</span>, <span  class="tag">opencv</span>, <span  class="tag">video analysis</span>					</li>
+
+				
+			</ul><!-- .meta-list -->
+		</div><!-- .entry-meta -->
+	
+</article><!-- #post-## -->
+	<div class="author-profile">
+		<a class="author-profile-avatar" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
+
+		<div class="author-profile-info">
+			<h3 class="author-profile-title">
+									Posted by								lorenzo</h3>
+
+							<div class="author-description">
+					<p>Full-time engineer. I like to write about data science and artificial intelligence.</p>
+				</div>
+			
+			<div class="author-profile-links">
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/"><i class="fa fa-pencil-square"></i> All Posts</a>
+
+							</div>
+		</div><!-- .author-drawer-text -->
+	</div><!-- .author-profile -->
+
+
+			<!-- Comment toggle and share buttons -->
+			<div class="share-comment click">
+
+									<div class="share-icons open">
+						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-6111" class="share-twitter sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-6111" class="share-linkedin sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-6111" class="share-google-plus-1 sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/#print" target="_blank" title="Click to print"><span></span><span class="sharing-screen-reader-text">Click to print (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-6111" class="share-facebook sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+				
+									<a class="comments-toggle button" href="#">
+						<span><i class="fa fa-comments"></i>
+							Show comments						</span>
+						<span><i class="fa fa-times"></i> Hide comments</span>
+					</a>
+							</div>
+
+			
+	<div id="comments" class="comments-area click">
+
+					<h3 class="comments-title">
+				<span>4 Comments</span>
+			</h3>
+
+			<ol class="comment-list">
+				<li class="comment even thread-even depth-1 clearfix" id="li-comment-40">
+
+	<div class="comment-block" id="comment-40">
+
+		<div class="comment-wrap">
+			<img alt='' src='https://secure.gravatar.com/avatar/790496ea4e557f822732571d11783453?s=75&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/790496ea4e557f822732571d11783453?s=150&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-75 photo' height='75' width='75' />
+			<div class="comment-info">
+				<cite class="comment-cite">
+				    Thejus				</cite>
+
+				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/#comment-40">Saturday September 23rd, 2017 at 05:00 PM</a>			</div>
+
+			<div class="comment-content">
+				<p>Great tutorials. Thanks a lot!</p>
+				<p class="reply">
+					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?replytocom=40#respond' onclick='return addComment.moveForm( "comment-40", "40", "respond", "6111" )' aria-label='Reply to Thejus'>Reply</a>				</p>
+			</div>
+
+					</div>
+	</div>
+</li><!-- #comment-## -->
+<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="li-comment-13">
+
+	<div class="comment-block" id="comment-13">
+
+		<div class="comment-wrap">
+			<img alt='' src='https://secure.gravatar.com/avatar/96fae19dd2121422b0fbdafc82568e36?s=75&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/96fae19dd2121422b0fbdafc82568e36?s=150&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-75 photo' height='75' width='75' />
+			<div class="comment-info">
+				<cite class="comment-cite">
+				    het				</cite>
+
+				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/#comment-13">Monday May  8th, 2017 at 08:50 AM</a>			</div>
+
+			<div class="comment-content">
+				<p>after running the face_detection.py i cant find any images in final dataset folder. what can be the issue here?</p>
+				<p class="reply">
+					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?replytocom=13#respond' onclick='return addComment.moveForm( "comment-13", "13", "respond", "6111" )' aria-label='Reply to het'>Reply</a>				</p>
+			</div>
+
+					</div>
+	</div>
+</li><!-- #comment-## -->
+<li class="comment even thread-even depth-1 clearfix" id="li-comment-5">
+
+	<div class="comment-block" id="comment-5">
+
+		<div class="comment-wrap">
+			<img alt='' src='https://secure.gravatar.com/avatar/3e0457176d075fe088001c264ef1aaa1?s=75&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/3e0457176d075fe088001c264ef1aaa1?s=150&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-75 photo' height='75' width='75' />
+			<div class="comment-info">
+				<cite class="comment-cite">
+				    issam				</cite>
+
+				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/#comment-5">Friday April 14th, 2017 at 01:28 AM</a>			</div>
+
+			<div class="comment-content">
+				<p>hi Mr Lorenzo<br />
+I want to thunck you first for this great tuto. when I run this script I have this error </p>
+<p>Traceback (most recent call last):<br />
+  File &#8220;&#8221;, line 1, in<br />
+AttributeError: &#8216;module&#8217; object has no attribute &#8216;createFisherFaceRecognizer&#8217;</p>
+<p>what s  the solution</p>
+				<p class="reply">
+					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?replytocom=5#respond' onclick='return addComment.moveForm( "comment-5", "5", "respond", "6111" )' aria-label='Reply to issam'>Reply</a>				</p>
+			</div>
+
+					</div>
+	</div>
+<ol class="children">
+<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2 clearfix" id="li-comment-11">
+
+	<div class="comment-block" id="comment-11">
+
+		<div class="comment-wrap">
+			<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=75&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=150&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-75 photo' height='75' width='75' />
+			<div class="comment-info">
+				<cite class="comment-cite">
+				    lorenzo				</cite>
+
+				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/#comment-11">Tuesday May  2nd, 2017 at 09:50 AM</a>			</div>
+
+			<div class="comment-content">
+				<p>a possible solution here: <a href="http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object" rel="nofollow">http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object</a></p>
+				<p class="reply">
+					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/?replytocom=11#respond' onclick='return addComment.moveForm( "comment-11", "11", "respond", "6111" )' aria-label='Reply to lorenzo'>Reply</a>				</p>
+			</div>
+
+					</div>
+	</div>
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+			</ol><!-- .comment-list -->
+
+			
+		
+		
+				
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/#respond" style="display:none;">Cancel reply</a></small></h3>
+						<form id="commentform" class="comment-form">
+				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&#038;postid=6111&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=monsterid&#038;greeting=Vuoi+commentare%3F&#038;greeting_reply=Leave+a+Reply+to+%25s&#038;color_scheme=light&#038;lang=en_US&#038;jetpack_version=4.9&#038;sig=8220cf74f18f559eca6fbf8312061a770e3477c2#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Femotions-detection-via-facial-expressions-with-python-opencv%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+				<!--[if !IE]><!-->
+				<script>
+					document.addEventListener( 'DOMContentLoaded', function () {
+						var commentForms = document.getElementsByClassName( 'jetpack_remote_comment' );
+						for ( var i = 0; i < commentForms.length; i++ ) {
+							commentForms[i].allowTransparency = false;
+							commentForms[i].scrolling = 'no';
+						}
+					} );
+				</script>
+				<!--<![endif]-->
+			</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+
+		
+	</div><!-- #comments -->
+
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area">
+		<style type="text/css">
+.qtranxs_widget ul { margin: 0; }
+.qtranxs_widget ul li
+{
+display: inline; /* horizontal list, use "list-item" or other appropriate value for vertical list */
+list-style-type: none; /* use "initial" or other to enable bullets */
+margin: 0 5px 0 0; /* adjust spacing between items */
+opacity: 0.5;
+-o-transition: 1s ease opacity;
+-moz-transition: 1s ease opacity;
+-webkit-transition: 1s ease opacity;
+transition: 1s ease opacity;
+}
+/* .qtranxs_widget ul li span { margin: 0 5px 0 0; } */ /* other way to control spacing */
+.qtranxs_widget ul li.active { opacity: 0.8; }
+.qtranxs_widget ul li:hover { opacity: 1; }
+.qtranxs_widget img { box-shadow: none; vertical-align: middle; display: initial; }
+.qtranxs_flag { height:12px; width:18px; display:block; }
+.qtranxs_flag_and_text { padding-left:20px; }
+.qtranxs_flag span { display:none; }
+</style>
+<aside id="qtranslate-2" class="widget qtranxs_widget"><h2 class="widget-title">Language:</h2>
+<ul class="language-chooser language-chooser-image qtranxs_language_chooser" id="qtranslate-2-chooser">
+<li class="lang-it"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/emotions-detection-via-facial-expressions-with-python-opencv/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
+<li class="lang-en active"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
+</ul><div class="qtranxs_widget_end"></div>
+</aside><aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h2 class="widget-title">Subscribe to Blog via Email</h2>
+			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
+				<div id="subscribe-text"><p>Subscribe to Receive E-mail Notification of New Posts.</p>
+</div>					<p id="subscribe-email">
+						<label id="jetpack-subscribe-label" for="subscribe-field-blog_subscription-3">
+							Email Address						</label>
+						<input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-3" placeholder="Email Address" />
+					</p>
+
+					<p id="subscribe-submit">
+						<input type="hidden" name="action" value="subscribe" />
+						<input type="hidden" name="source" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/" />
+						<input type="hidden" name="sub-type" value="widget" />
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3" />
+												<input type="submit" value="Subscribe" name="jetpack_subscriptions_widget" />
+					</p>
+							</form>
+
+			<script>
+			/*
+			Custom functionality for safari and IE
+			 */
+			(function( d ) {
+				// In case the placeholder functionality is available we remove labels
+				if ( ( 'placeholder' in d.createElement( 'input' ) ) ) {
+					var label = d.querySelector( 'label[for=subscribe-field-blog_subscription-3]' );
+						label.style.clip 	 = 'rect(1px, 1px, 1px, 1px)';
+						label.style.position = 'absolute';
+						label.style.height   = '1px';
+						label.style.width    = '1px';
+						label.style.overflow = 'hidden';
+				}
+
+				// Make sure the email value is filled in before allowing submit
+				var form = d.getElementById('subscribe-blog-blog_subscription-3'),
+					input = d.getElementById('subscribe-field-blog_subscription-3'),
+					handler = function( event ) {
+						if ( '' === input.value ) {
+							input.focus();
+
+							if ( event.preventDefault ){
+								event.preventDefault();
+							}
+
+							return false;
+						}
+					};
+
+				if ( window.addEventListener ) {
+					form.addEventListener( 'submit', handler, false );
+				} else {
+					form.attachEvent( 'onsubmit', handler );
+				}
+			})( document );
+			</script>
+				
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recents</h2>		<ul>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
+						</li>
+					<li>
+				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
+						</li>
+				</ul>
+		</aside>		<aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>		<ul>
+	<li class="cat-item cat-item-10"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" >API generation</a>
+</li>
+	<li class="cat-item cat-item-333"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/data-engineering/" >Data Engineering</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" >Data Mining</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" >Data visualization</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" >Deep Learning</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" >Machine Learning</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" >Programming</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" >Tools</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" >Training</a>
+</li>
+		</ul>
+</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h2 class="widget-title">My Twitter</h2><a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="EN" data-partner="jetpack" href="https://twitter.com/BEmatic">My Tweets</a></aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" class="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+
+		<input type="text" value="" name="s" id="s" class="search-input" placeholder="Search here..." />
+
+		<button type="submit" id="searchsubmit">
+			<i class="fa fa-search"></i> <span>Search</span>
+		</button>
+	</div>
+</form></aside>	</div><!-- #secondary .widget-area -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+	<!-- Next and previous post links -->
+	
+		<nav class="post-navigation">
+			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://i2.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/01/ensembletree.png?resize=410%2C237&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Next</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/" rel="prev">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a></div><span>01/01/2017</span></div></div>
+			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://i1.wp.com/www.apprendimentoautomatico.it/wp-content/uploads/2017/04/HypeML.jpg?resize=800%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Previous</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/" rel="next">Hype cycle e Apprendimento Automatico: in che fase siamo?</a></div><span>06/04/2017</span></div></div>		</nav><!-- .post-navigation -->
+	
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="container">
+
+					<div class="footer-widgets">
+				<aside id="text-2" class="widget widget_text"><h2 class="widget-title">Welcome</h2>			<div class="textwidget">This site is a collection of personal notes both in English and Italian about machine learning and cognitive computing. Enjoy the reading!
+<hr/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
+<br/>
+<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
+<hr/>
+<span class="su-qrcode su-qrcode-align-center"><a target="_blank" title="ApprendimentoAutomatico.it"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog&size=100x100&format=png&margin=0&color=0-0-0&bgcolor=255-255-255" alt="ApprendimentoAutomatico.it" /></a></span></div>
+		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQ9BEBk2V5xptV" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/markpeng/general-tips-for-participating-kaggle-competitions" title="General Tips for participating Kaggle Competitions" target="_blank">General Tips for participating Kaggle Competitions</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/markpeng">Mark Peng</a></strong> </div></div>
+		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archives</h2>		<ul>
+			<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>&nbsp;(1)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>&nbsp;(2)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>&nbsp;(3)</li>
+	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>&nbsp;(8)</li>
+		</ul>
+		</aside>			</div>
+		
+		<div class="footer-bottom">
+			
+			<div class="footer-tagline">
+				<div class="site-info">
+					Ad maiora!				</div>
+			</div><!-- .footer-tagline -->
+		</div><!-- .footer-bottom -->
+	</div><!-- .container -->
+</footer><!-- #colophon -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-5dc913459f23856e71f78099918220bd">
+	</div>
+	<div class="grofile-hash-map-790496ea4e557f822732571d11783453">
+	</div>
+	<div class="grofile-hash-map-96fae19dd2121422b0fbdafc82568e36">
+	</div>
+	<div class="grofile-hash-map-3e0457176d075fe088001c264ef1aaa1">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/en\/emotions-detection-via-facial-expressions-with-python-opencv\/":6111};
+	</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Your Email Address</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			<script>jQuery( document ).ready( function(){ document.getElementById('jetpack-source_f_name').value = '' });</script>
+			
+			<img style="float: right; display: none" class="loading" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Send Email" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel-ie8fix.css?ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201802'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Janaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var paperback_js_vars = {"ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","load_fixed":"true"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var settings_obj = {"ajax_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"06c07c87f6","confirm":"Are you sure to delete item?"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/spin.js?ver=1.3'></script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/jquery.spin.js?ver=1.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"16afb09915","display_exif":"0","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-login.php?redirect_to=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Femotions-detection-via-facial-expressions-with-python-opencv%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel.js?ver=20170209'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+</script>
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=6111&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.9&sig=8220cf74f18f559eca6fbf8312061a770e3477c2#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Femotions-detection-via-facial-expressions-with-python-opencv%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&postid=6111&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=monsterid&greeting=Vuoi+commentare%3F&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.9&sig=8220cf74f18f559eca6fbf8312061a770e3477c2#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Femotions-detection-via-facial-expressions-with-python-opencv%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type='text/javascript' src='https://stats.wp.com/e-201802.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.9',blog:'114978248',post:'6111',tz:'1',srv:'www.apprendimentoautomatico.it'} ]);
+	_stq.push([ 'clickTrackerInit', '114978248', '6111' ]);
+</script>
+
+</body>
+</html>

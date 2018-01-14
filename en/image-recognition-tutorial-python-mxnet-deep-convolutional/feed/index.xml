@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Image recognition tutorial in Python/MXNet using deep convolutional</title>
+	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/feed/" rel="self" type="application/rss+xml" />
+	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/</link>
+	<description>ApprendimentoAutomatico.it</description>
+	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.6.1</generator>
+	<item>
+		<title>By: lorenzo</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-10</link>
+		<dc:creator><![CDATA[lorenzo]]></dc:creator>
+		<pubDate>Tue, 02 May 2017 07:46:06 +0000</pubDate>
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587#comment-10</guid>
+		<description><![CDATA[Hi Pramod.
+The first problem could be related to the image preprocessing (normalization and so on). 
+About bounding box, lastly, I found very useful https://github.com/Microsoft/CNTK on a Kaggle problem.]]></description>
+		<content:encoded><![CDATA[<p>Hi Pramod.<br />
+The first problem could be related to the image preprocessing (normalization and so on).<br />
+About bounding box, lastly, I found very useful <a href="https://github.com/Microsoft/CNTK" rel="nofollow">https://github.com/Microsoft/CNTK</a> on a Kaggle problem.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Pramod</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-9</link>
+		<dc:creator><![CDATA[Pramod]]></dc:creator>
+		<pubDate>Thu, 20 Apr 2017 13:06:10 +0000</pubDate>
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587#comment-9</guid>
+		<description><![CDATA[Hi Lorenzo, 
+Thanks for the post. I&#039;m working on a problem where I have to recognise products which have similar packaging but with different colours. I did train a VGG net and an Alexnet with my images with a test accuracy of 60%, however, when an unknown image is fed into the network for classification, the results are not great. 
+I get only 2 out of 10 images correctly identified and sometimes none. Also sometimes It also considers background and gives me wrong results. For example, class A product colour is white and there&#039;s a grey background and class B, product is grey in colour while the background is white. Now when I feed in an image from class B which is grey in colour, it gets identified as class A.
+Can you tell me how can I fix this ? 
+
+PS: I&#039;m working to get the bounding box and train the images with FAST RCNN which might work, but not sure on that either as there&#039;s very little available on the internet. 
+
+Best,
+Pramod]]></description>
+		<content:encoded><![CDATA[<p>Hi Lorenzo,<br />
+Thanks for the post. I&#8217;m working on a problem where I have to recognise products which have similar packaging but with different colours. I did train a VGG net and an Alexnet with my images with a test accuracy of 60%, however, when an unknown image is fed into the network for classification, the results are not great.<br />
+I get only 2 out of 10 images correctly identified and sometimes none. Also sometimes It also considers background and gives me wrong results. For example, class A product colour is white and there&#8217;s a grey background and class B, product is grey in colour while the background is white. Now when I feed in an image from class B which is grey in colour, it gets identified as class A.<br />
+Can you tell me how can I fix this ? </p>
+<p>PS: I&#8217;m working to get the bounding box and train the images with FAST RCNN which might work, but not sure on that either as there&#8217;s very little available on the internet. </p>
+<p>Best,<br />
+Pramod</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: A gentle introduction to TensorFlow with python (and RNN)</title>
+		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-2</link>
+		<dc:creator><![CDATA[A gentle introduction to TensorFlow with python (and RNN)]]></dc:creator>
+		<pubDate>Wed, 30 Nov 2016 23:34:45 +0000</pubDate>
+		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587#comment-2</guid>
+		<description><![CDATA[[&#8230;] you interested in object classification? Give a look to my post Image recognition tutorial in Python/MXNet using deep convolutional. To learn about neural networks in general, Michael Nielsen&#8217;s free online book is an [&#8230;]]]></description>
+		<content:encoded><![CDATA[<p>[&#8230;] you interested in object classification? Give a look to my post Image recognition tutorial in Python/MXNet using deep convolutional. To learn about neural networks in general, Michael Nielsen&#8217;s free online book is an [&#8230;]</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

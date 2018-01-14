@@ -1,0 +1,10 @@
+<?php 
+define ( "WHOAMI", "www.APPRENDIMENTOAUTOMATICO.it"); 
+define ( "URL", "http://www.apprendimentoautomatico.it");
+define ( "COOKIEURL", "http://www.apprendimentoautomatico.it/wp-content/cookie");
+define ( "TITLE", "Informativa Privacy");
+define ( "EXTCOOKIEPAGE", TRUE);
+define ( "TITOLARE", "webfairy.it di Caterina Cilona");
+define ( "INDIRIZZOTITOLARE", "via G. Marazzani, 11 - 20132 Milano");
+define ( "MAILTITOLARE", "info@webfairy.it");
+?>
