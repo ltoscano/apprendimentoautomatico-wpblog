@@ -7,8 +7,8 @@
 	>
 <channel>
 	<title>Commenti a: Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
@@ -16,10 +16,10 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 	<item>
 		<title>Di: Mattia</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comment-4</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comment-4</link>
 		<dc:creator><![CDATA[Mattia]]></dc:creator>
 		<pubDate>Mon, 16 Jan 2017 21:09:57 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5639#comment-4</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5639#comment-4</guid>
 		<description><![CDATA[post molto interessante, grazie Lorenzo
 
 resto perplesso rispetto alla scelta costo per evento dell&#039;API Alchemy; se volessi analizzare in modo puntuale i commenti a un video penso che questo approccio porterebbe a costi davvero eccessivi.

@@ -313,14 +313,14 @@
 	border-style: solid;
 }
 .su-button-style-ghost:hover span { border-color: inherit !important; }
-.su-button-style-soft span { background: 0 -20px url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-soft.png') repeat-x }
-.su-button-style-soft:hover span { background: 0 0 url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-soft.png') repeat-x }
-.su-button-style-glass span { background: 0 50% url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-glass.png') repeat-x }
-.su-button-style-glass:hover span { background: 100% 50% url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-glass.png') repeat-x }
-.su-button-style-bubbles span { background: 0 50% url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-bubbles.png') no-repeat }
-.su-button-style-bubbles:hover span { background: -710px 50% url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-bubbles.png') no-repeat }
-.su-button-style-noise span { background: 0 0 url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-noise.png') repeat-x }
-.su-button-style-noise:hover span { background: 0 0 url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-noise.png') repeat-x }
+.su-button-style-soft span { background: 0 -20px url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-soft.png') repeat-x }
+.su-button-style-soft:hover span { background: 0 0 url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-soft.png') repeat-x }
+.su-button-style-glass span { background: 0 50% url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-glass.png') repeat-x }
+.su-button-style-glass:hover span { background: 100% 50% url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-glass.png') repeat-x }
+.su-button-style-bubbles span { background: 0 50% url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-bubbles.png') no-repeat }
+.su-button-style-bubbles:hover span { background: -710px 50% url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-bubbles.png') no-repeat }
+.su-button-style-noise span { background: 0 0 url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-noise.png') repeat-x }
+.su-button-style-noise:hover span { background: 0 0 url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-noise.png') repeat-x }
 .su-button-style-stroked span {
 	margin: 1px;
 	border: 1px dashed #fff !important;

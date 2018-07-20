@@ -9,22 +9,22 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Machine Learning &amp; Cognitive &lsaquo; Login</title>
 	<link rel='dns-prefetch' href='//s.w.org' />
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-admin/load-scripts.php?c=0&amp;load%5B%5D=jquery-core,jquery-migrate&amp;ver=4.6.1'></script>
-<link rel='stylesheet' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.6.1' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-admin/load-scripts.php?c=0&amp;load%5B%5D=jquery-core,jquery-migrate&amp;ver=4.6.1'></script>
+<link rel='stylesheet' href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5B%5D=dashicons,buttons,forms,l10n,login&amp;ver=4.6.1' type='text/css' media='all' />
 <meta name='robots' content='noindex,follow' />
-<link rel="icon" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
-<link rel="icon" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
-<link rel="apple-touch-icon-precomposed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
-<meta name="msapplication-TileImage" content="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+<link rel="icon" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
-        <script src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-login-page-wp/lib/modernizr-custom.js"></script>
+        <script src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/custom-login-page-wp/lib/modernizr-custom.js"></script>
         <style>
 
         html{
             height:100%;
-                                background: #f1f1f1 url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/12/brain-1618377_1920.jpg) no-repeat center top fixed;
+                                background: #f1f1f1 url(https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/12/brain-1618377_1920.jpg) no-repeat center top fixed;
                                             -webkit-background-size: cover;
                         -moz-background-size: cover;
                         -o-background-size: cover;
@@ -59,7 +59,7 @@
 
         
         .login h1 a{
-            background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/apprendimentoautomaticoit.png);
+            background-image: url(https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/apprendimentoautomaticoit.png);
             background-size: 100px 96px;
             height: 96px;
             width: 100px;
@@ -119,7 +119,7 @@ Stack trace:
 		<div id="login">
 		<h1><a href="https://it.wordpress.org/" title="Powered by WordPress" tabindex="-1">Machine Learning &amp; Cognitive</a></h1>
 	
-<form name="loginform" id="loginform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-login.php" method="post">
+<form name="loginform" id="loginform" action="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-login.php" method="post">
 	<p>
 		<label for="user_login">Nome utente o email:<br />
 		<input type="text" name="log" id="user_login" class="input" value="" size="20" /></label>
@@ -131,13 +131,13 @@ Stack trace:
 		<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /> Ricordami</label></p>
 	<p class="submit">
 		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Login" />
-		<input type="hidden" name="redirect_to" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-admin/" />
+		<input type="hidden" name="redirect_to" value="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-admin/" />
 		<input type="hidden" name="testcookie" value="1" />
 	</p>
 </form>
 
 <p id="nav">
-	<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-login.php?action=lostpassword">Password dimenticata?</a>
+	<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-login.php?action=lostpassword">Password dimenticata?</a>
 </p>
 
 <script type="text/javascript">
@@ -154,7 +154,7 @@ wp_attempt_focus();
 if(typeof wpOnload=='function')wpOnload();
 </script>
 
-	<p id="backtoblog"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">&larr; Torna a Machine Learning &amp; Cognitive</a></p>
+	<p id="backtoblog"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">&larr; Torna a Machine Learning &amp; Cognitive</a></p>
 	
 	</div>
 
@@ -165,7 +165,7 @@ if(typeof wpOnload=='function')wpOnload();
         
 
 
-    <link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+    <link rel='stylesheet' id='jetpack_css-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
 	<div class="clear"></div>
 	</body>
 	</html>

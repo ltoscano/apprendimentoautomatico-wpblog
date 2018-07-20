@@ -9,8 +9,8 @@
 
 <channel>
 	<title>corpus &#8211; Machine Learning &amp; Cognitive</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/tag/corpus/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/tag/corpus/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
 	<language>it-IT</language>
@@ -19,16 +19,16 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 
 <image>
-	<url>https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<url>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
 	<title>corpus &#8211; Machine Learning &amp; Cognitive</title>
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 <site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
 		<title>Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/#respond</comments>
 		<pubDate>Sun, 28 Aug 2016 17:10:22 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Programming]]></category>
@@ -48,17 +48,17 @@
 		<category><![CDATA[wikimedia]]></category>
 		<category><![CDATA[wikipedia]]></category>
 
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5342</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5342</guid>
 		<description><![CDATA[<p>Talvolta può essere necessario operare, per scopi dimostrativi o altre ragioni, su un corpus di dimensioni modeste consistente di documenti [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/">Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/">Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">5342</post-id>	</item>
 		<item>
 		<title>Fondamenti: trasformazioni con riduzione di dimensionalità</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
 		<pubDate>Sun, 24 Jul 2016 09:03:30 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Machine Learning]]></category>
@@ -121,15 +121,15 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1699</guid>
 		<description><![CDATA[<p>Nei post precedenti della serie Fondamenti si è mostrato come un generico testo possa essere rappresentato dall'insieme delle sue parole, trascurando [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">1699</post-id>	</item>
 		<item>
 		<title>Fondamenti: selezione attributi e rappresentazione dei documenti</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#respond</comments>
 		<pubDate>Mon, 04 Jul 2016 21:40:24 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Data Mining]]></category>
@@ -179,9 +179,9 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=74</guid>
 		<description><![CDATA[<p>Questo post è il primo di una serie denominata "Fondamenti". L'obiettivo della serie è fornire una panoramica delle principali tecniche [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
 	</channel>

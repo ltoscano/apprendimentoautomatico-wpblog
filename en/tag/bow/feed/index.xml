@@ -9,8 +9,8 @@
 
 <channel>
 	<title>bow &#8211; Machine Learning &amp; Cognitive</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/bow/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/bow/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -19,16 +19,16 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 
 <image>
-	<url>https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<url>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
 	<title>bow &#8211; Machine Learning &amp; Cognitive</title>
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 <site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
 		<title>Fondamenti: trasformazioni con riduzione di dimensionalità</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
 		<pubDate>Sun, 24 Jul 2016 09:03:30 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Machine Learning]]></category>
@@ -91,15 +91,15 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1699</guid>
 		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">1699</post-id>	</item>
 		<item>
 		<title>Fondamenti: schemi di rappresentazione e trasformazioni</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/#respond</comments>
 		<pubDate>Fri, 08 Jul 2016 23:11:41 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Machine Learning]]></category>
@@ -121,15 +121,15 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1034</guid>
 		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/">Fondamenti: schemi di rappresentazione e trasformazioni</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/">Fondamenti: schemi di rappresentazione e trasformazioni</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-schemi-di-rappresentazione-e-trasformazioni/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">1034</post-id>	</item>
 		<item>
 		<title>Fondamenti: selezione attributi e rappresentazione dei documenti</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/#respond</comments>
 		<pubDate>Mon, 04 Jul 2016 21:40:24 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Data Mining]]></category>
@@ -179,9 +179,9 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=74</guid>
 		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
 	</channel>

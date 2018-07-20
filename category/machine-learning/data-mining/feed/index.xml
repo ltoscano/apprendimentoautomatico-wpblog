@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Data Mining &#8211; Machine Learning &amp; Cognitive</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/category/machine-learning/data-mining/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
 	<language>it-IT</language>
@@ -19,16 +19,16 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 
 <image>
-	<url>https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<url>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
 	<title>Data Mining &#8211; Machine Learning &amp; Cognitive</title>
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 <site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
 		<title>Fondamenti: selezione attributi e rappresentazione dei documenti</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/#respond</comments>
 		<pubDate>Mon, 04 Jul 2016 21:40:24 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Data Mining]]></category>
@@ -78,9 +78,9 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=74</guid>
 		<description><![CDATA[<p>Questo post è il primo di una serie denominata "Fondamenti". L'obiettivo della serie è fornire una panoramica delle principali tecniche [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/">Fondamenti: selezione attributi e rappresentazione dei documenti</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/estrazione-attributi-da-testi-con-python/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
 	</channel>

@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Tools &#8211; Machine Learning &amp; Cognitive</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/category/collaterali/strumenti/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/category/collaterali/strumenti/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
 	<language>it-IT</language>
@@ -19,16 +19,16 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 
 <image>
-	<url>https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<url>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
 	<title>Tools &#8211; Machine Learning &amp; Cognitive</title>
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 <site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
 		<title>Intuitions on the fly on Blockchain</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/#respond</comments>
 		<pubDate>Mon, 01 May 2017 23:15:47 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Data Engineering]]></category>
@@ -57,17 +57,17 @@
 		<category><![CDATA[peer]]></category>
 		<category><![CDATA[service]]></category>
 
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6142</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6142</guid>
 		<description><![CDATA[<p>Ci spiace, ma questo articolo è disponibile soltanto in Inglese Americano. Continua</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduction-to-bitcoin-intuitions/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">6142</post-id>	</item>
 		<item>
 		<title>Protetto: Magellano an open source Cognitive Computing demonstrator</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/#respond</comments>
 		<pubDate>Mon, 29 Aug 2016 22:40:53 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Data visualization]]></category>
@@ -91,17 +91,17 @@
 		<category><![CDATA[watson]]></category>
 		<category><![CDATA[word2vec]]></category>
 
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5413</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5413</guid>
 		<description><![CDATA[<p>Non è disponibile alcun riassunto in quanto si tratta di un articolo protetto.</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/">Protetto: Magellano an open source Cognitive Computing demonstrator</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/">Protetto: Magellano an open source Cognitive Computing demonstrator</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/magellano-an-open-source-cognitive-computing-demonstrator/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">5413</post-id>	</item>
 		<item>
 		<title>Filtraggio delle stop word con nodo custom in Knime</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/#respond</comments>
 		<pubDate>Mon, 29 Aug 2016 15:42:44 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Programming]]></category>
@@ -118,17 +118,17 @@
 		<category><![CDATA[tokenizer]]></category>
 		<category><![CDATA[wrapper]]></category>
 
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5377</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5377</guid>
 		<description><![CDATA[<p>Un'operazione di filtraggio importante, nella processazione dei dataset, consiste nella rimozione delle stop word. In questo post propongo due esempi [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/">Filtraggio delle stop word con nodo custom in Knime</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/">Filtraggio delle stop word con nodo custom in Knime</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/filtraggio-stop-word-nodo-custom-knime-python-script/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">5377</post-id>	</item>
 		<item>
 		<title>Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/#respond</comments>
 		<pubDate>Sun, 28 Aug 2016 17:10:22 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Programming]]></category>
@@ -148,17 +148,17 @@
 		<category><![CDATA[wikimedia]]></category>
 		<category><![CDATA[wikipedia]]></category>
 
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5342</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5342</guid>
 		<description><![CDATA[<p>Talvolta può essere necessario operare, per scopi dimostrativi o altre ragioni, su un corpus di dimensioni modeste consistente di documenti [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/">Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/">Come generare un corpus, a tema, in Italiano, da Wikipedia e&#8230; in pochi secondi</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/come-generare-un-corpus-a-tema-in-italiano-da-wikipedia-pochi-secondi/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">5342</post-id>	</item>
 		<item>
 		<title>Introduzione a Gephi in 11 passi</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/#respond</comments>
 		<pubDate>Wed, 06 Jul 2016 00:33:29 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Data visualization]]></category>
@@ -177,15 +177,15 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=266</guid>
 		<description><![CDATA[<p>Gephi è un visualizzatore interattivo e una piattaforma di esplorazione per tutti i tipi di reti e sistemi complessi, dinamici [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/">Introduzione a Gephi in 11 passi</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/">Introduzione a Gephi in 11 passi</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/introduzione-a-gephi-in-11-passi/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">266</post-id>	</item>
 		<item>
 		<title>BORG: downloader di corsi da Cloudera, edX e playlist di Youtube</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/#respond</comments>
 		<pubDate>Sun, 03 Jul 2016 19:07:27 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Tools]]></category>
@@ -199,9 +199,9 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=4</guid>
 		<description><![CDATA[<p>Borg1 è un efficace strumento per il download di videolezioni e materiali correlati dai principali portali di formazione a distanza [&#8230;]</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/">BORG: downloader di corsi da Cloudera, edX e playlist di Youtube</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/">BORG: downloader di corsi da Cloudera, edX e playlist di Youtube</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">7</post-id>	</item>
 	</channel>

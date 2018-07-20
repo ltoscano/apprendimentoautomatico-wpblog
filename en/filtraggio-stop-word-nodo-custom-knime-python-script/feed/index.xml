@@ -7,8 +7,8 @@
 	>
 <channel>
 	<title>Comments on: Filtraggio delle stop word con nodo custom in Knime</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/filtraggio-stop-word-nodo-custom-knime-python-script/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
 	<sy:updatePeriod>hourly</sy:updatePeriod>

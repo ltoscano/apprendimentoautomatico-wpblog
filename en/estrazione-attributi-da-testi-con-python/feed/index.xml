@@ -7,8 +7,8 @@
 	>
 <channel>
 	<title>Comments on: Fondamenti: selezione attributi e rappresentazione dei documenti</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/estrazione-attributi-da-testi-con-python/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
 	<sy:updatePeriod>hourly</sy:updatePeriod>

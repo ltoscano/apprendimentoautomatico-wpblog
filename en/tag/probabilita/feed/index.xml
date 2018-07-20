@@ -9,8 +9,8 @@
 
 <channel>
 	<title>probabilità &#8211; Machine Learning &amp; Cognitive</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/probabilita/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/probabilita/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Wed, 11 Oct 2017 05:16:10 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -19,16 +19,16 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 
 <image>
-	<url>https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
+	<url>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1</url>
 	<title>probabilità &#8211; Machine Learning &amp; Cognitive</title>
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en</link>
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 <site xmlns="com-wordpress:feed-additions:1">114978248</site>	<item>
 		<title>Fondamenti: trasformazioni con riduzione di dimensionalità</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/#respond</comments>
 		<pubDate>Sun, 24 Jul 2016 09:03:30 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Machine Learning]]></category>
@@ -91,15 +91,15 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1699</guid>
 		<description><![CDATA[<p>Sorry, this entry is only available in Italian. Read More</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/">Fondamenti: trasformazioni con riduzione di dimensionalità</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/fondamenti-trasformazioni-con-riduzione-dimensionalita/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">1699</post-id>	</item>
 		<item>
 		<title>Protected: Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/</link>
-		<comments>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/#respond</comments>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/</link>
+		<comments>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/#respond</comments>
 		<pubDate>Sat, 16 Jul 2016 20:15:35 +0000</pubDate>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 				<category><![CDATA[Training]]></category>
@@ -129,9 +129,9 @@
 
 		<guid isPermaLink="false">https://apprendimentoautomatico.wordpress.com/?p=1912</guid>
 		<description><![CDATA[<p>There is no excerpt because this is a protected post.</p>
-<p>L'articolo <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/">Protected: Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</a> sembra essere il primo su <a rel="nofollow" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
+<p>L'articolo <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/">Protected: Sintesi su teoria della probabilità, inferenza bayesiana, modelli e distribuzioni</a> sembra essere il primo su <a rel="nofollow" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en">Machine Learning &amp; Cognitive</a>.</p>
 ]]></description>
-		<wfw:commentRss>https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/feed/</wfw:commentRss>
+		<wfw:commentRss>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/recap-nozioni-per-applicazioni-su-modelli-probabilistici/feed/</wfw:commentRss>
 		<slash:comments>0</slash:comments>
 	<post-id xmlns="com-wordpress:feed-additions:1">1912</post-id>	</item>
 	</channel>

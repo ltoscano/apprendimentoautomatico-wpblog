@@ -7,8 +7,8 @@
 	>
 <channel>
 	<title>Commenti per Machine Learning &amp; Cognitive</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/comments/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
@@ -16,40 +16,40 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 	<item>
 		<title>Commenti su Emotions Detection Via Facial Expressions with python &#038; OpenCV di Thejus</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-40</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-40</link>
 		<dc:creator><![CDATA[Thejus]]></dc:creator>
 		<pubDate>Sat, 23 Sep 2017 15:00:21 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-40</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-40</guid>
 		<description><![CDATA[Great tutorials. Thanks a lot!]]></description>
 		<content:encoded><![CDATA[<p>Great tutorials. Thanks a lot!</p>
 ]]></content:encoded>
 	</item>
 	<item>
 		<title>Commenti su Emotions Detection Via Facial Expressions with python &#038; OpenCV di het</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-13</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-13</link>
 		<dc:creator><![CDATA[het]]></dc:creator>
 		<pubDate>Mon, 08 May 2017 06:50:36 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-13</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-13</guid>
 		<description><![CDATA[after running the face_detection.py i cant find any images in final dataset folder. what can be the issue here?]]></description>
 		<content:encoded><![CDATA[<p>after running the face_detection.py i cant find any images in final dataset folder. what can be the issue here?</p>
 ]]></content:encoded>
 	</item>
 	<item>
 		<title>Commenti su Emotions Detection Via Facial Expressions with python &#038; OpenCV di lorenzo</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-11</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-11</link>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 		<pubDate>Tue, 02 May 2017 07:50:56 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-11</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-11</guid>
 		<description><![CDATA[a possible solution here: http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object]]></description>
 		<content:encoded><![CDATA[<p>a possible solution here: <a href="http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object" rel="nofollow">http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object</a></p>
 ]]></content:encoded>
 	</item>
 	<item>
 		<title>Commenti su Image recognition tutorial in Python/MXNet using deep convolutional di lorenzo</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-10</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-10</link>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 		<pubDate>Tue, 02 May 2017 07:46:06 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587#comment-10</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5587#comment-10</guid>
 		<description><![CDATA[Hi Pramod.
 The first problem could be related to the image preprocessing (normalization and so on). 
 About bounding box, lastly, I found very useful https://github.com/Microsoft/CNTK on a Kaggle problem.]]></description>
@@ -60,10 +60,10 @@ About bounding box, lastly, I found very useful <a href="https://github.com/Micr
 	</item>
 	<item>
 		<title>Commenti su Image recognition tutorial in Python/MXNet using deep convolutional di Pramod</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-9</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-9</link>
 		<dc:creator><![CDATA[Pramod]]></dc:creator>
 		<pubDate>Thu, 20 Apr 2017 13:06:10 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587#comment-9</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5587#comment-9</guid>
 		<description><![CDATA[Hi Lorenzo, 
 Thanks for the post. I&#039;m working on a problem where I have to recognise products which have similar packaging but with different colours. I did train a VGG net and an Alexnet with my images with a test accuracy of 60%, however, when an unknown image is fed into the network for classification, the results are not great. 
 I get only 2 out of 10 images correctly identified and sometimes none. Also sometimes It also considers background and gives me wrong results. For example, class A product colour is white and there&#039;s a grey background and class B, product is grey in colour while the background is white. Now when I feed in an image from class B which is grey in colour, it gets identified as class A.
@@ -84,10 +84,10 @@ Pramod</p>
 	</item>
 	<item>
 		<title>Commenti su Emotions Detection Via Facial Expressions with python &#038; OpenCV di issam</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-5</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-5</link>
 		<dc:creator><![CDATA[issam]]></dc:creator>
 		<pubDate>Thu, 13 Apr 2017 23:28:34 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-5</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-5</guid>
 		<description><![CDATA[hi Mr Lorenzo
 I want to thunck you first for this great tuto. when I run this script I have this error 
 
@@ -107,10 +107,10 @@ AttributeError: &#8216;module&#8217; object has no attribute &#8216;createFisher
 	</item>
 	<item>
 		<title>Commenti su Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK di Mattia</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comment-4</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/#comment-4</link>
 		<dc:creator><![CDATA[Mattia]]></dc:creator>
 		<pubDate>Mon, 16 Jan 2017 21:09:57 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5639#comment-4</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5639#comment-4</guid>
 		<description><![CDATA[post molto interessante, grazie Lorenzo
 
 resto perplesso rispetto alla scelta costo per evento dell&#039;API Alchemy; se volessi analizzare in modo puntuale i commenti a un video penso che questo approccio porterebbe a costi davvero eccessivi.
@@ -123,10 +123,10 @@ in ogni caso la piattaforma IBM Watson si posiziona davvero molto bene]]></descr
 	</item>
 	<item>
 		<title>Commenti su Image recognition tutorial in Python/MXNet using deep convolutional di A gentle introduction to TensorFlow with python (and RNN)</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-2</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-2</link>
 		<dc:creator><![CDATA[A gentle introduction to TensorFlow with python (and RNN)]]></dc:creator>
 		<pubDate>Wed, 30 Nov 2016 23:34:45 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=5587#comment-2</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=5587#comment-2</guid>
 		<description><![CDATA[[&#8230;] you interested in object classification? Give a look to my post Image recognition tutorial in Python/MXNet using deep convolutional. To learn about neural networks in general, Michael Nielsen&#8217;s free online book is an [&#8230;]]]></description>
 		<content:encoded><![CDATA[<p>[&#8230;] you interested in object classification? Give a look to my post Image recognition tutorial in Python/MXNet using deep convolutional. To learn about neural networks in general, Michael Nielsen&#8217;s free online book is an [&#8230;]</p>
 ]]></content:encoded>

@@ -7,8 +7,8 @@
 	>
 <channel>
 	<title>Commenti a: BORG: downloader di corsi da Cloudera, edX e playlist di Youtube</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/borg-downloader-cloudera-edx/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
 	<sy:updatePeriod>hourly</sy:updatePeriod>

@@ -7,8 +7,8 @@
 	>
 <channel>
 	<title>Commenti a: A gentle introduction to TensorFlow with python (and RNN)</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
 	<sy:updatePeriod>hourly</sy:updatePeriod>

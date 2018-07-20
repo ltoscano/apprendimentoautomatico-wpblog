@@ -7,12 +7,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         www.APPRENDIMENTOAUTOMATICO.it    </title>
     <meta name="robots" content="noindex, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/fonts.css" />
-    <link rel="stylesheet" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/style.css?v=1.3" />
+    <link rel="stylesheet" type="text/css" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/privacy/fonts.css" />
+    <link rel="stylesheet" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/privacy/style.css?v=1.3" />
 </head>
 <body>
     <div id="headerPopUp" class="clear-has-content">
-        <a class="float-left logoPopUp" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/">www.APPRENDIMENTOAUTOMATICO.it</a>
+        <a class="float-left logoPopUp" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/">www.APPRENDIMENTOAUTOMATICO.it</a>
             
         Informativa Privacy            
         <a class="float-right printPopUp mrl" href="javascript: $('#contentPopUp').printThis()">Stampa</a>
@@ -21,7 +21,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         <h1>Informativa sulla Privacy</h1>
         
         <p>
-            Lorenzo Toscano, in qualità di Titolare del trattamento dei dati personali, in conformità a quanto disposto dal D.lgs. n. 196/2003 ("Codice in materia di protezione dei dati personali") con la presente informativa intende rivolgersi a tutti coloro che interagiscono con i servizi web personali, accessibili per via telematica a partire dall'indirizzo: https://ltoscano.github.io/apprendimentoautomatico-wpblog. L'informativa, improntata ai principi di correttezza, liceità, trasparenza e riservatezza dei diritti di tutti gli utenti, è resa solo per il sito https://ltoscano.github.io/apprendimentoautomatico-wpblog, e non anche per gli altri siti web eventualmente consultati dall'utente tramite link. L'informativa si ispira anche alla Raccomandazione n. 2/2001 che le autorità europee per la protezione dei dati personali, riunite nel Gruppo istituito dall'art. 29 della direttiva n. 95/46/CE, hanno adottato il 17 maggio 2001 per individuare alcuni requisiti minimi per la raccolta di dati personali on-line, e in particolare, le modalità, i tempi e la natura delle informazioni che i titolari del trattamento devono fornire agli utenti quando questi si collegano a pagine web, indipendentemente dagli scopi del collegamento.</p>
+            Lorenzo Toscano, in qualità di Titolare del trattamento dei dati personali, in conformità a quanto disposto dal D.lgs. n. 196/2003 ("Codice in materia di protezione dei dati personali") con la presente informativa intende rivolgersi a tutti coloro che interagiscono con i servizi web personali, accessibili per via telematica a partire dall'indirizzo: https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog. L'informativa, improntata ai principi di correttezza, liceità, trasparenza e riservatezza dei diritti di tutti gli utenti, è resa solo per il sito https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog, e non anche per gli altri siti web eventualmente consultati dall'utente tramite link. L'informativa si ispira anche alla Raccomandazione n. 2/2001 che le autorità europee per la protezione dei dati personali, riunite nel Gruppo istituito dall'art. 29 della direttiva n. 95/46/CE, hanno adottato il 17 maggio 2001 per individuare alcuni requisiti minimi per la raccolta di dati personali on-line, e in particolare, le modalità, i tempi e la natura delle informazioni che i titolari del trattamento devono fornire agli utenti quando questi si collegano a pagine web, indipendentemente dagli scopi del collegamento.</p>
         <p>
             Tutte le informazioni che seguono sono fornite ai sensi dell’art. 13 D. lgs. N. 196/2003.
         </p>
@@ -49,7 +49,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
         <h2><strong>Cookie</strong></h2>
                 <p>
-            In attuazione del provvedimento del Garante per la protezione dei dati personali dell'8 maggio 2014 "Individuazione delle modalità semplificate per l'informativa e l'acquisizione del consenso per l'uso dei cookie" e nel rispetto dell'art. 13 del Codice privacy (D.Lgs. n. 196/2003), abbiamo dedicato una pagina dettagliata all'informativa sull'uso dei cookie, ti invitiamo a consultarla facendo click su: <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/cookie">Informativa Cookie</a>.
+            In attuazione del provvedimento del Garante per la protezione dei dati personali dell'8 maggio 2014 "Individuazione delle modalità semplificate per l'informativa e l'acquisizione del consenso per l'uso dei cookie" e nel rispetto dell'art. 13 del Codice privacy (D.Lgs. n. 196/2003), abbiamo dedicato una pagina dettagliata all'informativa sull'uso dei cookie, ti invitiamo a consultarla facendo click su: <a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/cookie">Informativa Cookie</a>.
         </p>
                 
         <h2><strong>Facoltatività del conferimento dei dati</strong></h2>
@@ -65,7 +65,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     <script type="ext/javascript">
     window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
     </script>
-    <script type="text/javascript" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/printThis.js"></script>
-    <script type="text/javascript" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/delallC.js"></script>
+    <script type="text/javascript" src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/privacy/printThis.js"></script>
+    <script type="text/javascript" src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/privacy/delallC.js"></script>
 </body>
 </html>

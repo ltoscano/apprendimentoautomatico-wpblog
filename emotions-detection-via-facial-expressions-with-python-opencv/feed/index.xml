@@ -7,8 +7,8 @@
 	>
 <channel>
 	<title>Commenti a: Emotions Detection Via Facial Expressions with python &#038; OpenCV</title>
-	<atom:link href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/feed/" rel="self" type="application/rss+xml" />
-	<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/</link>
+	<atom:link href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/</link>
 	<description>ApprendimentoAutomatico.it</description>
 	<lastBuildDate>Sat, 23 Sep 2017 15:00:21 +0000</lastBuildDate>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
@@ -16,40 +16,40 @@
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 	<item>
 		<title>Di: Thejus</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-40</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-40</link>
 		<dc:creator><![CDATA[Thejus]]></dc:creator>
 		<pubDate>Sat, 23 Sep 2017 15:00:21 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-40</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-40</guid>
 		<description><![CDATA[Great tutorials. Thanks a lot!]]></description>
 		<content:encoded><![CDATA[<p>Great tutorials. Thanks a lot!</p>
 ]]></content:encoded>
 	</item>
 	<item>
 		<title>Di: het</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-13</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-13</link>
 		<dc:creator><![CDATA[het]]></dc:creator>
 		<pubDate>Mon, 08 May 2017 06:50:36 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-13</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-13</guid>
 		<description><![CDATA[after running the face_detection.py i cant find any images in final dataset folder. what can be the issue here?]]></description>
 		<content:encoded><![CDATA[<p>after running the face_detection.py i cant find any images in final dataset folder. what can be the issue here?</p>
 ]]></content:encoded>
 	</item>
 	<item>
 		<title>Di: lorenzo</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-11</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-11</link>
 		<dc:creator><![CDATA[lorenzo]]></dc:creator>
 		<pubDate>Tue, 02 May 2017 07:50:56 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-11</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-11</guid>
 		<description><![CDATA[a possible solution here: http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object]]></description>
 		<content:encoded><![CDATA[<p>a possible solution here: <a href="http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object" rel="nofollow">http://stackoverflow.com/questions/33620527/opencv3-and-python-2-7-on-virtual-enviorement-attributeerror-module-object</a></p>
 ]]></content:encoded>
 	</item>
 	<item>
 		<title>Di: issam</title>
-		<link>https://ltoscano.github.io/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-5</link>
+		<link>https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/emotions-detection-via-facial-expressions-with-python-opencv/#comment-5</link>
 		<dc:creator><![CDATA[issam]]></dc:creator>
 		<pubDate>Thu, 13 Apr 2017 23:28:34 +0000</pubDate>
-		<guid isPermaLink="false">https://ltoscano.github.io/apprendimentoautomatico-wpblog/?p=6111#comment-5</guid>
+		<guid isPermaLink="false">https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/?p=6111#comment-5</guid>
 		<description><![CDATA[hi Mr Lorenzo
 I want to thunck you first for this great tuto. when I run this script I have this error 
 

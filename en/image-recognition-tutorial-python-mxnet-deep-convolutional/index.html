@@ -4,17 +4,17 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<link rel="pingback" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php">
+	<link rel="pingback" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/xmlrpc.php">
 
 	<title>Image recognition tutorial in Python/MXNet using deep convolutional - Machine Learning &amp; Cognitive</title>
 
 <!-- This site is optimized with the Yoast SEO plugin v4.7 - https://yoast.com/wordpress/plugins/seo/ -->
-<link rel="canonical" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" />
+<link rel="canonical" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:description" content="I would like to introduce in this post some specific CNN implementations which are able to offer a cognitive image [&hellip;]" />
 <meta name="twitter:title" content="Image recognition tutorial in Python/MXNet using deep convolutional - Machine Learning &amp; Cognitive" />
 <meta name="twitter:site" content="@BEmatic" />
-<meta name="twitter:image" content="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&#038;ssl=1" />
+<meta name="twitter:image" content="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&#038;ssl=1" />
 <meta name="twitter:creator" content="@BEmatic" />
 <!-- / Yoast SEO plugin. -->
 
@@ -22,9 +22,9 @@
 <link rel='dns-prefetch' href='//secure.gravatar.com' />
 <link rel='dns-prefetch' href='//fonts.googleapis.com' />
 <link rel='dns-prefetch' href='//s.w.org' />
-<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Comments Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/comments/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Image recognition tutorial in Python/MXNet using deep convolutional Comments Feed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Feed" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Comments Feed" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Machine Learning &amp; Cognitive &raquo; Image recognition tutorial in Python/MXNet using deep convolutional Comments Feed" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/feed/" />
 		<script type="text/javascript">
 			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
 			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
@@ -43,7 +43,7 @@ img.emoji {
 	padding: 0 !important;
 }
 </style>
-<link rel='stylesheet' id='paperback-style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='paperback-style-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/style.css?ver=4.6.1' type='text/css' media='all' />
 <style id='paperback-style-inline-css' type='text/css'>
 
 		/* Top Nav Background Color */
@@ -113,30 +113,30 @@ img.emoji {
 	
 </style>
 <link rel='stylesheet' id='paperback-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7COpen%2BSans%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
-<link rel='stylesheet' id='font-awesome-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
-<link rel='stylesheet' id='overlay_settings_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
-<link rel='stylesheet' id='easy_table_style-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
-<link rel='stylesheet' id='enlighter-local-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/inc/fontawesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='overlay_settings_style-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/css/frontend.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy_table_style-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/easy-table/themes/cuscosky/style.css?ver=1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.3' type='text/css' media='all' />
 <link rel='stylesheet' id='enlighter-webfonts-css'  href='//fonts.googleapis.com/css?family=Source+Code+Pro%3Aregular%2C700&#038;ver=3.3' type='text/css' media='all' />
 <!--[if lte IE 8]>
-<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel-ie8fix.css?ver=20121024' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel-ie8fix.css?ver=20121024' type='text/css' media='all' />
 <![endif]-->
-<link rel='stylesheet' id='social-logos-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
-<link rel='stylesheet' id='jetpack_css-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/spin.js?ver=1.3'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/jquery.spin.js?ver=1.3'></script>
-<link rel='https://api.w.org/' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/' />
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
+<link rel='stylesheet' id='social-logos-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.3'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/enlighter/resources/plugin/JetpackInfiniteScroll.js?ver=c80a461dac'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/spin.js?ver=1.3'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/jquery.spin.js?ver=1.3'></script>
+<link rel='https://api.w.org/' href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 4.6.1" />
 <link rel='shortlink' href='https://wp.me/p7Mr5S-1s7' />
-<link rel="alternate" type="application/json+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fen%2Fimage-recognition-tutorial-python-mxnet-deep-convolutional%2F" />
-<link rel="alternate" type="text/xml+oembed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://ltoscano.github.io/apprendimentoautomatico-wpblog%2Fen%2Fimage-recognition-tutorial-python-mxnet-deep-convolutional%2F&#038;format=xml" />
+<link rel="alternate" type="application/json+oembed" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog%2Fen%2Fimage-recognition-tutorial-python-mxnet-deep-convolutional%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog%2Fen%2Fimage-recognition-tutorial-python-mxnet-deep-convolutional%2F&#038;format=xml" />
 <style type="text/css">
 .main-navigation {
     max-width: 45% !important;
@@ -160,7 +160,7 @@ span.easy-footnote>a { border-bottom: 0 !important; }
 a.easy-footnote-to-top { border-bottom: 0 !important; }
 
 .site-title a::before {
-    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
+    background-image: url("https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/brain-maze-350x336-2-e1471735143934.png");
     background-size: 25px 25px;
     content: " ";
     height: 25px;
@@ -182,7 +182,7 @@ a.easy-footnote-to-top { border-bottom: 0 !important; }
 }
 
 span.post-lang-en {
-    background-image: url("https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
+    background-image: url("https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/collaterals/English.png");
     background-repeat: no-repeat;
     background-size: 45px 45px;
     border: 1px dotted lightblue;
@@ -196,12 +196,12 @@ span.post-lang-en {
 }
 </style>
 <style type="text/css">
-.qtranxs_flag_it {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
-.qtranxs_flag_en {background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
+.qtranxs_flag_it {background-image: url(https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png); background-repeat: no-repeat;}
+.qtranxs_flag_en {background-image: url(https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png); background-repeat: no-repeat;}
 </style>
-<link hreflang="it" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="alternate" />
-<link hreflang="en" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="alternate" />
-<link hreflang="x-default" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="alternate" />
+<link hreflang="it" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/it/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="alternate" />
+<link hreflang="en" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="alternate" />
+<link hreflang="x-default" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/image-recognition-tutorial-python-mxnet-deep-convolutional/" rel="alternate" />
 <meta name="generator" content="qTranslate-X 3.4.6.8" />
 
 <link rel='dns-prefetch' href='//v0.wordpress.com'>
@@ -239,10 +239,10 @@ span.post-lang-en {
 			content: "\f466";
 		}
 		</style><!--Start Cookie Script--> <script type="text/javascript" charset="UTF-8" src="//cookie-script.com/s/f67066386a32612237b658624241e0af.js"></script> <!--End Cookie Script-->
-<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
-<link rel="icon" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
-<link rel="apple-touch-icon-precomposed" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
-<meta name="msapplication-TileImage" content="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"python","theme":"beyond","indent":2,"hover":"hoverEnabled","showLinenumbers":false,"rawButton":true,"infoButton":false,"windowButton":true,"rawcodeDoubleclick":true,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};window.addEvent('domready', function(){if (typeof EnlighterJS == "undefined"){return;};EnlighterJS.Util.Init(EnlighterJS_Config.selector.block, EnlighterJS_Config.selector.inline, EnlighterJS_Config);});;/* ]]> */</script><link rel="icon" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/08/cropped-brain-maze-350x336-2.png?fit=270%2C270&#038;ssl=1" />
 </head>
 
 <body class="single single-post postid-5587 single-format-standard has-sidebar two-column">
@@ -254,13 +254,13 @@ span.post-lang-en {
 			<div class="container">
 
 				<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
-					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
+					<div class="menu-aboutme-container"><ul id="menu-aboutme" class="menu"><li id="menu-item-5874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
 <ul class="sub-menu">
-	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
-	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
+	<li id="menu-item-5873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li id="menu-item-5871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
 </ul>
 </li>
-<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
+<li id="menu-item-5872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
 </ul></div>				</nav><!-- .secondary-navigation -->
 
 				<div class="top-navigation-right">
@@ -296,7 +296,7 @@ span.post-lang-en {
 		<div class="drawer-search">
 			
 <div class="big-search">
-	<form method="get" id="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/" role="search">
+	<form method="get" id="searchform" action="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/" role="search">
 		<label class="screen-reader-text" for="s">Search for:</label>
 
 		<input type="text" name="s" id="big-search" placeholder="Search here..." value="" onfocus="if(this.value==this.getAttribute('placeholder'))this.value='';" onblur="if(this.value=='')this.value=this.getAttribute('placeholder');"/><br />
@@ -321,50 +321,50 @@ span.post-lang-en {
 					<div class="widget tax-widget">
 				<h2 class="widget-title">Categories</h2>
 
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" title="View all posts in Training" >Training</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/" title="View all posts in Machine Learning" >Machine Learning</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" title="View all posts in Programming" >Programming</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" title="View all posts in Tools" >Tools</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" title="View all posts in Data visualization" >Data visualization</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/data-engineering/" title="View all posts in Data Engineering" >Data Engineering</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" title="View all posts in API generation" >API generation</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" title="View all posts in Data Mining" >Data Mining</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/" title="View all posts in Collaterals" >Collaterals</a>			</div>
 		
 					<div class="widget tax-widget">
 				<h2 class="widget-title">Tags</h2>
 
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/python/" title="View all posts in Python" >Python</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/bow/" title="View all posts in bow" >bow</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/azure/" title="View all posts in azure" >azure</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/classification/" title="View all posts in classification" >classification</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/machine-learning/" title="View all posts in machine learning" >machine learning</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/deep-learning/" title="View all posts in Deep Learning" >Deep Learning</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/python/" title="View all posts in Python" >Python</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/dataset/" title="View all posts in dataset" >dataset</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/bow/" title="View all posts in bow" >bow</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/corpus/" title="View all posts in corpus" >corpus</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/lda/" title="View all posts in LDA" >LDA</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/neural-networks/" title="View all posts in neural networks" >neural networks</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/azure/" title="View all posts in azure" >azure</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/cognitive-computing/" title="View all posts in cognitive computing" >cognitive computing</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/dirichlet/" title="View all posts in dirichlet" >dirichlet</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/cloud/" title="View all posts in cloud" >cloud</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/nlp/" title="View all posts in nlp" >nlp</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/pesi/" title="View all posts in pesi" >pesi</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/probabilita/" title="View all posts in probabilità" >probabilità</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/algorithms/" title="View all posts in algorithms" >algorithms</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/simplesso/" title="View all posts in simplesso" >simplesso</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/scikit-learn/" title="View all posts in scikit-learn" >scikit-learn</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/classification/" title="View all posts in classification" >classification</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/tag/forest/" title="View all posts in forest" >forest</a>				</ul>
 			</div>
 		
 		<div class="widget tax-widget">
 			<h2 class="widget-title">Archives</h2>
 
-				<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>
-	<a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>
+				<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>
+	<a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>
 		</div>
 	</div><!-- .container -->
 </div><!-- .drawer -->
 <div class="drawer drawer-menu-explore">
 	<div class="container">
 					<nav id="drawer-navigation" class="main-navigation drawer-navigation" role="navigation">
-				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
+				<div class="menu-megamenu-container"><ul id="menu-megamenu" class="menu"><li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5839"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
 <ul class="sub-menu">
-	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
-	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
-	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+	<li id="menu-item-5840" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li id="menu-item-5841" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5841"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li id="menu-item-5842" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
 </ul>
 </li>
 <li id="menu-item-5843" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
 </ul></div>			</nav><!-- #site-navigation -->
 		
 					<nav id="secondary-navigation" class="main-navigation secondary-navigation" role="navigation">
-				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
+				<div class="menu-aboutme-container"><ul id="menu-aboutme-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5874"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/wp-content/privacy/">Privacy</a>
 <ul class="sub-menu">
-	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5873"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy &#038; Cookie</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5871"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/blog-disclaimer/">Blog Disclaimer</a></li>
 </ul>
 </li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5872"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/aboutme/">About Me</a></li>
 </ul></div>			</nav><!-- .secondary-navigation -->
 		
 					<nav class="social-navigation" role="navigation">
@@ -381,7 +381,7 @@ span.post-lang-en {
 		<!-- Use the Site Logo feature, if supported -->
 		
 		<div class="titles-wrap">
-							<p class="site-title"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/" rel="home">Machine Learning &amp; Cognitive</a></p>
+							<p class="site-title"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/" rel="home">Machine Learning &amp; Cognitive</a></p>
  			
 							<p class="site-description">ApprendimentoAutomatico.it</p>
 					</div>
@@ -389,11 +389,11 @@ span.post-lang-en {
 
 				<!-- Main navigation -->
 				<nav id="site-navigation" class="main-navigation enabled" role="navigation">
-					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5839"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
+					<div class="menu-megamenu-container"><ul id="menu-megamenu-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5839"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/" data-object-id="4">Machine Learning</a>
 <ul class="sub-menu">
-	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
-	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5841"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
-	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5840"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" data-object-id="11">Data Mining</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5841"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" data-object-id="12">Deep Learning</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5842"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" data-object-id="5">Programming</a></li>
 </ul>
 </li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5843"><a href="http://www.scoop.it/t/knowmatic/">KNOWmatic</a></li>
@@ -418,7 +418,7 @@ span.post-lang-en {
 <div class="mini-bar">
 			<div class="mini-title">
 			<!-- Next and previous post links -->
-			<div class="fixed-nav"><a class="fixed-image" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/"> <img width="65" height="42" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=65%2C42&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="social_networking" srcset="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?w=531&amp;ssl=1 531w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?resize=300%2C194&amp;ssl=1 300w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?resize=375%2C250&amp;ssl=1 375w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="5577" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/social_networking/" data-orig-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=531%2C344&amp;ssl=1" data-orig-size="531,344" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="social_networking" data-image-description="" data-medium-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=300%2C194&amp;ssl=1" data-large-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=531%2C344&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Next</span><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/" rel="prev">Exploring Tweets: a python-based demonstrator</a></div></div>
+			<div class="fixed-nav"><a class="fixed-image" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/"> <img width="65" height="42" src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=65%2C42&amp;ssl=1" class="attachment-65x65 size-65x65 wp-post-image" alt="social_networking" srcset="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?w=531&amp;ssl=1 531w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?resize=300%2C194&amp;ssl=1 300w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?resize=375%2C250&amp;ssl=1 375w" sizes="(max-width: 65px) 100vw, 65px" data-attachment-id="5577" data-permalink="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/social_networking/" data-orig-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=531%2C344&amp;ssl=1" data-orig-size="531,344" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="social_networking" data-image-description="" data-medium-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=300%2C194&amp;ssl=1" data-large-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?fit=531%2C344&amp;ssl=1" /> </a><div class="fixed-post-text"><span>Next</span><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/" rel="prev">Exploring Tweets: a python-based demonstrator</a></div></div>
 		</div>
 	
 	<ul class="mini-menu">
@@ -451,23 +451,23 @@ span.post-lang-en {
 			<div class="site-header-bg-wrap">
 				<div class="header-opacity">
 					<div class="header-gradient"></div>
-					<div class="site-header-bg background-effect" style="background-image: url(https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&#038;ssl=1); opacity: 0.3;"></div>
+					<div class="site-header-bg background-effect" style="background-image: url(https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/catimagecnn.png?fit=286%2C282&#038;ssl=1); opacity: 0.3;"></div>
 				</div>
 			</div><!-- .site-header-bg-wrap -->
 
 		
 		<div class="container hero-container">
-			<div class="hero-cats"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/">Deep Learning</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/">Programming</a><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/">Training</a></div>
+			<div class="hero-cats"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/">Deep Learning</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/">Programming</a><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/">Training</a></div>
 			<!-- Hero title -->
 			<div class="hero-text">
 									<h1 class="entry-title">Image recognition tutorial in Python/MXNet using deep convolutional</h1>
 				
 				<div class="hero-date">
 										<!-- Create an avatar link -->
-					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by  ">
+					<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by  ">
 						<img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=44&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=88&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-44 photo' height='44' width='44' />					</a>
 					<!-- Create an author post link -->
-					<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/">
+					<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/author/admin/">
 						lorenzo					</a>
 					<span class="hero-on-span">on</span>
 					<span class="hero-date-span">Oct 2016</span>
@@ -498,7 +498,7 @@ span.post-lang-en {
 <p>This section describes how to use pre-trained models with MXNet. Using pre-trained models is very easy and useful. It helps to save a lot of time. </p>
 <p>Researchers have demonstrated steady progress in computer vision by validating their work against <a href="http://www.image-net.org/" target="_blank">ImageNet</a> &#8212; an academic benchmark for computer vision. In the following example we learn how to load 3 pre-trained models available from <a href="https://github.com/ltoscano/mxnet-model-gallery" target="_blank">DMLC MXNet Model Gallery</a>. These models are in line with the state of the art and they are all trained on the ImageNet collection. </p>
 <p>We start with the model <a href="https://arxiv.org/pdf/1512.00567v3.pdf" target="_blank">Inception-v3</a> that is trained for the ImageNet Large Visual Recognition Challenge using the data from 2012 (<a href="http://www.image-net.org/challenges/LSVRC/2012/" target="_blank">ILSVRC 2012</a>). This is a standard task in computer vision, where models try to classify entire images into 1000 classes. This model can be visualized with this schematic diagram:</p>
-<p><img data-attachment-id="5623" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/image03/" data-orig-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?fit=1600%2C597&amp;ssl=1" data-orig-size="1600,597" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image03" data-image-description="" data-medium-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?fit=300%2C112&amp;ssl=1" data-large-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?fit=900%2C336&amp;ssl=1" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=900%2C336&#038;ssl=1" alt="image03" class="aligncenter size-large wp-image-5623" srcset="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=1024%2C382&amp;ssl=1 1024w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=300%2C112&amp;ssl=1 300w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=768%2C287&amp;ssl=1 768w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=1200%2C448&amp;ssl=1 1200w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=1300%2C485&amp;ssl=1 1300w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?w=1600&amp;ssl=1 1600w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p><img data-attachment-id="5623" data-permalink="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/image03/" data-orig-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?fit=1600%2C597&amp;ssl=1" data-orig-size="1600,597" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image03" data-image-description="" data-medium-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?fit=300%2C112&amp;ssl=1" data-large-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?fit=900%2C336&amp;ssl=1" src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=900%2C336&#038;ssl=1" alt="image03" class="aligncenter size-large wp-image-5623" srcset="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=1024%2C382&amp;ssl=1 1024w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=300%2C112&amp;ssl=1 300w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=768%2C287&amp;ssl=1 768w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=1200%2C448&amp;ssl=1 1200w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?resize=1300%2C485&amp;ssl=1 1300w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/image03.png?w=1600&amp;ssl=1 1600w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
 <p>Inception-v3 is able to achieve 76.88% Top-1 Accuracy and 93.344% Top-5 Accuracy on ILSVRC2012-Validation Set. Furthermore, in the <a href="http://image-net.org/challenges/LSVRC/2015/results" target="_blank">2015 ImageNet Challenge</a>, an ensemble of 4 of these models came in 2nd in the image classification task.</p>
 <p>In the following code blocks, we assume that pre-trained files have been already downloaded and copied on our local disk (e.g. in the folder <code data-enlighter-language="raw" class="EnlighterJSRAW">./datasets/preloaded/</code>).</p>
 <p><pre data-enlighter-language="python" class="EnlighterJSRAW">
@@ -540,7 +540,7 @@ print(&quot;Top5: &quot;, top5)
 <p>To be processed, the images must meet specific requirements dictated by the network and are therefore modified through a specific pre-processing function <code data-enlighter-language="raw" class="EnlighterJSRAW">preprocessing.PreprocessImage_V3</code>. </p>
 <p>The prediction is performed by invoking the <code data-enlighter-language="raw" class="EnlighterJSRAW">model.predict</code> function.</p>
 <p>Now we can do some prediction using the following two test images:</p>
-<div class="su-custom-gallery su-custom-gallery-title-never"><div class="su-custom-gallery-slide"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/cat.png?ssl=1"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/cat.png?resize=200%2C200&#038;ssl=1" alt="cat" data-recalc-dims="1" /><span class="su-custom-gallery-title">cat</span></a></div><div class="su-custom-gallery-slide"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/candle.png?ssl=1"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/candle.png?resize=200%2C200&#038;ssl=1" alt="candle" data-recalc-dims="1" /><span class="su-custom-gallery-title">candle</span></a></div><div class="su-clear"></div></div>
+<div class="su-custom-gallery su-custom-gallery-title-never"><div class="su-custom-gallery-slide"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/cat.png?ssl=1"><img src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/cat.png?resize=200%2C200&#038;ssl=1" alt="cat" data-recalc-dims="1" /><span class="su-custom-gallery-title">cat</span></a></div><div class="su-custom-gallery-slide"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/candle.png?ssl=1"><img src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/candle.png?resize=200%2C200&#038;ssl=1" alt="candle" data-recalc-dims="1" /><span class="su-custom-gallery-title">candle</span></a></div><div class="su-clear"></div></div>
 <p>Classification results of the candle&#8217;s image are:</p>
 <p><pre data-enlighter-language="raw" class="EnlighterJSRAW">
 (&#039;Top1: &#039;, &#039;n02948072 candle, taper, wax light&#039;)
@@ -586,7 +586,7 @@ batch = preprocessing.PreprocessImage_21k(&#039;./test-images/candle.jpg&#039;, 
 # or batch = preprocessing.PreprocessImage_21k(&#039;./test-images/funny-cat.jpg&#039;, True)
 ...
 </pre></p>
-<p>All pre-trained models are based on configurations of CNN networks of varying complexity and depth (the depth is the number of the layers that compose them). The depth influences the network’s capacity to recognize and automatically extract the <strong>features</strong> that compose an image. Normally, after preparing a dataset where there may potentially be images of all sizes, we proceed with simple tasks to resize each image, crop and other handling. Such treatment is obviously external, that is done prior to the start of the network’s training. Once pre-treated, the images are ready to be run through the network. Each of the pre-trained models requires a specific type of image processing. To simplify, I collected treatment functions for each model in the <code data-enlighter-language="raw" class="EnlighterJSRAW">preprocessing</code> module which you can require me by filling out the <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/contattami/" target="_blank">contact form</a>.</p>
+<p>All pre-trained models are based on configurations of CNN networks of varying complexity and depth (the depth is the number of the layers that compose them). The depth influences the network’s capacity to recognize and automatically extract the <strong>features</strong> that compose an image. Normally, after preparing a dataset where there may potentially be images of all sizes, we proceed with simple tasks to resize each image, crop and other handling. Such treatment is obviously external, that is done prior to the start of the network’s training. Once pre-treated, the images are ready to be run through the network. Each of the pre-trained models requires a specific type of image processing. To simplify, I collected treatment functions for each model in the <code data-enlighter-language="raw" class="EnlighterJSRAW">preprocessing</code> module which you can require me by filling out the <a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/contattami/" target="_blank">contact form</a>.</p>
 <h3>A CNN network built from scratch for image recognition</h3>
 <p>At this point, the objective is to implement from scratch a demo CNN, able to operate on two classes of images: cat and airplane. For the creation of training, validation and testing sets, I used the <a href="https://cs.stanford.edu/~acoates/stl10/" target="_blank">STL-10</a> dataset that is a subset of ImageNet collection. STL-10 consists of 13,000 color images with 96 × 96 pixels in size, arranged in 10 classes and 100,000 other unclassified usable images for unsupervised learning. The classified images are organized in 5000 images (500 per class) that can be used for training and 8000 images (800 per class) that can be used for validation and testing.</p>
 <h4>Training, validation and testing sets preparation</h4>
@@ -600,7 +600,7 @@ batch = preprocessing.PreprocessImage_21k(&#039;./test-images/candle.jpg&#039;, 
 <li>val_28_gray.rec: archive of 28×28 grayscale images of validation set</li>
 <li>test_28_gray.rec: archive of 28×28 grayscale images of test set</li>
 </ul>
-<p>If you are interested in python code for the images extraction and files generation, you can request it by filling out the <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/contattami/" target="_blank">contact form</a>. You can also visit the <a href="http://mxnet.readthedocs.io/en/latest/packages/python/io.html" target="_blank">MXNet Python Data Loading API</a> for further information about using im2rec and the &#8220;.lst&#8221; file format.</p>
+<p>If you are interested in python code for the images extraction and files generation, you can request it by filling out the <a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/contattami/" target="_blank">contact form</a>. You can also visit the <a href="http://mxnet.readthedocs.io/en/latest/packages/python/io.html" target="_blank">MXNet Python Data Loading API</a> for further information about using im2rec and the &#8220;.lst&#8221; file format.</p>
 <h4>Creation and training of the CNN network</h4>
 <p>In the next code block, first of all, we run the import of the necessary libraries among which, obviously, stands out the Python wrapper for MXNet. Afterwards, we create two instances of <code data-enlighter-language="raw" class="EnlighterJSRAW">mx.io.ImageRecordIter</code> class. The <code data-enlighter-language="raw" class="EnlighterJSRAW">ImageRecordIter</code> objects are basically iterators on images blocks. The first iterator is configured to work on the training set, the second on the validation set. In the case of the training set, the iterator is constructed so randomly performs cropping <code data-enlighter-language="raw" class="EnlighterJSRAW">rand_crop = True</code> and horizontal tilting <code data-enlighter-language="raw" class="EnlighterJSRAW">rand_mirror = True</code> of the input images (this helps the network to learn in a more robust way); these images treatments are not required on validation set. On both sets (training and test), we set the image size <code data-enlighter-language="raw" class="EnlighterJSRAW">data_shape = (1,28,28)</code> where 1 represents the number of image channels (grayscale) and the following values represent the width and height respectively. We also set <code data-enlighter-language="raw" class="EnlighterJSRAW">batch_size = 10</code> on both sets. <code data-enlighter-language="raw" class="EnlighterJSRAW">batch_size</code> represents the number of input elements, i.e. of images in this case, which are processed in the network from time to time (important for the training of a network). <em>This parameter is set based on the available memory of your computer (memory of the video card if you work in GPU mode, or RAM if you work in CPU mode). Changing this parameter does not affect the network performance in terms of classification accuracy. Surely, a lower batch size value will result in a slower phase of training, because fewer images are processed at a time, but this is in line with the fact that you have a more limited hardware.</em></p>
 <p><pre data-enlighter-language="python" class="EnlighterJSRAW">
@@ -674,7 +674,7 @@ fc2 = mx.symbol.FullyConnected(data=tanh3, num_hidden=2)
 NN_model = mx.symbol.SoftmaxOutput(data=fc2, name=&#039;softmax&#039;)
 </pre></p>
 <p>This model can be visualized with this schematic diagram<span id='easy-footnote-2' class='easy-footnote-margin-adjust'></span><span class='easy-footnote'><a href='#easy-footnote-bottom-2' title='&lt;a href=&quot;http://josephpcohen.com/w/visualizing-cnn-architectures-side-by-side-with-mxnet/&quot; target=&quot;_blank&quot;&gt;Visualizing CNN architectures side by side with mxnet&lt;/a&gt;'><sup>2</sup></a></span>:</p>
-<p><img data-attachment-id="5630" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/lorenzocnnimagerec/" data-orig-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?fit=1043%2C96&amp;ssl=1" data-orig-size="1043,96" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="" data-image-description="" data-medium-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?fit=300%2C28&amp;ssl=1" data-large-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?fit=900%2C83&amp;ssl=1" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=900%2C83&#038;ssl=1" alt="" class="aligncenter size-large wp-image-5630" srcset="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=1024%2C94&amp;ssl=1 1024w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=300%2C28&amp;ssl=1 300w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=768%2C71&amp;ssl=1 768w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?w=1043&amp;ssl=1 1043w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
+<p><img data-attachment-id="5630" data-permalink="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/lorenzocnnimagerec/" data-orig-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?fit=1043%2C96&amp;ssl=1" data-orig-size="1043,96" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="" data-image-description="" data-medium-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?fit=300%2C28&amp;ssl=1" data-large-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?fit=900%2C83&amp;ssl=1" src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=900%2C83&#038;ssl=1" alt="" class="aligncenter size-large wp-image-5630" srcset="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=1024%2C94&amp;ssl=1 1024w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=300%2C28&amp;ssl=1 300w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?resize=768%2C71&amp;ssl=1 768w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/10/LorenzoCNNImageRec.png?w=1043&amp;ssl=1 1043w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" /></p>
 <p>After the definition of the network architecture, we pass to the creation of the model by instantiation of the <code data-enlighter-language="raw" class="EnlighterJSRAW">mx.model.FeedForward</code> class. During the initialization we specify the execution context <code data-enlighter-language="raw" class="EnlighterJSRAW">ctx=devs</code>, the network architecture <code data-enlighter-language="raw" class="EnlighterJSRAW">symbol=NN_model</code>, the epochs number <code data-enlighter-language="raw" class="EnlighterJSRAW">num_epoch=400</code>, the learning rate value <code data-enlighter-language="raw" class="EnlighterJSRAW">learning_rate=0.0001</code>. Learning rate indicates what portion of the error should be considered when updating the weights of the network during the gradient descent algorithm. Another specified parameter is the momentum <code data-enlighter-language="raw" class="EnlighterJSRAW">momentum=0.9</code>. Momentum (or &#8220;persistence of change of synaptic connections&#8221;) indicates the proportion of the last weight update that is used in the current weight update (during the gradient descent). Momentum is an effective way to move a network towards a good generalization, but can also be a problem if the momentum moves us away from the optimum weights. Generally, we always leave the value 0.9 because it was shown that there can be obtained good results in this way. Finally, the last specified parameter is the weight decay <code data-enlighter-language="raw" class="EnlighterJSRAW">weight_decay = 0.00001</code>; it is a parameter that affects the regularization factor which appears in the formula for the cost function calculation:</p>
 <p><img src="//s0.wp.com/latex.php?latex=C%28W%2Cb%29%3D%5Cfrac%7B1%7D%7B2+%5Ccdot+m%7D%5Ccdot+%5Csum_%7Bi%3D1%7D%5E%7Bm%7D+%5By%5E%7B%28i%29%7D-f_%7BW%2Cb%7D%28x%5E%7B%28i%29%7D%29%5D%5E%7B2%7D%2Bwd%5Ccdot+%5Cleft+%5C%7C+W+%5Cright+%5C%7C%5E%7B2%7D&#038;bg=ffffff&#038;fg=000&#038;s=0" alt="C(W,b)=&#92;frac{1}{2 &#92;cdot m}&#92;cdot &#92;sum_{i=1}^{m} [y^{(i)}-f_{W,b}(x^{(i)})]^{2}+wd&#92;cdot &#92;left &#92;| W &#92;right &#92;|^{2}" title="C(W,b)=&#92;frac{1}{2 &#92;cdot m}&#92;cdot &#92;sum_{i=1}^{m} [y^{(i)}-f_{W,b}(x^{(i)})]^{2}+wd&#92;cdot &#92;left &#92;| W &#92;right &#92;|^{2}" class="latex" /></p>
 <p>where f<sub>W,b</sub>(x) is the network output, y<sup>(i)</sup> are the target outputs in relation to the input x(i), m is the number of training samples. W represents all the network weights and is regarded as a vector. The second addend is a regularization factor. The weight decay (wd) regulates the effect of regularization factor: a high value makes the network unable to treat the non-linearity by canceling the effect of a large part of the weights (in practice, it is as if we were using a simpler network), the lower values make the network be more robust, moderately mitigating the effect of the weights but allowing to treat nonlinearities without running into overfitting. The weight decay influences the degrees of the network freedom. Even here, it is usually left around a fixed value (0.0005 or short distance values).</p>
@@ -699,7 +699,7 @@ model.fit(X=train,
 )
 </pre></p>
 <p>The two charts in the figure below allow us to quickly analyze the network performance compared to training and validation set in ROC (Receiver Operator Characteristic) space and in the PR (Precision-Recall) space with AUC (Area Under the Curve) indication as an evaluation metric. For further information about ROC-PR and AUC, I suggest to read <a href="http://pages.cs.wisc.edu/~jdavis/davisgoadrichcamera2.pdf" target="_blank">The Relationship Between Precision-Recall and ROC Curves</a>.</p>
-<p><img data-attachment-id="5519" data-permalink="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/roc-pr/" data-orig-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?fit=894%2C393&amp;ssl=1" data-orig-size="894,393" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="roc-pr" data-image-description="" data-medium-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?fit=300%2C132&amp;ssl=1" data-large-file="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?fit=894%2C393&amp;ssl=1" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?resize=894%2C393&#038;ssl=1" alt="roc-pr" class="aligncenter size-full wp-image-5519" srcset="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?w=894&amp;ssl=1 894w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?resize=300%2C132&amp;ssl=1 300w, https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?resize=768%2C338&amp;ssl=1 768w" sizes="(max-width: 894px) 100vw, 894px" data-recalc-dims="1" /></p>
+<p><img data-attachment-id="5519" data-permalink="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/identificazione-di-oggetti-in-immagini-con-convolutional-neural-network-python-e-mxnet/roc-pr/" data-orig-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?fit=894%2C393&amp;ssl=1" data-orig-size="894,393" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="roc-pr" data-image-description="" data-medium-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?fit=300%2C132&amp;ssl=1" data-large-file="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?fit=894%2C393&amp;ssl=1" src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?resize=894%2C393&#038;ssl=1" alt="roc-pr" class="aligncenter size-full wp-image-5519" srcset="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?w=894&amp;ssl=1 894w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?resize=300%2C132&amp;ssl=1 300w, https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/ROC-PR.png?resize=768%2C338&amp;ssl=1 768w" sizes="(max-width: 894px) 100vw, 894px" data-recalc-dims="1" /></p>
 <p>The next excerpt contains the code for the generation of such charts.</p>
 <p><pre data-enlighter-language="python" class="EnlighterJSRAW">
 y_train=[]
@@ -753,7 +753,7 @@ plt.show()
 <p>Briefly, these are the results I have achieved:</p>
 <p><code data-enlighter-language="raw" class="EnlighterJSRAW">success: 237, total: 260, cat: 129, plane 108</code></p>
 <p>Thus, out of 260 images about 91% (237 of 260) has been correctly recognized, with 99% of the successes on cat and 83% on airplane. A very interesting result and certainly improvable by working on network parameters. But this is another story.</p>
-<p>You can ask me datasets, pre-trained models and custom software modules by filling out the <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/contattami/" target="_blank">contact form</a> (this is just a way, completely free for you, to know my blog readers).</p>
+<p>You can ask me datasets, pre-trained models and custom software modules by filling out the <a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/contattami/" target="_blank">contact form</a> (this is just a way, completely free for you, to know my blog readers).</p>
 <ol class="easy-footnotes-wrapper"><li class="easy-footnote-single"><span id="easy-footnote-bottom-1" class="easy-footnote-margin-adjust"></span>This model is a pretrained model on full ImageNet dataset with 14,197,087 images in 21,841 classes.<a class="easy-footnote-to-top" href="#easy-footnote-1"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-2" class="easy-footnote-margin-adjust"></span><a href="http://josephpcohen.com/w/visualizing-cnn-architectures-side-by-side-with-mxnet/" target="_blank">Visualizing CNN architectures side by side with mxnet</a><a class="easy-footnote-to-top" href="#easy-footnote-2"></a></li><li class="easy-footnote-single"><span id="easy-footnote-bottom-3" class="easy-footnote-margin-adjust"></span>These are named the <b>real</b> classes of images.<a class="easy-footnote-to-top" href="#easy-footnote-3"></a></li></ol>	</div><!-- .entry-content -->
 
 	
@@ -765,7 +765,7 @@ plt.show()
 					<li class="meta-cat">
 						<span>Posted in:</span>
 
-						<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" rel="category tag">Deep Learning</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" rel="category tag">Programming</a>, <a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" rel="category tag">Training</a>					</li>
+						<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" rel="category tag">Deep Learning</a>, <a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" rel="category tag">Programming</a>, <a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" rel="category tag">Training</a>					</li>
 
 				
 				<!-- Tags -->
@@ -781,7 +781,7 @@ plt.show()
 	
 </article><!-- #post-## -->
 	<div class="author-profile">
-		<a class="author-profile-avatar" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
+		<a class="author-profile-avatar" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/author/admin/" title="Posts by lorenzo"><img alt='' src='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=65&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/5dc913459f23856e71f78099918220bd?s=130&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' /></a>
 
 		<div class="author-profile-info">
 			<h3 class="author-profile-title">
@@ -792,7 +792,7 @@ plt.show()
 				</div>
 			
 			<div class="author-profile-links">
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/author/admin/"><i class="fa fa-pencil-square"></i> All Posts</a>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/author/admin/"><i class="fa fa-pencil-square"></i> All Posts</a>
 
 							</div>
 		</div><!-- .author-drawer-text -->
@@ -803,7 +803,7 @@ plt.show()
 			<div class="share-comment click">
 
 									<div class="share-icons open">
-						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-5587" class="share-twitter sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-5587" class="share-linkedin sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-5587" class="share-google-plus-1 sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#print" target="_blank" title="Click to print"><span></span><span class="sharing-screen-reader-text">Click to print (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-5587" class="share-facebook sd-button share-icon no-text" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+						<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Sharing:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-5587" class="share-twitter sd-button share-icon no-text" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-5587" class="share-linkedin sd-button share-icon no-text" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-5587" class="share-google-plus-1 sd-button share-icon no-text" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#print" target="_blank" title="Click to print"><span></span><span class="sharing-screen-reader-text">Click to print (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-5587" class="share-facebook sd-button share-icon no-text" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
 				
 									<a class="comments-toggle button" href="#">
 						<span><i class="fa fa-comments"></i>
@@ -830,7 +830,7 @@ plt.show()
 				<cite class="comment-cite">
 				    Pramod				</cite>
 
-				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-9">Thursday April 20th, 2017 at 03:06 PM</a>			</div>
+				<a class="comment-time" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-9">Thursday April 20th, 2017 at 03:06 PM</a>			</div>
 
 			<div class="comment-content">
 				<p>Hi Lorenzo,<br />
@@ -841,7 +841,7 @@ Can you tell me how can I fix this ? </p>
 <p>Best,<br />
 Pramod</p>
 				<p class="reply">
-					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?replytocom=9#respond' onclick='return addComment.moveForm( "comment-9", "9", "respond", "5587" )' aria-label='Reply to Pramod'>Reply</a>				</p>
+					<a rel='nofollow' class='comment-reply-link' href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?replytocom=9#respond' onclick='return addComment.moveForm( "comment-9", "9", "respond", "5587" )' aria-label='Reply to Pramod'>Reply</a>				</p>
 			</div>
 
 					</div>
@@ -857,14 +857,14 @@ Pramod</p>
 				<cite class="comment-cite">
 				    lorenzo				</cite>
 
-				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-10">Tuesday May  2nd, 2017 at 09:46 AM</a>			</div>
+				<a class="comment-time" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-10">Tuesday May  2nd, 2017 at 09:46 AM</a>			</div>
 
 			<div class="comment-content">
 				<p>Hi Pramod.<br />
 The first problem could be related to the image preprocessing (normalization and so on).<br />
 About bounding box, lastly, I found very useful <a href="https://github.com/Microsoft/CNTK" rel="nofollow">https://github.com/Microsoft/CNTK</a> on a Kaggle problem.</p>
 				<p class="reply">
-					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?replytocom=10#respond' onclick='return addComment.moveForm( "comment-10", "10", "respond", "5587" )' aria-label='Reply to lorenzo'>Reply</a>				</p>
+					<a rel='nofollow' class='comment-reply-link' href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?replytocom=10#respond' onclick='return addComment.moveForm( "comment-10", "10", "respond", "5587" )' aria-label='Reply to lorenzo'>Reply</a>				</p>
 			</div>
 
 					</div>
@@ -880,14 +880,14 @@ About bounding box, lastly, I found very useful <a href="https://github.com/Micr
 			<img alt='' src='https://secure.gravatar.com/avatar/?s=75&#038;d=monsterid&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=150&amp;d=monsterid&amp;r=g 2x' class='avatar avatar-75 photo avatar-default' height='75' width='75' />
 			<div class="comment-info">
 				<cite class="comment-cite">
-				    <a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/' rel='external nofollow' class='url'>A gentle introduction to TensorFlow with python (and RNN)</a>				</cite>
+				    <a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/gentle-introduction-to-tensorflow-with-python-and-rnn/' rel='external nofollow' class='url'>A gentle introduction to TensorFlow with python (and RNN)</a>				</cite>
 
-				<a class="comment-time" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-2">Thursday December  1st, 2016 at 12:34 AM</a>			</div>
+				<a class="comment-time" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#comment-2">Thursday December  1st, 2016 at 12:34 AM</a>			</div>
 
 			<div class="comment-content">
 				<p>[&#8230;] you interested in object classification? Give a look to my post Image recognition tutorial in Python/MXNet using deep convolutional. To learn about neural networks in general, Michael Nielsen&#8217;s free online book is an [&#8230;]</p>
 				<p class="reply">
-					<a rel='nofollow' class='comment-reply-link' href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?replytocom=2#respond' onclick='return addComment.moveForm( "comment-2", "2", "respond", "5587" )' aria-label='Reply to A gentle introduction to TensorFlow with python (and RNN)'>Reply</a>				</p>
+					<a rel='nofollow' class='comment-reply-link' href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/?replytocom=2#respond' onclick='return addComment.moveForm( "comment-2", "2", "respond", "5587" )' aria-label='Reply to A gentle introduction to TensorFlow with python (and RNN)'>Reply</a>				</p>
 			</div>
 
 					</div>
@@ -900,7 +900,7 @@ About bounding box, lastly, I found very useful <a href="https://github.com/Micr
 		
 				
 		<div id="respond" class="comment-respond">
-							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#respond" style="display:none;">Cancel reply</a></small></h3>
+							<h3 id="reply-title" class="comment-reply-title">Vuoi commentare? <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/#respond" style="display:none;">Cancel reply</a></small></h3>
 						<form id="commentform" class="comment-form">
 				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=114978248&#038;postid=5587&#038;comment_registration=0&#038;require_name_email=1&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=monsterid&#038;greeting=Vuoi+commentare%3F&#038;greeting_reply=Leave+a+Reply+to+%25s&#038;color_scheme=light&#038;lang=en_US&#038;jetpack_version=4.9&#038;sig=61f8bea371b901a938f5d453a483797b35b66de8#parent=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Fimage-recognition-tutorial-python-mxnet-deep-convolutional%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
 				<!--[if !IE]><!-->
@@ -951,8 +951,8 @@ transition: 1s ease opacity;
 </style>
 <aside id="qtranslate-2" class="widget qtranxs_widget"><h2 class="widget-title">Language:</h2>
 <ul class="language-chooser language-chooser-image qtranxs_language_chooser" id="qtranslate-2-chooser">
-<li class="lang-it"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/it/image-recognition-tutorial-python-mxnet-deep-convolutional/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
-<li class="lang-en active"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
+<li class="lang-it"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/it/image-recognition-tutorial-python-mxnet-deep-convolutional/" hreflang="it" title="Italiano (it)" class="qtranxs_image qtranxs_image_it"><img src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/it.png" alt="Italiano (it)" /><span style="display:none">Italiano</span></a></li>
+<li class="lang-en active"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" hreflang="en" title="English (en)" class="qtranxs_image qtranxs_image_en"><img src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English (en)" /><span style="display:none">English</span></a></li>
 </ul><div class="qtranxs_widget_end"></div>
 </aside><aside id="blog_subscription-3" class="widget jetpack_subscription_widget"><h2 class="widget-title">Subscribe to Blog via Email</h2>
 			<form action="#" method="post" accept-charset="utf-8" id="subscribe-blog-blog_subscription-3">
@@ -965,7 +965,7 @@ transition: 1s ease opacity;
 
 					<p id="subscribe-submit">
 						<input type="hidden" name="action" value="subscribe" />
-						<input type="hidden" name="source" value="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" />
+						<input type="hidden" name="source" value="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" />
 						<input type="hidden" name="sub-type" value="widget" />
 						<input type="hidden" name="redirect_fragment" value="blog_subscription-3" />
 												<input type="submit" value="Subscribe" name="jetpack_subscriptions_widget" />
@@ -1012,43 +1012,43 @@ transition: 1s ease opacity;
 				
 </aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recents</h2>		<ul>
 					<li>
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/introduction-to-bitcoin-intuitions/">Intuitions on the fly on Blockchain</a>
 						</li>
 					<li>
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/hype-cycle-e-apprendimento-automatico-in-che-fase-siamo/">Hype cycle e Apprendimento Automatico: in che fase siamo?</a>
 						</li>
 					<li>
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/emotions-detection-via-facial-expressions-with-python-opencv/">Emotions Detection Via Facial Expressions with python &#038; OpenCV</a>
 						</li>
 					<li>
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/introduction-to-gradient-boosted-trees-and-xgboost-hyperparameters-tuning-with-python/">Introduction to gradient-boosted trees and XGBoost hyperparameters tuning (with python)</a>
 						</li>
 					<li>
-				<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
+				<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/introduction-to-decision-trees-with-bigml-a-step-by-step-guide/">Introduction to decision trees with BigML: a step by step guide</a>
 						</li>
 				</ul>
 		</aside>		<aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>		<ul>
-	<li class="cat-item cat-item-10"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" >API generation</a>
+	<li class="cat-item cat-item-10"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/api-generation/" >API generation</a>
 </li>
-	<li class="cat-item cat-item-333"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/data-engineering/" >Data Engineering</a>
+	<li class="cat-item cat-item-333"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/data-engineering/" >Data Engineering</a>
 </li>
-	<li class="cat-item cat-item-11"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" >Data Mining</a>
+	<li class="cat-item cat-item-11"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/data-mining/" >Data Mining</a>
 </li>
-	<li class="cat-item cat-item-9"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" >Data visualization</a>
+	<li class="cat-item cat-item-9"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/visualizzazione-dei-dati/" >Data visualization</a>
 </li>
-	<li class="cat-item cat-item-12"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" >Deep Learning</a>
+	<li class="cat-item cat-item-12"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/deep-learning/" >Deep Learning</a>
 </li>
-	<li class="cat-item cat-item-4"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/machine-learning/" >Machine Learning</a>
+	<li class="cat-item cat-item-4"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/machine-learning/" >Machine Learning</a>
 </li>
-	<li class="cat-item cat-item-5"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" >Programming</a>
+	<li class="cat-item cat-item-5"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/programmazione/" >Programming</a>
 </li>
-	<li class="cat-item cat-item-7"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" >Tools</a>
+	<li class="cat-item cat-item-7"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/strumenti/" >Tools</a>
 </li>
-	<li class="cat-item cat-item-3"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" >Training</a>
+	<li class="cat-item cat-item-3"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/category/collaterali/formazione/" >Training</a>
 </li>
 		</ul>
 </aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h2 class="widget-title">My Twitter</h2><a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="EN" data-partner="jetpack" href="https://twitter.com/BEmatic">My Tweets</a></aside><aside id="search-2" class="widget widget_search">
-<form role="search" method="get" id="searchform" class="searchform" action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/">
+<form role="search" method="get" id="searchform" class="searchform" action="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/">
 	<div>
 		<label class="screen-reader-text" for="s">Search for:</label>
 
@@ -1066,8 +1066,8 @@ transition: 1s ease opacity;
 	<!-- Next and previous post links -->
 	
 		<nav class="post-navigation">
-			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?resize=531%2C280&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Next</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/" rel="prev">Exploring Tweets: a python-based demonstrator</a></div><span>30/09/2016</span></div></div>
-			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?resize=450%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Previous</span><div class="overflow-link"><a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" rel="next">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</a></div><span>02/11/2016</span></div></div>		</nav><!-- .post-navigation -->
+			<div class="nav-prev nav-post"><div class="background-effect" style="background-image: url( https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/09/social_networking.png?resize=531%2C280&#038;ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Next</span><div class="overflow-link"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/exploring-tweets-python-based-demonstrator/" rel="prev">Exploring Tweets: a python-based demonstrator</a></div><span>30/09/2016</span></div></div>
+			<div class="nav-next nav-post"><div class="background-effect" style="background-image: url( https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/uploads/2016/11/blue-robot-vector-art-e1478100652986.png?resize=450%2C280&ssl=1);"> </div><div class="nav-post-text"><span class="nav-label">Previous</span><div class="overflow-link"><a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/riconoscimento-vocale-analisi-testo-watson-developer-cloud-python-sdk/" rel="next">Riconoscimento vocale e analisi di testo non strutturato con Watson Developer Cloud Python SDK</a></div><span>02/11/2016</span></div></div>		</nav><!-- .post-navigation -->
 	
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<div class="container">
@@ -1075,22 +1075,22 @@ transition: 1s ease opacity;
 					<div class="footer-widgets">
 				<aside id="text-2" class="widget widget_text"><h2 class="widget-title">Welcome</h2>			<div class="textwidget">This site is a collection of personal notes both in English and Italian about machine learning and cognitive computing. Enjoy the reading!
 <hr/>
-<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
+<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/blog-disclaimer/">Blog Disclaimer</a>
 <br/>
-<a href="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
+<a href="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/privacy/">Privacy & Cookie</a>
 <hr/>
 <span class="su-qrcode su-qrcode-align-center"><a target="_blank" title="ApprendimentoAutomatico.it"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog&size=100x100&format=png&margin=0&color=0-0-0&bgcolor=255-255-255" alt="ApprendimentoAutomatico.it" /></a></span></div>
 		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><iframe src="//www.slideshare.net/slideshow/embed_code/key/tQ9BEBk2V5xptV" width="340" height="290" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/markpeng/general-tips-for-participating-kaggle-competitions" title="General Tips for participating Kaggle Competitions" target="_blank">General Tips for participating Kaggle Competitions</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/markpeng">Mark Peng</a></strong> </div></div>
 		</aside><aside id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archives</h2>		<ul>
-			<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>&nbsp;(1)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>&nbsp;(1)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>&nbsp;(2)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>&nbsp;(2)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>&nbsp;(3)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>&nbsp;(1)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>&nbsp;(2)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>&nbsp;(3)</li>
-	<li><a href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>&nbsp;(8)</li>
+			<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2017/05/'>May 2017</a>&nbsp;(1)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2017/04/'>April 2017</a>&nbsp;(1)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2017/01/'>January 2017</a>&nbsp;(2)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/12/'>December 2016</a>&nbsp;(2)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/11/'>November 2016</a>&nbsp;(3)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/10/'>October 2016</a>&nbsp;(1)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/09/'>September 2016</a>&nbsp;(2)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/08/'>August 2016</a>&nbsp;(3)</li>
+	<li><a href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/2016/07/'>July 2016</a>&nbsp;(8)</li>
 		</ul>
 		</aside>			</div>
 		
@@ -1117,7 +1117,7 @@ transition: 1s ease opacity;
 		window.WPCOM_sharing_counts = {"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/en\/image-recognition-tutorial-python-mxnet-deep-convolutional\/":5587};
 	</script>
 	<div id="sharing_email" style="display: none;">
-		<form action="https://ltoscano.github.io/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" method="post">
+		<form action="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/en/image-recognition-tutorial-python-mxnet-deep-convolutional/" method="post">
 			<label for="target_email">Send to Email Address</label>
 			<input type="email" name="target_email" id="target_email" value="" />
 
@@ -1131,7 +1131,7 @@ transition: 1s ease opacity;
 						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
 			<script>jQuery( document ).ready( function(){ document.getElementById('jetpack-source_f_name').value = '' });</script>
 			
-			<img style="float: right; display: none" class="loading" src="https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<img style="float: right; display: none" class="loading" src="https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
 			<input type="submit" value="Send Email" class="sharing_send" />
 			<a rel="nofollow" href="#cancel" class="sharing_cancel">Cancel</a>
 
@@ -1145,13 +1145,13 @@ transition: 1s ease opacity;
 				Sorry, your blog cannot share posts by email.			</div>
 		</form>
 	</div>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
-<link rel='stylesheet' id='qtipstyles-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.css?ver=4.6.1' type='text/css' media='' />
-<link rel='stylesheet' id='easyfootnotescss-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/easy-footnotes.css?ver=4.6.1' type='text/css' media='' />
-<link rel='stylesheet' id='dashicons-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
-<link rel='stylesheet' id='su-galleries-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/galleries-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
-<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<link rel='stylesheet' id='qtipstyles-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='easyfootnotescss-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/easy-footnotes.css?ver=4.6.1' type='text/css' media='' />
+<link rel='stylesheet' id='dashicons-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='su-galleries-shortcodes-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/galleries-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<link rel='stylesheet' id='su-content-shortcodes-css'  href='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/css/content-shortcodes.css?ver=4.9.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
 <script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201802'></script>
 <script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Janaa'></script>
 <script type='text/javascript'>
@@ -1159,43 +1159,43 @@ transition: 1s ease opacity;
 var WPGroHo = {"my_hash":""};
 /* ]]> */
 </script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.6.1'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var paperback_js_vars = {"ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","load_fixed":"true"};
 /* ]]> */
 </script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/paperback.js?ver=1.0'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.fitvids.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.matchHeight.js?ver=1.0'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/responsiveslides.js?ver=1.54'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jquery.touchSwipe.js?ver=1.6.6'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/themes/paperback/js/jQuery.headroom.js?ver=0.7.0'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/_inc/twitter-timeline.js?ver=4.0.0'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var settings_obj = {"ajax_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"06c07c87f6","confirm":"Are you sure to delete item?"};
 /* ]]> */
 </script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/custom-css-js-php//assets/js/frontend.js?ver=4.6.1'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-admin\/admin-ajax.php","nonce":"16afb09915","display_exif":"0","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/ltoscano.github.io\/apprendimentoautomatico-wpblog\/wp-login.php?redirect_to=https%3A%2F%2Fltoscano.github.io%2Fapprendimentoautomatico-wpblog%2Fen%2Fimage-recognition-tutorial-python-mxnet-deep-convolutional%2F","blog_id":"1","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>"};
 /* ]]> */
 </script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel.js?ver=20170209'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.js?ver=4.6.1'></script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtipcall.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/carousel/jetpack-carousel.js?ver=20170209'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtip.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/easy-footnotes/assets/qtip/jquery.qtipcall.js?ver=4.6.1'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var sharing_js_options = {"lang":"en","counts":"1"};
 /* ]]> */
 </script>
-<script type='text/javascript' src='https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
+<script type='text/javascript' src='https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=4.9'></script>
 <script type='text/javascript'>
 var windowOpen;
 			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {

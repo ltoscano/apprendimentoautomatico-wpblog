@@ -255,7 +255,7 @@
 	display: block;
 	width: 20px;
 	height: 20px;
-	background-image: url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/quote.png');
+	background-image: url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/quote.png');
 	content: '';
 }
 .su-quote-style-default:before {
@@ -417,22 +417,22 @@
 	padding: 1em;
 }
 .su-box-style-soft .su-box-title {
-	background-image: url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-soft.png');
+	background-image: url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-soft.png');
 	background-position: 0 0;
 	background-repeat: repeat-x;
 }
 .su-box-style-glass .su-box-title {
-	background-image: url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-glass.png');
+	background-image: url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-glass.png');
 	background-position: 0 50%;
 	background-repeat: repeat-x;
 }
 .su-box-style-bubbles .su-box-title {
-	background-image: url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-bubbles.png');
+	background-image: url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-bubbles.png');
 	background-position: 0 50%;
 	background-repeat: repeat-x;
 }
 .su-box-style-noise .su-box-title {
-	background-image: url('https://ltoscano.github.io/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-noise.png');
+	background-image: url('https://www.apprendimentoautomatico.it/apprendimentoautomatico-wpblog/wp-content/plugins/shortcodes-ultimate/assets/images/styles/style-noise.png');
 	background-position: 0 0;
 	background-repeat: repeat-x;
 }
